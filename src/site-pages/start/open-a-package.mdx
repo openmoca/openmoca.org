@@ -8,6 +8,7 @@ head:
 ---
 
 import { Aside, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import McpDownload from '../../../components/McpDownload.astro';
 
 Someone has sent you a `.moca` file: a knowledge package, such as a product's
 documentation, a policy set or a support knowledge base. You want to ask your
@@ -19,7 +20,7 @@ install. It connects the package to any assistant that supports the
 Claude Desktop, Claude Code, VS Code and Cursor. It runs on your computer,
 and makes no network calls.
 
-<LinkButton href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest" icon="download">Download moca-mcp</LinkButton>
+<McpDownload />
 
 <Steps>
 
@@ -27,12 +28,14 @@ and makes no network calls.
    [latest release](https://github.com/openmoca/moca-mcp-dotnet/releases/latest),
    and unzip it somewhere you will keep it:
 
-   | Computer | File |
-   | --- | --- |
-   | Windows | `moca-mcp-win-x64.zip` (`win-arm64` for Arm) |
-   | Mac with Apple silicon | `moca-mcp-osx-arm64.zip` |
-   | Mac with an Intel processor | `moca-mcp-osx-x64.zip` |
-   | Linux | `moca-mcp-linux-x64.zip` (`linux-arm64` for Arm) |
+   | Computer | File | |
+   | --- | --- | --- |
+   | Windows | `moca-mcp-win-x64.zip` | <a class="moca-download-chip" href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest/download/moca-mcp-win-x64.zip" aria-label="Download moca-mcp for Windows">Download</a> |
+   | Windows on Arm | `moca-mcp-win-arm64.zip` | <a class="moca-download-chip" href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest/download/moca-mcp-win-arm64.zip" aria-label="Download moca-mcp for Windows on Arm">Download</a> |
+   | Mac with Apple silicon | `moca-mcp-osx-arm64.zip` | <a class="moca-download-chip" href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest/download/moca-mcp-osx-arm64.zip" aria-label="Download moca-mcp for Mac with Apple silicon">Download</a> |
+   | Mac with an Intel processor | `moca-mcp-osx-x64.zip` | <a class="moca-download-chip" href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest/download/moca-mcp-osx-x64.zip" aria-label="Download moca-mcp for Mac with an Intel processor">Download</a> |
+   | Linux | `moca-mcp-linux-x64.zip` | <a class="moca-download-chip" href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest/download/moca-mcp-linux-x64.zip" aria-label="Download moca-mcp for Linux">Download</a> |
+   | Linux on Arm | `moca-mcp-linux-arm64.zip` | <a class="moca-download-chip" href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest/download/moca-mcp-linux-arm64.zip" aria-label="Download moca-mcp for Linux on Arm">Download</a> |
 
    The builds are not code-signed yet, so your computer asks the first time.
    On a Mac, right-click `moca-mcp` in Finder, choose **Open**, then **Open**

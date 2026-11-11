@@ -1,0 +1,82 @@
+---
+// The moca-mcp download button. Without JavaScript, or when the computer can't be told, it links to the latest
+// release. Otherwise it links straight to the build for this computer, and says which one it is.
+import { LinkButton } from '@astrojs/starlight/components';
+
+const release = 'https://github.com/openmoca/moca-mcp-dotnet/releases/latest';
+---
+
+<div class="moca-mcp-download" data-mcp-download data-release={release}>
+  <LinkButton href={release} icon="download" data-mcp-download-link>
+    <span data-mcp-download-label>Download moca-mcp</span>
+  </LinkButton>
+  <p class="moca-mcp-download-note" data-mcp-download-note hidden></p>
+</div>
+
+<script>
+  // Builds: moca-mcp-<rid>.zip on the latest release (moca-mcp-dotnet's release workflow).
+  const NAMES: Record<string, string> = {
+    'win-x64': 'Windows',
+    'win-arm64': 'Windows on Arm',
+    'osx-arm64': 'Mac with Apple silicon',
+    'osx-x64': 'Mac with an Intel processor',
+    'linux-x64': 'Linux (x64)',
+    'linux-arm64': 'Linux on Arm',
+  };
+
+  type Platform = { os: 'win' | 'osx' | 'linux'; arch: 'x64' | 'arm64'; guessed: boolean };
+
+  async function detect(): Promise<Platform | null> {
+    const ua = navigator.userAgent;
+    // Phones and tablets cannot run the server. An iPad says "Macintosh" but has a touch screen.
+    if (/Android|iPhone|iPad|iPod/i.test(ua)) return null;
+    if (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1) return null;
+    const os = /Windows/i.test(ua) ? 'win' : /Macintosh|Mac OS X/i.test(ua) ? 'osx' : /Linux|X11/i.test(ua) ? 'linux' : null;
+    if (!os) return null;
+
+    // Chromium browsers say the processor architecture when asked; Safari and Firefox do not.
+    const data = (navigator as Navigator & {
+      userAgentData?: { getHighEntropyValues(hints: string[]): Promise<{ architecture?: string }> };
+    }).userAgentData;
+    if (data?.getHighEntropyValues) {
+      try {
+        const { architecture } = await data.getHighEntropyValues(['architecture']);
+        if (architecture === 'arm') return { os, arch: 'arm64', guessed: false };
+        if (architecture === 'x86') return { os, arch: 'x64', guessed: false };
+      } catch {
+        // Fall through to a guess.
+      }
+    }
+    if (/aarch64|arm64/i.test(ua)) return { os, arch: 'arm64', guessed: false };
+    // A Mac browser always says "Intel" in its user agent. Macs sold since 2020 have Apple silicon, so that is the
+    // better guess, with the Intel build offered beside it.
+    return { os, arch: os === 'osx' ? 'arm64' : 'x64', guessed: os === 'osx' };
+  }
+
+  for (const box of document.querySelectorAll<HTMLElement>('[data-mcp-download]')) {
+    const link = box.querySelector<HTMLAnchorElement>('[data-mcp-download-link]');
+    const label = box.querySelector<HTMLElement>('[data-mcp-download-label]');
+    const note = box.querySelector<HTMLElement>('[data-mcp-download-note]');
+    if (!link || !label || !note) continue;
+    const release = box.dataset.release ?? link.href;
+    detect().then((platform) => {
+      if (!platform) return;
+      const rid = `${platform.os}-${platform.arch}`;
+      link.href = `${release}/download/moca-mcp-${rid}.zip`;
+      label.textContent = `Download for ${NAMES[rid]}`;
+      const other = platform.os === 'osx' && platform.guessed ? 'osx-x64' : null;
+      note.innerHTML = other
+        ? `<code>moca-mcp-${rid}.zip</code>. Mac with an Intel processor? <a href="${release}/download/moca-mcp-${other}.zip">Download that build</a>, or choose from the table below.`
+        : `<code>moca-mcp-${rid}.zip</code>. A different computer? Choose from the table below.`;
+      note.hidden = false;
+    });
+  }
+</script>
+
+<style>
+  .moca-mcp-download-note {
+    margin-top: 0.5rem;
+    font-size: var(--moca-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+</style>

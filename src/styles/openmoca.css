@@ -128,3 +128,20 @@
     --moca-callout-danger-bg: #2E1717;
   }
 }
+
+/* A small download link in a table cell (the MCP server's builds on /start/open-a-package/). */
+.sl-markdown-content a.moca-download-chip {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  border: 1px solid var(--moca-accent);
+  border-radius: var(--moca-radius-pill);
+  font-size: var(--moca-text-sm);
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--moca-accent);
+}
+.sl-markdown-content a.moca-download-chip:hover {
+  background: var(--moca-accent);
+  color: var(--moca-on-accent);
+}

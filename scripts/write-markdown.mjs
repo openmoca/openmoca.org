@@ -29,6 +29,8 @@ function plain(body) {
     .replace(/<\/?CardGrid[^>]*>\n?/g, '')
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${attr(t, 'title')}](${attr(t, 'href')}): ${attr(t, 'description')}`)
     .replace(/<Card\b[^>]*>([\s\S]*?)<\/Card>/g, (t, inner) => `**${attr(t, 'title')}.** ${inner.replace(/\s+/g, ' ').trim()}`)
+    .replace(/<McpDownload\s*\/>/g, '[Download moca-mcp](https://github.com/openmoca/moca-mcp-dotnet/releases/latest)')
+    .replace(/<a class="moca-download-chip" href="([^"]+)"[^>]*>([^<]*)<\/a>/g, '[$2]($1)')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
