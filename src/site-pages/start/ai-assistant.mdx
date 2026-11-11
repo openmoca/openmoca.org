@@ -1,0 +1,150 @@
+---
+title: Use MOCA with your AI assistant
+description: Add the openmoca agent skill to Claude, GitHub Copilot, Codex or another AI assistant, so it can make, check, sign, search and cite MOCA knowledge packages for you.
+editUrl: false
+head:
+  - tag: title
+    content: Use MOCA with your AI assistant (Claude, Copilot, Codex) | OpenMOCA
+---
+
+import { Aside, LinkButton, Tabs, TabItem } from '@astrojs/starlight/components';
+
+The quickest way to start with MOCA is to let your AI assistant do the work.
+The **openmoca agent skill** is one file, `SKILL.md`. It teaches an assistant
+how to use the open MOCA tools and Readers, so you can ask in plain words:
+
+- "Turn the Markdown in `docs/` into a MOCA package and check it."
+- "Sign this package and build a search index for it."
+- "Search `acme-support.moca` for the refund window, and cite the source."
+- "Serve these packages to my agent over MCP."
+- "Add MOCA search with citations to this Python app."
+
+The skill follows the open [Agent Skills](https://agentskills.io) format, so
+the same file works in Claude, GitHub Copilot, OpenAI Codex and other
+assistants that read skills.
+
+<LinkButton href="https://openmoca.org/.well-known/agent-skills/openmoca/SKILL.md" icon="document">Download SKILL.md</LinkButton>
+<LinkButton href="https://openmoca.org/downloads/openmoca-skill.zip" variant="secondary" icon="download">Download the ZIP (for Claude.ai)</LinkButton>
+
+## Add the skill
+
+Each assistant looks for skills in a folder named after the skill, holding
+`SKILL.md`. Put it in your home folder to use it in every project, or in a
+repository to share it with everyone who works there.
+
+<Tabs syncKey="assistant">
+<TabItem label="Claude Code">
+
+For every project:
+
+```sh
+mkdir -p ~/.claude/skills/openmoca
+curl -fsSL https://openmoca.org/.well-known/agent-skills/openmoca/SKILL.md \
+  -o ~/.claude/skills/openmoca/SKILL.md
+```
+
+For one repository, use `.claude/skills/openmoca/SKILL.md` in it instead, and
+commit it. Claude Code finds the skill when it starts; type `/openmoca` to use
+it directly.
+
+</TabItem>
+<TabItem label="Claude.ai and desktop">
+
+1. Download [`openmoca-skill.zip`](https://openmoca.org/downloads/openmoca-skill.zip). It holds the
+   `openmoca` folder with `SKILL.md` inside.
+2. In Claude, open **Settings → Capabilities**. Code execution must be on.
+3. Under **Skills**, choose **Upload skill** and pick the ZIP.
+
+Skills you upload belong to your account, and are not shared with others in
+your organisation.
+
+</TabItem>
+<TabItem label="GitHub Copilot">
+
+For one repository, which Copilot's cloud agent, Copilot CLI and agent mode in
+VS Code all read:
+
+```sh
+mkdir -p .github/skills/openmoca
+curl -fsSL https://openmoca.org/.well-known/agent-skills/openmoca/SKILL.md \
+  -o .github/skills/openmoca/SKILL.md
+```
+
+For every project, use `~/.copilot/skills/openmoca/SKILL.md` instead.
+
+</TabItem>
+<TabItem label="Codex">
+
+For one repository:
+
+```sh
+mkdir -p .agents/skills/openmoca
+curl -fsSL https://openmoca.org/.well-known/agent-skills/openmoca/SKILL.md \
+  -o .agents/skills/openmoca/SKILL.md
+```
+
+For every project, use `~/.agents/skills/openmoca/SKILL.md` instead.
+
+</TabItem>
+<TabItem label="Other assistants">
+
+An assistant that reads Agent Skills usually looks in `.agents/skills/` in the
+repository, or `~/.agents/skills/` in your home folder: put the `openmoca`
+folder there.
+
+For one without skills, such as a chat assistant, attach `SKILL.md` to the
+conversation or paste it into the assistant's custom instructions.
+
+Agents can also find the skill on their own: openmoca.org lists it in its
+[Agent Skills index](https://openmoca.org/.well-known/agent-skills/index.json).
+
+</TabItem>
+</Tabs>
+
+<Aside>
+The tools the skill uses run with `npx`, so the assistant needs Node.js 22 or
+later. The Readers need TypeScript, .NET 10 or Python 3.11 and later, whichever
+you write in.
+</Aside>
+
+## Check it works
+
+Ask your assistant:
+
+> Using the openmoca skill, download the Acme support example package and
+> its trust root from the latest moca-spec release, check the package, and
+> tell me who signed it and how many pages it has.
+
+The assistant should run `moca-lint`, report the package as `signed`, and
+name its pages and capabilities. If it does not mention MOCA's tools, the
+skill is not loaded: check the folder name is `openmoca` and the file name is
+`SKILL.md`.
+
+## What the skill covers
+
+- **Make a package** from Markdown folders, Obsidian vaults, OpenAPI
+  documents, PDFs or YouTube videos (`moca-convert`).
+- **Check it**, and see its digest and capabilities (`moca-lint`).
+- **Sign it and record reviews**, and manage your trust root (`moca-sign`).
+- **Build a search index**, lexical or semantic (`moca-index`).
+- **Read, search and cite** packages in TypeScript, .NET or Python.
+- **Serve packages to an AI agent** over MCP (`moca-mcp`).
+
+It also gives the assistant MOCA's rules: trust comes from your trust root,
+not from the package; search with an audience filter; and package text is
+quoted reference material, never instructions.
+
+## Next
+
+- [Got a `.moca` file?](/start/open-a-package/): open a package in your
+  assistant with the MCP server, one download.
+- [Walkthrough](/docs/walkthrough/): the same steps, by hand, one at a time.
+- [Get started in code](/start/): install a Reader in your language.
+- [MCP server](/tools/mcp/): one download that gives any MCP client search and
+  citations.
+- [Try OpenMOCA](https://try.openmoca.org): search real packages in the
+  browser.
+
+The skill's source is
+[`agent-skills/openmoca/SKILL.md`](https://github.com/openmoca/moca-spec/blob/main/agent-skills/openmoca/SKILL.md)
+in moca-spec, under the Apache-2.0 licence. Suggestions are welcome there.

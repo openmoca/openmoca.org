@@ -1,0 +1,142 @@
+---
+// Starlight's head, plus structured data (schema.org JSON-LD) that tells search engines and AI assistants what each
+// page is: the site and the project on the home page, an article for each docs page, software for each Reader and
+// tool, and the questions and answers on the FAQ. Everything is built here at build time; nothing loads from elsewhere.
+import Default from '@astrojs/starlight/components/Head.astro';
+
+const SITE = 'https://openmoca.org';
+const route = Astro.locals.starlightRoute;
+const { entry, id } = route;
+const data = entry.data;
+const url = new URL(Astro.url.pathname, SITE).href;
+const isHome = id === '' || id === 'index';
+const is404 = id === '404';
+
+// The home page is the site, not an article.
+if (isHome) for (const h of route.head) if (h.tag === 'meta' && h.attrs?.property === 'og:type') h.attrs.content = 'website';
+// Every page is also served as Markdown: at index.md beside the page, or for `Accept: text/markdown` (worker/index.js).
+if (!is404) route.head.push({ tag: 'link', attrs: { rel: 'alternate', type: 'text/markdown', href: `${Astro.url.pathname.replace(/\/?$/, '/')}index.md` }, content: '' });
+// Tells agent-readiness scanners this is a documentation and content site (is-agentic.com). It changes no score.
+route.head.push({ tag: 'meta', attrs: { name: 'is-agentic-site-type', content: 'content' }, content: '' });
+
+const TOPICS = [
+  'Retrieval-augmented generation (RAG)', 'AI grounding', 'Citations and provenance for AI answers', 'AI agents',
+  'Model Context Protocol (MCP)', 'Ontology-guided retrieval', 'Sovereign and offline AI', 'Knowledge packaging',
+];
+
+// The country only: the registered office is a private home, so the street address is not published here.
+const ADDRESS = { '@type': 'PostalAddress', addressCountry: 'GB' };
+const CONTACT = { '@type': 'ContactPoint', contactType: 'customer support', email: 'hello@openmoca.org', url: `${SITE}/contact/` };
+const publisher = {
+  '@type': 'Organization',
+  '@id': `${SITE}/#publisher`,
+  name: 'PI & Mash Solutions Ltd',
+  legalName: 'PI & MASH SOLUTIONS LTD',
+  url: 'https://piandmash.com',
+  identifier: { '@type': 'PropertyValue', propertyID: 'Companies House', value: '17429224' },
+  address: ADDRESS,
+  contactPoint: CONTACT,
+};
+const project = {
+  '@type': 'Organization',
+  '@id': `${SITE}/#openmoca`,
+  name: 'OpenMOCA',
+  alternateName: ['MOCA', 'Modular Ontology, Content & Attestation'],
+  url: `${SITE}/`,
+  logo: `${SITE}/apple-touch-icon.png`,
+  sameAs: ['https://github.com/openmoca', 'https://try.openmoca.org'],
+  parentOrganization: { '@id': `${SITE}/#publisher` },
+  knowsAbout: TOPICS,
+  keywords: TOPICS.join(', '),
+  email: 'hello@openmoca.org',
+  contactPoint: CONTACT,
+  address: ADDRESS,
+};
+const website = {
+  '@type': 'WebSite',
+  '@id': `${SITE}/#website`,
+  name: 'OpenMOCA',
+  url: `${SITE}/`,
+  description: 'Portable grounding for AI: an open standard for packaging the knowledge AI answers from, with its structure and original sources.',
+  inLanguage: 'en',
+  publisher: { '@id': `${SITE}/#openmoca` },
+};
+
+const SECTIONS: Record<string, string> = {
+  start: 'Get started', docs: 'Documentation', spec: 'Specification', readers: 'Readers', tools: 'Tools',
+  examples: 'Examples', project: 'Project',
+};
+const SECTION_PAGES = new Set(['start', 'docs', 'spec', 'tools', 'examples']);
+const LANGUAGES: Record<string, string> = {
+  'readers/typescript': 'TypeScript', 'readers/dotnet': 'C#', 'readers/python': 'Python',
+  'readers/python/langchain': 'Python', 'readers/python/llamaindex': 'Python',
+};
+
+// "## Question" headings, each answered by the text up to the next heading, with Markdown links reduced to their text.
+function faq(body: string) {
+  return [...body.matchAll(/^## (.+)\n([\s\S]*?)(?=^## |(?![\s\S]))/gm)].map(([, q, a]) => ({
+    '@type': 'Question',
+    name: q.trim(),
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: a.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*`]/g, '').replace(/\s+/g, ' ').trim(),
+    },
+  }));
+}
+
+const graph: object[] = [];
+if (isHome) {
+  graph.push(website, project, publisher, {
+    '@type': 'SoftwareSourceCode',
+    name: 'OpenMOCA',
+    description: data.description,
+    codeRepository: 'https://github.com/openmoca',
+    license: 'https://www.apache.org/licenses/LICENSE-2.0',
+    programmingLanguage: ['TypeScript', 'C#', 'Python'],
+    author: { '@id': `${SITE}/#openmoca` },
+  });
+} else if (!is404) {
+  const segments = id.split('/');
+  // Only sections that have a page of their own appear in the trail.
+  const section = segments.length > 1 && SECTION_PAGES.has(segments[0]);
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'OpenMOCA', item: `${SITE}/` },
+      ...(section ? [{ '@type': 'ListItem', position: 2, name: SECTIONS[segments[0]], item: `${SITE}/${segments[0]}/` }] : []),
+      { '@type': 'ListItem', position: section ? 3 : 2, name: data.title, item: url },
+    ],
+  });
+  const repo = typeof data.editUrl === 'string' ? data.editUrl.match(/^https:\/\/github\.com\/[^/]+\/[^/]+/)?.[0] : undefined;
+  if (id.startsWith('readers/') || id.startsWith('tools/')) {
+    graph.push({
+      '@type': 'SoftwareSourceCode',
+      name: data.title,
+      description: data.description,
+      url,
+      ...(repo ? { codeRepository: repo } : {}),
+      license: 'https://www.apache.org/licenses/LICENSE-2.0',
+      ...(LANGUAGES[id] ? { programmingLanguage: LANGUAGES[id] } : id.startsWith('tools/') ? { programmingLanguage: 'TypeScript' } : {}),
+      isPartOf: { '@id': `${SITE}/#website` },
+    });
+  } else {
+    graph.push({
+      '@type': 'TechArticle',
+      headline: data.title,
+      description: data.description,
+      url,
+      inLanguage: 'en',
+      isPartOf: { '@id': `${SITE}/#website` },
+      publisher: { '@id': `${SITE}/#openmoca` },
+      about: ['retrieval-augmented generation', 'AI grounding', 'knowledge packaging'],
+    });
+  }
+  if (id === 'docs/faq' && entry.body) graph.push({ '@type': 'FAQPage', mainEntity: faq(entry.body) });
+  graph.push(website, project, publisher);
+}
+
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
+---
+
+<Default />
+<script type="application/ld+json" set:html={jsonLd} />

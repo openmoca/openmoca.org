@@ -1,0 +1,61 @@
+---
+title: Get started
+description: Open a .moca file in your AI assistant, add the openmoca agent skill, or install a MOCA Reader in TypeScript, .NET or Python and search and cite a package.
+editUrl: false
+---
+
+import { Aside, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+<Aside type="note" title="Been sent a .moca file?">
+[Open it in your AI assistant](/start/open-a-package/): one download
+connects it to Claude Desktop, Claude Code, VS Code or Cursor, and every
+answer cites its source. No code needed.
+</Aside>
+
+<Aside type="tip" title="Using an AI assistant?">
+Add the [openmoca agent skill](/start/ai-assistant/) to Claude, GitHub
+Copilot or Codex first. Then ask it to make, sign, search and cite packages
+for you.
+</Aside>
+
+Pick a language. Each guide takes about ten minutes: install the Reader, open
+a signed example package, search it and cite what you find, then run the
+conformance corpus that every MOCA Reader passes. Each guide is run as written
+in its Reader's CI.
+
+<CardGrid>
+  <LinkCard title="TypeScript and JavaScript" description="The reference Reader, @openmoca/moca-core. Node.js 22 or later." href="/start/typescript/" />
+  <LinkCard title=".NET" description="OpenMoca.Reader, with bindings for Microsoft.Extensions.AI, the Agent Framework and VectorData. .NET 10." href="/start/dotnet/" />
+  <LinkCard title="Python" description="moca-reader, for Python 3.11 and later. The same API, with Python names." href="/start/python/" />
+</CardGrid>
+
+## Not writing code?
+
+- [Try OpenMOCA](https://try.openmoca.org): search real packages and open
+  every result at its source, in the browser, with no account.
+- [Quickstart](/docs/quickstart/): make a package from Markdown and check it.
+- [Got a `.moca` file?](/start/open-a-package/): ask Claude Desktop, Claude
+  Code, VS Code or Cursor about it, with one download.
+- [MCP server](/tools/mcp/): one download that gives any MCP client
+  search and citations over your packages.
+- [Walkthrough](/docs/walkthrough/): check, sign, review, index and serve a
+  package to an AI agent, step by step.
+
+## Example packages
+
+Each example is one `.moca` file from the latest specification release. A
+Reader opens the file just as it opens a folder.
+
+| Example | What it shows | Download |
+| --- | --- | --- |
+| [Minimal package](/examples/minimal/) | The smallest valid package: a manifest and one page | [minimal](https://github.com/openmoca/moca-spec/releases/latest/download/minimal.moca) |
+| [Support knowledge base](/examples/support-kb/) | Signed and reviewed, two languages, an internal page, and quotes checked against the source terms | [support-kb](https://github.com/openmoca/moca-spec/releases/latest/download/support-kb.moca), and the [trust root](https://github.com/openmoca/moca-spec/releases/latest/download/example-trust-root.json) to verify it |
+| [Acme Support Knowledge Base](/examples/acme-support/) | 34 pages in English and French: internal procedures, old and future policies, stale and disputed pages, reviews and a topic structure. The walkthrough uses it | [acme-support](https://github.com/openmoca/moca-spec/releases/latest/download/acme-support.moca) |
+| [Policy corpus](/examples/policy-corpus/) | Two versions of a policy, each with a validity window, the second superseding the first | [1.0.0](https://github.com/openmoca/moca-spec/releases/latest/download/policy-corpus-retention-2025.moca), [2.0.0](https://github.com/openmoca/moca-spec/releases/latest/download/policy-corpus-retention-2026.moca) |
+| [Composed handbook](/examples/handbook/) | A handbook built from two chapter packages, each pinned by its digest | [handbook](https://github.com/openmoca/moca-spec/releases/latest/download/handbook.moca), and its chapters [incident response](https://github.com/openmoca/moca-spec/releases/latest/download/handbook-incident-response.moca) and [service ownership](https://github.com/openmoca/moca-spec/releases/latest/download/handbook-service-ownership.moca) |
+| [PDF manuals](/examples/pdf/) | The FAA's Airplane Flying Handbook, converted from 19 PDFs, cited to the page | [airplane-flying-handbook](https://github.com/openmoca/moca-spec/releases/latest/download/airplane-flying-handbook.moca) |
+| [YouTube videos](/examples/youtube/) | A recorded talk and a playlist, cited to the moment | [talk](https://github.com/openmoca/moca-spec/releases/latest/download/youtube-video.moca), [playlist](https://github.com/openmoca/moca-spec/releases/latest/download/youtube-playlist.moca) |
+
+They are also in the
+[moca-spec repository](https://github.com/openmoca/moca-spec/tree/main/examples)
+as folders, with how each was made.

@@ -1,0 +1,31 @@
+{
+  "name": "openmoca.org",
+  "private": true,
+  "type": "module",
+  "description": "The OpenMOCA website: built from the other OpenMOCA repositories at pinned refs.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-docs.mjs",
+    "dev": "npm run sync && astro dev",
+    "build": "npm run sync -- --pinned && astro build && node scripts/write-markdown.mjs && node scripts/check-public-links.mjs",
+    "build:local": "npm run sync && astro build && node scripts/check-public-links.mjs",
+    "preview": "astro preview",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.8",
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "astro": "7.4.4",
+    "astro-mermaid": "2.1.0",
+    "mermaid": "11.17.2",
+    "sharp": "0.35.5",
+    "starlight-links-validator": "0.27.0"
+  },
+  "devDependencies": {
+    "wrangler": "4.156.0"
+  }
+}

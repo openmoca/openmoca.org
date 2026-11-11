@@ -1,0 +1,25 @@
+---
+// Starlight's footer, with the version these pages document, how to get in touch, and who maintains the project.
+// One "maintained by" line, linked to the maintainer's site: the standard stays vendor-independent.
+// The trade mark notice says who holds the name; ™ until the UK application is registered, never ®.
+import Default from '@astrojs/starlight/components/Footer.astro';
+import generated from '../generated.json';
+---
+
+<Default />
+<p class="openmoca-footer">
+	Documents OpenMOCA {generated.specVersion} · <a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy</a> · <a href="https://github.com/openmoca">GitHub</a> · Apache-2.0 · Maintained by <a href="https://piandmash.com">PI &amp; Mash</a>
+	<br />
+	OpenMOCA™ is a trade mark of PI &amp; Mash Solutions Ltd. The Apache License covers the code and text,
+	not the name.
+</p>
+
+<style>
+	.openmoca-footer {
+		margin-top: 1.5rem;
+		font-size: var(--sl-text-xs);
+		color: var(--sl-color-gray-3);
+	}
+	.openmoca-footer a { color: var(--moca-link); }
+	.openmoca-footer a:hover { color: var(--moca-link-hover); }
+</style>

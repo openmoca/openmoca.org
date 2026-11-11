@@ -1,0 +1,15 @@
+// openmoca.org on Cloudflare: static assets on Workers, with a small Worker in front (worker/index.js) that serves
+// each page's Markdown to agents that ask for it and redirects moved pages. `npm run build` writes dist/;
+// `npx wrangler deploy` uploads it.
+{
+  "name": "openmoca-org",
+  "compatibility_date": "2026-10-30",
+  "main": "worker/index.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

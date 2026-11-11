@@ -1,0 +1,593 @@
+{
+  "$comment": "Every page the site shows, and where it comes from. Pins (which commit of each repository) are in .github/workflows/build.yml (MOCA_*_REF).",
+  "groups": [
+    "Start",
+    "Learn",
+    "Guides",
+    "Specification",
+    "Readers",
+    "Tools",
+    "Examples",
+    "Project"
+  ],
+  "hidden": {
+    "$comment": "Never shown on the site, and never linked to from it: working plans and decision records belong in their repositories.",
+    "moca-spec": [
+      "docs/plans/",
+      "docs/adr/"
+    ],
+    "moca-reader-typescript": [
+      "docs/adr/"
+    ],
+    "moca-reader-dotnet": [
+      "docs/adr/"
+    ],
+    "moca-reader-python": [
+      "docs/adr/"
+    ],
+    "moca-tools": [
+      "docs/adr/"
+    ],
+    "moca-convert": [
+      "docs/adr/"
+    ],
+    "moca-examples": [
+      "docs/adr/"
+    ],
+    "moca-mcp-dotnet": [
+      "docs/adr/"
+    ]
+  },
+  "pages": [
+    {
+      "repo": "moca-reader-typescript",
+      "path": "docs/getting-started.md",
+      "route": "start/typescript",
+      "group": "Start",
+      "label": "TypeScript",
+      "description": "Install the TypeScript MOCA Reader, open a signed knowledge package, search it with citations, and run the conformance corpus, in about ten minutes.",
+      "seoTitle": "Get started with the TypeScript MOCA Reader"
+    },
+    {
+      "repo": "moca-reader-dotnet",
+      "path": "docs/getting-started.md",
+      "route": "start/dotnet",
+      "group": "Start",
+      "label": ".NET",
+      "description": "Install the .NET MOCA Reader, OpenMoca.Reader, open a signed knowledge package, search it with citations, and run the conformance corpus.",
+      "seoTitle": "Get started with the .NET MOCA Reader"
+    },
+    {
+      "repo": "moca-reader-python",
+      "path": "docs/getting-started.md",
+      "route": "start/python",
+      "group": "Start",
+      "label": "Python",
+      "description": "Install the Python MOCA Reader, moca-reader, open a signed knowledge package, search it with citations, and run the conformance corpus.",
+      "seoTitle": "Get started with the Python MOCA Reader"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/README.md",
+      "route": "docs",
+      "group": "Learn",
+      "label": "Documentation",
+      "description": "Everything in the OpenMOCA documentation: what MOCA is, how it fits RAG and sovereign AI, step-by-step guides, the specifications, and the release process.",
+      "seoTitle": "OpenMOCA documentation"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/why-moca.md",
+      "route": "docs/why-moca",
+      "group": "Learn",
+      "description": "Why MOCA (Modular Ontology, Content & Attestation) exists: AI knowledge loses its version, sources and trust on the way to RAG and agents.",
+      "seoTitle": "Why MOCA: portable grounding for AI knowledge"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/moca-and-rag.md",
+      "route": "docs/moca-and-rag",
+      "group": "Learn",
+      "label": "MOCA and RAG",
+      "description": "What a MOCA package adds to retrieval-augmented generation: citations you can check, stale and out-of-scope content left out, and one package for any RAG stack.",
+      "seoTitle": "MOCA and RAG: citations you can check"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/trust-and-provenance.md",
+      "route": "docs/trust-and-provenance",
+      "group": "Learn",
+      "label": "Trust and provenance",
+      "description": "What a MOCA package proves: the exact content, who published it, who checked each page, its sources, whether it is in force, and what an answer used.",
+      "seoTitle": "Trust and provenance for AI knowledge"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/ai-agents.md",
+      "route": "docs/ai-agents",
+      "group": "Learn",
+      "label": "Grounding for AI agents",
+      "description": "Ground any AI agent in one MOCA package: an MCP server, Agent Framework, LangChain and LlamaIndex bindings, with citations and trust rules.",
+      "seoTitle": "Grounding for AI agents: MCP and frameworks"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/ontology.md",
+      "route": "docs/ontology",
+      "group": "Learn",
+      "label": "Ontology for AI retrieval",
+      "description": "Ontology for AI retrieval: topics, parts, order and prerequisites in SKOS, any vocabulary carried, and search that adds what each result requires.",
+      "seoTitle": "Ontology for AI retrieval"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/sovereign-ai.md",
+      "route": "docs/sovereign-ai",
+      "group": "Learn",
+      "label": "Sovereign and offline AI",
+      "description": "Sovereign and offline AI with MOCA: packages and Readers run on infrastructure you control, with no network calls, local search and signatures you verify.",
+      "seoTitle": "Sovereign and offline AI grounding"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/use-cases.md",
+      "route": "docs/use-cases",
+      "group": "Learn",
+      "description": "Where MOCA helps: sharing knowledge for grounding, manuals, law, courses, video, onboarding, support, audit and regulated AI, with live examples to try.",
+      "seoTitle": "Use cases: RAG, regulated AI, manuals, courses"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/architecture.md",
+      "route": "docs/architecture",
+      "group": "Learn",
+      "description": "How OpenMOCA fits together: the package, the Reader and your application; the search pipeline and its trust gate; and how it fits a production RAG stack.",
+      "seoTitle": "Architecture: package, Reader and RAG pipeline"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/moca-okf-mcp.md",
+      "route": "docs/moca-okf-mcp",
+      "group": "Learn",
+      "label": "MOCA, OKF and MCP",
+      "description": "How MOCA, the Open Knowledge Format and the Model Context Protocol fit together: OKF pages, packaged by MOCA, served to any agent over MCP.",
+      "seoTitle": "MOCA, OKF and MCP: how they fit together"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/faq.md",
+      "route": "docs/faq",
+      "group": "Learn",
+      "label": "FAQ",
+      "description": "Short answers about OpenMOCA: what MOCA stands for, whether it is a vector database, how it relates to RAG, hallucinations, OKF and MCP, and sovereign AI.",
+      "seoTitle": "OpenMOCA FAQ: RAG, vector stores, OKF, MCP"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/quickstart.md",
+      "route": "docs/quickstart",
+      "group": "Guides",
+      "description": "Make a valid MOCA knowledge package in five minutes from Markdown you already have, check it with moca-lint, or convert existing docs with moca-convert.",
+      "seoTitle": "Quickstart: make a MOCA package in five minutes"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/walkthrough.md",
+      "route": "docs/walkthrough",
+      "group": "Guides",
+      "description": "Take a 34-page knowledge base in English and French, then check, sign, review, index and serve it to an AI agent over MCP, and see tampering caught.",
+      "seoTitle": "Walkthrough: sign and serve knowledge to AI"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/consuming.md",
+      "route": "docs/guides/consuming",
+      "group": "Guides",
+      "label": "Consuming packages",
+      "description": "Build an app that answers from MOCA packages: read and verify once, search, and use citation records, with code in TypeScript, .NET and Python.",
+      "seoTitle": "Consuming packages: verify, search and cite"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/authoring.md",
+      "route": "docs/guides/authoring",
+      "group": "Guides",
+      "description": "Write a MOCA package step by step: pages, evidence quoted from source documents, validity dates, audiences, translations, versions and composition.",
+      "seoTitle": "Authoring packages: evidence, validity, audience"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/structure.md",
+      "route": "docs/guides/structure",
+      "group": "Guides",
+      "description": "Give a package an ontology: write structure.ttl, bind pages to topics, ask structure questions, search within a topic, and add overlays, in three languages.",
+      "seoTitle": "Structure: ontology, steps and prerequisites"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/signing-and-review.md",
+      "route": "docs/guides/signing-and-review",
+      "group": "Guides",
+      "description": "Sign MOCA packages and record reviews: Ed25519 keys or Sigstore, trust roots, new versions, key rotation, and what a reader can verify.",
+      "seoTitle": "Signing and review: who published, who checked"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/search-and-indexes.md",
+      "route": "docs/guides/search-and-indexes",
+      "group": "Guides",
+      "description": "Lexical, semantic and hybrid search over knowledge packages: build sidecar indexes, use a local embedding model, and search in TypeScript, .NET and Python.",
+      "seoTitle": "Lexical, semantic and hybrid search"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/capabilities.md",
+      "route": "docs/guides/capabilities",
+      "group": "Guides",
+      "description": "What each MOCA capability means, from core to signed, reviewed and structured, how to earn it, and which ones your use of AI knowledge needs.",
+      "seoTitle": "Capabilities: what a MOCA package offers and proves"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "spec/moca-package-spec.md",
+      "route": "spec/package",
+      "group": "Specification",
+      "description": "The MOCA Package Specification: manifest, OKF content, evidence, locales, trust fields, structure, members, relations, digest, profiles and capabilities."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "spec/moca-reader-contract.md",
+      "route": "spec/reader-contract",
+      "group": "Specification",
+      "description": "The MOCA Reader Contract: what every conforming Reader must do, from reading and verifying to citation records, retrieval policy, search and structure."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "spec/moca-reader-interface.md",
+      "route": "spec/reader-interface",
+      "group": "Specification",
+      "description": "The MOCA Reader Interface: the operations every Reader offers, named for each language, including search, structure, embedders and retrieval hooks."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "spec/moca-attestations.md",
+      "route": "spec/attestations",
+      "group": "Specification",
+      "description": "MOCA Attestations: package and review attestations, DSSE with Ed25519 keys and Sigstore, trust roots, and verification outcomes."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "spec/moca-sidecar-index-spec.md",
+      "route": "spec/sidecar-index",
+      "group": "Specification",
+      "description": "The MOCA Sidecar Index Specification: portable lexical and vector indexes for a package, bound to its digest, with exact offsets for citation."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "spec/moca-ag-ui-citations.md",
+      "route": "spec/ag-ui-citations",
+      "group": "Specification",
+      "label": "MOCA citations over AG-UI",
+      "description": "MOCA citations over AG-UI: one custom event that carries the citation records an agent's answer cites to any AG-UI user interface. 0.6.0.",
+      "seoTitle": "Citations over AG-UI: showing sources in agent UIs"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "profiles/README.md",
+      "route": "spec/profiles",
+      "group": "Specification",
+      "description": "MOCA profiles: named, versioned extensions to the package format, how they work, and the registry of known profiles."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "profiles/ontology/moca-ontology-profile.md",
+      "route": "spec/profiles/ontology",
+      "group": "Specification",
+      "description": "The MOCA Ontology profile: extra vocabulary files, such as OWL and SHACL, that a package carries and Readers pass through."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "conformance/README.md",
+      "route": "spec/conformance",
+      "group": "Specification",
+      "description": "The MOCA conformance corpus: test cases with pinned results that every Reader, in any language, must pass to read packages the same way.",
+      "seoTitle": "Conformance corpus for MOCA Readers"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/versioning-and-release.md",
+      "route": "spec/versioning",
+      "group": "Specification",
+      "description": "How OpenMOCA versions the specification, the Readers and the tools, what each version number promises, and the path to 1.0."
+    },
+    {
+      "repo": "moca-reader-typescript",
+      "path": "README.md",
+      "route": "readers/typescript",
+      "group": "Readers",
+      "label": "TypeScript Reader",
+      "description": "@openmoca/moca-core, the reference MOCA Reader for TypeScript and JavaScript: read, verify, search and cite knowledge packages in Node.js, Workers or browsers.",
+      "seoTitle": "TypeScript Reader for MOCA (@openmoca/moca-core)"
+    },
+    {
+      "repo": "moca-reader-dotnet",
+      "path": "README.md",
+      "route": "readers/dotnet",
+      "group": "Readers",
+      "label": ".NET Reader",
+      "description": "OpenMoca.Reader, the .NET MOCA Reader, with bindings for Microsoft.Extensions.AI, the Microsoft Agent Framework and Microsoft.Extensions.VectorData.",
+      "seoTitle": ".NET Reader for MOCA packages (OpenMoca.Reader)"
+    },
+    {
+      "repo": "moca-reader-python",
+      "path": "README.md",
+      "route": "readers/python",
+      "group": "Readers",
+      "label": "Python Reader",
+      "description": "moca-reader, the Python MOCA Reader: read, verify, search and cite knowledge packages, with the same results as every other Reader.",
+      "seoTitle": "Python Reader for MOCA packages (moca-reader)"
+    },
+    {
+      "repo": "moca-reader-python",
+      "path": "packages/moca-reader-langchain/README.md",
+      "route": "readers/python/langchain",
+      "group": "Readers",
+      "label": "Python: LangChain",
+      "description": "moca-reader-langchain: a LangChain retriever over MOCA packages, returning citation records as Documents, with trust rules applied.",
+      "seoTitle": "LangChain retriever for MOCA packages"
+    },
+    {
+      "repo": "moca-reader-python",
+      "path": "packages/moca-reader-llamaindex/README.md",
+      "route": "readers/python/llamaindex",
+      "group": "Readers",
+      "label": "Python: LlamaIndex",
+      "description": "moca-reader-llamaindex: a LlamaIndex retriever over MOCA packages, returning citation records as scored nodes, with trust rules applied.",
+      "seoTitle": "LlamaIndex retriever for MOCA packages"
+    },
+    {
+      "repo": "moca-mcp-dotnet",
+      "path": "README.md",
+      "route": "tools/mcp",
+      "group": "Tools",
+      "description": "moca-mcp: the MOCA MCP server as one download for Windows, macOS or Linux, with nothing to install. Serve MOCA packages to Claude Desktop, Claude Code, VS Code or any MCP client, with citations you can check.",
+      "seoTitle": "MOCA MCP server: one download, nothing to install",
+      "title": "MCP server"
+    },
+    {
+      "repo": "moca-convert",
+      "path": "README.md",
+      "route": "tools/convert",
+      "group": "Tools",
+      "description": "@openmoca/moca-convert: turn Markdown folders, PDFs and YouTube videos into MOCA packages, with evidence that cites the page or the moment.",
+      "seoTitle": "moca-convert: Markdown, PDF and video to MOCA",
+      "title": "moca-convert"
+    },
+    {
+      "repo": "moca-tools",
+      "path": "packages/moca-lint/README.md",
+      "route": "tools/moca-lint",
+      "group": "Tools",
+      "description": "moca-lint: check MOCA packages exactly as the reference Reader reads them, print digests and capabilities, and pack or extract .moca files.",
+      "seoTitle": "moca-lint: check and pack MOCA packages",
+      "title": "moca-lint"
+    },
+    {
+      "repo": "moca-tools",
+      "path": "packages/moca-sign/README.md",
+      "route": "tools/moca-sign",
+      "group": "Tools",
+      "description": "moca-sign: sign MOCA packages, record reviews, verify attestations, and manage the keys and Sigstore identities in a reader's trust root.",
+      "seoTitle": "moca-sign: sign, review and manage trust roots",
+      "title": "moca-sign"
+    },
+    {
+      "repo": "moca-tools",
+      "path": "packages/moca-index/README.md",
+      "route": "tools/moca-index",
+      "group": "Tools",
+      "description": "moca-index: build lexical and semantic sidecar indexes for MOCA packages, with a standard embedding model or your own, bound to the package digest.",
+      "seoTitle": "moca-index: build search indexes for MOCA packages",
+      "title": "moca-index"
+    },
+    {
+      "repo": "moca-tools",
+      "path": "packages/moca-embed/README.md",
+      "route": "tools/moca-embed",
+      "group": "Tools",
+      "description": "moca-embed: install and run MOCA's four standard embedding models locally, so indexes and questions match in every MOCA tool and Reader.",
+      "seoTitle": "moca-embed: MOCA's standard embedding models",
+      "title": "moca-embed"
+    },
+    {
+      "repo": "moca-examples",
+      "path": "README.md",
+      "route": "examples",
+      "group": "Examples",
+      "label": "Code examples",
+      "description": "Small runnable examples of reading MOCA packages in .NET and TypeScript: a command line and a chat that cites its sources.",
+      "seoTitle": "Code examples for MOCA Readers",
+      "tryIt": {
+        "online": "Search eight real packages in your browser on [Try OpenMOCA](https://try.openmoca.org), with no account: law, manuals, documentation, a handbook, videos and the Acme support knowledge base."
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "examples/minimal/README.md",
+      "route": "examples/minimal",
+      "group": "Examples",
+      "intro": "**Download** [`minimal.moca`](https://github.com/openmoca/moca-spec/releases/latest/download/minimal.moca) from the [latest release](https://github.com/openmoca/moca-spec/releases/latest).",
+      "description": "The smallest valid MOCA package: a manifest and one page, and how to check it.",
+      "seoTitle": "Minimal MOCA package example",
+      "tryIt": {
+        "files": [
+          "minimal.moca"
+        ],
+        "ask": "List the MOCA packages, then show me the Hello node and cite it."
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "examples/support-kb/README.md",
+      "route": "examples/support-kb",
+      "group": "Examples",
+      "intro": "**Download** [`support-kb.moca`](https://github.com/openmoca/moca-spec/releases/latest/download/support-kb.moca), signed with the example key, and [`example-trust-root.json`](https://github.com/openmoca/moca-spec/releases/latest/download/example-trust-root.json) to verify it, from the [latest release](https://github.com/openmoca/moca-spec/releases/latest).",
+      "description": "A four-page support knowledge base showing evidence, signed reviews, freshness, audience and translations: the example the getting-started guides use.",
+      "seoTitle": "Support knowledge base example",
+      "tryIt": {
+        "online": "The larger [Acme Support Knowledge Base](/examples/acme-support/), which grew from this one, is on [Try OpenMOCA](https://try.openmoca.org/p/support-kb): search and cite it in your browser, with no account.",
+        "files": [
+          "support-kb.moca"
+        ],
+        "trustRoot": true,
+        "ask": "How long do customers have to ask for a refund, and from when? Cite the page."
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "examples/acme-support/README.md",
+      "route": "examples/acme-support",
+      "group": "Examples",
+      "label": "Acme support (larger)",
+      "description": "Acme's support knowledge base: 34 pages in English and French with internal procedures, old and future policies, reviews and an ontology. Download it.",
+      "seoTitle": "Acme Support Knowledge Base example",
+      "tryIt": {
+        "online": "Search and cite this package in your browser on [Try OpenMOCA](https://try.openmoca.org/p/support-kb), with no account.",
+        "files": [
+          "acme-support.moca",
+          "acme-support.bge-small-en-v1.5.moca.idx.zip"
+        ],
+        "trustRoot": true,
+        "model": "bge-small-en-v1.5",
+        "ask": "I want my money back. How long do I have? Cite the page, and say whether it was reviewed."
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "examples/handbook/README.md",
+      "route": "examples/handbook",
+      "group": "Examples",
+      "description": "A handbook composed from two chapter packages, each pinned by its digest, showing how MOCA assembles larger packages from modules.",
+      "seoTitle": "Composed handbook example",
+      "tryIt": {
+        "files": [
+          "handbook.moca",
+          "handbook-incident-response.moca",
+          "handbook-service-ownership.moca"
+        ],
+        "ask": "What must happen before we declare an incident? Cite the steps in order."
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "examples/policy-corpus/README.md",
+      "route": "examples/policy-corpus",
+      "group": "Examples",
+      "description": "Two versions of a data retention policy, each with a validity window, the second superseding the first: version control for regulated knowledge.",
+      "seoTitle": "Policy corpus example: versions and supersession",
+      "tryIt": {
+        "online": "[Try OpenMOCA](https://try.openmoca.org/p/data-protection-act) has the Data Protection Act 2018, section by section: the same idea, with only what is in force returned.",
+        "files": [
+          "policy-corpus-retention-2025.moca",
+          "policy-corpus-retention-2026.moca"
+        ],
+        "ask": "How long are customer records kept? Which version of the policy says so?"
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "examples/pdf/README.md",
+      "route": "examples/pdf",
+      "group": "Examples",
+      "description": "The FAA Airplane Flying Handbook converted from 19 PDFs into a MOCA package, every section cited to its PDF page, with a topic structure.",
+      "seoTitle": "PDF example: the FAA Airplane Flying Handbook",
+      "tryIt": {
+        "online": "Search and cite this package in your browser on [Try OpenMOCA](https://try.openmoca.org/p/flying-handbook), with no account.",
+        "files": [
+          "airplane-flying-handbook.moca"
+        ],
+        "ask": "How should a pilot fly a crosswind approach and landing? Cite the handbook page."
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "examples/youtube/README.md",
+      "route": "examples/youtube",
+      "group": "Examples",
+      "description": "YouTube videos converted into MOCA packages: transcripts from captions, chapters cited to the moment, and a playlist kept in order.",
+      "seoTitle": "YouTube videos example: answers cited to the moment",
+      "tryIt": {
+        "online": "[Try OpenMOCA](https://try.openmoca.org/p/copilot-studio) has other video packages, a 17-video course and a recorded talk, with each answer opening the video at the moment.",
+        "files": [
+          "youtube-video.moca",
+          "youtube-playlist.moca"
+        ],
+        "ask": "What are the five orchestration patterns in the workflows video? Give the moment each one is explained."
+      }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "ROADMAP.md",
+      "route": "project/roadmap",
+      "group": "Project",
+      "label": "Roadmap",
+      "description": "Where OpenMOCA is going: getting it into people's hands, more framework bindings, early adopters, and the path to 1.0."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "CHANGELOG.md",
+      "route": "project/changelog",
+      "group": "Project",
+      "label": "Changelog",
+      "description": "What changed in each release of the MOCA specification, schemas, examples and conformance corpus."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "MIGRATIONS.md",
+      "route": "project/migrations",
+      "group": "Project",
+      "label": "Migrations",
+      "description": "How to move MOCA packages and Readers between versions of the specification."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "GOVERNANCE.md",
+      "route": "project/governance",
+      "group": "Project",
+      "label": "Governance",
+      "description": "How OpenMOCA is run: the maintainer, decisions, the path to a standard, and who holds the OpenMOCA trade mark."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "CONTRIBUTING.md",
+      "route": "project/contributing",
+      "group": "Project",
+      "label": "Contributing",
+      "description": "How to contribute to OpenMOCA: issues, pull requests, spec change proposals, pins between repositories, and the checks every change passes."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "CODE_OF_CONDUCT.md",
+      "route": "project/code-of-conduct",
+      "group": "Project",
+      "label": "Code of conduct",
+      "description": "The Contributor Covenant code of conduct for everyone taking part in OpenMOCA."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "SECURITY.md",
+      "route": "project/security",
+      "group": "Project",
+      "label": "Security",
+      "description": "How to report a security problem in OpenMOCA privately, and the security model of packages and Readers."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/releasing.md",
+      "route": "project/releasing",
+      "group": "Project",
+      "label": "Releasing",
+      "description": "The maintainer's runbook for releasing the MOCA specification, its example packages and the conformance corpus."
+    }
+  ]
+}

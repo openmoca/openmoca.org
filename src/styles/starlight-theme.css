@@ -1,0 +1,124 @@
+/* Starlight in OpenMOCA's colours: maps Starlight's variables onto the brand tokens in openmoca.css.
+ * Starlight's grey scale runs from "white" (strongest text) to "black" (page background), and flips
+ * between themes; the --moca-* tokens already flip on the same data-theme attribute. Ink buttons and
+ * teal links, as the brand guide asks; colours outside the tokens are tints of them. */
+:root,
+:root[data-theme='dark'] {
+  --sl-font: var(--moca-font-sans);
+  --sl-font-mono: var(--moca-font-mono);
+
+  --sl-color-accent-low: #1C3532;
+  --sl-color-accent: var(--moca-link);
+  --sl-color-accent-high: var(--moca-link-hover);
+
+  --sl-color-white: var(--moca-text);
+  --sl-color-gray-1: #EAE2D9;
+  --sl-color-gray-2: #DDD3C9;
+  --sl-color-gray-3: var(--moca-text-muted);
+  --sl-color-gray-4: #7A7069;
+  --sl-color-gray-5: var(--moca-line);
+  --sl-color-gray-6: var(--moca-surface);
+  --sl-color-black: var(--moca-bg);
+  /* Text on the accent, such as the current page in the sidebar. */
+  --sl-color-text-invert: var(--moca-bg);
+}
+
+:root[data-theme='light'] {
+  --sl-color-accent-low: #DCEBE9;
+  --sl-color-accent: var(--moca-link);
+  --sl-color-accent-high: var(--moca-link-hover);
+
+  --sl-color-white: #1E140F;
+  --sl-color-gray-1: #241812;
+  --sl-color-gray-2: var(--moca-text);
+  --sl-color-gray-3: var(--moca-text-muted);
+  --sl-color-gray-4: var(--moca-boundary);
+  --sl-color-gray-5: var(--moca-line);
+  --sl-color-gray-6: var(--moca-surface-raised);
+  --sl-color-gray-7: var(--moca-surface);
+  --sl-color-black: var(--moca-bg);
+  --sl-color-text-invert: #FFFFFF;
+}
+
+/* Primary buttons are ink on light and cream on dark (--moca-accent), not the link colour. */
+.sl-link-button.primary {
+  background: var(--moca-accent);
+  border-color: var(--moca-accent);
+  color: var(--moca-on-accent);
+}
+.sl-link-button.primary:hover {
+  background: var(--moca-accent-hover);
+  border-color: var(--moca-accent-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--moca-focus);
+  outline-offset: 2px;
+}
+
+/* Card icons in the package's layer colours, in their order (structure, content, evidence, the
+ * pin), instead of Starlight's rotating palette. Each card also carries its label, as the brand asks. */
+.card:nth-child(4n + 1) { --sl-card-border: var(--moca-structure); --sl-card-bg: color-mix(in srgb, var(--moca-structure) 14%, transparent); }
+.card:nth-child(4n + 2) { --sl-card-border: var(--moca-content); --sl-card-bg: color-mix(in srgb, var(--moca-content) 14%, transparent); }
+.card:nth-child(4n + 3) { --sl-card-border: var(--moca-evidence); --sl-card-bg: color-mix(in srgb, var(--moca-evidence) 10%, transparent); }
+.card:nth-child(4n + 4) { --sl-card-border: var(--moca-pin); --sl-card-bg: color-mix(in srgb, var(--moca-pin) 14%, transparent); }
+
+/* Mermaid diagrams (astro-mermaid) in the site's colours. Mermaid writes its theme into each SVG, so
+ * these rules use !important to win; through the --moca-* variables they follow light and dark. */
+pre.mermaid {
+  background: var(--moca-surface-raised);
+  border: 1px solid var(--moca-line);
+  border-radius: var(--moca-radius-md);
+  padding: var(--moca-space-5) var(--moca-space-4);
+  text-align: center;
+  overflow-x: auto;
+}
+pre.mermaid svg { max-width: 100%; height: auto; }
+pre.mermaid svg .node :is(rect, polygon, circle, ellipse, path) {
+  fill: var(--moca-surface) !important;
+  stroke: var(--moca-structure) !important;
+  stroke-width: 1.5px !important;
+}
+pre.mermaid svg .cluster rect {
+  fill: var(--moca-bg) !important;
+  stroke: var(--moca-line) !important;
+}
+pre.mermaid svg :is(.nodeLabel, .cluster-label, .edgeLabel, .label, span, p) {
+  color: var(--moca-text) !important;
+  fill: var(--moca-text) !important;
+}
+pre.mermaid svg .cluster-label :is(span, p) { color: var(--moca-text-muted) !important; }
+pre.mermaid svg :is(.edgeLabel, .edgeLabel p, .labelBkg) {
+  background-color: var(--moca-surface-raised) !important;
+}
+pre.mermaid svg .edgeLabel rect { fill: var(--moca-surface-raised) !important; }
+pre.mermaid svg :is(.flowchart-link, .edgePath path) { stroke: var(--moca-boundary) !important; }
+pre.mermaid svg marker :is(path, circle) {
+  fill: var(--moca-boundary) !important;
+  stroke: var(--moca-boundary) !important;
+}
+
+/* Callouts (Starlight's asides) in the brand kit's callout colours, not Starlight's blue, purple, orange and red.
+ * The tokens switch with the theme, so one rule per kind covers light and dark. */
+.starlight-aside--note {
+  --sl-color-asides-text-accent: var(--moca-callout-note);
+  --sl-color-asides-border: var(--moca-callout-note);
+  background-color: var(--moca-callout-note-bg);
+}
+.starlight-aside--tip {
+  --sl-color-asides-text-accent: var(--moca-callout-tip);
+  --sl-color-asides-border: var(--moca-callout-tip);
+  background-color: var(--moca-callout-tip-bg);
+}
+.starlight-aside--caution {
+  --sl-color-asides-text-accent: var(--moca-callout-caution);
+  --sl-color-asides-border: var(--moca-callout-caution);
+  background-color: var(--moca-callout-caution-bg);
+}
+.starlight-aside--danger {
+  --sl-color-asides-text-accent: var(--moca-callout-danger);
+  --sl-color-asides-border: var(--moca-callout-danger);
+  background-color: var(--moca-callout-danger-bg);
+}
+/* Links stay teal in a tip, where the accent is ink like the text. */
+.starlight-aside--tip .starlight-aside__content a { color: var(--moca-link); }

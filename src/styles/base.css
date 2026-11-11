@@ -1,0 +1,38 @@
+/* MOCA shared tokens v2: type, space and shape. From the OpenMOCA brand kit v2.
+ * Load this first, then the theme: openmoca.css. Tokens only on this site.
+ * The fonts are self-hosted (@fontsource/inter, @fontsource/jetbrains-mono), not loaded from Google Fonts.
+ */
+:root {
+  --moca-font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --moca-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --moca-text-xs: 0.75rem;
+  --moca-text-sm: 0.875rem;
+  --moca-text-base: 1rem;
+  --moca-text-lg: 1.125rem;
+  --moca-text-xl: 1.25rem;
+  --moca-text-2xl: 1.5rem;
+  --moca-text-3xl: 2rem;
+  --moca-text-4xl: 2.5rem;
+  --moca-text-5xl: 3.5rem;
+  --moca-leading-tight: 1.15;
+  --moca-leading-body: 1.6;
+  --moca-tracking-label: 0.06em;
+  --moca-radius-sm: 6px;
+  --moca-radius-md: 10px;
+  --moca-radius-lg: 16px;
+  --moca-radius-pill: 999px;
+  --moca-space-1: 4px;
+  --moca-space-2: 8px;
+  --moca-space-3: 12px;
+  --moca-space-4: 16px;
+  --moca-space-5: 24px;
+  --moca-space-6: 32px;
+  --moca-space-7: 48px;
+  --moca-space-8: 64px;
+  --moca-space-9: 96px;
+  --moca-content-max: 1200px;
+  --moca-prose-max: 72ch;
+}
+
+/* The kit's element rules (body, a, code, :focus-visible) are left out: Starlight styles those
+ * elements itself, through the variables mapped in starlight-theme.css. */

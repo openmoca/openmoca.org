@@ -1,0 +1,228 @@
+---
+title: Got a .moca file? Ask your AI assistant about it
+description: Open a MOCA knowledge package in Claude Desktop, Claude Code, VS Code or Cursor with one download, check who published it, and get answers that cite their source.
+editUrl: false
+head:
+  - tag: title
+    content: Open a .moca package in Claude Desktop, Claude Code or VS Code | OpenMOCA
+---
+
+import { Aside, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+Someone has sent you a `.moca` file: a knowledge package, such as a product's
+documentation, a policy set or a support knowledge base. You want to ask your
+AI assistant about it, and get answers that say where they came from.
+
+The **MOCA MCP server** does that. It is one download with nothing else to
+install. It connects the package to any assistant that supports the
+[Model Context Protocol](https://modelcontextprotocol.io) (MCP), such as
+Claude Desktop, Claude Code, VS Code and Cursor. It runs on your computer,
+and makes no network calls.
+
+<LinkButton href="https://github.com/openmoca/moca-mcp-dotnet/releases/latest" icon="download">Download moca-mcp</LinkButton>
+
+<Steps>
+
+1. **Download the server for your computer** from the
+   [latest release](https://github.com/openmoca/moca-mcp-dotnet/releases/latest),
+   and unzip it somewhere you will keep it:
+
+   | Computer | File |
+   | --- | --- |
+   | Windows | `moca-mcp-win-x64.zip` (`win-arm64` for Arm) |
+   | Mac with Apple silicon | `moca-mcp-osx-arm64.zip` |
+   | Mac with an Intel processor | `moca-mcp-osx-x64.zip` |
+   | Linux | `moca-mcp-linux-x64.zip` (`linux-arm64` for Arm) |
+
+   The builds are not code-signed yet, so your computer asks the first time.
+   On a Mac, right-click `moca-mcp` in Finder, choose **Open**, then **Open**
+   again. On Windows, choose **More info**, then **Run anyway**.
+
+2. **Put the package somewhere you will keep it**, with its trust root if you
+   were given one. The trust root (`trust-root.json`) lists the publishers you
+   trust. Without it the server still works, but cannot tell you who signed
+   the package ([your trust root](/docs/guides/consuming/#your-trust-root)).
+
+3. **Connect it to your assistant**, as below. Use the full paths to the
+   files.
+
+4. **Ask.** For example: "Using the acme-support package, how long do
+   customers have to ask for a refund? Cite the page."
+
+</Steps>
+
+## Connect it
+
+<Tabs syncKey="mcp-client">
+<TabItem label="Claude Desktop">
+
+Go to **Settings**, then **Extensions** (under **Desktop app**). At the bottom
+of that page, choose **Manage**, then **Edit Config** under **Local MCP
+servers**. That opens `claude_desktop_config.json` (in
+`~/Library/Application Support/Claude/` on a Mac, `%APPDATA%\Claude\` on
+Windows). Add the server, save, and quit and restart Claude:
+
+```json
+{
+  "mcpServers": {
+    "acme-support": {
+      "command": "/Users/you/moca/moca-mcp",
+      "args": ["/Users/you/moca/acme-support.moca",
+               "--trust-root", "/Users/you/moca/trust-root.json",
+               "--audience", "public"]
+    }
+  }
+}
+```
+
+If the file has no `mcpServers` yet, add it as shown, inside the outer `{ }`
+and beside any settings already there, with a comma between them. For a
+folder of packages, see [Several packages](#several-packages).
+
+On Windows, the command is `moca-mcp.exe`, and each `\` in a path is written
+twice: `"C:\\Users\\you\\moca\\moca-mcp.exe"`.
+
+</TabItem>
+<TabItem label="Claude Code">
+
+```sh
+claude mcp add acme-support -- /Users/you/moca/moca-mcp \
+  /Users/you/moca/acme-support.moca --trust-root /Users/you/moca/trust-root.json
+```
+
+Add `--scope project` to share it with everyone working in the repository.
+
+</TabItem>
+<TabItem label="VS Code">
+
+In `.vscode/mcp.json`, or with **MCP: Add Server** from the Command Palette:
+
+```json
+{
+  "servers": {
+    "acme-support": {
+      "type": "stdio",
+      "command": "/Users/you/moca/moca-mcp",
+      "args": ["/Users/you/moca/acme-support.moca",
+               "--trust-root", "/Users/you/moca/trust-root.json"]
+    }
+  }
+}
+```
+
+Then use it from Copilot Chat in agent mode.
+
+</TabItem>
+<TabItem label="Cursor">
+
+In `~/.cursor/mcp.json` for every project, or `.cursor/mcp.json` in one:
+
+```json
+{
+  "mcpServers": {
+    "acme-support": {
+      "command": "/Users/you/moca/moca-mcp",
+      "args": ["/Users/you/moca/acme-support.moca",
+               "--trust-root", "/Users/you/moca/trust-root.json"]
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem label="Other clients">
+
+Any MCP client that starts local (stdio) servers takes the same command and
+arguments. Several packages can share one server: list them all.
+
+**ChatGPT and Claude.ai on the web** cannot reach a server on your computer.
+They call MCP servers from their own cloud, so they need a hosted MCP server
+with a public address.
+
+</TabItem>
+</Tabs>
+
+## Several packages
+
+Keep them in one folder, packed (`.moca`) or unpacked, and serve the folder
+instead of naming each package:
+
+```sh
+moca-mcp --library /Users/you/moca --trust-root /Users/you/moca/trust-root.json
+```
+
+In Claude Desktop's `claude_desktop_config.json`, that is:
+
+```json
+{
+  "mcpServers": {
+    "moca": {
+      "command": "/Users/you/moca/moca-mcp",
+      "args": ["--library", "/Users/you/moca",
+               "--trust-root", "/Users/you/moca/trust-root.json",
+               "--audience", "public"]
+    }
+  }
+}
+```
+
+The server reads only each package's manifest when it starts, and loads a
+package the first time a question needs it. Ask about one at a time, for
+example "Using the acme-support package, …": the assistant lists the packages
+and searches the ones you name. Add `--watch` to pick up packages you add while
+it runs.
+
+## Search by meaning
+
+Out of the box the server searches by words. Install one of the standard
+embedding models and it also searches by meaning, so a question finds the page
+that answers it even when they share no words:
+
+```sh
+moca-mcp models add bge-small-en-v1.5
+```
+
+This works for packages that come with an index built with the same model
+(`acme-support.moca.idx` beside `acme-support.moca`). The assistant can list
+the packages to see which model each needs; `bge-small-en-v1.5` (33 MB,
+English) is a good default, and `multilingual-e5-small` covers many languages.
+
+## Check what you are reading
+
+Ask the assistant to **list the MOCA packages**. For each one, the server
+reports its version, its digest, and whether a publisher in your trust root
+signed it. If you expected a signature and it says `signed: false`, check the
+trust root path, or ask the sender for theirs.
+
+Every answer the server gives is a **citation record**: the text, the page it
+came from and its version, and whether quoted evidence was found in the
+original source. Out-of-date and superseded pages are left out unless you ask
+for them. See [trust and provenance](/docs/trust-and-provenance/).
+
+`--audience public` keeps internal pages out of every answer. The assistant
+cannot widen it.
+
+## Try it now
+
+No package of your own yet? Download the
+[Acme support example](https://github.com/openmoca/moca-spec/releases/latest/download/acme-support.moca)
+and its
+[trust root](https://github.com/openmoca/moca-spec/releases/latest/download/example-trust-root.json):
+34 pages in English and French, signed and reviewed. Or search it in your
+browser at [Try OpenMOCA](https://try.openmoca.org/p/support-kb).
+
+## Privacy
+
+The server reads only the files you name. It has no telemetry, sends nothing
+anywhere, and keeps no record of your questions. The one command that
+downloads is `moca-mcp models add`, which fetches the model you ask for and
+checks it against its pinned SHA-256. What your assistant does
+with the text it receives is governed by the assistant's own terms.
+
+## Next
+
+- [Use MOCA with your AI assistant](/start/ai-assistant/): the agent skill,
+  to make and sign packages of your own.
+- [MCP server](/tools/mcp/): every option.
+- [Walkthrough](/docs/walkthrough/): make, sign, index and serve a package,
+  step by step.

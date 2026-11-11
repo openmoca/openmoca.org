@@ -1,0 +1,13 @@
+---
+// Starlight's ThemeProvider, with one change: a first visit is light, as the OpenMOCA brand starts
+// light (brand guide: "Light, dark offered"). Starlight follows the operating system instead.
+// Choosing "Auto" in the theme switch still follows the operating system.
+import Default from '@astrojs/starlight/components/ThemeProvider.astro';
+---
+
+<script is:inline>
+	try {
+		if (!localStorage.getItem('starlight-theme')) localStorage.setItem('starlight-theme', 'light');
+	} catch {}
+</script>
+<Default />

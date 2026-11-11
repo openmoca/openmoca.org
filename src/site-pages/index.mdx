@@ -1,0 +1,170 @@
+---
+title: Portable grounding for AI
+description: OpenMOCA is an open standard for portable grounding for AI. Package knowledge with its structure and sources, for RAG with checkable citations, on any stack.
+template: splash
+editUrl: false
+hero:
+  tagline: An open standard for the knowledge AI answers from. Packaged with its structure and original sources, signed, and read the same way by any model, vector store or agent, on a server or offline.
+  image:
+    light: ../../assets/openmoca-logo-stacked-ink.svg
+    dark: ../../assets/openmoca-logo-stacked-cream.svg
+    alt: OpenMOCA
+  actions:
+    - text: Get started
+      link: /start/
+      icon: right-arrow
+    - text: Try it online
+      link: https://try.openmoca.org
+      variant: secondary
+      attrs:
+        rel: noopener
+    - text: Use with your AI assistant
+      link: /start/ai-assistant/
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## What is OpenMOCA?
+
+OpenMOCA is an open standard for portable grounding for AI. **MOCA stands for
+Modular Ontology, Content & Attestation**: knowledge in modular packages,
+organised by an optional ontology, with attestations, signatures that prove
+who published it and who checked it. Open Readers in TypeScript, .NET and
+Python read, verify, search and cite a package the same way, on a server or
+offline, and every answer can cite a source you can check.
+
+<CardGrid>
+  <LinkCard title="Use MOCA with your AI assistant" description="Add the openmoca agent skill to Claude, Copilot or Codex, and ask it to make, sign, search and cite packages." href="/start/ai-assistant/" />
+  <LinkCard title="Got a .moca file?" description="Open it in Claude Desktop, Claude Code, VS Code or Cursor with one download, and get answers that cite their source." href="/start/open-a-package/" />
+  <LinkCard title="RAG with citations you can check" description="What a package adds to retrieval-augmented generation: current, in-scope content, every passage traced to its source." href="/docs/moca-and-rag/" />
+  <LinkCard title="Trust and provenance" description="Signed packages, signed reviews, quotes checked against the originals, and proof of what an answer used." href="/docs/trust-and-provenance/" />
+  <LinkCard title="Grounding for AI agents" description="One package for any agent: an MCP server, Agent Framework, LangChain and LlamaIndex, with the same trust rules." href="/docs/ai-agents/" />
+  <LinkCard title="Ontology for AI retrieval" description="Topics, steps and prerequisites as structure, and search that adds what each result requires." href="/docs/ontology/" />
+  <LinkCard title="Sovereign and offline AI" description="Grounding that runs on infrastructure you control: no network calls, local search, signatures you verify." href="/docs/sovereign-ai/" />
+  <LinkCard title="Questions?" description="What MOCA stands for, how it relates to RAG, vector stores, OKF and MCP, and where to start." href="/docs/faq/" />
+</CardGrid>
+
+## The problem
+
+Knowledge that feeds AI is rebuilt for every model, vendor and pipeline, and
+loses its structure and its sources on the way. Nobody can prove which version
+an answer came from, who published it, or whether anyone checked it.
+Superseded content keeps being served, because nothing tells the pipeline it is
+no longer in force.
+
+## Where it helps
+
+MOCA is not another model, vector store or agent framework. It is the form
+your knowledge travels in, so whatever you build answers from the right
+version and cites the original source.
+
+<CardGrid>
+  <LinkCard title="Sharing knowledge for grounding" description="Package a body of knowledge once; any assistant, model or framework grounds on it." href="/docs/use-cases/#sharing-knowledge-for-grounding" />
+  <LinkCard title="Manuals and procedures" description="Steps in order, the checks that come first, cited to the PDF page, even offline." href="/docs/use-cases/#manuals-and-procedures" />
+  <LinkCard title="Law and regulation" description="Only the version in force, with the exact clause cited." href="/docs/use-cases/#law-and-regulation" />
+  <LinkCard title="Courses, talks and video" description="Lessons in order and prerequisites kept; every answer opens the video at the moment." href="/docs/use-cases/#courses-and-training" />
+  <LinkCard title="Customer support knowledge" description="AI drafts kept apart from what a person checked; internal answers stay internal." href="/docs/use-cases/#customer-support-knowledge" />
+  <LinkCard title="Audit and regulated AI" description="A record of exactly which content each answer used, long after the index is rebuilt." href="/docs/use-cases/#audit-and-regulated-ai" />
+</CardGrid>
+
+[More use cases](/docs/use-cases/), and where MOCA is a poor fit.
+
+## A package, in three layers
+
+A MOCA package wraps an
+[Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
+bundle, a folder of Markdown with YAML frontmatter.
+
+<CardGrid>
+  <Card title="Structure" icon="list-format">
+    Optional. Concepts and how they relate: hierarchy, parts, order, what
+    requires what. W3C SKOS and DCMI terms, plus any vocabulary you add.
+  </Card>
+  <Card title="Content" icon="document">
+    The knowledge, one Markdown node per topic, with validity windows,
+    audiences and translations.
+  </Card>
+  <Card title="Evidence" icon="open-book">
+    The original sources, inside the package, and selectors that point into
+    them, so every quote can be checked.
+  </Card>
+  <Card title="Trust, across all three" icon="padlock">
+    One digest covers every file. A signed package proves who published it;
+    signed reviews prove who checked which node.
+  </Card>
+</CardGrid>
+
+## What a Reader gives you
+
+A Reader opens a package, verifies it, and searches it with trust rules
+applied: content that is out of force, superseded or outside the caller's
+audience never comes back. Every result is a **citation record**: the text,
+the package version and digest it came from, a versioned reference to cite,
+who signed and reviewed it, and its evidence, marked `matched` when the quote
+was found in the original.
+
+Readers are in-process libraries, one per language, and every one passes the
+same [conformance corpus](/spec/conformance/), so a package reads the same way
+everywhere.
+
+<CardGrid>
+  <LinkCard title="Get started in TypeScript" description="npm install @openmoca/moca-core: install, open, search and cite, run the corpus." href="/start/typescript/" />
+  <LinkCard title="Get started in .NET" description="dotnet add package OpenMoca.Reader, with bindings for Microsoft.Extensions.AI, the Agent Framework and VectorData." href="/start/dotnet/" />
+  <LinkCard title="Get started in Python" description="pip install moca-reader: the same Reader, for the language most AI code is written in." href="/start/python/" />
+  <LinkCard title="Serve packages over MCP" description="One download, nothing to install: search, navigate and cite packages from any MCP client." href="/tools/mcp/" />
+  <LinkCard title="Make a package" description="A valid package in five minutes, from Markdown you already have." href="/docs/quickstart/" />
+</CardGrid>
+
+## Try it in your browser
+
+[Try OpenMOCA](https://try.openmoca.org) runs the .NET Reader over eight real
+packages, each converted from a published source and signed. No install, and
+no account to search.
+
+- **Learn Copilot Studio 2026** — a video series: 17 videos in order, every answer cited to the moment. _MadeForCloud on YouTube, CC BY 3.0._
+- **First Steps to Using Claude AI** — a recorded talk, its chapters cited to the moment. _Eliot Prince on YouTube, CC BY 3.0._
+- **Kubernetes documentation** — vendor documentation at scale: all 1,653 pages. _The Kubernetes Authors, CC BY 4.0._
+- **Airplane Flying Handbook** — a manual with a topic ontology: what each topic builds on. _FAA, public domain._
+- **Data Protection Act 2018** — legislation, section by section. _legislation.gov.uk, Open Government Licence._
+- **HSE health and safety guidance** — regulated procedures, cited to the PDF page. _Health and Safety Executive, Open Government Licence._
+- **GitLab handbook** — onboarding: a company's policies and people practices. _GitLab, Creative Commons with attribution._
+- **Acme Support Knowledge Base** — trust: 34 pages in English and French; internal procedures kept out of public answers, expired and future policies left out, stale and disputed pages flagged. _The OpenMOCA specification's example, Apache-2.0._
+
+What you can do there:
+
+- **Search, with no account.** Lexical (keyword), semantic or hybrid, through the
+  Reader's one search call. Two local embedding models, bge-small and Nomic,
+  each with its own sidecar index of the same passages; your search is embedded
+  on the server and never sent to an AI provider. Hybrid results show where
+  each one ranked in the lexical and semantic lists.
+- **Open every result at its source.** The passage opens beside the results,
+  marked in place; a video opens at the moment.
+- **Use the structure.** Search within a chapter, a folder or a topic, narrow
+  to what the results fall under, or widen back out. In the Flying Handbook,
+  each topic shows what it builds on (`requires`).
+- **Check, don't trust.** Inspect a package: its digest, its signer, the
+  Reader's findings and its search indexes.
+- **Ask it questions.** Signed in, with your own key (Anthropic, OpenAI or
+  Google Gemini) or a demo key by invitation. Every answer cites the package,
+  and a citation opens the source.
+
+The site is built and run by PI & Mash on the open Readers and tools; its own
+code is not part of OpenMOCA.
+
+## Three pillars
+
+| Pillar | What it is | Openness |
+| --- | --- | --- |
+| **MOCA Package** | The format: structure, content, evidence, and the identity and trust that cover them | Open standard |
+| **MOCA Reader** | The standard way to get anything out of a package: search, structure navigation, citation. In-process, one per language, one conformance corpus | Open source |
+| **MOCA Application** | The product for one use case, built on a Reader and the agent framework of your choice | Yours |
+
+## Status
+
+**OpenMOCA 0.6.0** is the first public release. The specification and three
+Readers, in TypeScript, .NET and Python, are released together and pass one
+conformance corpus. Until `1.0.0` the format may still change, and every change
+is noted; `1.0.0` comes when it has settled and is used beyond its maintainer.
+If you'd like to help get there, [get in touch](/contact/), or see the
+[roadmap](/project/roadmap/).

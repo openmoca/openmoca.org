@@ -1,0 +1,82 @@
+---
+title: Tools
+description: The open-source OpenMOCA tools. Serve MOCA packages to an AI assistant with the MCP server, and make, check, sign and index packages from the command line.
+editUrl: false
+head:
+  - tag: title
+    content: "OpenMOCA tools: the MCP server, and tools to make, sign and index packages | OpenMOCA"
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Every tool is open source under Apache-2.0, and reads packages through a MOCA
+Reader, so it reaches the same conclusions as any other Reader.
+
+## Serve packages to an AI assistant
+
+The **MCP server** connects MOCA packages to Claude Desktop, Claude Code, VS
+Code, Cursor or any client of the
+[Model Context Protocol](https://modelcontextprotocol.io). The assistant can
+search the packages, open a page and ask how topics relate, and every answer
+is a citation record it can quote.
+
+<CardGrid>
+  <LinkCard title="MCP server" description="One download for Windows, macOS or Linux, with nothing to install." href="/tools/mcp/" />
+  <LinkCard title="Got a .moca file?" description="Connect it to Claude Desktop, Claude Code, VS Code or Cursor, step by step." href="/start/open-a-package/" />
+</CardGrid>
+
+## Make and publish packages
+
+Four command-line tools, used in this order. Each runs with `npx`, with no
+install; they need Node.js 22 or later.
+
+### 1. Make it: moca-convert
+
+[moca-convert](/tools/convert/) turns Markdown folders, Obsidian vaults,
+OpenAPI documents, PDFs and YouTube videos into a package.
+
+```sh
+npx @openmoca/moca-convert ./docs -o my-docs \
+  --id https://example.com/kb/my-docs --title "My docs"
+```
+
+### 2. Check it: moca-lint
+
+[moca-lint](/tools/moca-lint/) checks a package as a Reader reads it, packs it
+into one `.moca` file, and prints its digest, manifest and structure.
+
+```sh
+npx @openmoca/moca-lint lint my-docs
+```
+
+### 3. Sign it: moca-sign
+
+[moca-sign](/tools/moca-sign/) makes keys, signs the package as its publisher,
+records reviews of pages, verifies signatures, and manages your trust root.
+
+```sh
+npx @openmoca/moca-sign sign my-docs \
+  --key keys/publisher.pem --keyid publisher
+```
+
+### 4. Index it: moca-index
+
+[moca-index](/tools/moca-index/) builds a sidecar search index, bound to the
+package's digest. Add `--model` to build it with a standard embedding model, so
+the MCP server can search it by meaning too.
+
+```sh
+npx @openmoca/moca-index build my-docs \
+  -o my-docs.moca.idx --chunk headings --model bge-small-en-v1.5
+```
+
+The model is installed once, with
+[moca-embed](/tools/moca-embed/) (`npx @openmoca/moca-embed models add
+bge-small-en-v1.5`) or the MCP server's `moca-mcp models add`; both use the same
+model folder. Then serve the package with the MCP server, or read it in code
+with a [Reader](/readers/typescript/).
+
+<CardGrid>
+  <LinkCard title="Walkthrough" description="All the tools in order on one package: check, sign, review, index, pack and serve it to an AI agent." href="/docs/walkthrough/" />
+  <LinkCard title="Let your AI assistant run them" description="The openmoca agent skill teaches Claude, Copilot or Codex to use every tool for you." href="/start/ai-assistant/" />
+</CardGrid>

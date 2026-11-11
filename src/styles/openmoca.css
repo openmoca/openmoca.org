@@ -1,0 +1,130 @@
+/* OpenMOCA (openmoca.org) colour theme, v2, from the OpenMOCA brand kit v2. Starts light; dark is offered.
+ * Default: no attribute, or <html data-theme="light">.
+ * Switch:  <html data-theme="dark">.
+ * Follow the OS instead: <html data-theme="system">.
+ * Every text pair meets WCAG AA (4.5:1) or better.
+ */
+:root, :root[data-theme="light"] {
+  color-scheme: light;
+  --moca-bg: #FAF7F2;
+  --moca-surface: #FFFFFF;
+  --moca-surface-raised: #F3EDE5;
+  --moca-line: #D9CFC4;
+  --moca-text: #2B1D16;
+  --moca-text-muted: #6F6259;
+  --moca-accent: #2B1D16;
+  --moca-accent-hover: #3F2D24;
+  --moca-on-accent: #FFFFFF;
+  --moca-link: #2F6F6A;
+  --moca-link-hover: #1F4E4A;
+  --moca-focus: #2F6F6A;
+  --moca-mark: #2B1D16;
+  --moca-structure: #2F6F6A;
+  --moca-content: #B5652B;
+  --moca-evidence: #2B1D16;
+  --moca-pin: #A87508;
+  --moca-boundary: #8A7C72;
+  --moca-signal-in-force: #1F5A40;
+  --moca-signal-in-force-bg: #E4F1EA;
+  --moca-signal-stale: #7A4F00;
+  --moca-signal-stale-bg: #F8EDD5;
+  --moca-signal-contested: #8A2A2A;
+  --moca-signal-contested-bg: #F6E1DF;
+  --moca-signal-superseded: #5E524A;
+  --moca-signal-superseded-bg: #ECE6DF;
+  --moca-signal-signed: #7A3F14;
+  --moca-signal-signed-bg: #F6E9DD;
+  /* Callouts (note, tip, caution, danger): the accent for the border, icon and title; the background. */
+  --moca-callout-note: #2F6F6A;
+  --moca-callout-note-bg: #E3EFED;
+  --moca-callout-tip: #2B1D16;
+  --moca-callout-tip-bg: #F3EDE5;
+  --moca-callout-caution: #7A4F00;
+  --moca-callout-caution-bg: #F8EDD5;
+  --moca-callout-danger: #8A2A2A;
+  --moca-callout-danger-bg: #F6E1DF;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --moca-bg: #151210;
+  --moca-surface: #1E1A17;
+  --moca-surface-raised: #26211D;
+  --moca-line: #3A332E;
+  --moca-text: #F3ECE4;
+  --moca-text-muted: #A39A92;
+  --moca-accent: #F3ECE4;
+  --moca-accent-hover: #E0D6CB;
+  --moca-on-accent: #151210;
+  --moca-link: #5FB3AA;
+  --moca-link-hover: #8FD0C8;
+  --moca-focus: #5FB3AA;
+  --moca-mark: #F3ECE4;
+  --moca-structure: #5FB3AA;
+  --moca-content: #E08A4C;
+  --moca-evidence: #F3ECE4;
+  --moca-pin: #F2C36B;
+  --moca-boundary: #A0948A;
+  --moca-signal-in-force: #7FCFA5;
+  --moca-signal-in-force-bg: #15261D;
+  --moca-signal-stale: #F2C36B;
+  --moca-signal-stale-bg: #2A2110;
+  --moca-signal-contested: #F0A1A1;
+  --moca-signal-contested-bg: #2E1717;
+  --moca-signal-superseded: #A0948A;
+  --moca-signal-superseded-bg: #221B17;
+  --moca-signal-signed: #E08A4C;
+  --moca-signal-signed-bg: #2A1C12;
+  /* Callouts (note, tip, caution, danger): the accent for the border, icon and title; the background. */
+  --moca-callout-note: #5FB3AA;
+  --moca-callout-note-bg: #17292A;
+  --moca-callout-tip: #F3ECE4;
+  --moca-callout-tip-bg: #26211D;
+  --moca-callout-caution: #F2C36B;
+  --moca-callout-caution-bg: #2A2110;
+  --moca-callout-danger: #F0A1A1;
+  --moca-callout-danger-bg: #2E1717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    color-scheme: dark;
+    --moca-bg: #151210;
+    --moca-surface: #1E1A17;
+    --moca-surface-raised: #26211D;
+    --moca-line: #3A332E;
+    --moca-text: #F3ECE4;
+    --moca-text-muted: #A39A92;
+    --moca-accent: #F3ECE4;
+    --moca-accent-hover: #E0D6CB;
+    --moca-on-accent: #151210;
+    --moca-link: #5FB3AA;
+    --moca-link-hover: #8FD0C8;
+    --moca-focus: #5FB3AA;
+    --moca-mark: #F3ECE4;
+    --moca-structure: #5FB3AA;
+    --moca-content: #E08A4C;
+    --moca-evidence: #F3ECE4;
+    --moca-pin: #F2C36B;
+    --moca-boundary: #A0948A;
+    --moca-signal-in-force: #7FCFA5;
+    --moca-signal-in-force-bg: #15261D;
+    --moca-signal-stale: #F2C36B;
+    --moca-signal-stale-bg: #2A2110;
+    --moca-signal-contested: #F0A1A1;
+    --moca-signal-contested-bg: #2E1717;
+    --moca-signal-superseded: #A0948A;
+    --moca-signal-superseded-bg: #221B17;
+    --moca-signal-signed: #E08A4C;
+    --moca-signal-signed-bg: #2A1C12;
+    /* Callouts (note, tip, caution, danger): the accent for the border, icon and title; the background. */
+    --moca-callout-note: #5FB3AA;
+    --moca-callout-note-bg: #17292A;
+    --moca-callout-tip: #F3ECE4;
+    --moca-callout-tip-bg: #26211D;
+    --moca-callout-caution: #F2C36B;
+    --moca-callout-caution-bg: #2A2110;
+    --moca-callout-danger: #F0A1A1;
+    --moca-callout-danger-bg: #2E1717;
+  }
+}
