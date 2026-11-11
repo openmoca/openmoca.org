@@ -114,5 +114,5 @@ jobs:
       - run: npm run build
         env:
           # The private names the site must never show, kept out of this public repository.
-          MOCA_PRIVATE_NAMES: ${{ vars.MOCA_PRIVATE_NAMES }}
+          MOCA_PRIVATE_NAMES: ${{ secrets.MOCA_PRIVATE_NAMES }}
         working-directory: openmoca.org

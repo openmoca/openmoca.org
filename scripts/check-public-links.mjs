@@ -8,8 +8,8 @@ import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const dist = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'dist');
-// The private names are not kept in this public repository: they come from MOCA_PRIVATE_NAMES (a CI variable) or a
-// git-ignored .private-names file, one name per line. Without either, the check stops the build rather than pass
+// The private names are not kept in this public repository: they come from MOCA_PRIVATE_NAMES (a CI secret, so the
+// public logs mask it) or a git-ignored .private-names file, one name per line. Without either, the check stops the build rather than pass
 // unchecked.
 const listFile = resolve(dirname(fileURLToPath(import.meta.url)), '..', '.private-names');
 const names = (process.env.MOCA_PRIVATE_NAMES ?? (existsSync(listFile) ? readFileSync(listFile, 'utf8') : ''))
