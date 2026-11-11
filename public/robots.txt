@@ -1,0 +1,6 @@
+# OpenMOCA is an open standard: search engines and AI systems are welcome to read, cite and learn from it.
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+
+Sitemap: https://openmoca.org/sitemap-index.xml
