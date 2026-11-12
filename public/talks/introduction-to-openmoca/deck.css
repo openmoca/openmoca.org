@@ -157,7 +157,9 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 
 /* 7. Citation record */
 .record { display: flex; gap: 60px; margin-top: -20px; }
-.record .code { width: 1080px; font-size: 22px; padding: 22px 36px; line-height: 1.3; }
+.record-code { width: 1080px; flex: none; }
+.record .code { font-size: 21px; padding: 20px 36px; line-height: 1.27; }
+.code-note { font-size: 22px; margin-top: 12px; }
 .callouts { list-style: none; display: flex; flex-direction: column; gap: 52px; padding-top: 30px; }
 .callouts li { display: grid; grid-template-columns: 46px 1fr; row-gap: 8px; }
 .callouts li::before { content: ""; width: 46px; height: 46px; border-radius: 50%; background: var(--dot); grid-row: span 2; }
