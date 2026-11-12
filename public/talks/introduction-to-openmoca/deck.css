@@ -133,8 +133,8 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .layer span { color: var(--muted); }
 .package-right { flex: 1; }
 .package .code { font-size: 27px; padding: 36px 44px; }
-.files { list-style: none; display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
-.files li { display: flex; flex-direction: column; gap: 8px; }
+.files { display: flex; flex-direction: column; gap: 8px; margin: 0 0 30px; }
+.code + .files { margin: 34px 0 0; }
 .files b { font-size: 32px; color: var(--text); }
 .files code { font-family: var(--mono); font-size: 28px; font-weight: 400; color: var(--muted); margin-left: 14px; }
 .files span { font-size: 28px; color: var(--muted); line-height: 1.4; }

@@ -147,16 +147,14 @@
       <div class="layer" style="--top: 0.69; --col: var(--evidence)"><b>Evidence</b><span>the original sources</span></div>
     </div>
 <div class="package-right">
+      <div class="files"><b>A package <code>.moca</code></b><span>A set of files with moca.json at its root: a folder, a .moca archive (a Zip), or records a host supplies. All give the same digest.</span></div>
 <pre class="code">acme-support/
   moca.json        <span class="c">id, version, licence</span>
   content/         <span class="c">the pages</span>
   sources/         <span class="c">the originals</span>
   structure.ttl    <span class="c">the ontology</span>
   attestations/    <span class="c">signatures, reviews</span></pre>
-      <ul class="files">
-        <li><b>A package <code>.moca</code></b><span>A set of files with moca.json at its root: a folder, a .moca archive (a Zip), or records a host supplies. All give the same digest.</span></li>
-        <li><b>A sidecar index <code>.moca.idx</code></b><span>A directory, or a Zip archive of one, kept outside the package it indexes. Optional; built for one package version and digest.</span></li>
-      </ul>
+      <div class="files"><b>A sidecar index <code>.moca.idx</code></b><span>A folder or archive (a Zip), kept outside the package it indexes. Optional; built for one package version and digest.</span></div>
     </div>
   </div>
   <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file, which is a Zip with moca.json at its root; a folder, a .moca file or records loaded from a database all give the same digest. Search indexes are sidecars, kept outside the package: each records the package id, version and digest it was built from, and, if it holds vectors, the model that made them. Delete one and rebuild it any time.</aside>
