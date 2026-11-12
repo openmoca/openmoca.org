@@ -160,30 +160,7 @@
   <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file, which is a Zip with moca.json at its root; a folder, a .moca file or records loaded from a database all give the same digest. Search indexes are sidecars, kept outside the package: each records the package id, version and digest it was built from, and, if it holds vectors, the model that made them. Delete one and rebuild it any time.</aside>
 </section>
 
-<!-- ===== 10. Open tools ===== -->
-<section class="slide" data-section="How it works">
-  <h1>Open tools, from a folder to a signed package</h1>
-  <div class="flow">
-    <div class="card" style="--col: var(--content)"><span class="icon-circle small" data-i="refresh-cw"></span><h3>Convert</h3>
-      <p>Markdown, Obsidian, PDF, OpenAPI, YouTube</p><code>moca-convert</code></div>
-    <span class="arrow" data-i="arrow-right"></span>
-    <div class="card" style="--col: var(--text)"><span class="icon-circle small" data-i="check-circle"></span><h3>Check</h3>
-      <p>As a Reader reads it. Pack to one .moca file.</p><code>moca-lint</code></div>
-    <span class="arrow" data-i="arrow-right"></span>
-    <div class="card" style="--col: var(--pin)"><span class="icon-circle small" data-i="pen-tool"></span><h3>Sign</h3>
-      <p>The publisher, and reviews of each page.</p><code>moca-sign</code></div>
-    <span class="arrow" data-i="arrow-right"></span>
-    <div class="card" style="--col: var(--structure)"><span class="icon-circle small" data-i="database"></span><h3>Index</h3>
-      <p>Lexical and semantic, with local models.</p><code>moca-index</code></div>
-    <span class="arrow" data-i="arrow-right"></span>
-    <div class="card" style="--col: var(--in-force)"><span class="icon-circle small" data-i="server"></span><h3>Serve</h3>
-      <p>To any MCP client, on your computer.</p><code>moca-mcp</code></div>
-  </div>
-  <p class="flow-note">The tools run with npx, nothing to install. The MCP server is one download.<br>Or let your AI assistant run them: the openmoca agent skill teaches it every tool.</p>
-  <aside class="notes">From a folder to a package anyone can check. Convert takes a folder of Markdown, an Obsidian vault, PDFs, an OpenAPI document or captured YouTube videos. Check reads it exactly as a Reader will, and packs it to one .moca file. Sign adds the publisher's signature, and signed reviews of individual pages. Index builds lexical and semantic sidecar indexes, with local embedding models (moca-embed installs the four standard ones). Serve: the MCP server, which you will see in Claude in a moment. All Apache 2.0. Then something has to read the package: that is a Reader.</aside>
-</section>
-
-<!-- ===== 11. The Reader ===== -->
+<!-- ===== 10. The Reader ===== -->
 <section class="slide" data-section="How it works">
   <h1>What a Reader gives you</h1>
   <div class="steps">
@@ -196,14 +173,14 @@
     <div class="card"><div class="step-head"><span class="icon-circle solid" data-i="bookmark" style="--bg-c: var(--content)"></span><h3>3. Cite</h3></div>
       <p>Every result is a citation record: the version, who signed and reviewed it, and its evidence.</p></div>
   </div>
-  <div class="langs">
-    <span class="pill">TypeScript</span><span class="pill">.NET</span><span class="pill">Python</span>
-    <p>Three Readers, one conformance corpus: a package reads the same way everywhere.</p>
+  <div class="readers">
+    <p><strong>Three open-source Readers, one conformance corpus:</strong><br>a package reads the same way everywhere.</p>
+    <div class="pills"><span class="pill">TypeScript</span><span class="pill">.NET</span><span class="pill">Python</span></div>
   </div>
   <aside class="notes">Verify before trust. The Reader checks the digest and the signatures against the trust root you choose, and reports findings. Then one search call does lexical, semantic or hybrid. The trust rules apply: content that is out of force, superseded or outside your audience never comes back. Every result is a citation record. The three Readers rank the same results the same way: the corpus and a parity check prove it.</aside>
 </section>
 
-<!-- ===== 12. Search where your data already is ===== -->
+<!-- ===== 11. Search where your data already is ===== -->
 <section class="slide" data-section="How it works">
   <h1>Search where your data already is</h1>
   <div class="grid cols-3 search-where">
@@ -222,7 +199,7 @@
   <aside class="notes">The Reader has one search call over interchangeable backends. A local index: a sidecar file beside the package, in one portable format any Reader can use, with text chunks for keyword search (BM25) and, if you want, vectors from one of MOCA's four standard embedding models, which moca-embed installs and runs locally: bge-small, nomic-embed-text, all-MiniLM and multilingual-e5-small. It records the package id, version and digest it was built from, and the model if it holds vectors, so it can never answer for a different package; you can delete and rebuild it any time. Search by meaning runs offline. Your vector store: if you already have one, verify each package at ingest and write its chunks with flat moca_ metadata; the Reader searches the store and re-applies the trust rules to every result. Bindings: a Microsoft.Extensions.VectorData store backend in .NET, LangChain and LlamaIndex retrievers in Python. Hybrid: a lexical and a dense backend merged by reciprocal rank fusion. Whichever you use, every result comes back as a citation record, which is the next slide.</aside>
 </section>
 
-<!-- ===== 13. Citation record ===== -->
+<!-- ===== 12. Citation record ===== -->
 <section class="slide" data-section="How it works">
   <h1>Every answer comes with a citation record</h1>
   <div class="record">
@@ -256,7 +233,30 @@
       <li style="--dot: var(--content)"><b>The sentence it rests on</b><span>Quoted from the source, and checked.</span></li>
     </ul>
   </div>
-  <aside class="notes">So the assistant can say not just "30 days", but which version of which page says so, that Acme published it, that Sam checked it, and the sentence in the customer terms it rests on. This is from the Acme example in the walkthrough, shortened.</aside>
+  <aside class="notes">So the assistant can say not just "30 days", but which version of which page says so, that Acme published it, that Sam checked it, and the sentence in the customer terms it rests on. This is from the Acme example in the walkthrough, shortened. So how do you make a package like this?</aside>
+</section>
+
+<!-- ===== 13. Open tools ===== -->
+<section class="slide" data-section="How it works">
+  <h1>Open tools, from a folder to a signed package</h1>
+  <div class="flow">
+    <div class="card" style="--col: var(--content)"><span class="icon-circle small" data-i="refresh-cw"></span><h3>Convert</h3>
+      <p>Markdown, Obsidian, PDF, OpenAPI, YouTube</p><code>moca-convert</code></div>
+    <span class="arrow" data-i="arrow-right"></span>
+    <div class="card" style="--col: var(--text)"><span class="icon-circle small" data-i="check-circle"></span><h3>Check</h3>
+      <p>As a Reader reads it. Pack to one .moca file.</p><code>moca-lint</code></div>
+    <span class="arrow" data-i="arrow-right"></span>
+    <div class="card" style="--col: var(--pin)"><span class="icon-circle small" data-i="pen-tool"></span><h3>Sign</h3>
+      <p>The publisher, and reviews of each page.</p><code>moca-sign</code></div>
+    <span class="arrow" data-i="arrow-right"></span>
+    <div class="card" style="--col: var(--structure)"><span class="icon-circle small" data-i="database"></span><h3>Index</h3>
+      <p>Lexical and semantic, with local models.</p><code>moca-index</code></div>
+    <span class="arrow" data-i="arrow-right"></span>
+    <div class="card" style="--col: var(--in-force)"><span class="icon-circle small" data-i="server"></span><h3>Serve</h3>
+      <p>To any MCP client, on your computer.</p><code>moca-mcp</code></div>
+  </div>
+  <p class="flow-note">The tools run with npx, nothing to install. The MCP server is one download.<br>Or let your AI assistant run them: the openmoca agent skill teaches it every tool.</p>
+  <aside class="notes">From a folder to a package anyone can check. Convert takes a folder of Markdown, an Obsidian vault, PDFs, an OpenAPI document or captured YouTube videos. Check reads it exactly as a Reader will, and packs it to one .moca file. Sign adds the publisher's signature, and signed reviews of individual pages. Index builds lexical and semantic sidecar indexes, with local embedding models (moca-embed installs the four standard ones). Serve: the MCP server, which you will see in Claude in a moment. All Apache 2.0. The last step is serve: here is how that looks in your own assistant.</aside>
 </section>
 
 <!-- ===== 14. Your own assistant, over MCP ===== -->

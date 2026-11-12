@@ -146,6 +146,12 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .step-head h3 { font-size: 48px; }
 .steps .icon-circle { width: 115px; height: 115px; font-size: 60px; }
 .arrow { color: var(--line); font-size: 64px; display: flex; justify-content: center; }
+.readers { display: flex; align-items: center; justify-content: space-between; gap: 40px; margin-top: 56px;
+  background: var(--note-bg); border-radius: 18px; padding: 38px 46px; }
+.readers p { font-size: 34px; line-height: 1.45; color: var(--structure); }
+.readers strong { color: var(--structure); font-weight: 700; }
+.readers .pills { display: flex; gap: 14px; flex: none; }
+.readers .pill { background: var(--surface); font-size: 28px; padding: 12px 30px; }
 .langs { display: flex; align-items: center; gap: 30px; margin-top: 70px; }
 .langs p { margin-left: 30px; }
 
