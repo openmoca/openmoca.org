@@ -42,6 +42,12 @@ h3 { font-size: 40px; font-weight: 700; line-height: 1.2; }
 p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .ic svg { width: 1em; height: 1em; vertical-align: -0.12em; }
 
+/* Links on the slides: the text's own colour, a quiet underline that firms up on hover */
+.slide a:not(.home) { color: inherit; text-decoration: underline; text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); }
+.slide a:not(.home):hover { text-decoration-color: currentColor; }
+.close-qr a { display: block; text-decoration: none; }
+
 /* ---- Pieces ---- */
 .grid { display: grid; gap: 50px; }
 .cols-3 { grid-template-columns: repeat(3, 1fr); }

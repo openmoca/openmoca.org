@@ -24,12 +24,14 @@
   fit();
 
   let current = 0;
+  const pageTitle = document.title;
   const fromHash = () => Math.min(Math.max(parseInt(location.hash.slice(1), 10) || 1, 1), total) - 1;
   function show(n, { broadcast = true } = {}) {
     current = Math.min(Math.max(n, 0), total - 1);
     slides.forEach((s, i) => s.classList.toggle('active', i === current));
     if (location.hash !== '#' + (current + 1)) history.replaceState(null, '', '#' + (current + 1));
-    document.title = `${current + 1}. ${slides[current].querySelector('h1')?.textContent ?? ''} · Introduction to OpenMOCA`;
+    // Slide 1 keeps the page's own title (search engines read it); later slides show their number and heading in the tab.
+    document.title = current === 0 ? pageTitle : `${current + 1}. ${slides[current].querySelector('h1')?.textContent ?? ''} · Introduction to OpenMOCA`;
     if (broadcast && channel) channel.postMessage({ slide: current });
     if (mode === 'speaker') speaker.update();
   }
