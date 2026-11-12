@@ -257,17 +257,21 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .links .card { height: 520px; }
 .links h3 { color: var(--structure); margin: 44px 0 24px; font-size: 38px; }
 
-/* 17. Close */
-.close { padding-top: 230px; }
-.close .lede { line-height: 1.5; }
-.try-qr { position: absolute; right: var(--m); top: 230px; width: 418px; background: var(--bg); border-radius: 18px;
-  padding: 28px 28px 20px; text-align: center; color: var(--text); font-size: 32px; }
-.try-qr img { width: 362px; height: 362px; display: block; margin-bottom: 12px; }
-.invite { position: absolute; left: var(--m); right: var(--m); top: 727px; height: 195px; background: var(--d-surface);
-  border: 2px solid var(--d-line); border-radius: 18px; padding: 0 50px; display: flex; align-items: center; gap: 90px; }
-.invite code { display: block; font-family: var(--mono); font-size: 60px; font-weight: 700; color: var(--d-text); margin-top: 10px; }
-.slide.dark .invite > p { font-size: 30px; color: var(--d-text); line-height: 1.6; }
-.invite > p span { color: var(--d-muted); }
+/* Close: thank you, the links and two QR codes */
+.close { padding-top: 120px; }
+.close h1 { font-size: 104px; margin: 14px 0 50px; }
+.close-grid { display: grid; grid-template-columns: 1fr auto; gap: 70px; align-items: center; }
+.close-links { list-style: none; display: flex; flex-direction: column; gap: 34px; }
+.close-links li { display: flex; align-items: center; gap: 30px; }
+.close-links .icon-circle.small { width: 84px; height: 84px; font-size: 42px; background: var(--d-surface); color: var(--d-structure); }
+.close-links div { display: flex; flex-direction: column; gap: 4px; }
+.close-links b { font-size: 40px; color: var(--d-structure); }
+.close-links span:not(.icon-circle) { font-size: 28px; color: var(--d-muted); }
+.close-qr { display: flex; gap: 30px; }
+.close-qr figure { background: var(--bg); border-radius: 18px; padding: 22px 22px 14px; text-align: center; }
+.close-qr img { width: 250px; height: 250px; display: block; }
+.close-qr figcaption { font-size: 25px; font-weight: 700; color: var(--text); margin-top: 8px; }
+.slides-link { position: absolute; left: var(--m); bottom: 110px; font-size: 28px; color: var(--d-muted) !important; }
 
 /* ---- Overview (O): every slide as a thumbnail ---- */
 body.overview { overflow: auto; background: #222; }
