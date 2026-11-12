@@ -55,5 +55,10 @@ export const GET: APIRoute = async () => {
     }
     lines.push('');
   }
+  // Talks: the site's own Talks page and each talk's slides, which are static pages outside the docs.
+  lines.push('## Talks', '',
+    `- [Talks](${SITE}/talks/): Talks about OpenMOCA, with their slides and speaker notes.`,
+    `- [Introduction to OpenMOCA (slides)](${SITE}/talks/introduction-to-openmoca/): Slides and speaker notes: why knowledge for AI is often locked in one pipeline and hard to check, and how OpenMOCA packages it with its structure, sources and signatures, for RAG with citations you can check, over MCP or in your app.`,
+    '');
   return new Response(lines.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };

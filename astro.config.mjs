@@ -4,10 +4,11 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import mermaid from 'astro-mermaid';
 import starlightLinksValidator from 'starlight-links-validator';
+import sitemap from '@astrojs/sitemap';
 
 // One map for every page: sources.json. The sidebar follows its groups and order.
 const sources = JSON.parse(readFileSync(new URL('./sources.json', import.meta.url), 'utf8'));
-const sitePages = { Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec'], Tools: ['tools'], Project: ['about', 'contact', 'privacy'] };
+const sitePages = { Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec'], Tools: ['tools'], Project: ['about', 'talks', 'contact', 'privacy'] };
 const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. Project: who we are, where it is going, how it
 // is run and how to take part, what changed and how to upgrade, then contact and privacy.
@@ -15,7 +16,7 @@ const ORDER = {
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
   Project: [
-    'about', 'project/roadmap', 'project/governance', 'project/contributing', 'project/code-of-conduct',
+    'about', 'talks', 'project/roadmap', 'project/governance', 'project/contributing', 'project/code-of-conduct',
     'project/security', 'project/changelog', 'project/migrations', 'project/releasing', 'contact', 'privacy',
   ],
 };
@@ -36,6 +37,8 @@ export default defineConfig({
   site: 'https://openmoca.org',
   trailingSlash: 'always',
   integrations: [
+    // The sitemap Starlight would add by itself, plus the talk slides: static pages in public/talks/ it cannot see.
+    sitemap({ customPages: ['https://openmoca.org/talks/introduction-to-openmoca/'] }),
     // Mermaid diagrams in the docs, drawn in the browser from the bundled library, in the site's light or dark theme.
     // It must come before Starlight, so it takes the mermaid code blocks first.
     mermaid({ autoTheme: true, mermaidConfig: { fontFamily: 'Inter, system-ui, sans-serif' } }),
@@ -71,7 +74,8 @@ export default defineConfig({
         SocialIcons: './src/components/SocialIcons.astro',
       },
       sidebar,
-      plugins: [starlightLinksValidator({ errorOnRelativeLinks: true })],
+      // Talk slides are static pages in public/talks/, outside the docs, so the validator cannot see them.
+      plugins: [starlightLinksValidator({ errorOnRelativeLinks: true, exclude: ['/talks/**'] })],
     }),
   ],
 });

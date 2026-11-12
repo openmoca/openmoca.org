@@ -15,3 +15,6 @@ public/profiles/
 .vscode/
 .idea/
 .private-names
+
+# Slide renders from scripts/render-talk.sh
+.talk-render/
