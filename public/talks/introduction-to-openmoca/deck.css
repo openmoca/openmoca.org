@@ -100,6 +100,7 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 /* 3. Problem cards, 4. letters */
 .tall .card { min-height: 620px; }
 .tall .card h3 { margin: 50px 0 28px; }
+.tall .card p + p { margin-top: 18px; }
 .letters .card { padding: 40px 44px; display: flex; flex-direction: column; }
 .letters .card p + p { margin-top: 18px; }
 .letters .card .tag { margin-top: auto; padding-top: 20px; font-size: 23px; line-height: 1.3; font-weight: 600; color: var(--structure); }
