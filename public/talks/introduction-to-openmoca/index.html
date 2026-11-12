@@ -82,15 +82,14 @@
   <h1>OpenMOCA</h1>
   <div class="grid cols-4 letters">
     <div class="card"><span class="letter" style="color: var(--text)">M</span><h3>Modular</h3><p class="layer-of">the package</p>
-      <p>Build it once, use it anywhere.</p><p>Not locked into one pipeline.</p></div>
+      <p>Build it once, use it anywhere.</p><p>Not locked into one pipeline.</p><p>Combine packages, each pinned by its digest.</p></div>
     <div class="card"><span class="letter" style="color: var(--structure)">O</span><h3>Ontology</h3><p class="layer-of">the structure layer</p>
-      <p>From a simple list of topics to a full OWL ontology.</p><p>Search stays in scope.</p><p class="tag">Optional</p></div>
+      <p>From a simple list of topics to a full OWL ontology.</p><p>W3C SKOS at its core.</p><p>Search stays in scope.</p><p class="tag">Optional</p></div>
     <div class="card"><span class="letter" style="color: var(--content)">C</span><h3>Content</h3><p class="layer-of">the content and evidence</p>
-      <p>Readable pages, with the PDFs, web pages and video they came from.</p><p>Every answer points back to the passage.</p><p class="tag">Built on Open Knowledge Format</p></div>
+      <p>One Markdown node per topic.</p><p>Validity windows, audiences and translations.</p><p>Every answer points back to its source.</p><p class="tag">Open Knowledge Format</p></div>
     <div class="card"><span class="letter" style="color: var(--pin)">A</span><h3>Attestation</h3><p class="layer-of">the trust through all three</p>
       <p>One digest covers every file, so any change shows.</p><p>Signatures prove who published it, and who checked it.</p><p class="tag">Signing optional</p></div>
   </div>
-  <p class="footnote">An open standard, Apache 2.0. Readers in TypeScript, .NET and Python.</p>
   <aside class="notes">The name is the explanation, and it maps onto the three layers on the next slide: the ontology is the structure layer, the content comes with its evidence, and attestation is the trust through all three. Modular: a package is a unit you can move, compose and version. Ontology: optional. The core is W3C SKOS, which every Reader understands: topics, steps, what each needs first, and what replaces what, so search can stay in scope. A full OWL or SHACL ontology can travel in the package; Readers carry it, they don’t reason with it. Content: the content is an Open Knowledge Format bundle: Markdown with YAML frontmatter. MOCA doesn’t invent a content format; it wraps OKF and adds identity, a digest, signatures and evidence. Attestation: the digest is always there, one digest over every file, so any change shows. Signing is optional, though a package shared outside its organisation should be signed: then the publisher’s signature and signed reviews beside it, outside the digest, so adding a review never changes what was signed.</aside>
 </section>
 
