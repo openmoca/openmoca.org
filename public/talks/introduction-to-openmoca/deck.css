@@ -1,5 +1,5 @@
 /* The OpenMOCA look, from the brand kit (design/brand-kit/openmoca): light, ink, teal structure, copper content, gold pin.
-   Inter and JetBrains Mono, installed on this Mac. Every slide is a 1920 × 1080 canvas, scaled to fit the window. */
+   Inter and JetBrains Mono: the installed fonts if there are any, otherwise the files in assets/fonts. Every slide is a 1920 × 1080 canvas, scaled to fit the window. */
 :root {
   --bg: #FAF7F2; --surface: #FFFFFF; --raised: #F3EDE5; --line: #D9CFC4; --text: #2B1D16; --muted: #6F6259;
   --structure: #2F6F6A; --content: #B5652B; --evidence: #2B1D16; --pin: #A87508; --in-force: #1F5A40;
@@ -9,7 +9,7 @@
   --sans: Inter, "Inter Web", system-ui, sans-serif; --mono: "JetBrains Mono", "JetBrains Mono Web", ui-monospace, monospace;
   --m: 100px; /* side margin */
 }
-/* Web fonts for viewers without Inter and JetBrains Mono installed. The site copy carries the files (publish.js). */
+/* Web fonts for viewers without Inter and JetBrains Mono installed (from @fontsource, OFL). */
 @font-face { font-family: "Inter Web"; font-weight: 400; font-display: swap; src: url(assets/fonts/inter-latin-400-normal.woff2) format("woff2"); }
 @font-face { font-family: "Inter Web"; font-weight: 500; font-display: swap; src: url(assets/fonts/inter-latin-500-normal.woff2) format("woff2"); }
 @font-face { font-family: "Inter Web"; font-weight: 600; font-display: swap; src: url(assets/fonts/inter-latin-600-normal.woff2) format("woff2"); }
