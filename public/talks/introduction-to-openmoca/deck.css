@@ -205,6 +205,7 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .flow .arrow { align-self: center; font-size: 44px; }
 .flow h3 { font-size: 46px; margin: 34px 0 18px; color: var(--col); }
 .flow p { font-size: 31px; line-height: 1.38; }
+.flow p + p { margin-top: 10px; }
 .flow code { margin-top: auto; padding-top: 22px; font-family: var(--mono); font-size: 25px; color: var(--muted); }
 .flow-note { margin-top: 50px; font-size: 32px; line-height: 1.5; }
 
