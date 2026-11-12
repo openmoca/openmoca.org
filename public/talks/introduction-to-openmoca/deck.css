@@ -102,6 +102,8 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .slide.dark .speaker-card .contact { font-size: 28px; color: var(--text); display: flex; gap: 18px; align-items: center; margin-bottom: 10px; }
 .speaker-card .contact .ic { color: var(--muted); }
 .speaker-card .qr { width: 340px; align-self: center; margin-top: auto; }
+.speaker-card .qr-link { align-self: center; margin-top: auto; display: block; }
+.speaker-card .qr-link .qr { margin-top: 0; display: block; }
 .slide.dark .speaker-card .qr-label { font-size: 26px; font-weight: 700; color: var(--text); text-align: center; margin-top: 8px; }
 
 /* 2. The question */
