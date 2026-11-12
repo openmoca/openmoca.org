@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import mermaid from 'astro-mermaid';
 import starlightLinksValidator from 'starlight-links-validator';
+import sitemap from '@astrojs/sitemap';
 
 // One map for every page: sources.json. The sidebar follows its groups and order.
 const sources = JSON.parse(readFileSync(new URL('./sources.json', import.meta.url), 'utf8'));
@@ -36,6 +37,8 @@ export default defineConfig({
   site: 'https://openmoca.org',
   trailingSlash: 'always',
   integrations: [
+    // The sitemap Starlight would add by itself, plus the talk slides: static pages in public/talks/ it cannot see.
+    sitemap({ customPages: ['https://openmoca.org/talks/introduction-to-openmoca/'] }),
     // Mermaid diagrams in the docs, drawn in the browser from the bundled library, in the site's light or dark theme.
     // It must come before Starlight, so it takes the mermaid code blocks first.
     mermaid({ autoTheme: true, mermaidConfig: { fontFamily: 'Inter, system-ui, sans-serif' } }),
