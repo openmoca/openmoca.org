@@ -154,12 +154,12 @@
   structure.ttl    <span class="c">the ontology</span>
   attestations/    <span class="c">signatures, reviews</span></pre>
       <ul class="files">
-        <li><code>acme-support.moca</code><span>The same package as one Zip file, with the same digest.</span></li>
-        <li><code>acme-support.moca.idx</code><span>A sidecar search index, beside the package: a folder or a Zip, bound to its digest and model.</span></li>
+        <li><b>A package <code>.moca</code></b><span>A set of files with moca.json at its root: a folder, a .moca archive (a Zip), or records a host supplies. All give the same digest.</span></li>
+        <li><b>A sidecar index <code>.moca.idx</code></b><span>A directory, or a Zip archive of one, kept outside the package it indexes. Optional; built for one package version and digest.</span></li>
       </ul>
     </div>
   </div>
-  <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file, which is a Zip with moca.json at its root; a folder, a .moca file or records loaded from a database all give the same digest. Search indexes sit beside it as sidecars, each bound to the package digest and the model that built it: delete one and rebuild it any time.</aside>
+  <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file, which is a Zip with moca.json at its root; a folder, a .moca file or records loaded from a database all give the same digest. Search indexes are sidecars, kept outside the package: each records the package id, version and digest it was built from, and, if it holds vectors, the model that made them. Delete one and rebuild it any time.</aside>
 </section>
 
 <!-- ===== 10. Open tools ===== -->
@@ -211,7 +211,7 @@
   <div class="grid cols-3 search-where">
     <div class="card"><div class="use-head"><span class="icon-circle small" data-i="hard-drive"></span><h3>A local index</h3></div>
       <p>A sidecar beside the package: words, plus vectors from four local models.</p>
-      <p>Bound to the digest and the model. Rebuild it any time.</p>
+      <p>Built for one package version and digest. Rebuild it any time.</p>
       <p>Offline: no AI provider sees a thing.</p></div>
     <div class="card"><div class="use-head"><span class="icon-circle small" data-i="database"></span><h3>Your vector store</h3></div>
       <p>Verify each package as you load it in. The Reader searches the store.</p>
@@ -221,7 +221,7 @@
       <p>Keyword and meaning together, merged by rank.</p>
       <p>One search call, whichever backend.</p></div>
   </div>
-  <aside class="notes">The Reader has one search call over interchangeable backends. A local index: a sidecar file beside the package, in one portable format any Reader can use, with text chunks for keyword search (BM25) and, if you want, vectors from one of MOCA's four standard embedding models, which moca-embed installs and runs locally: bge-small, nomic-embed-text, all-MiniLM and multilingual-e5-small. It is bound to the package digest and the model, so it can never answer for a different package, and you can delete and rebuild it any time. Search by meaning runs offline. Your vector store: if you already have one, verify each package at ingest and write its chunks with flat moca_ metadata; the Reader searches the store and re-applies the trust rules to every result. Bindings: a Microsoft.Extensions.VectorData store backend in .NET, LangChain and LlamaIndex retrievers in Python. Hybrid: a lexical and a dense backend merged by reciprocal rank fusion. Whichever you use, every result comes back as a citation record, which is the next slide.</aside>
+  <aside class="notes">The Reader has one search call over interchangeable backends. A local index: a sidecar file beside the package, in one portable format any Reader can use, with text chunks for keyword search (BM25) and, if you want, vectors from one of MOCA's four standard embedding models, which moca-embed installs and runs locally: bge-small, nomic-embed-text, all-MiniLM and multilingual-e5-small. It records the package id, version and digest it was built from, and the model if it holds vectors, so it can never answer for a different package; you can delete and rebuild it any time. Search by meaning runs offline. Your vector store: if you already have one, verify each package at ingest and write its chunks with flat moca_ metadata; the Reader searches the store and re-applies the trust rules to every result. Bindings: a Microsoft.Extensions.VectorData store backend in .NET, LangChain and LlamaIndex retrievers in Python. Hybrid: a lexical and a dense backend merged by reciprocal rank fusion. Whichever you use, every result comes back as a citation record, which is the next slide.</aside>
 </section>
 
 <!-- ===== 13. Citation record ===== -->

@@ -134,9 +134,10 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .package-right { flex: 1; }
 .package .code { font-size: 27px; padding: 36px 44px; }
 .files { list-style: none; display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
-.files li { display: flex; flex-direction: column; gap: 6px; }
-.files code { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--text); }
-.files span { font-size: 29px; color: var(--muted); line-height: 1.4; }
+.files li { display: flex; flex-direction: column; gap: 8px; }
+.files b { font-size: 32px; color: var(--text); }
+.files code { font-family: var(--mono); font-size: 28px; font-weight: 400; color: var(--muted); margin-left: 14px; }
+.files span { font-size: 28px; color: var(--muted); line-height: 1.4; }
 
 /* 6. Reader steps */
 .steps { display: grid; grid-template-columns: 1fr 100px 1fr 100px 1fr; align-items: center; }
