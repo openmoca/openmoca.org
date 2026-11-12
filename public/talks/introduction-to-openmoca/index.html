@@ -265,8 +265,14 @@
 <!-- ===== 14. Your own assistant, over MCP ===== -->
 <section class="slide" data-section="Your own assistant">
   <h1>Your own assistant, over MCP</h1>
+  <ul class="mcp-props">
+    <li><span class="icon-circle small teal" data-i="hard-drive"></span><div><b>Runs on your computer</b><span>No network calls.</span></div></li>
+    <li><span class="icon-circle small teal" data-i="shield"></span><div><b>Checked first</b><span>The digest and signatures, every load.</span></div></li>
+    <li><span class="icon-circle small teal" data-i="eye-off"></span><div><b>Only your audience</b><span>Internal and expired pages stay out.</span></div></li>
+  </ul>
   <div class="mcp">
-    <div><p class="code-label">Claude Desktop: Settings → Extensions → Edit Config</p>
+    <div>
+      <p class="code-label">Claude Desktop: Settings → Extensions → Edit Config</p>
 <pre class="code">{
   "mcpServers": {
     "moca": {
@@ -278,20 +284,32 @@
         "--audience", "public"]
     }
   }
-}</pre></div>
-    <div><p class="code-label">Claude Code: one line</p>
+}</pre>
+      <p class="code-label">Claude Code: one line</p>
 <pre class="code">claude mcp add moca -- ~/moca/moca-mcp \
   --library ~/moca \
   --trust-root ~/moca/example-trust-root.json \
   --audience public</pre>
-      <ul class="mcp-props">
-        <li><span class="icon-circle small teal" data-i="hard-drive"></span><b>Runs on your computer</b><span>The provider sees only the passages the assistant asks for.</span></li>
-        <li><span class="icon-circle small teal" data-i="shield"></span><b>Checked first</b><span>The digest and the signatures, every time a package loads.</span></li>
-        <li><span class="icon-circle small teal" data-i="eye-off"></span><b>Only your audience</b><span>Internal, expired and superseded pages stay out of reach.</span></li>
-      </ul>
+    </div>
+    <div>
+      <p class="code-label">VS Code: .vscode/mcp.json, or MCP: Add Server</p>
+<pre class="code">{
+  "servers": {
+    "moca": {
+      "type": "stdio",
+      "command": "/Users/you/moca/moca-mcp",
+      "args": [
+        "--library", "/Users/you/moca",
+        "--trust-root",
+        "/Users/you/moca/example-trust-root.json",
+        "--audience", "public"]
+    }
+  }
+}</pre>
+      <p class="code-after">Then ask in Copilot Chat, in agent mode.</p>
     </div>
   </div>
-  <aside class="notes">One download, nothing to install: moca-mcp for Windows, macOS or Linux. In Claude Desktop, add it to the config (if there is no mcpServers yet, add it inside the outer braces), then quit and restart Claude. In Claude Code it is one line; VS Code with GitHub Copilot in agent mode, and Cursor, take the same command and arguments. --library serves every package in the folder; --trust-root says whose signatures you trust; --audience public means the assistant can never see internal pages. If asked: ChatGPT and Claude.ai on the web call MCP servers from their own cloud, so they need a hosted server; not today.</aside>
+  <aside class="notes">It runs on your computer and makes no network calls; the AI provider sees only the passages the assistant asks for. One download, nothing to install: moca-mcp for Windows, macOS or Linux. In Claude Desktop, add it to the config (if there is no mcpServers yet, add it inside the outer braces), then quit and restart Claude. In Claude Code it is one line. In VS Code, add it to .vscode/mcp.json or with MCP: Add Server from the Command Palette, then use it from Copilot Chat in agent mode. Cursor takes the same command and arguments. --library serves every package in the folder; --trust-root says whose signatures you trust; --audience public means the assistant can never see internal pages. If asked: ChatGPT and Claude.ai on the web call MCP servers from their own cloud, so they need a hosted server; not today.</aside>
 </section>
 
 <!-- ===== 15. Demo 2 ===== -->

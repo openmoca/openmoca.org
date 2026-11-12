@@ -209,16 +209,18 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .flow code { margin-top: auto; padding-top: 22px; font-family: var(--mono); font-size: 25px; color: var(--muted); }
 .flow-note { margin-top: 50px; font-size: 32px; line-height: 1.5; }
 
-/* MCP: the two configs side by side, the three points under Claude Code */
-.mcp { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-.code-label { font-size: 26px; font-weight: 600; color: var(--text) !important; margin-bottom: 14px; }
-.mcp .code { font-size: 24px; padding: 28px 34px; }
-.mcp-props { list-style: none; display: flex; flex-direction: column; gap: 30px; margin-top: 44px; }
-.mcp-props li { display: grid; grid-template-columns: 76px 1fr; column-gap: 24px; align-items: center; }
-.mcp-props .icon-circle.small { width: 76px; height: 76px; font-size: 38px; grid-row: span 2; }
-.mcp-props b { font-size: 34px; }
-.mcp-props span:last-child { font-size: 28px; color: var(--muted); }
-
+/* MCP: the three points in a row, then Claude Desktop and Claude Code beside VS Code */
+.mcp-props { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: -14px 0 30px; }
+.mcp-props li { display: flex; align-items: center; gap: 20px; }
+.mcp-props .icon-circle.small { width: 66px; height: 66px; font-size: 32px; }
+.mcp-props div { display: flex; flex-direction: column; }
+.mcp-props b { font-size: 28px; }
+.mcp-props span { font-size: 23px; color: var(--muted); }
+.mcp { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+.code-label { font-size: 24px; font-weight: 600; color: var(--text) !important; margin: 0 0 10px; }
+.mcp .code { font-size: 20px; padding: 20px 30px; line-height: 1.32; }
+.mcp .code + .code-label { margin-top: 22px; }
+.code-after { font-size: 24px; margin-top: 14px; }
 /* Search where your data already is */
 .search-where .card { padding: 44px 46px; display: flex; flex-direction: column; min-height: 600px; }
 .search-where .icon-circle.small { width: 96px; height: 96px; font-size: 50px; }
