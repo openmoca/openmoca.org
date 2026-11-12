@@ -13,8 +13,10 @@
   slides.forEach((s, i) => {
     if (s.classList.contains('title-slide')) return;
     const dark = s.classList.contains('dark');
-    s.insertAdjacentHTML('beforeend', `<div class="footer"><img src="assets/openmoca-icon-${dark ? 'cream' : 'ink'}.svg" alt="">` +
-      `<span>openmoca.org</span><span class="num">${i + 1}</span></div>`);
+    // The footer's openmoca.org goes back to the site's home page (relative, so it works on a local preview too).
+    s.insertAdjacentHTML('beforeend', `<div class="footer"><a class="home" href="../../" target="_top">` +
+      `<img src="assets/openmoca-icon-${dark ? 'cream' : 'ink'}.svg" alt=""><span>openmoca.org</span></a>` +
+      `<span class="num">${i + 1}</span></div>`);
   });
 
   const fit = () => deck.style.setProperty('--scale', Math.min(innerWidth / 1920, innerHeight / 1080));
