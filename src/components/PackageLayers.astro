@@ -1,0 +1,118 @@
+---
+// A package, in three layers: the OpenMOCA mark beside what each part of it stands for.
+// The mark is drawn inline in the theme's colours, so it follows light and dark mode, and every word stays text
+// that people, search engines and AI answers can read. Top to bottom, the rows match the mark: the pin, then the
+// three layers. On a narrow screen the mark sits above the list.
+---
+
+<figure class="package-layers not-content">
+  <svg class="mark" viewBox="0 0 120 120" role="img" aria-label="The OpenMOCA mark: three layers with one pin through them">
+    <defs>
+      <mask id="pl-mask-lower" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+        <rect width="120" height="120" fill="#fff" />
+        <polygon points="60,35.04 102.24,56.16 102.24,61.92 60,83.04 17.76,61.92 17.76,56.16" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" />
+        <polygon points="60,13.92 102.24,35.04 102.24,40.8 60,61.92 17.76,40.8 17.76,35.04" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" />
+      </mask>
+      <mask id="pl-mask-middle" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+        <rect width="120" height="120" fill="#fff" />
+        <polygon points="60,13.92 102.24,35.04 102.24,40.8 60,61.92 17.76,40.8 17.76,35.04" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" />
+      </mask>
+    </defs>
+    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" mask="url(#pl-mask-lower)">
+      <polygon points="60,56.16 102.24,77.28 60,98.4 17.76,77.28" />
+      <polygon points="17.76,77.28 60,98.4 60,104.16 17.76,83.04" />
+      <polygon points="60,98.4 102.24,77.28 102.24,83.04 60,104.16" />
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" mask="url(#pl-mask-middle)">
+      <polygon points="60,35.04 102.24,56.16 60,77.28 17.76,56.16" />
+      <polygon points="17.76,56.16 60,77.28 60,83.04 17.76,61.92" />
+      <polygon points="60,77.28 102.24,56.16 102.24,61.92 60,83.04" />
+    </g>
+    <g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">
+      <polygon points="60,13.92 102.24,35.04 60,56.16 17.76,35.04" />
+      <polygon points="17.76,35.04 60,56.16 60,61.92 17.76,40.8" />
+      <polygon points="60,56.16 102.24,35.04 102.24,40.8 60,61.92" />
+    </g>
+    <line x1="60" y1="8.16" x2="60" y2="35.04" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" />
+    <circle cx="60" cy="7.66" r="4.6" fill="currentColor" />
+    <line x1="60" y1="104.16" x2="60" y2="113.76" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" />
+  </svg>
+  <dl class="layers">
+    <div class="layer trust">
+      <dt>Trust <span>through all three</span></dt>
+      <dd>One digest covers every file of the package, so any change shows. Signatures and reviews sit beside it: a
+        signed package proves who published it, and signed reviews prove who checked which node.</dd>
+    </div>
+    <div class="layer structure">
+      <dt>Structure <span>optional</span></dt>
+      <dd>Concepts and how they relate: hierarchy, parts, order, what requires what. W3C SKOS and DCMI terms, plus any
+        vocabulary you add, up to a full OWL ontology, carried as it is.</dd>
+    </div>
+    <div class="layer content">
+      <dt>Content</dt>
+      <dd>The knowledge, one Markdown node per topic, with validity windows, audiences and translations.</dd>
+    </div>
+    <div class="layer evidence">
+      <dt>Evidence</dt>
+      <dd>The original sources, carried in the package where they can be, and selectors that point into them, so a
+        quote can be checked against the original.</dd>
+    </div>
+  </dl>
+</figure>
+
+<style>
+  .package-layers {
+    display: grid;
+    grid-template-columns: minmax(10rem, 15rem) 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin: 1.5rem 0 0;
+  }
+  .mark {
+    width: 100%;
+    height: auto;
+    color: var(--moca-text);
+  }
+  .layers {
+    display: grid;
+    gap: 1.25rem;
+    margin: 0;
+  }
+  .package-layers .layers .layer {
+    border-left: 3px solid var(--layer);
+    padding-left: 1rem;
+    margin: 0;
+  }
+  .package-layers .layers .layer dt {
+    font-weight: 600;
+    color: var(--layer);
+    font-size: var(--moca-text-lg);
+    margin: 0;
+  }
+  .layer dt span {
+    font-weight: 400;
+    font-size: var(--moca-text-sm);
+    color: var(--moca-text-muted);
+    margin-left: 0.4rem;
+  }
+  .package-layers .layers .layer dd {
+    margin: 0.25rem 0 0;
+    margin-inline-start: 0;
+    color: var(--moca-text);
+  }
+  .trust { --layer: var(--moca-pin); }
+  .structure { --layer: var(--moca-structure); }
+  .content { --layer: var(--moca-content); }
+  .evidence { --layer: var(--moca-evidence); }
+
+  @media (max-width: 50rem) {
+    .package-layers {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .mark {
+      width: 9rem;
+      justify-self: center;
+    }
+  }
+</style>

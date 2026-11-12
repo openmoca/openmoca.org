@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Introduction to OpenMOCA</title>
+<meta name="description" content="Introduction to OpenMOCA: the slides from the launch talk, 12 November 2026. Portable grounding for AI.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+
+<main class="deck">
+
+<!-- ===== 1. Title ===== -->
+<section class="slide dark title-slide" data-section="Opening">
+  <div class="title-left">
+    <img class="logo" src="assets/openmoca-logo-horizontal-cream.svg" alt="OpenMOCA">
+    <h1>Introduction to OpenMOCA</h1>
+    <p class="subtitle">Portable grounding for AI</p>
+    <p class="date">12 November 2026 &nbsp;·&nbsp; openmoca.org</p>
+  </div>
+  <div class="speaker-card">
+    <h2>Pete Cleary</h2>
+    <p class="role">Creator of OpenMOCA</p>
+    <p class="bio">Agentic AI Architect. 25 years in learning technology and business strategy.</p>
+    
+    <p class="contact"><span class="ic" data-i="github"></span>github.com/openmoca</p>
+    <img class="qr" src="assets/linkedin-qrcode.png" alt="QR code linking to Pete Cleary on LinkedIn">
+    <p class="qr-label">Connect on LinkedIn</p>
+  </div>
+  <aside class="notes">Who I am, in one line. This is the launch talk: OpenMOCA 0.6.0 went public this week, so every link on these slides works now.</aside>
+</section>
+
+<!-- ===== 2. The question ===== -->
+<section class="slide statement" data-section="Opening">
+  <h1>Can you check where your AI’s answer came from?</h1>
+  <ul class="questions">
+    <li style="--dot: var(--text)">Which version said it</li>
+    <li style="--dot: var(--pin)">Who published it</li>
+    <li style="--dot: var(--content)">Whether anyone checked it</li>
+    <li style="--dot: var(--in-force)">Whether it still applies</li>
+  </ul>
+  <aside class="notes">Ask the room. Hands up if your assistant or RAG system can tell you which version of which document an answer came from, and whether it is still in force.</aside>
+</section>
+
+<!-- ===== 3. The problem ===== -->
+<section class="slide" data-section="The problem">
+  <h1>Knowledge for AI is locked in, and can’t be checked</h1>
+  <div class="grid cols-3 tall">
+    <div class="card"><span class="icon-circle" data-i="lock"></span>
+      <h3>Locked in one pipeline</h3>
+      <p>Chunked, embedded and stored for one product. Rebuilt for every model, vendor and pipeline.</p></div>
+    <div class="card"><span class="icon-circle" data-i="help-circle"></span>
+      <h3>Answers you can’t check</h3>
+      <p>Structure and sources are lost on the way in. Nothing says which version of which page an answer rests on.</p></div>
+    <div class="card"><span class="icon-circle" data-i="shield-off"></span>
+      <h3>Content you can’t prove</h3>
+      <p>Changed since it was approved? Still in force? Superseded? Nothing in the pipeline knows.</p></div>
+  </div>
+  <aside class="notes">Every product rebuilds its own RAG pipeline. The knowledge loses its structure and its sources on the way, so nobody can prove which version an answer came from, who published it, or whether anyone checked it. Superseded content keeps being served because nothing tells the pipeline it is no longer in force.</aside>
+</section>
+
+<!-- ===== 4. The name ===== -->
+<section class="slide" data-section="What OpenMOCA is">
+  <h1>MOCA: Modular Ontology, Content &amp; Attestation</h1>
+  <div class="grid cols-4 letters">
+    <div class="card"><span class="letter" style="color: var(--text)">M</span><h3>Modular</h3>
+      <p>Build it once, use it anywhere.</p><p>Not locked into one pipeline.</p></div>
+    <div class="card"><span class="letter" style="color: var(--structure)">O</span><h3>Ontology</h3>
+      <p>From a simple list of topics to a full OWL ontology.</p><p>Search stays in scope.</p><p class="tag">Optional</p></div>
+    <div class="card"><span class="letter" style="color: var(--content)">C</span><h3>Content</h3>
+      <p>Readable pages, with the PDFs, web pages and video they came from.</p><p>Every answer points back to the passage.</p><p class="tag">Built on Open Knowledge Format</p></div>
+    <div class="card"><span class="letter" style="color: var(--pin)">A</span><h3>Attestation</h3>
+      <p>You can prove who published it, and that it hasn’t changed.</p></div>
+  </div>
+  <p class="footnote">An open standard, Apache 2.0. Readers in TypeScript, .NET and Python.</p>
+  <aside class="notes">The name is the explanation, and it maps onto the three layers on the next slide: the ontology is the structure layer, the content comes with its evidence, and attestation is the trust through all three. Modular: a package is a unit you can move, compose and version. Ontology: optional. The core is W3C SKOS, which every Reader understands: topics, steps, what each needs first, and what replaces what, so search can stay in scope. A full OWL or SHACL ontology can travel in the package; Readers carry it, they don’t reason with it. Content: the content is an Open Knowledge Format bundle: Markdown with YAML frontmatter. MOCA doesn’t invent a content format; it wraps OKF and adds identity, a digest, signatures and evidence. Attestation: one digest over everything, then signatures and signed reviews on top.</aside>
+</section>
+
+<!-- ===== 5. What is in a package ===== -->
+<section class="slide" data-section="What OpenMOCA is">
+  <h1>A package, in three layers</h1>
+  <div class="package">
+    <div class="mark">
+      <img src="assets/openmoca-mark-ink.svg" alt="The OpenMOCA mark: three layers and a pin">
+      <!-- top: where each layer sits in the mark, as a fraction of its height -->
+      <div class="layer" style="--top: 0.065; --col: var(--pin)"><b>Trust</b><span>one digest, signed</span></div>
+      <div class="layer" style="--top: 0.33; --col: var(--structure)"><b>Structure</b><span>the ontology, optional</span></div>
+      <div class="layer" style="--top: 0.51; --col: var(--content)"><b>Content</b><span>Markdown nodes</span></div>
+      <div class="layer" style="--top: 0.69; --col: var(--evidence)"><b>Evidence</b><span>the original sources</span></div>
+    </div>
+<pre class="code">acme-support/
+  moca.json        <span class="c">id, version, licence</span>
+  content/         <span class="c">the pages</span>
+  sources/         <span class="c">the originals</span>
+  structure.ttl    <span class="c">the ontology</span>
+  attestations/    <span class="c">signatures, reviews</span>
+
+acme-support.moca  <span class="c">the same, one file</span>
+acme-support.bge-small-en-v1.5.moca.idx.zip
+                   <span class="c">a search index</span></pre>
+  </div>
+  <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file. Search indexes sit beside it as sidecars, each bound to the package digest and the model that built it.</aside>
+</section>
+
+<!-- ===== 6. The Reader ===== -->
+<section class="slide" data-section="What OpenMOCA is">
+  <h1>What a Reader gives you</h1>
+  <div class="steps">
+    <div class="card"><div class="step-head"><span class="icon-circle solid" data-i="shield" style="--bg-c: var(--pin)"></span><h3>1. Verify</h3></div>
+      <p>The digest, the signatures against your trust root, and every finding.</p></div>
+    <span class="arrow" data-i="arrow-right"></span>
+    <div class="card"><div class="step-head"><span class="icon-circle solid" data-i="search" style="--bg-c: var(--structure)"></span><h3>2. Search</h3></div>
+      <p>Lexical, semantic or hybrid, in one call, with the trust rules applied.</p></div>
+    <span class="arrow" data-i="arrow-right"></span>
+    <div class="card"><div class="step-head"><span class="icon-circle solid" data-i="bookmark" style="--bg-c: var(--content)"></span><h3>3. Cite</h3></div>
+      <p>Every result is a citation record: the version, who signed and reviewed it, and its evidence.</p></div>
+  </div>
+  <div class="langs">
+    <span class="pill">TypeScript</span><span class="pill">.NET</span><span class="pill">Python</span>
+    <p>Three Readers, one conformance corpus: a package reads the same way everywhere.</p>
+  </div>
+  <aside class="notes">Verify before trust. The Reader checks the digest and the signatures against the trust root you choose, and reports findings. Then one search call does lexical, semantic or hybrid. The trust rules apply: content that is out of force, superseded or outside your audience never comes back. Every result is a citation record. The three Readers rank the same results the same way: the corpus and a parity check prove it.</aside>
+</section>
+
+<!-- ===== 7. Citation record ===== -->
+<section class="slide" data-section="What OpenMOCA is">
+  <h1>Every answer comes with a citation record</h1>
+  <div class="record">
+<pre class="code json">{
+  <span class="k">"package"</span>: {
+    <span class="k">"version"</span>: <span class="s">"1.0.0"</span>,
+    <span class="k">"digest"</span>: <span class="s">"sha256:3fb4f2bb…"</span>,
+    <span class="k">"signed"</span>: <span class="b">true</span>
+  },
+  <span class="k">"node"</span>: {
+    <span class="k">"title"</span>: <span class="s">"Refund window"</span>,
+    <span class="k">"ref"</span>: <span class="s">"…/acme-support@1.0.0#returns/refund-window.md"</span>
+  },
+  <span class="k">"trust"</span>: {
+    <span class="k">"inForce"</span>: <span class="b">true</span>,
+    <span class="k">"superseded"</span>: <span class="b">false</span>,
+    <span class="k">"attestedReviews"</span>: [
+      { <span class="k">"signer"</span>: <span class="s">"Sam Ortiz"</span>, <span class="k">"outcome"</span>: <span class="s">"accurate"</span> }
+    ]
+  },
+  <span class="k">"evidence"</span>: [{
+    <span class="k">"source"</span>: <span class="s">"Acme Customer Terms, section 7"</span>,
+    <span class="k">"exact"</span>: <span class="s">"…a full refund within 30 days of delivery."</span>,
+    <span class="k">"matched"</span>: <span class="b">true</span>
+  }]
+}</pre>
+    <ul class="callouts">
+      <li style="--dot: var(--text)"><b>Which version</b><span>The package version and digest, and the page.</span></li>
+      <li style="--dot: var(--pin)"><b>Who stands behind it</b><span>Signed by Acme, reviewed by Sam.</span></li>
+      <li style="--dot: var(--in-force)"><b>Is it still true</b><span>In force, and not superseded.</span></li>
+      <li style="--dot: var(--content)"><b>The sentence it rests on</b><span>Quoted from the source, and checked.</span></li>
+    </ul>
+  </div>
+  <aside class="notes">So the assistant can say not just "30 days", but which version of which page says so, that Acme published it, that Sam checked it, and the sentence in the customer terms it rests on. This is from the Acme example in the walkthrough, shortened.</aside>
+</section>
+
+<!-- ===== 8. Use cases ===== -->
+<section class="slide" data-section="Where it is useful">
+  <h1>Where it helps</h1>
+  <div class="grid cols-3 uses">
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="share2"></span><h3>Sharing knowledge for grounding</h3></div>
+      <p>Package it once; any assistant, model or framework grounds on it.</p><p class="demo">In the demo: Kubernetes, 1,653 pages</p></div>
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="book-open"></span><h3>Manuals and procedures</h3></div>
+      <p>Steps in order, the checks that come first, cited to the PDF page.</p><p class="demo">In the demo: FAA handbook, HSE guidance</p></div>
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="file-text"></span><h3>Law and regulation</h3></div>
+      <p>Only the version in force, with the exact clause cited.</p><p class="demo">In the demo: Data Protection Act 2018</p></div>
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="video"></span><h3>Courses, talks and video</h3></div>
+      <p>Lessons in order; every answer opens the video at the moment.</p><p class="demo">In the demo: a course and a talk</p></div>
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="life-buoy"></span><h3>Customer support knowledge</h3></div>
+      <p>AI drafts kept apart from what a person checked; internal answers stay internal.</p><p class="demo">In the demo: Acme Support</p></div>
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="clipboard"></span><h3>Audit and regulated AI</h3></div>
+      <p>A record of exactly which content each answer used, long after the index is rebuilt.</p><p class="demo">In the demo: every citation record</p></div>
+  </div>
+  <aside class="notes">MOCA is not another model, vector store or agent framework. It is the form your knowledge travels in. Each of these is in the demo. Sharing: the whole Kubernetes documentation, which any assistant can ground on. Manuals: the FAA handbook, converted from 19 PDFs, cited to the page. Law: the Data Protection Act, only the version in force. Video: a course and a talk, answers that open at the moment. Support: Acme, with internal pages, and old and future rules. Audit: every answer's citation record says exactly what it used.</aside>
+</section>
+
+<!-- ===== 9. Demo 1 ===== -->
+<section class="slide dark divider" data-section="Demo 1: Try OpenMOCA">
+  <p class="kicker">DEMO 1</p>
+  <h1>Try OpenMOCA</h1>
+  <p class="lede">try.openmoca.org: real packages, in the browser, no account</p>
+  <aside class="notes">Switch to the browser.</aside>
+</section>
+
+<!-- ===== 10. Demo 1 recap ===== -->
+<section class="slide" data-section="Demo 1: Try OpenMOCA">
+  <h1>What you just saw</h1>
+  <ul class="saw">
+    <li><span class="icon-circle small teal" data-i="search"></span><b>Search, with no account</b><span>Lexical, semantic or hybrid, side by side, with no AI model.</span></li>
+    <li><span class="icon-circle small teal" data-i="external-link"></span><b>Open every result at its source</b><span>The passage marked in place; a video opens at the moment.</span></li>
+    <li><span class="icon-circle small teal" data-i="git-branch"></span><b>Use the structure</b><span>Search within a topic, and see what it builds on.</span></li>
+    <li><span class="icon-circle small teal" data-i="check-circle"></span><b>Check, don’t trust</b><span>The digest, the signer, the findings, the indexes.</span></li>
+    <li><span class="icon-circle small teal" data-i="message-square"></span><b>Ask it questions</b><span>Every answer cites the package; a citation opens the source.</span></li>
+  </ul>
+  <aside class="notes">Recap after the demo, or a fallback if the network fails. Point people to try.openmoca.org: they can do all of this now, on their phones.</aside>
+</section>
+
+<!-- ===== 11. Demo 2 ===== -->
+<section class="slide dark divider" data-section="Demo 2: your own assistant">
+  <p class="kicker">DEMO 2</p>
+  <h1>Your own assistant</h1>
+  <p class="lede">The MOCA MCP server, in Claude Desktop and Claude Code</p>
+  <aside class="notes">Show ~/moca in Finder: one program, one package, its index, a trust root. Then Claude Desktop. Questions: refund window with a citation; "I want my money back" (by meaning); "How do staff handle a refund request?" (internal, so not reachable).</aside>
+</section>
+
+<!-- ===== 12. Claude Desktop ===== -->
+<section class="slide" data-section="Demo 2: your own assistant">
+  <h1>Connect it to Claude Desktop</h1>
+  <div class="split">
+    <ol class="how">
+      <li><b>Download moca-mcp</b><span>One file for Windows, macOS or Linux. Nothing else to install.</span></li>
+      <li><b>Open the config</b><span>Settings → Extensions → Manage → Local MCP servers → Edit Config.</span></li>
+      <li><b>Add the server</b><span>Point it at a folder of packages, then quit and restart Claude.</span></li>
+    </ol>
+<pre class="code">{
+  "mcpServers": {
+    "moca": {
+      "command": "/Users/you/moca/moca-mcp",
+      "args": [
+        "--library", "/Users/you/moca",
+        "--trust-root",
+        "/Users/you/moca/example-trust-root.json",
+        "--audience", "public"]
+    }
+  }
+}</pre>
+  </div>
+  <aside class="notes">If the config has no mcpServers yet, add it inside the outer braces. --library serves every package in the folder; --trust-root says whose signatures you trust; --audience public means the assistant can never see internal pages.</aside>
+</section>
+
+<!-- ===== 13. Claude Code and any client ===== -->
+<section class="slide" data-section="Demo 2: your own assistant">
+  <h1>One line in Claude Code, and the same in any MCP client</h1>
+<pre class="code big">claude mcp add moca -- ~/moca/moca-mcp \
+  --library ~/moca --trust-root ~/moca/example-trust-root.json \
+  --audience public</pre>
+  <div class="grid cols-3 props">
+    <div class="card"><span class="icon-circle teal" data-i="hard-drive"></span><h3>Runs on your computer</h3>
+      <p>No network calls. The provider sees only the passages the assistant asks for.</p></div>
+    <div class="card"><span class="icon-circle teal" data-i="shield"></span><h3>Checked first</h3>
+      <p>The digest and the signatures, every time a package loads.</p></div>
+    <div class="card"><span class="icon-circle teal" data-i="eye-off"></span><h3>Only your audience</h3>
+      <p>Internal, expired and superseded pages stay out of reach.</p></div>
+  </div>
+  <aside class="notes">Same server in the terminal. VS Code and Cursor take the same command and arguments. ChatGPT and Claude on the web call MCP servers from their own cloud, so they would need a hosted server: not today.</aside>
+</section>
+
+<!-- ===== 14. Demo 3 ===== -->
+<section class="slide dark divider" data-section="Demo 3: make your own">
+  <p class="kicker">DEMO 3</p>
+  <h1>Make your own</h1>
+  <p class="lede">An Obsidian vault becomes a signed, searchable package</p>
+  <aside class="notes">Switch to Obsidian and the terminal. Convert the vault, open the package in Obsidian, check, sign, index. Then verify, change one word, verify again (INVALID), undo (VALID). Fallback: the next slide.</aside>
+</section>
+
+<!-- ===== 15. Make your own: the four commands ===== -->
+<section class="slide" data-section="Demo 3: make your own">
+  <h1>Make your own package: four commands</h1>
+  <div class="commands">
+    <div class="cmd" style="--col: var(--content)"><b>Convert</b><span>Markdown, Obsidian, PDF, video</span>
+      <pre class="code">npx @openmoca/moca-convert ./docs -o my-docs \
+  --id https://example.com/moca/my-docs --title "My docs"</pre></div>
+    <div class="cmd" style="--col: var(--text)"><b>Check</b><span>as a Reader reads it; pack</span>
+      <pre class="code">npx @openmoca/moca-lint lint my-docs</pre></div>
+    <div class="cmd" style="--col: var(--pin)"><b>Sign</b><span>publisher and reviews</span>
+      <pre class="code">npx @openmoca/moca-sign sign my-docs --key publisher.pem --keyid publisher</pre></div>
+    <div class="cmd" style="--col: var(--structure)"><b>Index</b><span>lexical and semantic</span>
+      <pre class="code">npx @openmoca/moca-index build my-docs -o my-docs.moca.idx \
+  --model bge-small-en-v1.5</pre></div>
+  </div>
+  <h3 class="then">Then read it in your app</h3>
+  <div class="grid cols-3 installs">
+    <code>npm install @openmoca/moca-core</code>
+    <code>dotnet add package OpenMoca.Reader</code>
+    <code>pip install moca-reader</code>
+  </div>
+  <aside class="notes">Each runs with npx, no install, Node 22 or later. The quickstart on openmoca.org walks through these with a folder of Markdown. Then pick a Reader: TypeScript, .NET or Python, with bindings for the Agent Framework, Microsoft.Extensions.AI, LangChain and LlamaIndex.</aside>
+</section>
+
+<!-- ===== 16. Start here ===== -->
+<section class="slide" data-section="Demo 3: make your own">
+  <h1>Start here</h1>
+  <div class="grid cols-3 links">
+    <div class="card"><span class="icon-circle solid" data-i="globe" style="--bg-c: var(--text)"></span><h3>openmoca.org</h3>
+      <p>The specification, getting-started guides for each Reader, the tools and the walkthrough.</p></div>
+    <div class="card"><span class="icon-circle solid" data-i="play-circle" style="--bg-c: var(--text)"></span><h3>try.openmoca.org</h3>
+      <p>Search real packages and open every result at its source. No account.</p></div>
+    <div class="card"><span class="icon-circle solid" data-i="github" style="--bg-c: var(--text)"></span><h3>github.com/openmoca</h3>
+      <p>The spec, the Readers, the tools and the MCP server. Apache 2.0. Issues and discussions welcome.</p></div>
+  </div>
+  <aside class="notes">Everything is public as of this week. The walkthrough takes about twenty minutes end to end: make, check, sign, review, index and serve a package to an assistant.</aside>
+</section>
+
+<!-- ===== 17. Thank you ===== -->
+<section class="slide dark divider close" data-section="Close">
+  <p class="kicker">THANK YOU</p>
+  <h1>Questions?</h1>
+  <p class="lede">openmoca.org &nbsp;·&nbsp; try.openmoca.org<br>github.com/openmoca</p>
+  <div class="try-qr"><img src="assets/qr-try.svg" alt="QR code for try.openmoca.org"><b>Try it now</b></div>
+  
+  <aside class="notes">Leave this up for questions. The QR code opens try.openmoca.org.</aside>
+</section>
+
+</main>
+<script src="assets/icons.js"></script>
+<script src="deck.js"></script>
+</body>
+</html>

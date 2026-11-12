@@ -23,14 +23,15 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import PackageLayers from '../../components/PackageLayers.astro';
 
 ## What is OpenMOCA?
 
 OpenMOCA is an open standard for portable grounding for AI. **MOCA stands for
 Modular Ontology, Content & Attestation**: knowledge in modular packages,
-organised by an optional ontology, with attestations, signatures that prove
-who published it and who checked it. Open Readers in TypeScript, .NET and
+organised by an optional ontology, its content kept with the original sources,
+and attestations, signatures that prove who published it and who checked it. Open Readers in TypeScript, .NET and
 Python read, verify, search and cite a package the same way, on a server or
 offline, and every answer can cite a source you can check.
 
@@ -74,26 +75,12 @@ version and cites the original source.
 
 A MOCA package wraps an
 [Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
-bundle, a folder of Markdown with YAML frontmatter.
+bundle, a folder of Markdown with YAML frontmatter. The name maps onto
+it: the ontology is the structure layer, the content comes with its
+evidence, and attestation is the trust that runs through all three, like the
+pin in the logo.
 
-<CardGrid>
-  <Card title="Structure" icon="list-format">
-    Optional. Concepts and how they relate: hierarchy, parts, order, what
-    requires what. W3C SKOS and DCMI terms, plus any vocabulary you add.
-  </Card>
-  <Card title="Content" icon="document">
-    The knowledge, one Markdown node per topic, with validity windows,
-    audiences and translations.
-  </Card>
-  <Card title="Evidence" icon="open-book">
-    The original sources, inside the package, and selectors that point into
-    them, so every quote can be checked.
-  </Card>
-  <Card title="Trust, across all three" icon="padlock">
-    One digest covers every file. A signed package proves who published it;
-    signed reviews prove who checked which node.
-  </Card>
-</CardGrid>
+<PackageLayers />
 
 ## What a Reader gives you
 
