@@ -71,6 +71,15 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .divider h1 { font-size: 108px; min-height: 0; margin: 20px 0 30px; }
 .divider .lede { font-size: 44px; max-width: 1300px; }
 
+/* The answer: the turn from the problem to OpenMOCA */
+.answer { padding-top: 220px; }
+.ask { font-size: 48px; color: var(--d-content) !important; }
+.answer h1 { font-size: 104px; min-height: 0; margin: 24px 0 80px; max-width: 1600px; }
+.answer-name { display: flex; align-items: center; gap: 70px; border-top: 2px solid var(--d-line); padding-top: 60px; }
+.answer-name img { height: 96px; flex: none; }
+.answer-name p { font-size: 38px; line-height: 1.5; }
+.answer-name strong { color: var(--d-text); font-weight: 600; }
+
 /* 1. Title */
 .title-slide { display: none; padding: 115px var(--m); }
 .title-slide.active { display: flex; justify-content: space-between; }
