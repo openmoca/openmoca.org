@@ -6,10 +6,15 @@ editUrl: false
 
 ## Introduction to OpenMOCA
 
-**12 November 2026.** Pete Cleary, creator of OpenMOCA. The launch talk for
-OpenMOCA 0.6.0: the problem, what a package is, what a Reader gives you, where
-it helps, and three demos: [Try OpenMOCA](https://try.openmoca.org), your own
-assistant over MCP, and making a signed package from an Obsidian vault.
+### Autumn 2026
+
+Portable grounding for AI. Why knowledge for AI is often locked in one
+pipeline and hard to check, and how OpenMOCA packages the knowledge, not the
+pipeline: what a package is, what a Reader gives you, where search runs, and
+the citation record behind every answer. Two live demos:
+[Try OpenMOCA](https://try.openmoca.org) in the browser, and your own
+assistant over MCP in Claude Desktop. Then where it works today, and how to
+make your own package.
 
 [Open the slides](/talks/introduction-to-openmoca/)
 
