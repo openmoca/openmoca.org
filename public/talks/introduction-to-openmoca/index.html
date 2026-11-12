@@ -153,11 +153,11 @@
   structure.ttl    <span class="c">the ontology</span>
   attestations/    <span class="c">signatures, reviews</span>
 
-acme-support.moca  <span class="c">the same, one file</span>
+acme-support.moca  <span class="c">the same, as one Zip file</span>
 acme-support.bge-small-en-v1.5.moca.idx.zip
-                   <span class="c">a search index</span></pre>
+                   <span class="c">a sidecar search index</span></pre>
   </div>
-  <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file. Search indexes sit beside it as sidecars, each bound to the package digest and the model that built it.</aside>
+  <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file, which is a Zip with moca.json at its root; a folder, a .moca file or records loaded from a database all give the same digest. Search indexes sit beside it as sidecars, each bound to the package digest and the model that built it: delete one and rebuild it any time.</aside>
 </section>
 
 <!-- ===== 10. Open tools ===== -->
@@ -203,7 +203,26 @@ acme-support.bge-small-en-v1.5.moca.idx.zip
   <aside class="notes">Verify before trust. The Reader checks the digest and the signatures against the trust root you choose, and reports findings. Then one search call does lexical, semantic or hybrid. The trust rules apply: content that is out of force, superseded or outside your audience never comes back. Every result is a citation record. The three Readers rank the same results the same way: the corpus and a parity check prove it.</aside>
 </section>
 
-<!-- ===== 12. Citation record ===== -->
+<!-- ===== 12. Search where your data already is ===== -->
+<section class="slide" data-section="How it works">
+  <h1>Search where your data already is</h1>
+  <div class="grid cols-3 search-where">
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="hard-drive"></span><h3>A local index</h3></div>
+      <p>A sidecar beside the package: words, plus vectors from four local models.</p>
+      <p>Bound to the digest and the model. Rebuild it any time.</p>
+      <p>Offline: no AI provider sees a thing.</p></div>
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="database"></span><h3>Your vector store</h3></div>
+      <p>Verify each package as you load it in. The Reader searches the store.</p>
+      <p>The trust rules apply to every result.</p>
+      <p class="tag">VectorData (.NET), LangChain, LlamaIndex</p></div>
+    <div class="card"><div class="use-head"><span class="icon-circle small" data-i="layers"></span><h3>Hybrid</h3></div>
+      <p>Keyword and meaning together, merged by rank.</p>
+      <p>One search call, whichever backend.</p></div>
+  </div>
+  <aside class="notes">The Reader has one search call over interchangeable backends. A local index: a sidecar file beside the package, in one portable format any Reader can use, with text chunks for keyword search (BM25) and, if you want, vectors from one of MOCA's four standard embedding models, which moca-embed installs and runs locally: bge-small, nomic-embed-text, all-MiniLM and multilingual-e5-small. It is bound to the package digest and the model, so it can never answer for a different package, and you can delete and rebuild it any time. Search by meaning runs offline. Your vector store: if you already have one, verify each package at ingest and write its chunks with flat moca_ metadata; the Reader searches the store and re-applies the trust rules to every result. Bindings: a Microsoft.Extensions.VectorData store backend in .NET, LangChain and LlamaIndex retrievers in Python. Hybrid: a lexical and a dense backend merged by reciprocal rank fusion. Whichever you use, every result comes back as a citation record, which is the next slide.</aside>
+</section>
+
+<!-- ===== 13. Citation record ===== -->
 <section class="slide" data-section="How it works">
   <h1>Every answer comes with a citation record</h1>
   <div class="record">
@@ -240,7 +259,7 @@ acme-support.bge-small-en-v1.5.moca.idx.zip
   <aside class="notes">So the assistant can say not just "30 days", but which version of which page says so, that Acme published it, that Sam checked it, and the sentence in the customer terms it rests on. This is from the Acme example in the walkthrough, shortened.</aside>
 </section>
 
-<!-- ===== 13. Your own assistant, over MCP ===== -->
+<!-- ===== 14. Your own assistant, over MCP ===== -->
 <section class="slide" data-section="Your own assistant">
   <h1>Your own assistant, over MCP</h1>
   <div class="mcp">
@@ -272,7 +291,7 @@ acme-support.bge-small-en-v1.5.moca.idx.zip
   <aside class="notes">One download, nothing to install: moca-mcp for Windows, macOS or Linux. In Claude Desktop, add it to the config (if there is no mcpServers yet, add it inside the outer braces), then quit and restart Claude. In Claude Code it is one line; VS Code with GitHub Copilot in agent mode, and Cursor, take the same command and arguments. --library serves every package in the folder; --trust-root says whose signatures you trust; --audience public means the assistant can never see internal pages. If asked: ChatGPT and Claude.ai on the web call MCP servers from their own cloud, so they need a hosted server; not today.</aside>
 </section>
 
-<!-- ===== 14. Demo 2 ===== -->
+<!-- ===== 15. Demo 2 ===== -->
 <section class="slide dark divider" data-section="Your own assistant">
   <p class="kicker">DEMO 2</p>
   <h1>Your own assistant</h1>
@@ -280,7 +299,7 @@ acme-support.bge-small-en-v1.5.moca.idx.zip
   <aside class="notes">Claude Desktop is already connected. If there is time, show ~/moca in Finder: one program, one package, its index, a trust root. Questions: refund window with a citation; "I want my money back" (by meaning); "How do staff handle a refund request?" (internal, so not reachable).</aside>
 </section>
 
-<!-- ===== 15. Works with what you already use ===== -->
+<!-- ===== 16. Works with what you already use ===== -->
 <section class="slide" data-section="Works with what you use">
   <h1>Works with what you already use</h1>
   <div class="grid cols-3 integrations">
@@ -295,7 +314,7 @@ acme-support.bge-small-en-v1.5.moca.idx.zip
   <aside class="notes">That was Claude Desktop; here is everywhere else it works today. Make it from what you already write: Markdown, an Obsidian vault, PDFs, OpenAPI documents, and YouTube videos captured with moca-youtube. Use it in any MCP client on your computer: Claude Desktop and Code, VS Code with GitHub Copilot in agent mode, Cursor. Build with the Readers, in TypeScript, .NET and Python, with bindings for the Agent Framework, Microsoft.Extensions.AI, LangChain and LlamaIndex. And the agent skill teaches Claude, Copilot or Codex every tool. Not yet: ChatGPT and Claude.ai on the web, which need a hosted MCP server.</aside>
 </section>
 
-<!-- ===== 16. Make your own: the four commands ===== -->
+<!-- ===== 17. Make your own: the four commands ===== -->
 <section class="slide" data-section="Make your own">
   <h1>Make your own package: four commands</h1>
   <div class="commands">
@@ -319,7 +338,7 @@ acme-support.bge-small-en-v1.5.moca.idx.zip
   <aside class="notes">No demo for this one: these are the commands behind the Open tools slide, to take away. Each runs with npx, no install, Node 22 or later. The quickstart on openmoca.org walks through these with a folder of Markdown. Then pick a Reader: TypeScript, .NET or Python, with bindings for the Agent Framework, Microsoft.Extensions.AI, LangChain and LlamaIndex.</aside>
 </section>
 
-<!-- ===== 17. Start here ===== -->
+<!-- ===== 18. Start here ===== -->
 <section class="slide" data-section="Close">
   <h1>Start here</h1>
   <div class="grid cols-3 links">
@@ -333,7 +352,7 @@ acme-support.bge-small-en-v1.5.moca.idx.zip
   <aside class="notes">Everything is public as of this week. The walkthrough takes about twenty minutes end to end: make, check, sign, review, index and serve a package to an assistant.</aside>
 </section>
 
-<!-- ===== 18. Thank you ===== -->
+<!-- ===== 19. Thank you ===== -->
 <section class="slide dark divider close" data-section="Close">
   <p class="kicker">THANK YOU</p>
   <h1>Questions?</h1>

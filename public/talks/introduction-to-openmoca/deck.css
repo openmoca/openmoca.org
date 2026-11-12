@@ -204,6 +204,14 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .mcp-props b { font-size: 34px; }
 .mcp-props span:last-child { font-size: 28px; color: var(--muted); }
 
+/* Search where your data already is */
+.search-where .card { padding: 44px 46px; display: flex; flex-direction: column; min-height: 600px; }
+.search-where .icon-circle.small { width: 96px; height: 96px; font-size: 50px; }
+.search-where .use-head h3 { font-size: 40px; }
+.search-where p { font-size: 31px; line-height: 1.38; }
+.search-where p + p { margin-top: 20px; }
+.search-where .tag { margin-top: auto; padding-top: 20px; font-size: 25px; font-weight: 600; color: var(--structure); }
+
 /* Works with what you already use */
 .integrations .card { padding: 44px 50px; }
 .integrations .icon-circle.small { width: 96px; height: 96px; font-size: 50px; }
