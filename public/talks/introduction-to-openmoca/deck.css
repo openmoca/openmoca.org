@@ -184,7 +184,39 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .props p { font-size: 30px; }
 .props .icon-circle { width: 100px; height: 100px; font-size: 52px; }
 
-/* 15. Commands */
+/* Open tools: five steps in a row */
+.flow { display: grid; grid-template-columns: 1fr 52px 1fr 52px 1fr 52px 1fr 52px 1fr; align-items: stretch; }
+.flow .card { padding: 44px 32px; min-height: 520px; display: flex; flex-direction: column; border-top: 8px solid var(--col); }
+.flow .icon-circle.small { width: 96px; height: 96px; font-size: 50px; }
+.flow .arrow { align-self: center; font-size: 44px; }
+.flow h3 { font-size: 46px; margin: 34px 0 18px; color: var(--col); }
+.flow p { font-size: 31px; line-height: 1.38; }
+.flow code { margin-top: auto; padding-top: 22px; font-family: var(--mono); font-size: 25px; color: var(--muted); }
+.flow-note { margin-top: 50px; font-size: 32px; line-height: 1.5; }
+
+/* MCP: the two configs side by side, the three points under Claude Code */
+.mcp { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.code-label { font-size: 26px; font-weight: 600; color: var(--text) !important; margin-bottom: 14px; }
+.mcp .code { font-size: 24px; padding: 28px 34px; }
+.mcp-props { list-style: none; display: flex; flex-direction: column; gap: 30px; margin-top: 44px; }
+.mcp-props li { display: grid; grid-template-columns: 76px 1fr; column-gap: 24px; align-items: center; }
+.mcp-props .icon-circle.small { width: 76px; height: 76px; font-size: 38px; grid-row: span 2; }
+.mcp-props b { font-size: 34px; }
+.mcp-props span:last-child { font-size: 28px; color: var(--muted); }
+
+/* Works with what you already use */
+.integrations .card { padding: 44px 50px; }
+.integrations .icon-circle.small { width: 96px; height: 96px; font-size: 50px; }
+.integrations ul { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+.integrations li { font-size: 32px; color: var(--muted); padding-left: 30px; position: relative; }
+.integrations li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 12px; height: 12px; border-radius: 50%; background: var(--line); }
+.integrations .use-head h3 { font-size: 42px; }
+.skill { margin-top: 36px; background: var(--note-bg); color: var(--structure) !important; border-radius: 14px; padding: 26px 34px;
+  font-size: 31px; }
+.skill .ic { margin-right: 14px; }
+.skill b { color: var(--structure); }
+
+/* Make your own: the four commands */
 .commands { display: flex; flex-direction: column; gap: 20px; margin-top: -10px; }
 .cmd { display: grid; grid-template-columns: 340px 1fr; grid-template-rows: auto auto; column-gap: 34px; align-items: center; }
 .cmd b { font-size: 42px; color: var(--col); }
