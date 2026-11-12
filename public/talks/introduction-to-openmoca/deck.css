@@ -131,7 +131,12 @@ p { font-size: 32px; line-height: 1.4; color: var(--muted); }
 .layer::before { content: ""; position: absolute; left: 0; top: 50%; width: 65px; border-top: 3px solid var(--col); }
 .layer b { color: var(--col); }
 .layer span { color: var(--muted); }
-.package .code { flex: 1; font-size: 25px; padding: 40px 44px; }
+.package-right { flex: 1; }
+.package .code { font-size: 27px; padding: 36px 44px; }
+.files { list-style: none; display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
+.files li { display: flex; flex-direction: column; gap: 6px; }
+.files code { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--text); }
+.files span { font-size: 29px; color: var(--muted); line-height: 1.4; }
 
 /* 6. Reader steps */
 .steps { display: grid; grid-template-columns: 1fr 100px 1fr 100px 1fr; align-items: center; }

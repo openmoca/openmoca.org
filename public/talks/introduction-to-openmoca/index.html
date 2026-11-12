@@ -146,16 +146,18 @@
       <div class="layer" style="--top: 0.51; --col: var(--content)"><b>Content</b><span>Markdown nodes</span></div>
       <div class="layer" style="--top: 0.69; --col: var(--evidence)"><b>Evidence</b><span>the original sources</span></div>
     </div>
+<div class="package-right">
 <pre class="code">acme-support/
   moca.json        <span class="c">id, version, licence</span>
   content/         <span class="c">the pages</span>
   sources/         <span class="c">the originals</span>
   structure.ttl    <span class="c">the ontology</span>
-  attestations/    <span class="c">signatures, reviews</span>
-
-acme-support.moca  <span class="c">the same, as one Zip file</span>
-acme-support.bge-small-en-v1.5.moca.idx.zip
-                   <span class="c">a sidecar search index</span></pre>
+  attestations/    <span class="c">signatures, reviews</span></pre>
+      <ul class="files">
+        <li><code>acme-support.moca</code><span>The same package as one Zip file, with the same digest.</span></li>
+        <li><code>acme-support.moca.idx</code><span>A sidecar search index, beside the package: a folder or a Zip, bound to its digest and model.</span></li>
+      </ul>
+    </div>
   </div>
   <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file, which is a Zip with moca.json at its root; a folder, a .moca file or records loaded from a database all give the same digest. Search indexes sit beside it as sidecars, each bound to the package digest and the model that built it: delete one and rebuild it any time.</aside>
 </section>
