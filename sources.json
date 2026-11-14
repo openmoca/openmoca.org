@@ -213,6 +213,14 @@
     },
     {
       "repo": "moca-spec",
+      "path": "docs/guides/encryption.md",
+      "route": "docs/guides/encryption",
+      "group": "Guides",
+      "description": "Encrypt a MOCA package with age: make keys, sign then encrypt, open it with a key provider in TypeScript, .NET or Python, what encryption does not do, and copies for one licensee.",
+      "seoTitle": "Encrypt a MOCA package"
+    },
+    {
+      "repo": "moca-spec",
       "path": "docs/guides/search-and-indexes.md",
       "route": "docs/guides/search-and-indexes",
       "group": "Guides",
@@ -254,6 +262,13 @@
       "route": "spec/attestations",
       "group": "Specification",
       "description": "MOCA Attestations: package and review attestations, DSSE with Ed25519 keys and Sigstore, trust roots, and verification outcomes."
+    },
+    {
+      "repo": "moca-spec",
+      "path": "spec/moca-encrypted-package.md",
+      "route": "spec/encrypted-package",
+      "group": "Specification",
+      "description": "MOCA encrypted packages: a signed package in an age v1 envelope, the readable outline and its check, key providers, limits, and what encryption does not do."
     },
     {
       "repo": "moca-spec",
