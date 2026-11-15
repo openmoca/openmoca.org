@@ -172,7 +172,7 @@
   sources/         <span class="c">the originals</span>
   structure.ttl    <span class="c">the ontology</span>
   attestations/    <span class="c">signatures, reviews</span></pre>
-      <div class="files"><b>A sidecar index <code>.moca.idx</code></b><span>A folder or archive (a Zip), kept outside the package it indexes. Optional; built for one package version and digest.</span></div>
+      <div class="files"><b>A sidecar index <code>.mocai</code></b><span>A folder or archive (a Zip), kept outside the package it indexes. Optional; built for one package version and digest.</span></div>
     </div>
   </div>
   <aside class="notes">Three layers and a pin: that is the logo. Structure is the ontology, and optional. Content is an Open Knowledge Format bundle, one Markdown node per topic. Evidence is the original sources, with selectors that point into them. Trust runs through all three: one digest covers every file, and the signatures sit beside it. A package is a folder, or one .moca file. Show the Acme folder: moca.json, the content pages, the original sources, the ontology as Turtle, and the attestations kept outside the digest so adding a signature never changes what was signed. Packed, it is one .moca file, which is a Zip with moca.json at its root; a folder, a .moca file or records loaded from a database all give the same digest. Search indexes are sidecars, kept outside the package: each records the package id, version and digest it was built from, and, if it holds vectors, the model that made them. Delete one and rebuild it any time.</aside>
@@ -367,7 +367,7 @@
     <div class="cmd" style="--col: var(--pin)"><b>Sign</b><span>publisher and reviews</span>
       <pre class="code">npx @openmoca/moca-sign sign my-docs --key publisher.pem --keyid publisher</pre></div>
     <div class="cmd" style="--col: var(--structure)"><b>Index</b><span>lexical and semantic</span>
-      <pre class="code">npx @openmoca/moca-index build my-docs -o my-docs.moca.idx \
+      <pre class="code">npx @openmoca/moca-index build my-docs -o my-docs.mocai \
   --model bge-small-en-v1.5</pre></div>
   </div>
   <h3 class="then">Then use it: in your app, or in your assistant over MCP</h3>
@@ -395,7 +395,7 @@
       <figure><a href="https://www.linkedin.com/in/pete-cleary-8628084/" target="_blank" rel="noopener"><img src="assets/linkedin-qrcode.png" alt="QR code linking to Pete Cleary on LinkedIn"></a><figcaption>Connect on LinkedIn</figcaption></figure>
     </div>
   </div>
-  <p class="slides-link">Slides: <a href="../">openmoca.org/talks</a></p>
+  <p class="slides-link">Slides: <a href="../">openmoca.org/talks</a> &nbsp;·&nbsp; Updated for OpenMOCA 0.7.0, November 2026</p>
   <aside class="notes">Leave this up for questions. Everything is public. openmoca.org has the specification, a getting-started guide for each Reader, the tools and the walkthrough, which takes about twenty minutes end to end: make, check, sign, review, index and serve a package to an assistant. try.openmoca.org: search real packages now, on your phone. github.com/openmoca: issues and discussions welcome. The left QR code opens Try; the right one is me on LinkedIn. Hand out the chat invite code in the room.</aside>
 </section>
 
