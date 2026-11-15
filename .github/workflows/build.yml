@@ -20,7 +20,7 @@ permissions:
 env:
   MOCA_SPEC_REF: 6193e68691f50bf8d796c10d2344fc34fd3b1fcb  # 0.7.0 release candidate; v0.7.0 once tagged
   MOCA_READER_TYPESCRIPT_REF: b1e6632b23e976e6080c37c67d3ab970b68cc37c  # 0.7.0 release candidate; v0.7.0 once tagged
-  MOCA_READER_PYTHON_REF: f5b67f2db0b5a8881f5f58b3c4bb2379a97d6723  # 0.7.0 release candidate; v0.7.0 once tagged
+  MOCA_READER_PYTHON_REF: c9941da9c2783e34db7bfbaee5a3f1a0b60ed0b1  # 0.7.0 release candidate; v0.7.0 once tagged
   MOCA_READER_DOTNET_REF: 94f3e9daba8226a10605ab98bbecf1d502d8e96a  # 0.7.0 release candidate; v0.7.0 once tagged
   MOCA_TOOLS_REF: c877b1884624d267110cfc2e27c3a84041f5019b  # 0.7.0 release candidate; v0.7.0 once tagged
   MOCA_MCP_DOTNET_REF: 8e8e35a0ba7367189a36a0bec48b8c8307190a1b
