@@ -283,7 +283,7 @@
       "route": "spec/ag-ui-citations",
       "group": "Specification",
       "label": "MOCA citations over AG-UI",
-      "description": "MOCA citations over AG-UI: one custom event that carries the citation records an agent's answer cites to any AG-UI user interface. 0.6.0.",
+      "description": "MOCA citations over AG-UI: one custom event that carries the citation records an agent's answer cites to any AG-UI user interface. 0.7.0.",
       "seoTitle": "Citations over AG-UI: showing sources in agent UIs"
     },
     {
