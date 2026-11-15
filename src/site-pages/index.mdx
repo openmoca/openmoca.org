@@ -155,3 +155,29 @@ together and pass one conformance corpus. Until `1.0.0` the format may still cha
 is noted; `1.0.0` comes when it has settled and is used beyond its maintainer.
 If you'd like to help get there, [get in touch](/contact/), or see the
 [roadmap](/project/roadmap/).
+
+### What's new in 0.7.0
+
+- **Distribution tiers.** A publisher states, and signs, whether a package is
+  meant to travel open, only encrypted or only through a service
+  ([package specification §4.1](/spec/package/#41-properties)).
+- **Encrypted packages.** A signed package in an age envelope, `.mocae`, with
+  a readable outline ([encrypted packages](/spec/encrypted-package/),
+  [guide](/docs/guides/encryption/)).
+- **Issued copies.** A licensee's marked copy keeps the publisher's
+  signatures, binds the publisher's index, and matches a series' pins
+  ([attestations §7.1](/spec/attestations/#71-issued-copies-two-passes)).
+- **Podcast and video series content.** A series composes its releases, files
+  them under its own topics, and limits search to "up to this episode"
+  ([package specification §7.3](/spec/package/#73-series)).
+- **Hosted and alternate media.** Audio and video described, never fetched,
+  with their length and transcript; audio and video versions lined up stretch
+  by stretch, ads and all ([package specification §5.7](/spec/package/#57-media)).
+- **Refined time ranges.** A time range can name the words spoken in it; a
+  Reader checks them against the captions and returns the exact moment
+  ([Reader contract §7](/spec/reader-contract/#7-citation-records)).
+- **Media types.** `.moca`, `.mocae` and `.mocai`, each with its own media type
+  ([package specification §12.1](/spec/package/#121-media-types)).
+
+The full list is in the [changelog](/project/changelog/), and what to change in
+[migrations](/project/migrations/).

@@ -25,6 +25,17 @@ are versioned together: these pages describe **0.7.0**, before 1.0
 Extensions are [profiles](/spec/profiles/); the [ontology profile](/spec/profiles/ontology/)
 is a draft. The [app types](/spec/app-types/) a package's `apps` hint can name, and suggested [node types](/spec/node-types/), are listed here too.
 
+## Files and media types
+
+| File | Extension | Media type |
+| --- | --- | --- |
+| A package | `.moca` | `application/vnd.openmoca.package+zip` |
+| An encrypted package's envelope | `.mocae` | `application/vnd.openmoca.envelope+zip` |
+| A sidecar search index | `.mocai` | `application/vnd.openmoca.index+zip` |
+
+Each is a Zip file, and a Reader recognises each by its contents, not its name
+([package specification §12.1](/spec/package/#121-media-types)).
+
 ## Schemas
 
 Each schema is published at its `$id`, so validators can fetch it:
@@ -45,7 +56,7 @@ Each schema is published at its `$id`, so validators can fetch it:
 
 ## Conformance
 
-The [conformance corpus](/spec/conformance/) is 290 cases, each with a package,
+The [conformance corpus](/spec/conformance/) is 348 cases, each with a package,
 options and the conclusions every Reader must reach. All three Readers, in
 TypeScript, .NET and Python, pass all of them. Each release attaches the corpus
 as `moca-conformance-<version>.tar.gz`, so an implementation can pin it.

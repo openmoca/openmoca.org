@@ -470,7 +470,7 @@
         "online": "Search and cite this package in your browser on [Try OpenMOCA](https://try.openmoca.org/p/support-kb), with no account.",
         "files": [
           "acme-support.moca",
-          "acme-support.bge-small-en-v1.5.moca.idx.zip"
+          "acme-support.bge-small-en-v1.5.mocai"
         ],
         "trustRoot": true,
         "model": "bge-small-en-v1.5",
