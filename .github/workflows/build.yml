@@ -18,13 +18,13 @@ permissions:
 # The other MOCA repositories, at fixed refs: release tags, or commits; never a branch
 # (moca-spec CONTRIBUTING.md).
 env:
-  MOCA_SPEC_REF: 808ed089bcbb287e4f26d3c37c063ead9267547c  # 0.7.0 release candidate; v0.7.0 once tagged
-  MOCA_READER_TYPESCRIPT_REF: 23fea2207bfd5b36fa1096dbf381a6a7c9b60883  # 0.7.0 release candidate; v0.7.0 once tagged
-  MOCA_READER_PYTHON_REF: b2bb04dc95fc53fa75ae733ba27e0b7cfefb62fd  # 0.7.0 release candidate; v0.7.0 once tagged
-  MOCA_READER_DOTNET_REF: 94307330f0709c903fa8e7e59c0c52e57b260bcc  # 0.7.0 release candidate; v0.7.0 once tagged
-  MOCA_TOOLS_REF: 90d79c5b0d005933e81a54d4e3614448258916b5  # 0.7.0 release candidate; v0.7.0 once tagged
+  MOCA_SPEC_REF: 6e10c25bc1d70936bfd2f85da7534b2066db455c  # 0.7.0 release candidate; v0.7.0 once tagged
+  MOCA_READER_TYPESCRIPT_REF: 7e91650c33fd1ed06fe919a50fc7ad2cdd89427f  # 0.7.0 release candidate; v0.7.0 once tagged
+  MOCA_READER_PYTHON_REF: 2ec89b1ee27dcfaad259d48c4a62669472548992  # 0.7.0 release candidate; v0.7.0 once tagged
+  MOCA_READER_DOTNET_REF: 110022e9097e33af727e5512b47edb1f8f2a3461  # 0.7.0 release candidate; v0.7.0 once tagged
+  MOCA_TOOLS_REF: 54d1555518c2604f1edb4c9e8c4ebc8ac7d720fe  # 0.7.0 release candidate; v0.7.0 once tagged
   MOCA_MCP_DOTNET_REF: df6eb71209c2d6e5405f72c2f962d44aa2483e1e
-  MOCA_CONVERT_REF: 383085eb68bedbe9bef5fc8de0cd27e4e5bf0eeb  # 0.7.0 release candidate; v0.7.0 once tagged
+  MOCA_CONVERT_REF: 6b233ac48a3dc9d5e4eed5c176b85b175c81bac4  # 0.7.0 release candidate; v0.7.0 once tagged
   MOCA_EXAMPLES_REF: v0.6.0
 
 jobs:
