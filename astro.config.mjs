@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 // One map for every page: sources.json. The sidebar follows its groups and order.
 const sources = JSON.parse(readFileSync(new URL('./sources.json', import.meta.url), 'utf8'));
-const sitePages = { Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec', 'spec/app-types'], Tools: ['tools'], Project: ['about', 'talks', 'contact', 'privacy'] };
+const sitePages = { Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec', 'spec/app-types', 'spec/node-types'], Tools: ['tools'], Project: ['about', 'talks', 'contact', 'privacy'] };
 const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. Project: who we are, where it is going, how it
 // is run and how to take part, what changed and how to upgrade, then contact and privacy.
