@@ -165,11 +165,13 @@ If you'd like to help get there, [get in touch](/contact/), or see the
   a readable outline ([encrypted packages](/spec/encrypted-package/),
   [guide](/docs/guides/encryption/)).
 - **Issued copies.** A licensee's marked copy keeps the publisher's
-  signatures, binds the publisher's index, and matches a series' pins
-  ([attestations §7.1](/spec/attestations/#71-issued-copies-two-passes)).
-- **Podcast and video series content.** A series composes its releases, files
-  them under its own topics, and limits search to "up to this episode"
-  ([package specification §7.3](/spec/package/#73-series)).
+  signatures, binds the publisher's index, and matches a composite package's
+  pins ([attestations §7.1](/spec/attestations/#71-issued-copies-two-passes)).
+- **Composite packages.** A package whose members are packages: a podcast of
+  seasons and episodes, a book series, a course of sections and lessons. It
+  files its parts under its own topics, and limits search to "up to this
+  episode" or "up to this lesson"
+  ([package specification §7.3](/spec/package/#73-composite-packages)).
 - **Hosted and alternate media.** Audio and video described, never fetched,
   with their length and transcript; audio and video versions lined up stretch
   by stretch, ads and all ([package specification §5.7](/spec/package/#57-media)).
