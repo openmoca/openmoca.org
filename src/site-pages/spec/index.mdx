@@ -1,12 +1,12 @@
 ---
 title: The MOCA specification
-description: "The MOCA specification at 0.6.0: the package format, Reader contract and interface, attestations, sidecar indexes, AG-UI citations, schemas and the corpus."
+description: "The MOCA specification at 0.7.0: the package format, Reader contract and interface, attestations, encrypted packages, sidecar indexes, AG-UI citations, schemas and the corpus."
 editUrl: false
 ---
 
-MOCA (Modular Ontology, Content & Attestation) is defined by six documents, a
+MOCA (Modular Ontology, Content & Attestation) is defined by seven documents, a
 set of JSON Schemas, and a conformance corpus that every Reader must pass. They
-are versioned together: these pages describe **0.6.0**, before 1.0
+are versioned together: these pages describe **0.7.0**, before 1.0
 ([versioning](/spec/versioning/)). The source of every page is the
 [moca-spec repository](https://github.com/openmoca/moca-spec).
 
@@ -14,15 +14,27 @@ are versioned together: these pages describe **0.6.0**, before 1.0
 
 | Document | What it defines | Status |
 | --- | --- | --- |
-| [Package specification](/spec/package/) | The package: manifest, OKF content, evidence, locales, trust fields, structure, members, relations, the digest, profiles and capabilities | 0.6.0 |
-| [Reader contract](/spec/reader-contract/) | What every Reader must conclude: reading, verifying, citation records, the retrieval policy, search, structure and diagnostics | 0.6.0 |
-| [Reader interface](/spec/reader-interface/) | The operations and objects every Reader offers, named for each language | 0.6.0 |
-| [Attestations](/spec/attestations/) | Package and review attestations, signing modes, trust roots and verification outcomes | 0.6.0 |
-| [Sidecar index](/spec/sidecar-index/) | Portable lexical and semantic indexes beside a package, bound to its digest | 0.6.0 |
-| [Citations over AG-UI](/spec/ag-ui-citations/) | One AG-UI event that carries an answer's citation records to a user interface | 0.6.0 |
+| [Package specification](/spec/package/) | The package: manifest, OKF content, evidence, locales, trust fields, structure, members, relations, the digest, profiles and capabilities | 0.7.0 |
+| [Reader contract](/spec/reader-contract/) | What every Reader must conclude: reading, verifying, citation records, the retrieval policy, search, structure and diagnostics | 0.7.0 |
+| [Reader interface](/spec/reader-interface/) | The operations and objects every Reader offers, named for each language | 0.7.0 |
+| [Attestations](/spec/attestations/) | Package, review and issued-copy attestations, signing modes, trust roots and verification outcomes | 0.7.0 |
+| [Encrypted packages](/spec/encrypted-package/) | A signed package in an age envelope: the readable outline and its check, key providers, limits, and what encryption does not do | 0.7.0 |
+| [Sidecar index](/spec/sidecar-index/) | Portable lexical and semantic indexes beside a package, bound to its digest | 0.7.0 |
+| [Citations over AG-UI](/spec/ag-ui-citations/) | One AG-UI event that carries an answer's citation records to a user interface | 0.7.0 |
 
 Extensions are [profiles](/spec/profiles/); the [ontology profile](/spec/profiles/ontology/)
-is a draft.
+is a draft. The [app types](/spec/app-types/) a package's `apps` hint can name, and suggested [node types](/spec/node-types/), are listed here too.
+
+## Files and media types
+
+| File | Extension | Media type |
+| --- | --- | --- |
+| A package | `.moca` | `application/vnd.openmoca.package+zip` |
+| An encrypted package's envelope | `.mocae` | `application/vnd.openmoca.envelope+zip` |
+| A sidecar search index | `.mocai` | `application/vnd.openmoca.index+zip` |
+
+Each is a Zip file, and a Reader recognises each by its contents, not its name
+([package specification §12.1](/spec/package/#121-media-types)).
 
 ## Schemas
 
@@ -38,12 +50,13 @@ Each schema is published at its `$id`, so validators can fetch it:
 | [`sidecar-index.schema.json`](/schemas/v1/sidecar-index.schema.json) | A sidecar's `index.json` |
 | [`review-predicate.schema.json`](/schemas/v1/review-predicate.schema.json) | A review attestation's predicate |
 | [`trust-root.schema.json`](/schemas/v1/trust-root.schema.json) | A reader's trust root |
+| [`moca-enc.schema.json`](/schemas/v1/moca-enc.schema.json) | An envelope's `moca-enc.json` marker and outline |
 | [`ag-ui-citations.schema.json`](/schemas/v1/ag-ui-citations.schema.json) | The AG-UI citations event |
 | [`profile.schema.json`](/profiles/ontology/v1/profile.schema.json) | The ontology profile's data |
 
 ## Conformance
 
-The [conformance corpus](/spec/conformance/) is 196 cases, each with a package,
+The [conformance corpus](/spec/conformance/) is 352 cases, each with a package,
 options and the conclusions every Reader must reach. All three Readers, in
 TypeScript, .NET and Python, pass all of them. Each release attaches the corpus
 as `moca-conformance-<version>.tar.gz`, so an implementation can pin it.

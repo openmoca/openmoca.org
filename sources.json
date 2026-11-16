@@ -213,6 +213,14 @@
     },
     {
       "repo": "moca-spec",
+      "path": "docs/guides/encryption.md",
+      "route": "docs/guides/encryption",
+      "group": "Guides",
+      "description": "Encrypt a MOCA package with age: make keys, sign then encrypt, open it with a key provider in TypeScript, .NET or Python, what encryption does not do, and copies for one licensee.",
+      "seoTitle": "Encrypt a MOCA package"
+    },
+    {
+      "repo": "moca-spec",
       "path": "docs/guides/search-and-indexes.md",
       "route": "docs/guides/search-and-indexes",
       "group": "Guides",
@@ -257,6 +265,13 @@
     },
     {
       "repo": "moca-spec",
+      "path": "spec/moca-encrypted-package.md",
+      "route": "spec/encrypted-package",
+      "group": "Specification",
+      "description": "MOCA encrypted packages: a signed package in an age v1 envelope, the readable outline and its check, key providers, limits, and what encryption does not do."
+    },
+    {
+      "repo": "moca-spec",
       "path": "spec/moca-sidecar-index-spec.md",
       "route": "spec/sidecar-index",
       "group": "Specification",
@@ -268,7 +283,7 @@
       "route": "spec/ag-ui-citations",
       "group": "Specification",
       "label": "MOCA citations over AG-UI",
-      "description": "MOCA citations over AG-UI: one custom event that carries the citation records an agent's answer cites to any AG-UI user interface. 0.6.0.",
+      "description": "MOCA citations over AG-UI: one custom event that carries the citation records an agent's answer cites to any AG-UI user interface. 0.7.0.",
       "seoTitle": "Citations over AG-UI: showing sources in agent UIs"
     },
     {
@@ -455,7 +470,7 @@
         "online": "Search and cite this package in your browser on [Try OpenMOCA](https://try.openmoca.org/p/support-kb), with no account.",
         "files": [
           "acme-support.moca",
-          "acme-support.bge-small-en-v1.5.moca.idx.zip"
+          "acme-support.bge-small-en-v1.5.mocai"
         ],
         "trustRoot": true,
         "model": "bge-small-en-v1.5",
