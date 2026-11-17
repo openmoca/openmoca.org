@@ -28,12 +28,19 @@ import PackageLayers from '../../components/PackageLayers.astro';
 
 ## What is OpenMOCA?
 
-OpenMOCA is an open standard for portable grounding for AI. **MOCA stands for
-Modular Ontology, Content & Attestation**: knowledge in modular packages,
-organised by an optional ontology, its content kept with the original sources,
-and attestations, signatures that prove who published it and who checked it. Open Readers in TypeScript, .NET and
-Python read, verify, search and cite a package the same way, on a server or
-offline, and every answer can cite a source you can check.
+The [Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
+(OKF) shapes knowledge for AI. **OpenMOCA is for the people who make and own
+it.** A MOCA package wraps an OKF bundle in a signed manifest that says who
+made the work, who owns it and on what terms it may be used, and the
+signature shows who said so. It never claims more than that: a signature shows
+who signed, not that what they wrote is true.
+
+**MOCA stands for Modular Ontology, Content & Attestation**: knowledge in
+modular packages, organised by an optional ontology, its content kept with the
+original sources, and attestations, signatures that show who signed it and
+who checked it. Open Readers in TypeScript, .NET and Python read, verify,
+search and cite a package the same way, on a server or offline, and every
+answer can cite a source you can check.
 
 <CardGrid>
   <LinkCard title="Use MOCA with your AI assistant" description="Add the openmoca agent skill to Claude, Copilot or Codex, and ask it to make, sign, search and cite packages." href="/start/ai-assistant/" />
