@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 // One map for every page: sources.json. The sidebar follows its groups and order.
 const sources = JSON.parse(readFileSync(new URL('./sources.json', import.meta.url), 'utf8'));
-const sitePages = { Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec', 'spec/app-types', 'spec/node-types'], Tools: ['tools'], Project: ['about', 'talks', 'contact', 'privacy'] };
+const sitePages = { Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec', 'spec/app-types', 'spec/node-types'], Tools: ['tools'], Project: ['about', 'releases', 'marks', 'talks', 'contact', 'privacy'] };
 const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. Project: who we are, where it is going, how it
 // is run and how to take part, what changed and how to upgrade, then contact and privacy.
@@ -16,8 +16,9 @@ const ORDER = {
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
   Project: [
-    'about', 'talks', 'project/roadmap', 'project/governance', 'project/contributing', 'project/code-of-conduct',
-    'project/security', 'project/changelog', 'project/migrations', 'project/releasing', 'contact', 'privacy',
+    'about', 'releases', 'marks', 'commitment', 'talks', 'project/roadmap', 'project/governance', 'project/contributing',
+    'project/code-of-conduct', 'project/security', 'project/changelog', 'project/migrations', 'project/releasing',
+    'contact', 'privacy',
   ],
 };
 const ordered = (group, slugs) => (ORDER[group] ? [...slugs].sort((a, b) => ORDER[group].indexOf(a) - ORDER[group].indexOf(b)) : slugs);

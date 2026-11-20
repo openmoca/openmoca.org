@@ -221,6 +221,46 @@
     },
     {
       "repo": "moca-spec",
+      "path": "docs/guides/protected-sources.md",
+      "route": "docs/guides/protected-sources",
+      "group": "Guides",
+      "description": "Package protected sources sealed, in an encrypted package for the people you choose, or as reference nodes that only point to the original. When to use each.",
+      "seoTitle": "Protected sources: sealed packages and reference nodes"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/creators-terms.md",
+      "route": "docs/guides/creators-terms",
+      "group": "Guides",
+      "description": "The creator's terms in a MOCA package: AI use, ratings, rights and export; terms for parts of a work; how terms resolve from platform defaults, and who decides.",
+      "seoTitle": "The creator's terms: AI use, ratings and rights that travel with the work"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/credits-and-dates.md",
+      "route": "docs/guides/credits-and-dates",
+      "group": "Guides",
+      "description": "Credit the publisher and contributors of a MOCA package, with their roles; licence and copyright for each part; when the work was published and the package made.",
+      "seoTitle": "Credits and dates in a MOCA package"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/machine-made.md",
+      "route": "docs/guides/machine-made",
+      "group": "Guides",
+      "description": "Mark the parts of a MOCA package a machine made, with the model, and the parts a person checked. Declarations that travel to every citation, not detection.",
+      "seoTitle": "Machine-made content: marking what a machine made"
+    },
+    {
+      "repo": "moca-spec",
+      "path": "docs/guides/showing-terms.md",
+      "route": "docs/guides/showing-terms",
+      "group": "Guides",
+      "description": "For app builders: apply a creator's terms before content reaches a model, and show terms, credits and machine-made marks without making a label look like a lock.",
+      "seoTitle": "Showing a creator's terms honestly, for app builders"
+    },
+    {
+      "repo": "moca-spec",
       "path": "docs/guides/search-and-indexes.md",
       "route": "docs/guides/search-and-indexes",
       "group": "Guides",
@@ -539,6 +579,15 @@
         ],
         "ask": "What are the five orchestration patterns in the workflows video? Give the moment each one is explained."
       }
+    },
+    {
+      "repo": "moca-spec",
+      "path": "COMMITMENT.md",
+      "route": "commitment",
+      "group": "Project",
+      "label": "The OpenMOCA Commitment",
+      "description": "The OpenMOCA Commitment: a company's signed, public promise that a named app and version honours creators' terms and people's own choices. What it means for people, and what a company commits to.",
+      "seoTitle": "The OpenMOCA Commitment"
     },
     {
       "repo": "moca-spec",

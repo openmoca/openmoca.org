@@ -4,10 +4,13 @@ description: What OpenMOCA is, who maintains it, how it is governed, and how to 
 editUrl: false
 ---
 
-**OpenMOCA is an open standard for portable grounding for AI.** MOCA stands for
-Modular Ontology, Content & Attestation. A MOCA package carries the knowledge an
-AI system answers from, how it is organised, and the original sources it came
-from, sealed by one digest and optionally signed. Open Readers in TypeScript,
+**OpenMOCA is an open standard for portable grounding for AI.** The
+[Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
+(OKF) shapes knowledge for AI; MOCA is for the people who make and own it. MOCA
+stands for Modular Ontology, Content & Attestation. A MOCA package wraps an OKF
+bundle in a manifest that says who made the work, who owns it and on what terms
+it may be used, with the original sources it came from, sealed by one digest
+and optionally signed. A signature shows who said so, and no more. Open Readers in TypeScript,
 .NET and Python read, verify, search and cite it the same way, on a server or
 offline. See [why MOCA](/docs/why-moca/) for the problem it solves.
 
