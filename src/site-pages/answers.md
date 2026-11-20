@@ -8,6 +8,13 @@ head:
     content: "OpenMOCA: short answers for creators and their audience | OpenMOCA"
 ---
 
+<div class="lead">
+
+Short, plain answers about OpenMOCA, for creators, their audience and anyone
+meeting it for the first time.
+
+</div>
+
 Technical questions, about AI search, MCP and the formats OpenMOCA builds on,
 are in the [technical FAQ](/docs/faq/).
 
@@ -20,14 +27,14 @@ creator.
 
 ## What is a MOCA package?
 
-A MOCA package holds a piece of digital work with its credits, its sources and
-the creator's wishes. It is sealed, so any change shows. It can be signed, to
+A MOCA package is the file OpenMOCA keeps a work in: one piece of digital work
+with its credits, its sources and the creator's wishes. It is sealed, so any change shows. It can be signed, to
 show who stands behind it. It travels as one `.moca` file.
 
 ## Why does OpenMOCA exist?
 
 So that work can move between apps without losing who made it, where it came
-from and what its creator asked. It gives creators, their audience and app
+from and how its creator wants it shared, shown and used. It gives creators, their audience and app
 makers one shared way to carry that.
 
 ## Who is OpenMOCA for?
@@ -38,15 +45,14 @@ Developers who make apps and tools. And organisations whose knowledge needs to
 be checked ([Creators](/creators/), [Audience](/audience/),
 [Developers](/developers/), [Organisations](/organisations/)).
 
-## What kinds of work can be in a MOCA package?
+## What kinds of work does OpenMOCA work with?
 
 Any kind of digital work: podcasts, books, courses, video, research, guides
 and documentation. OpenMOCA is not tied to one industry.
 
 ## How do a creator's wishes travel with their work?
 
-Inside the package. They are sealed in with the work, so every copy carries
-them. Any app can show them exactly as the creator wrote them, show who signed
+They are sealed in with the work, so every copy carries them. Any app can show them exactly as the creator wrote them, show who signed
 them, and follow them ([the creator's terms](/docs/guides/creators-terms/)).
 
 ## What can creators say about AI use?
@@ -84,37 +90,38 @@ publicly to do so ([trust and provenance](/docs/trust-and-provenance/)).
 ## What is the OpenMOCA Commitment?
 
 A company's signed, public promise that a named app, in a named version,
-honours what creators ask and what people ask. OpenMOCA lists it; it does not
+respects how creators want their work shared, shown and used, and people's
+own choices. OpenMOCA lists it; it does not
 test it. Anyone can hold the company to it
 ([the OpenMOCA Commitment](/commitment/)).
 
 ## What is OpenMOCA Conformant?
 
-A listing for software, such as a library that reads packages, that passes
+A listing for software, such as a library that reads OpenMOCA, that passes
 the public OpenMOCA tests. It is a test result, not a promise about an app
 ([OpenMOCA Conformant](/conformant/)).
 
 ## How can I check where an AI answer came from?
 
-In an app that reads MOCA packages, each answer names the work it used. Where
-the package carries what it needs, a link opens the original at the passage
-or the moment.
+In an app that reads OpenMOCA, each answer names the work it used. Where the
+creator has included the original, a link opens it at the passage or the
+moment.
 
 ## How does OpenMOCA mark what a machine made?
 
-A package can say which parts a machine made, with the name and version of
+A creator can say which parts a machine made, with the name and version of
 the AI model, and which parts a person checked. These are statements by
-whoever made the package. OpenMOCA does not detect machine-made content
+whoever made them. OpenMOCA does not detect machine-made content
 ([machine-made content](/docs/guides/machine-made/)).
 
 ## Does OpenMOCA change a creator's original files?
 
-No. Packaging never changes the creator's original files. A package carries
-the work, or points to the original, beside them.
+No. OpenMOCA never changes the creator's original files. It carries the work,
+or points to the original, beside them.
 
 ## Does OpenMOCA need AI?
 
-No. Any app can read a package: a podcast player, an e-book reader, a search,
+No. Any app can read OpenMOCA: a podcast player, an e-book reader, a search,
 a course. AI is why it matters now, because apps answer, summarise and chat
 using people's work, and the true creator is getting lost.
 

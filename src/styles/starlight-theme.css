@@ -131,3 +131,25 @@ pre.mermaid svg marker :is(path, circle) {
   font-weight: 500;
   color: var(--moca-text-muted);
 }
+
+/* The home page's hero: less space above and below than Starlight's default
+   (clamp(2.5rem, 1rem + 10vmin, 10rem)). Only the home page has a hero. */
+:root[data-has-hero] .hero {
+  padding-block: clamp(2rem, 1rem + 5vmin, 6rem);
+}
+
+/* The lead: a main-site page's opening, before its first heading, wrapped in <div class="lead">. A little larger,
+   a slightly narrower measure, and full-strength text colour. */
+.sl-markdown-content .lead {
+  max-width: 62ch;
+}
+.sl-markdown-content .lead p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sl-color-white);
+}
+@media (min-width: 72rem) {
+  .sl-markdown-content .lead p {
+    font-size: 1.375rem;
+  }
+}

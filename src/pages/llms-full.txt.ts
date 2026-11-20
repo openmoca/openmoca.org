@@ -21,6 +21,7 @@ function plain(body: string) {
     .replace(/<(PackageLayers|WorkTravels)\b[^>]*\/>\n?/g, '')
     .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
     .replace(/<AudienceCards\s*\/>/g, audiences.map((c) => `- **[${c.name}](${c.href})**: ${c.title} ${c.strapline}. ${c.line}`).join('\n'))
+    .replace(/<div class="lead">\n\n([\s\S]*?)\n\n<\/div>/g, '$1')
     .replace(/<p class="section-strapline">([^<]*)<\/p>/g, '**$1**')
     .replace(/\n{3,}/g, '\n\n')
     .trim();

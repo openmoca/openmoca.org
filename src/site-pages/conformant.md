@@ -8,14 +8,14 @@ head:
     content: "OpenMOCA Conformant: software that passes the test suite | OpenMOCA"
 ---
 
-**For software.** Anyone can build software that reads or makes MOCA packages,
+**For software.** Anyone can build software that reads or makes MOCA packages
+(the files OpenMOCA keeps a work in, with its credits, sources and wishes),
 without asking. OpenMOCA Conformant is a public listing on openmoca.org of the
 software that passes the public OpenMOCA tests, so people choosing software
 can see what it has shown. For apps people use,
 there is a different listing: [the OpenMOCA Commitment](/commitment/).
 
-**Listings are coming soon.** They follow the 0.7.0 release. Until then, no
-software is listed.
+**Listings are coming soon.** Until then, no software is listed.
 
 ## What it means
 
@@ -46,7 +46,7 @@ removed. A listing that fails when the tests are run again is removed.
 | Question | OpenMOCA Conformant | The OpenMOCA Commitment |
 | --- | --- | --- |
 | **For** | Software that reads, makes or checks packages | Apps people use |
-| **Answers** | Does this software handle packages exactly as the standard says? | Will this app honour what the creator asked, and what I asked? |
+| **Answers** | Does this software handle packages exactly as the standard says? | Will this app respect how the creator wants their work shared, shown and used, and my own choices? |
 | **Rests on** | Public tests anyone can run | The company's own signed promise |
 | **Who checks** | The maker runs the tests (Self-tested); the project runs them again (Verified) | Nobody tests it. OpenMOCA lists the promise, and anyone can hold the company to it |
 | **Covers** | One version of the software, one version of the standard | One named app and version |

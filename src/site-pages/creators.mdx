@@ -11,36 +11,127 @@ head:
 
 import WorkTravels from '../../components/WorkTravels.astro';
 
+<div class="lead">
+
 **You make things that matter:** a podcast, a book, a course, a film, a guide,
 research, or something else entirely.
 
-When that work is copied, shared or used by an AI app, its identity can get
-lost. Your name may disappear. Its sources may be hard to find. What you asked
-may not travel with it.
+When that work is copied, shared or summarised by an app, its identity can get
+lost. Your name may disappear. Its sources may be hard to find. How you want it
+shared, shown and used, including by AI, may not travel with it.
 
-OpenMOCA is an open way to package your work with all of that attached. Your
-credits, sources and terms go with it. Any app can read them, and apps that
-make the [OpenMOCA Commitment](/commitment/) promise publicly to honour them.
+OpenMOCA keeps all of that with your work, so it goes wherever your work goes.
 
-## Not just for AI
+</div>
 
-OpenMOCA works in ordinary apps too: a podcast player, an e-book reader, a
-library, a course. Any of them can read a package and show your name, your
-credits and your note beside the work, with no AI at all. AI is why it matters
-now: apps answer, summarise and chat using people's work, and the true creator
-is getting lost. With or without AI, OpenMOCA keeps you with your work.
+## Get the credit when AI answers
+
+More and more, people meet your work through an AI answer, not through your
+page. With OpenMOCA, an app that answers from your work can show where every
+part of the answer came from: your name, your episode or chapter, the exact
+passage or moment, one tap away.
+
+Apps that make the [OpenMOCA Commitment](/commitment/) promise publicly to do
+exactly that: to name you, link back to you, and respect how you want your
+work used.
+
+And it works without AI too. Any app — a podcast player, an e-reader, a
+library — can search your work and quote it, with a link back to the exact
+place it came from.
 
 <WorkTravels />
 
-## One example: a podcast episode
+## Keep your credits with your work
+
+OpenMOCA names the publisher and the people who made the work, with their
+roles: author, host, narrator, editor, translator. A part can credit its own
+people too, such as the guest on one episode or the translator of one chapter.
+When an answer uses that part, the app can name them.
+
+How: [credits and dates](/docs/guides/credits-and-dates/).
+
+## Keep your sources with your work
+
+OpenMOCA can carry your original sources with your work, or point to them when
+you may not copy them, so every link back has somewhere to go.
+
+How: [protected sources](/docs/guides/protected-sources/), and
+[trust and provenance](/docs/trust-and-provenance/).
+
+## Say what you rule out
+
+Your terms are sealed in with your work. In this version of OpenMOCA, terms
+say what you **rule out**. You can say no to:
+
+- **AI from other companies**: sending your work to another company's AI;
+- **AI in the app itself**, or even **on the person's own device**, if you
+  want no AI use at all;
+- **machine translation**;
+- **export**: letting people copy, save or export the text out of the app.
+  Quoting it in an answer, playing a moment and reading it in the app are not
+  export.
+
+**Training AI on your work is never allowed by default.** Nothing you set can
+change that in this version.
+
+You can also say:
+
+- **how suitable the work is**: whether it is explicit, a rating such as a
+  film board's, and the age range it is meant for;
+- **who holds the rights**, how to contact them, and whether others may
+  repackage the work;
+- **the copyright line** to show, and a short note in your own words to show
+  beside the work.
+
+Terms can be different for parts of a work: an explicit episode in a clean
+show, a photo under someone else's licence, a chapter that stays away from
+other companies' AI. A part's AI terms can only be stricter than the whole's;
+its rating and its licence are its own.
+
+Where you set nothing, the standard default applies. Where the work, a part of
+it and the app disagree, the strictest answer wins, and the app can show which
+one decided.
+
+How: [the creator's terms](/docs/guides/creators-terms/).
+
+## Keep track of what a machine made
+
+You can say which parts a machine made, such as a transcript or a summary,
+with the name and version of the AI model, and which of those parts a person
+checked. That travels with every quote, so an app can say "made by a machine,
+checked by a person". These are your own statements: OpenMOCA does not detect
+machine-made content.
+
+Your original files are never changed.
+
+How: [machine-made content](/docs/guides/machine-made/).
+
+## Choose how to share
+
+- **Open**, for anyone.
+- **Sealed**: encrypted, so only the people you choose can open it.
+- **As references**: entries that point to the original, without copying it.
+
+These are different ways to share. None of them makes copying impossible:
+anyone who can open your work can copy what they read.
+
+How: [protected sources](/docs/guides/protected-sources/) and
+[encryption](/docs/guides/encryption/).
+
+## Keep your options open
+
+OpenMOCA is an open standard. Your work is not tied to one AI company, app or
+platform, and anyone can build an app that reads it.
+
+## See it all together: a podcast episode
 
 *An example to show the idea, not a real show.* "Harbour Lights", episode 12,
-packaged by its maker. The package carries:
+kept together by its maker with OpenMOCA. It carries:
 
 - **Credits.** Published by Example Podcast Ltd. Hosted and written by Ada
   Example. Sam Guest, a guest on this episode, is credited for this episode.
 - **Sources.** The episode's audio, described and linked, and its captions,
-  carried in the package.
+  carried with it.
 - **The creator's terms.** The creator rules out other companies' AI, machine
   translation, and copying the transcript out of the app. Training is never
   allowed by default.
@@ -56,91 +147,6 @@ packaged by its maker. The package carries:
 The same works for any digital work: a book's chapters, a course's lessons, a
 paper's sections, a guide's pages.
 
-## Keep your credits with your work
-
-A package names the publisher and the people who made the work, with their
-roles: author, host, narrator, editor, translator. A part can credit its own
-people too, such as the guest on one episode or the translator of one chapter.
-When an answer uses that part, the app can name them.
-
-The people who made the work should not become invisible when it is reused.
-
-How: [credits and dates](/docs/guides/credits-and-dates/).
-
-## Keep your sources with your work
-
-A package can carry the original sources, or point to them when you may not
-copy them. When someone checks where something came from, the app can open
-the original at the passage, the page or the moment in a recording.
-
-How: [protected sources](/docs/guides/protected-sources/), and
-[trust and provenance](/docs/trust-and-provenance/).
-
-## Say what you rule out
-
-Your terms are part of the package, sealed in with your work. In this version
-of OpenMOCA, terms say what you **rule out**. You can say no to:
-
-- **AI from other companies**: sending your work to a third party's AI model;
-- **AI in the app's own service**, or even **on the person's own device**, if
-  you want no AI use at all;
-- **machine translation**;
-- **export**: letting people copy, save or export the work's text out of the
-  app. Quoting it in an answer, playing a moment and reading it in the app are
-  not export.
-
-**Training is never allowed by default.** Nothing in a package can change
-that in this version.
-
-You can also say:
-
-- **how suitable the work is**: whether it is explicit, a rating such as a
-  film board's, and the age range it is meant for;
-- **who holds the rights**, how to contact them, and whether others may
-  repackage the work;
-- **the copyright line** to show, and a short note in your own words to show
-  beside the work.
-
-Terms can be different for parts of a work: an explicit episode in a clean
-show, a photo under someone else's licence, a chapter that stays off other
-companies' AI. A part's AI terms can only be stricter than the whole's; its
-rating and its licence are its own.
-
-Where you set nothing, the standard default applies. Where the work, a part
-of it and the app disagree, the strictest answer wins, and the app can show
-which one decided.
-
-How: [the creator's terms](/docs/guides/creators-terms/).
-
-## Keep track of what a machine made
-
-A package can say which parts a machine made, such as a transcript or a
-summary, with the name and version of the model, and which of those parts a
-person checked. That travels with every quote, so an app can say "made by a
-machine, checked by a person". These are your own statements: OpenMOCA does
-not detect machine-made content.
-
-Packaging never changes your original files.
-
-How: [machine-made content](/docs/guides/machine-made/).
-
-## Choose how to share
-
-- **Open**, for anyone.
-- **Sealed**: encrypted, so only the people you choose can open it.
-- **As references**: entries that point to the original, without copying it.
-
-These are different ways to share. None of them makes copying impossible: a
-person who can open a package can copy what they read.
-
-How: [protected sources](/docs/guides/protected-sources/) and
-[encrypted packages](/docs/guides/encryption/).
-
-## Keep your options open
-
-OpenMOCA is an open standard. Your package is not tied to one AI provider,
-app or platform, and anyone can build software that reads it.
-
 ## Beside what you already use
 
 You may already tell AI crawlers what they may do, on your own website, with
@@ -154,12 +160,12 @@ repackage the show.
 
 OpenMOCA keeps your terms attached and helps apps respect them. It does not
 stop an app that ignores them, and it cannot take back a copy once it is made.
-It lets people see your terms, check your sources, and choose apps that make
-the [OpenMOCA Commitment](/commitment/).
+It lets people see your terms, check your sources, and choose apps that
+respect them.
 
 ## Next
 
 - [For the Audience](/audience/): what the people who listen, read, watch
   and learn get.
 - [Short answers](/answers/) to common questions.
-- [For Developers](/developers/): for the people who build apps and tools.
+- [For Developers](/developers/): for the people who build apps.

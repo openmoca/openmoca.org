@@ -5,10 +5,14 @@ template: splash
 editUrl: false
 ---
 
+<div class="lead">
+
 **Knowledge that travels with its context.** OpenMOCA is the open standard
 for portable, attributable and trustworthy knowledge. It keeps the creator
 with their work, in any app, with or without AI. Anyone can read it,
 implement it and build on it.
+
+</div>
 
 ## OpenMOCA in one line
 
@@ -34,25 +38,24 @@ creator's name. The people who contributed. The original sources. And the
 creator's wishes about how the work may be used.
 
 The audience has a problem too. They get an answer, a summary or a clip, but it
-can be hard to see who made it, check the original or know what the creator
-asked.
+can be hard to see who made it, check the original or know how the creator
+wants it shared, shown and used.
 
 OpenMOCA is an open standard designed to address this.
 
-It puts digital work into portable packages that carry the content alongside
-its credits, sources, evidence and the creator's declared wishes. Any app can
-read them, with or without AI: a player, a reader, a search, a course, an
+It keeps digital work together with its credits, sources, evidence and the
+creator's declared wishes, wherever it goes. Any app can read it, with or without AI: a player, a reader, a search, a course, an
 assistant.
 
 Those wishes let the creator rule things out: sending the work to third-party
 AI providers, machine translation, or export. Training is never allowed by
 default. They also carry audience ratings and rights.
 
-The package is sealed and can be signed, so compatible software can check it
+Each work is sealed and can be signed, so compatible software can check it
 is unchanged and see who signed it. Links can take people back to the
 exact passage or moment in the original source.
 
-Any developer can build software that reads or creates these packages.
+Any developer can build software that reads or creates it.
 OpenMOCA already has @@release.readers@@, backed by @@release.suite@@.
 
 And we are being clear about the limits: it is a label, not a lock. The
@@ -71,14 +74,14 @@ terms wherever it goes.
 OpenMOCA builds on the
 [Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format),
 which shapes knowledge for AI. OpenMOCA is for the people who make and own
-that knowledge. A package says who made the work, who owns it and what they
-wish, with the sources it came from, sealed so that any change shows. A
+that knowledge. With OpenMOCA, a work carries who made it, who owns it and how
+they want it shared, shown and used, with the sources it came from, sealed so that any change shows. A
 signature shows who said so, and no more.
 
-- **The specification**: the rules for a package, and for the software that
-  reads one, with public tests anyone can run ([the specification](/spec/)).
-- **Free libraries** that read packages the same way, whatever the app.
-- **Tools** to make, check and sign packages, and a server that connects them
+- **The specification**: the rules for keeping a work with its context, and
+  for the software that reads it, with public tests anyone can run ([the specification](/spec/)).
+- **Free libraries** that read it the same way, whatever the app.
+- **Tools** to prepare, check and sign a work, and a server that connects it
   to AI assistants.
 - **This site**, and [Try OpenMOCA](https://try.openmoca.org), a live demo.
 
@@ -92,7 +95,7 @@ OpenMOCA is maintained by
 **[PI & Mash Solutions Ltd](https://piandmash.com)**, a company registered in England and
 Wales (number 17429224). PI & Mash holds the OpenMOCA trade mark on behalf of
 the project. The standard does not depend on any product: anyone can build
-software that reads packages, and any software that passes the public tests
+software that reads OpenMOCA, and any software that passes the public tests
 reads them the same way.
 
 ## How it is governed
@@ -114,8 +117,8 @@ format has settled and is used beyond its maintainer. See
 Why knowledge for AI is often stuck in one system and hard to check, and how
 OpenMOCA keeps it portable and checkable. Two live demos:
 [Try OpenMOCA](https://try.openmoca.org) in the browser, and an AI assistant
-on your own computer. Then where it works today, and how to make your own
-package.
+on your own computer. Then where it works today, and how to start with your
+own work.
 
 [Open the slides](/talks/introduction-to-openmoca/). Use the arrow keys, or
 tap the right or left of a slide. Press **S** for the speaker notes, **O** for

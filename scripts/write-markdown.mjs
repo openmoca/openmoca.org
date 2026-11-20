@@ -32,14 +32,15 @@ function plain(body) {
     .replace(/<Card\b[^>]*>([\s\S]*?)<\/Card>/g, (t, inner) => `**${attr(t, 'title')}.** ${inner.replace(/\s+/g, ' ').trim()}`)
     .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
     .replace(/<AudienceCards\s*\/>/g, audiences.map((c) => `- **[${c.name}](${c.href})**: ${c.title} ${c.strapline}. ${c.line}`).join('\n'))
+    .replace(/<div class="lead">\n\n([\s\S]*?)\n\n<\/div>/g, '$1')
     .replace(/<p class="section-strapline">([^<]*)<\/p>/g, '**$1**')
     .replace(/<PackageLayers\b[^>]*\/>\n?/g, '')
     .replace(/<WorkTravels\s*\/>/g, [
       'How a creator\'s work travels:',
       '',
       '1. **The creator** makes the work: a podcast, a book, a course, a video, research, a guide.',
-      '2. **The package** carries the work, its credits, its sources and the creator\'s terms, with a seal that shows any change and a signature that shows who signed it.',
-      '3. **Any app** opens the package, shows who made the work, and follows the creator\'s wishes.',
+      '2. **Your work, kept together**: the work, its credits, its sources and the creator\'s terms, with a seal that shows any change and a signature that shows who signed it.',
+      '3. **Any app** opens the work, shows who made it, and follows the creator\'s wishes.',
       '4. **People** get answers that show where they came from, and open the original at the passage or the moment.',
     ].join('\n'))
     .replace(/<McpDownload\s*\/>/g, '[Download moca-mcp](https://github.com/openmoca/moca-mcp-dotnet/releases/latest)')

@@ -1,7 +1,7 @@
 ---
 title: Know who made it, and back them.
 strapline: Supporting the Creators You Love
-description: "For the Audience, the people who listen, read, watch and learn: see who made a work, go to the source and the creator's own site, respect what the creator asked, and choose apps that do the same."
+description: "For the Audience, the people who listen, read, watch and learn: see who made a work, go to the source and the creator's own site, respect how the creator wants it shared, shown and used, and choose apps that do the same."
 template: splash
 editUrl: false
 head:
@@ -9,49 +9,64 @@ head:
     content: "For the Audience: know who made it, and back them | OpenMOCA"
 ---
 
-**You listen, read, watch and learn.** A podcast, a book, a course or a video
-is somebody's work. When it turns up in an app, in a player, a reader, a
-search or an AI answer, the person who made it should still be there with it.
-OpenMOCA keeps them there, so you can see who they are and back them.
+<div class="lead">
+
+**You listen, read, watch and learn** from people who make things: podcasts,
+books, courses, videos, guides and research.
+
+When an app answers your questions, or searches across their work, their name
+can disappear. The results and AI summaries may not say who made it, or where
+it came from.
+
+OpenMOCA keeps the creator's name, their sources and their wishes with the
+work, so any app that uses it can show you who made it, and take you straight
+to the original.
+
+</div>
+
+## See who's behind every answer
+
+When an app uses OpenMOCA, every answer shows where it came from: who made
+it, which work, and the exact passage or moment. One tap opens the original,
+so you can check it, and enjoy the rest.
+
+Apps that make the [OpenMOCA Commitment](/commitment/) promise publicly to
+credit the people who made the work, to respect how they want it used, and to
+respect your choices too.
+
+It isn't only AI: searches and quotes in any app that reads OpenMOCA lead you
+back to the source.
 
 ## See who made it
 
-A MOCA package names the creator, the publisher and the people who helped
-make the work, with what each of them did: the author, the host, the
-narrator, the editor, the translator. A part of a work can name its own
-people, such as the guest on one episode or the translator of one chapter.
-It also says when the work was first published.
+OpenMOCA keeps the names of everyone who made the work with it: the creator,
+the publisher and the people who helped, with what each of them did: the
+author, the host, the narrator, the editor, the translator. A part of a work
+can name its own people, such as the guest on one episode or the translator
+of one chapter. It also says when the work was first published.
 
-That stays with the work in any app that reads the package, with or without
-AI. You can also see who signed the package, so you know who stands behind
-what it says.
+You can also see who signed it, so you know who stands behind what it says.
+A link to the source shows where an answer came from, not that the source is
+right: you can check it for yourself.
 
-## Go to the source
+## Follow the creator
 
-- **The original.** Where the package carries what it needs, an app can open
-  the original at the passage, the page, or the moment in a recording.
-- **The creator's own site.** A package can link to the work's own page, the
-  publisher's site and each contributor's page. That is where to find more of
-  their work, and where to follow them.
-
-When an app answers a question from the work, the answer can show which work
-it came from, and take you there. You can check it for yourself: the link
-shows where an answer came from, not that the source is right.
+OpenMOCA can link to the work's own page, the publisher's site and each
+contributor's page. That is where to find more of their work, and where to
+follow them.
 
 ## Respect their wishes
 
-What the creator ruled out travels with the work: for example, no AI from
-other companies, no machine translation, or no copying the text out of the
-app. So does how suitable the work is, and the creator's copyright line and a
-short note in their own words.
+How the creator wants their work shared, shown and used travels with it: for
+example, no AI from other companies, no machine translation, or no copying
+the text out of the app. So does how suitable the work is, and the creator's
+copyright line and a short note in their own words. An app that reads
+OpenMOCA can show you these, and keep them.
 
-An app that reads the package can show you these, and keep them.
+## What apps that make the Commitment promise you
 
-## Choose apps that do the same
-
-Look for apps that make the [OpenMOCA Commitment](/commitment/): a company's
-signed, public promise about a named app and version. It says the app
-honours what creators ask, and what you ask:
+The [OpenMOCA Commitment](/commitment/) is a company's signed, public promise
+about a named app and version. Among other things, it says:
 
 - the creator's name, licence and copyright stay with their work, and every
   answer shows where it came from;
@@ -61,23 +76,24 @@ honours what creators ask, and what you ask:
 - when something is left out, the app tells you why.
 
 It is a promise you can read and hold the company to. OpenMOCA lists it, and
-does not test it. Listings come after the 0.7.0 release.
+does not test it. Listings are coming soon.
 
 ## Back them
 
 Backing a creator here means three things, and none of them costs anything:
 
-- **Credit them.** When you share or quote their work, name them, as the
-  package does.
-- **Follow them**, on their own site, from the links the package carries.
-- **Choose apps that keep them with their work**, and honour what they asked.
+- **Credit them.** When you share or quote their work, name them.
+- **Follow them**, on their own site, from the links that travel with their
+  work.
+- **Choose apps that keep them with their work**, and respect how they want it
+  shared, shown and used.
 
 OpenMOCA is an open standard, not tied to one app, AI model or provider, so
 the choice of app stays yours.
 
 ## Next
 
-- [Try it in your browser](/try/): open real packages and each result at its
-  source.
-- [For creators](/creators/): what creators can say with their work.
+- [Try it](/try/): search real works in your browser, and open each result at
+  its source.
+- [For Creators](/creators/): what creators can keep with their work.
 - [Short answers](/answers/) to common questions.

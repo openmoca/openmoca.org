@@ -1,5 +1,5 @@
 ---
-// How a creator's work travels: the creator, the package that carries the work with its credits, sources and terms,
+// How a creator's work travels: the creator, the work kept together with its credits, sources and terms,
 // any app that reads it, and the people who ask. Drawn in HTML and CSS, not as a picture, so every word is text that
 // screen readers, search engines and AI answers can read. The arrows are decoration and hidden from assistive
 // technology. On a narrow screen the four steps stack.
@@ -11,8 +11,8 @@
       <p class="step-title">The creator</p>
       <p>Makes the work: a podcast, a book, a course, a video, research, a guide.</p>
     </li>
-    <li class="step package">
-      <p class="step-title">The package</p>
+    <li class="step kept">
+      <p class="step-title">Your work, kept together</p>
       <ul>
         <li>The work, as it was made</li>
         <li>Credits: who made it</li>
@@ -23,7 +23,7 @@
     </li>
     <li class="step">
       <p class="step-title">Any app</p>
-      <p>Opens the package, shows who made the work, and follows the creator's wishes.</p>
+      <p>Opens the work, shows who made it, and follows the creator's wishes.</p>
     </li>
     <li class="step">
       <p class="step-title">People</p>
@@ -61,7 +61,7 @@
     color: var(--moca-text-muted);
     font-size: 1.25rem;
   }
-  .step.package { border-color: var(--moca-structure); border-width: 2px; }
+  .step.kept { border-color: var(--moca-structure); border-width: 2px; }
   .step .step-title { margin: 0 0 0.5rem; font-size: var(--sl-text-lg); font-weight: 600; color: var(--moca-text); }
   .step p:not(.step-title), .step ul { margin: 0; font-size: var(--sl-text-sm); color: var(--moca-text); }
   .step ul { padding-left: 1.1rem; }

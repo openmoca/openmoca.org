@@ -54,7 +54,7 @@ with the OpenMOCA Commitment.
 - **OpenMOCA Conformant and the OpenMOCA Commitment.** Two public listings:
   software that passes the test suite for what it is, and apps whose makers
   sign a public promise to honour creators' terms and people's own choices.
-  The listings come after 0.7.0 ([OpenMOCA Conformant](/conformant/),
+  Listings are coming soon ([OpenMOCA Conformant](/conformant/),
   [the OpenMOCA Commitment](/commitment/)).
 
 ### For developers

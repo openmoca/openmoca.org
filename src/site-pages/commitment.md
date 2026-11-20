@@ -1,6 +1,6 @@
 ---
 title: The OpenMOCA Commitment
-description: "The OpenMOCA Commitment: a company's signed, public promise that a named app and version honours what creators ask and what people ask. What it means for you, how it is made, and how to challenge it."
+description: "The OpenMOCA Commitment: a company's signed, public promise that a named app and version respects how creators want their work shared, shown and used, and people's own choices. What it means for you, how it is made, and how to challenge it."
 template: splash
 editUrl: false
 head:
@@ -9,13 +9,13 @@ head:
 ---
 
 **For apps people use.** An app that makes the OpenMOCA Commitment promises to
-honour what creators ask and what people ask. The company behind the app signs
+respect how creators want their work shared, shown and used, and people's own
+choices. The company behind the app signs
 that promise, for a named app and version, and it is listed on openmoca.org.
 OpenMOCA does not test it. The signed promise is the company's own, and anyone
 can hold the company to it.
 
-**Listings are coming soon.** They follow the 0.7.0 release. Until then, no
-app can show the Commitment mark.
+**Listings are coming soon.** Until then, no app can show the Commitment mark.
 
 ## What it means for you
 
