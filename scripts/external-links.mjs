@@ -4,9 +4,9 @@
 // the footer alike. A link within openmoca.org stays in the same tab; try.openmoca.org and every other host count as
 // another site.
 //
-// Each external link gets target="_blank", rel="noopener noreferrer", a small icon (hidden from screen readers) and
-// visually hidden text, "(opens in a new tab)". A link that is only an icon (such as GitHub in the docs' header)
-// gets the text, not a second icon. The talk slides (dist/talks/) are left as they are.
+// Each external link gets target="_blank", rel="noopener noreferrer", a small diagonal arrow (as try.openmoca.org
+// uses; hidden from screen readers) and visually hidden text, "(opens in a new tab)". A link that is only an icon
+// (such as GitHub in the docs' header) gets the text, not a second icon. The talk slides (dist/talks/) are left as they are.
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,7 +17,7 @@ const OWN = new Set(['openmoca.org', 'www.openmoca.org']);
 
 const ICON = '<svg class="ext-icon" aria-hidden="true" focusable="false" viewBox="0 0 16 16" width="12" height="12">'
   + '<path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" '
-  + 'd="M9 3h4v4M13 3 7.5 8.5M11.5 9.5V13H3V4.5h3.5"/></svg>';
+  + 'd="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>';
 const SR = '<span class="ext-sr"> (opens in a new tab)</span>';
 
 function walk(dir) {
