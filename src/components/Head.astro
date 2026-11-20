@@ -68,7 +68,7 @@ const SECTIONS: Record<string, string> = {
   examples: 'Examples', project: 'Project',
 };
 // The pages for creators and people are about the work and its terms, not AI infrastructure.
-const WHY_PAGES = new Set(['creators', 'audience', 'developers', 'organisations', 'answers', 'conformant', 'commitment', 'about', 'try']);
+const WHY_PAGES = new Set(['creators', 'audience', 'developers', 'organisations', 'faq', 'conformant', 'commitment', 'about', 'try']);
 const SECTION_PAGES = new Set(['start', 'docs', 'spec', 'tools', 'examples']);
 const LANGUAGES: Record<string, string> = {
   'readers/typescript': 'TypeScript', 'readers/dotnet': 'C#', 'readers/python': 'Python',
@@ -136,7 +136,7 @@ if (isHome) {
         : ['retrieval-augmented generation', 'AI grounding', 'knowledge packaging'],
     });
   }
-  if ((id === 'docs/faq' || id === 'answers') && entry.body) graph.push({ '@type': 'FAQPage', mainEntity: faq(entry.body) });
+  if ((id === 'docs/faq' || id === 'faq') && entry.body) graph.push({ '@type': 'FAQPage', mainEntity: faq(entry.body) });
   graph.push(website, project, publisher);
 }
 

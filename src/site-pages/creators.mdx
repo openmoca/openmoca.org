@@ -9,6 +9,7 @@ head:
     content: "For Creators: your work, your terms, wherever it goes | OpenMOCA"
 ---
 
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 import WorkTravels from '../../components/WorkTravels.astro';
 
 <div class="lead">
@@ -28,8 +29,8 @@ OpenMOCA keeps all of that with your work, so it goes wherever your work goes.
 
 More and more, people meet your work through an AI answer, not through your
 page. With OpenMOCA, an app that answers from your work can show where every
-part of the answer came from: your name, your episode or chapter, the exact
-passage or moment, one tap away.
+part of the answer came from: your name, your chapter, episode or lesson, the
+exact passage or moment, one tap away.
 
 Apps that make the [OpenMOCA Commitment](/commitment/) promise publicly to do
 exactly that: to name you, link back to you, and respect how you want your
@@ -45,7 +46,8 @@ place it came from.
 
 OpenMOCA names the publisher and the people who made the work, with their
 roles: author, host, narrator, editor, translator. A part can credit its own
-people too, such as the guest on one episode or the translator of one chapter.
+people too, such as a guest lecturer on one lesson of a course, or the
+translator of one chapter of a book.
 When an answer uses that part, the app can name them.
 
 How: [credits and dates](/docs/guides/credits-and-dates/).
@@ -112,8 +114,7 @@ How: [machine-made content](/docs/guides/machine-made/).
 - **Sealed**: encrypted, so only the people you choose can open it.
 - **As references**: entries that point to the original, without copying it.
 
-These are different ways to share. None of them makes copying impossible:
-anyone who can open your work can copy what they read.
+These are different ways to share. None of them makes copying impossible.
 
 How: [protected sources](/docs/guides/protected-sources/) and
 [encryption](/docs/guides/encryption/).
@@ -149,12 +150,16 @@ paper's sections, a guide's pages.
 
 ## Beside what you already use
 
-You may already tell AI crawlers what they may do, on your own website, with
+You may already tell AI crawlers what they may do on your own website, with
 the TDM Reservation Protocol, the IETF AI preferences vocabulary or RSL. Those
-stay on your site. OpenMOCA keeps your terms with the work itself, so they are
-still there when it is copied. Podcast feeds carry across too: a feed's
-explicit mark becomes the rating, and its "locked" setting says others may not
-repackage the show.
+stay on your site. OpenMOCA keeps your terms with the work itself, so they're
+still there when it's copied.
+
+The details you already keep carry across too, whatever you make. Credits
+line up with the standards websites, libraries and the book trade already use
+(schema.org, Dublin Core and ONIX). An open licence, such as Creative Commons,
+travels with the work. And a podcast feed brings its explicit mark as the
+rating, and its "locked" setting as "don't repackage".
 
 ## Labels, not locks
 
@@ -165,7 +170,9 @@ respect them.
 
 ## Next
 
-- [For the Audience](/audience/): what the people who listen, read, watch
-  and learn get.
-- [Short answers](/answers/) to common questions.
-- [For Developers](/developers/): for the people who build apps.
+<CardGrid>
+  <LinkCard title="Try it" description="Search real works in your browser and open each result at its source." href="https://try.openmoca.org" />
+  <LinkCard title="The creator's terms" description="What you can rule out, and how it travels with your work." href="/docs/guides/creators-terms/" />
+  <LinkCard title="For the Audience" description="What the people who listen, read, watch and learn get." href="/audience/" />
+  <LinkCard title="FAQs" description="Common questions, answered plainly." href="/faq/" />
+</CardGrid>

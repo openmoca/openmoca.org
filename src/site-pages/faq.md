@@ -1,22 +1,14 @@
 ---
-title: Short answers
-description: "Short answers about OpenMOCA: what it is, what a MOCA package is, how a creator's wishes travel, the OpenMOCA Commitment, checking where an answer came from, and machine-made content."
+title: FAQs
+description: "FAQs about OpenMOCA: what it is, what a MOCA package is, how a creator's wishes travel, the OpenMOCA Commitment, checking where an answer came from, and machine-made content."
 template: splash
 editUrl: false
 head:
   - tag: title
-    content: "OpenMOCA: short answers for creators and their audience | OpenMOCA"
+    content: "OpenMOCA FAQs: plain answers for creators and their audience | OpenMOCA"
 ---
 
-<div class="lead">
-
-Short, plain answers about OpenMOCA, for creators, their audience and anyone
-meeting it for the first time.
-
-</div>
-
-Technical questions, about AI search, MCP and the formats OpenMOCA builds on,
-are in the [technical FAQ](/docs/faq/).
+Technical questions are in the [technical FAQ](/docs/faq/).
 
 ## What is OpenMOCA?
 
@@ -118,6 +110,12 @@ whoever made them. OpenMOCA does not detect machine-made content
 
 No. OpenMOCA never changes the creator's original files. It carries the work,
 or points to the original, beside them.
+
+## How can I try OpenMOCA?
+
+Search real works in your browser, with no install and no account, at
+[Try OpenMOCA](https://try.openmoca.org). Other ways, such as opening a work
+in your own AI assistant, are on [Ways to try](/try/).
 
 ## Does OpenMOCA need AI?
 

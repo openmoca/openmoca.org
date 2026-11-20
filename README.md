@@ -25,8 +25,8 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
   or commits, never a branch.
 - The site's own pages are in `src/site-pages/`. The site has two zones, set in
   [`zones.json`](zones.json): the main site (home, creators, audience,
-  developers, organisations, answers, the Commitment and Conformant, about, try
-  it), full width with a top navigation bar (`src/components/Header.astro`),
+  developers, organisations, FAQs, the Commitment and Conformant, about, ways
+  to try), full width with a top navigation bar (`src/components/Header.astro`),
   and the docs, with the sidebar. Both share the theme, the head and one
   footer. Pages that moved are in `zones.json` too: the Worker answers them
   with a permanent redirect, and the build writes a redirect page for each.
@@ -34,7 +34,9 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
   the sync writes it into the site's own pages. [RELEASE-DAY.md](RELEASE-DAY.md)
   lists everything that changes on release day.
 - [Astro](https://astro.build) and [Starlight](https://starlight.astro.build)
-  build static files into `dist/`. The build fails on a broken internal link,
+  build static files into `dist/`. Then
+  [`scripts/external-links.mjs`](scripts/external-links.mjs) makes every link
+  to another site open in a new tab, and say so. The build fails on a broken internal link,
   on any link to or name of a private repository, and on anything loaded from
   another host.
 

@@ -6,7 +6,7 @@
     "audience",
     "developers",
     "organisations",
-    "answers",
+    "faq",
     "conformant",
     "commitment",
     "about",
@@ -33,8 +33,8 @@
       "href": "/organisations/"
     },
     {
-      "label": "Answers",
-      "href": "/answers/"
+      "label": "FAQs",
+      "href": "/faq/"
     },
     {
       "label": "About",
@@ -50,6 +50,7 @@
     "/start/ai-assistant/": "/docs/guides/ai-assistant/",
     "/try/ai-assistant/": "/docs/guides/ai-assistant/",
     "/talks/": "/about/#talks",
-    "/try/open-a-package/": "/docs/guides/open-a-package/"
+    "/try/open-a-package/": "/docs/guides/open-a-package/",
+    "/answers/": "/faq/"
   }
 }

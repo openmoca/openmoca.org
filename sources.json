@@ -614,6 +614,19 @@
     },
     {
       "repo": "moca-spec",
+      "path": "LICENSE",
+      "route": "project/licence",
+      "group": "Project",
+      "title": "Licence",
+      "label": "Licence",
+      "format": "text",
+      "append": [{ "path": "NOTICE", "heading": "Notice" }],
+      "outro": "## The licence that applies\n\nThis page is a copy for easy reading. The licence that applies is the LICENSE file in the OpenMOCA repository on GitHub. If the two ever differ, the GitHub file is the final and only licence.\n\n[The LICENSE file on GitHub](https://github.com/openmoca/moca-spec/blob/main/LICENSE)\n\nEach OpenMOCA repository carries its own LICENSE file.",
+      "description": "The licence for OpenMOCA: the Apache License, Version 2.0, as in the moca-spec repository's LICENSE and NOTICE files.",
+      "seoTitle": "OpenMOCA licence: Apache License 2.0"
+    },
+    {
+      "repo": "moca-spec",
       "path": "GOVERNANCE.md",
       "route": "project/governance",
       "group": "Project",

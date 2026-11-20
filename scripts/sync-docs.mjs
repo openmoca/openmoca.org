@@ -203,6 +203,15 @@ for (const page of sources.pages) {
     continue;
   }
   let body = files.read(page.path).replace(/\r\n/g, '\n');
+  // A plain-text file (format "text"), such as LICENSE: each block of lines becomes a paragraph, with Markdown's
+  // special characters escaped, and any `append` files after it under their own heading. The title comes from
+  // sources.json, and the page ends with its `outro`.
+  if (page.format === 'text') {
+    const toMarkdown = (text) => text.split(/\n\s*\n/).map((block) => block.split('\n').map((l) => l.trim()).join(' ').trim())
+      .filter(Boolean).map((p) => p.replace(/([\\`*_[\]<>#|])/g, '\\$1')).join('\n\n');
+    const appended = (page.append ?? []).map((a) => `## ${a.heading}\n\n${toMarkdown(files.read(a.path).replace(/\r\n/g, '\n'))}`);
+    body = [`# ${page.title}`, toMarkdown(body), ...appended].join('\n\n');
+  }
   const h1 = body.match(/^# (.+)$/m);
   if (!h1) {
     problems.push(`${page.repo}/${page.path}: no "# " heading to use as the title`);
@@ -226,6 +235,8 @@ for (const page of sources.pages) {
     '',
   ].join('\n');
   let text = unlinkHidden(rewriteLinks(body, page));
+  // The outro is added after links are rewritten: its link to the repository's own file must stay on GitHub.
+  if (page.outro) text = `${text.trimEnd()}\n\n${page.outro}\n`;
   const tabbed = TABS.test(text);
   if (tabbed) text = toTabs(text, page);
   // An example's "Try it" section is generated (below), so it reads the same on every example page; it needs MDX.
@@ -272,6 +283,28 @@ for (const rel of sitePageFiles(join(site, 'src', 'site-pages'))) {
     return RELEASE[name] ?? token;
   });
   if (done !== text) writeFileSync(file, done);
+}
+
+// About is on the main site (/about/) and in the docs' Project group (/project/about/), from one source. The docs copy
+// has the docs layout, says /about/ is the canonical page, and stays out of search and the sitemap
+// (astro.config.mjs), so search engines and people see one page.
+{
+  const about = readFileSync(join(out, 'about.md'), 'utf8');
+  const docsCopy = about
+    .replace(/^template: splash\n/m, '')
+    .replace(/^editUrl: false$/m, [
+      'editUrl: false',
+      'pagefind: false',
+      'sidebar:',
+      '  label: About',
+      'head:',
+      '  - tag: link',
+      '    attrs:',
+      '      rel: canonical',
+      '      href: https://openmoca.org/about/',
+    ].join('\n'));
+  mkdirSync(join(out, 'project'), { recursive: true });
+  writeFileSync(join(out, 'project', 'about.md'), docsCopy);
 }
 
 // The specification version the pages document, for the footer.

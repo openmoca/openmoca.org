@@ -6,7 +6,7 @@ import sources from '../../sources.json';
 import zones from '../../zones.json';
 
 // The main site's pages (zones.json), first: what OpenMOCA is for creators, the audience, developers and organisations.
-export const MAIN_PAGES = ['', 'creators', 'audience', 'developers', 'organisations', 'answers', 'conformant', 'commitment', 'about', 'try']
+export const MAIN_PAGES = ['', 'creators', 'audience', 'developers', 'organisations', 'faq', 'conformant', 'commitment', 'about', 'try']
   .filter((id) => zones.main.includes(id));
 
 export const SITE = 'https://openmoca.org';

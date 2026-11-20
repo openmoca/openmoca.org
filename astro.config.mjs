@@ -17,7 +17,7 @@ const sitePages = {
   Guides: ['start', 'docs/guides/open-a-package', 'docs/guides/ai-assistant'],
   Specification: ['spec', 'spec/app-types', 'spec/node-types'],
   Tools: ['tools'],
-  Project: ['releases'],
+  Project: ['project/about', 'releases'],
 };
 const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. A page not listed keeps its place after the
@@ -30,7 +30,7 @@ const ORDER = {
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
   Project: [
-    'releases', 'project/commitment', 'project/roadmap', 'project/governance', 'project/contributing', 'project/code-of-conduct',
+    'project/about', 'releases', 'project/commitment', 'project/roadmap', 'project/governance', 'project/licence', 'project/contributing', 'project/code-of-conduct',
     'project/security', 'project/changelog', 'project/migrations', 'project/releasing',
   ],
 };
@@ -58,7 +58,11 @@ export default defineConfig({
   redirects: Object.fromEntries(Object.entries(zones.moved).map(([from, to]) => [from.replace(/\/$/, ''), to])),
   integrations: [
     // The sitemap Starlight would add by itself, plus the talk slides: static pages in public/talks/ it cannot see.
-    sitemap({ customPages: ['https://openmoca.org/talks/introduction-to-openmoca/'] }),
+    sitemap({
+      customPages: ['https://openmoca.org/talks/introduction-to-openmoca/'],
+      // The docs' copy of About points at /about/ as its canonical page (scripts/sync-docs.mjs).
+      filter: (page) => page !== 'https://openmoca.org/project/about/',
+    }),
     // Mermaid diagrams in the docs, drawn in the browser from the bundled library, in the site's light or dark theme.
     // It must come before Starlight, so it takes the mermaid code blocks first.
     mermaid({ autoTheme: true, mermaidConfig: { fontFamily: 'Inter, system-ui, sans-serif' } }),

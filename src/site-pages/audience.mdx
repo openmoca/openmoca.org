@@ -9,6 +9,8 @@ head:
     content: "For the Audience: know who made it, and back them | OpenMOCA"
 ---
 
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
 <div class="lead">
 
 **You listen, read, watch and learn** from people who make things: podcasts,
@@ -28,7 +30,7 @@ to the original.
 
 When an app uses OpenMOCA, every answer shows where it came from: who made
 it, which work, and the exact passage or moment. One tap opens the original,
-so you can check it, and enjoy the rest.
+so you can check it, and enjoy it as the creator intended.
 
 Apps that make the [OpenMOCA Commitment](/commitment/) promise publicly to
 credit the people who made the work, to respect how they want it used, and to
@@ -42,8 +44,9 @@ back to the source.
 OpenMOCA keeps the names of everyone who made the work with it: the creator,
 the publisher and the people who helped, with what each of them did: the
 author, the host, the narrator, the editor, the translator. A part of a work
-can name its own people, such as the guest on one episode or the translator
-of one chapter. It also says when the work was first published.
+can name its own people, such as the guest in one video of a series, or the
+researcher who wrote one chapter of a report. It also says when the work was
+first published.
 
 You can also see who signed it, so you know who stands behind what it says.
 A link to the source shows where an answer came from, not that the source is
@@ -63,7 +66,7 @@ the text out of the app. So does how suitable the work is, and the creator's
 copyright line and a short note in their own words. An app that reads
 OpenMOCA can show you these, and keep them.
 
-## What apps that make the Commitment promise you
+## Look for apps that make the OpenMOCA Commitment
 
 The [OpenMOCA Commitment](/commitment/) is a company's signed, public promise
 about a named app and version. Among other things, it says:
@@ -93,7 +96,9 @@ the choice of app stays yours.
 
 ## Next
 
-- [Try it](/try/): search real works in your browser, and open each result at
-  its source.
-- [For Creators](/creators/): what creators can keep with their work.
-- [Short answers](/answers/) to common questions.
+<CardGrid>
+  <LinkCard title="Try it" description="Search real works in your browser and open each result at its source." href="https://try.openmoca.org" />
+  <LinkCard title="The OpenMOCA Commitment" description="What apps that make it promise you." href="/commitment/" />
+  <LinkCard title="For Creators" description="What creators can keep with their work." href="/creators/" />
+  <LinkCard title="FAQs" description="Common questions, answered plainly." href="/faq/" />
+</CardGrid>

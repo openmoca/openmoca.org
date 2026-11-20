@@ -15,6 +15,9 @@ place the release state touches.
   in TypeScript, .NET and Python. Check that all three pass every 0.7.0 case:
   the .NET and Python Readers were still being brought to 0.7.0 when this was
   written.
+- [ ] **The demo.** Before publishing, check try.openmoca.org shows 0.7.0, the
+  welcome panel and the tour (session E). Every "Try it" button on the home
+  page and the top bar goes straight there.
 - [ ] **The pins.** Every `MOCA_*_REF` in
   [`.github/workflows/build.yml`](.github/workflows/build.yml) becomes its
   `v0.7.0` tag (below).

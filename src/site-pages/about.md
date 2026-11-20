@@ -1,6 +1,6 @@
 ---
 title: About OpenMOCA
-description: "Knowledge that travels with its context. OpenMOCA in one line, 30 seconds and two minutes; who maintains it, how it is governed, talks, and how to take part. An open standard under Apache-2.0."
+description: "Knowledge that travels with its context. What OpenMOCA is, who maintains it, how it is governed, its status and talks, the pitch in one line, 30 seconds and two minutes, and how to take part. Apache-2.0."
 template: splash
 editUrl: false
 ---
@@ -14,12 +14,63 @@ implement it and build on it.
 
 </div>
 
-## OpenMOCA in one line
+## What the project is
+
+- **The specification**: the package format, the Reader contract and interface,
+  attestations, encrypted packages and sidecar indexes, with a conformance
+  corpus every Reader must pass.
+- **Three Readers**, in TypeScript, .NET and Python, that reach the same
+  conclusions about every package.
+- **Tools** to convert, check, sign and index packages, and an MCP server.
+- **This site** and its examples, and [Try OpenMOCA](https://try.openmoca.org),
+  a live demo.
+
+Everything is open source under Apache-2.0 and developed in the open on
+[GitHub](https://github.com/openmoca).
+
+## Who maintains it
+
+OpenMOCA is maintained by
+**[PI & Mash Solutions Ltd](https://piandmash.com)**, a company registered in England and
+Wales (number 17429224). PI & Mash holds the OpenMOCA trade mark on behalf of
+the project. The standard does not depend on any product: anyone can implement a
+Reader, and any Reader that passes the conformance corpus reads packages the
+same way.
+
+## How it is governed
+
+Today one maintainer has the final say, with decisions recorded as public
+decision records. The project plans to add co-maintainers and a lightweight
+proposal process as it grows, and to work towards a 1.0 standard once the
+format has settled and is used beyond its maintainer. See
+[governance](/project/governance/) and the [roadmap](/project/roadmap/).
+
+## Status
+
+@@release.status@@ See the [release notes](/releases/).
+
+## Talks
+
+### Introduction to OpenMOCA, autumn 2026
+
+Why knowledge for AI is often stuck in one system and hard to check, and how
+OpenMOCA keeps it portable and checkable. Two live demos:
+[Try OpenMOCA](https://try.openmoca.org) in the browser, and an AI assistant
+on your own computer. Then where it works today, and how to start with your
+own work.
+
+[Open the slides](/talks/introduction-to-openmoca/). Use the arrow keys, or
+tap the right or left of a slide. Press **S** for the speaker notes, **O** for
+every slide at once, and **F** for full screen.
+
+## The pitch
+
+### In one line
 
 OpenMOCA keeps the creator with their work (their credits, sources and terms)
 in any app, with or without AI.
 
-## In 30 seconds
+### In 30 seconds
 
 Apps now answer, summarise and chat using people's work, and the true creator
 is getting lost. OpenMOCA is an open standard that keeps them with the work:
@@ -28,7 +79,7 @@ Any app can read it, with or without AI. The audience can see who made
 something, open the original, and choose apps that respect the creator. It
 works for any kind of digital work, and it's free for anyone to use.
 
-## In two minutes
+### In two minutes
 
 Apps now answer, summarise and chat using people's work: a podcast, a book, a
 course, a piece of research. And the true creator is getting lost.
@@ -68,61 +119,6 @@ just in one product or platform.
 
 Our belief is simple: your work should keep its identity, its sources and its
 terms wherever it goes.
-
-## What the project is
-
-OpenMOCA builds on the
-[Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format),
-which shapes knowledge for AI. OpenMOCA is for the people who make and own
-that knowledge. With OpenMOCA, a work carries who made it, who owns it and how
-they want it shared, shown and used, with the sources it came from, sealed so that any change shows. A
-signature shows who said so, and no more.
-
-- **The specification**: the rules for keeping a work with its context, and
-  for the software that reads it, with public tests anyone can run ([the specification](/spec/)).
-- **Free libraries** that read it the same way, whatever the app.
-- **Tools** to prepare, check and sign a work, and a server that connects it
-  to AI assistants.
-- **This site**, and [Try OpenMOCA](https://try.openmoca.org), a live demo.
-
-Everything is open source under Apache-2.0 and made in the open on
-[GitHub](https://github.com/openmoca). For developers,
-[how OpenMOCA works](/docs/how-openmoca-works/) is the place to start.
-
-## Who maintains it
-
-OpenMOCA is maintained by
-**[PI & Mash Solutions Ltd](https://piandmash.com)**, a company registered in England and
-Wales (number 17429224). PI & Mash holds the OpenMOCA trade mark on behalf of
-the project. The standard does not depend on any product: anyone can build
-software that reads OpenMOCA, and any software that passes the public tests
-reads them the same way.
-
-## How it is governed
-
-Today one maintainer has the final say, with decisions recorded as public
-decision records. The project plans to add co-maintainers and a lightweight
-proposal process as it grows, and to work towards a 1.0 standard once the
-format has settled and is used beyond its maintainer. See
-[governance](/project/governance/) and the [roadmap](/project/roadmap/).
-
-## Status
-
-@@release.status@@ See the [release notes](/releases/).
-
-## Talks
-
-### Introduction to OpenMOCA, autumn 2026
-
-Why knowledge for AI is often stuck in one system and hard to check, and how
-OpenMOCA keeps it portable and checkable. Two live demos:
-[Try OpenMOCA](https://try.openmoca.org) in the browser, and an AI assistant
-on your own computer. Then where it works today, and how to start with your
-own work.
-
-[Open the slides](/talks/introduction-to-openmoca/). Use the arrow keys, or
-tap the right or left of a slide. Press **S** for the speaker notes, **O** for
-every slide at once, and **F** for full screen.
 
 ## Take part
 
