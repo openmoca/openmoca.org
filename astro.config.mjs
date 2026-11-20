@@ -14,7 +14,7 @@ const zones = JSON.parse(readFileSync(new URL('./zones.json', import.meta.url), 
 // The site's own pages in the docs' sidebar, by group. The main site's pages are never in the sidebar.
 const sitePages = {
   Learn: ['docs/how-openmoca-works'],
-  Guides: ['start'],
+  Guides: ['start', 'docs/guides/ai-assistant'],
   Specification: ['spec', 'spec/app-types', 'spec/node-types'],
   Tools: ['tools'],
   Project: ['releases'],
@@ -26,7 +26,7 @@ const ORDER = {
   // How OpenMOCA works first, then the documentation index and the rest of Learn as sources.json lists them.
   Learn: ['docs/how-openmoca-works', 'docs'],
   // Get started and the three Readers' guides first, then the guides.
-  Guides: ['start', 'start/typescript', 'start/dotnet', 'start/python'],
+  Guides: ['start', 'start/typescript', 'start/dotnet', 'start/python', 'docs/guides/ai-assistant'],
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
   Project: [
@@ -64,7 +64,7 @@ export default defineConfig({
     mermaid({ autoTheme: true, mermaidConfig: { fontFamily: 'Inter, system-ui, sans-serif' } }),
     starlight({
       title: 'OpenMOCA',
-      description: "Your work. Your terms. Wherever it goes. OpenMOCA is an open standard that keeps the creator with their work: their credits, sources and terms, in any app, with or without AI.",
+      description: 'Knowledge that travels with its context. The open standard for portable, attributable and trustworthy knowledge.',
       logo: {
         light: './src/assets/openmoca-logo-horizontal-ink.svg',
         dark: './src/assets/openmoca-logo-horizontal-cream.svg',
@@ -92,6 +92,7 @@ export default defineConfig({
         Head: './src/components/Head.astro',
         Footer: './src/components/Footer.astro',
         Header: './src/components/Header.astro',
+        PageTitle: './src/components/PageTitle.astro',
         SocialIcons: './src/components/SocialIcons.astro',
       },
       sidebar,

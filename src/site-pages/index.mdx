@@ -1,36 +1,44 @@
 ---
-title: Your work. Your terms. Wherever it goes.
-description: "Apps now answer, summarise and chat using people's work, and the true creator is getting lost. OpenMOCA is an open standard that keeps the creator with their work, in any app, with or without AI."
+title: Knowledge that travels with its context.
+description: The open standard for portable, attributable and trustworthy knowledge. OpenMOCA keeps the creator with their work (their credits, sources and terms) in any app, with or without AI.
 template: splash
 editUrl: false
 head:
   - tag: title
-    content: "OpenMOCA: your work, your terms, wherever it goes"
+    content: "OpenMOCA: knowledge that travels with its context"
 hero:
-  tagline: "Apps now answer, summarise and chat using people's work, and the true creator is getting lost. OpenMOCA is an open standard that keeps them with the work: their credits, their sources and their terms, in any app, with or without AI."
+  tagline: The open standard for portable, attributable and trustworthy knowledge.
   image:
     light: ../../assets/openmoca-logo-stacked-ink.svg
     dark: ../../assets/openmoca-logo-stacked-cream.svg
     alt: OpenMOCA
   actions:
-    - text: For creators
+    - text: For Creators
       link: /creators/
       icon: right-arrow
-    - text: For audiences
-      link: /audiences/
+    - text: For the Audience
+      link: /audience/
+      variant: secondary
+    - text: For Developers
+      link: /developers/
+      variant: secondary
+    - text: For Organisations
+      link: /organisations/
       variant: secondary
     - text: Try it
       link: /try/
-      variant: secondary
-    - text: For developers
-      link: /developers/
       variant: minimal
 ---
 
-import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 import WorkTravels from '../../components/WorkTravels.astro';
 
-## For creators: your work keeps its identity
+Apps now answer, summarise and chat using people's work, and the true creator
+is getting lost. OpenMOCA keeps them with the work: their credits, their
+sources and their terms, in any app, with or without AI.
+
+## For Creators
+
+<p class="section-strapline">Your work. Your terms. Wherever it goes.</p>
 
 When your work is copied into an app, important things often stay behind:
 your name, the people who helped you make it, its sources, and what you
@@ -45,9 +53,11 @@ Your terms travel as part of the package. Any app can read them, and apps
 that make the [OpenMOCA Commitment](/commitment/) promise publicly to honour
 them.
 
-[What OpenMOCA gives creators](/creators/)
+[More for Creators](/creators/)
 
-## For audiences: know who made it, and back them
+## For the Audience
+
+<p class="section-strapline">Know who made it, and back them.</p>
 
 The people who listen, read, watch and learn. Whatever app you use, the
 creator stays with the work:
@@ -61,7 +71,7 @@ creator stays with the work:
   has promised, publicly and in writing, to honour the creator's wishes and
   yours.
 
-[What OpenMOCA gives audiences](/audiences/)
+[More for the Audience](/audience/)
 
 ## With or without AI
 
@@ -168,18 +178,27 @@ YouTube, CC BY 3.0, in [Try OpenMOCA](https://try.openmoca.org).
 
 [Try it](/try/)
 
-## For developers and organisations
+## For Developers
+
+<p class="section-strapline">Build once. Read everywhere.</p>
 
 OpenMOCA is an open standard, published under Apache-2.0. Anyone can build an
 app, a Reader or a tool, with no permission needed. There are
-@@release.readers@@, and @@release.suite@@ anyone can run.
+@@release.readers@@, and @@release.suite@@ anyone can run. Package a work
+once, and every app that reads OpenMOCA reads it the same way.
 
-<CardGrid>
-  <LinkCard title="For developers" description="Portable grounding for AI: an open specification, Readers, tests and tools. Start in three steps." href="/developers/" />
-  <LinkCard title="For organisations" description="Knowledge you can check: provenance, versions, signed packages and terms that travel to any app." href="/organisations/" />
-  <LinkCard title="The documentation" description="How OpenMOCA works, guides, the specification, Readers and tools." href="/docs/" />
-  <LinkCard title="OpenMOCA Conformant" description="Software that passes the public test suite, listed by kind and standing." href="/conformant/" />
-</CardGrid>
+[More for Developers](/developers/) · [The documentation](/docs/) ·
+[OpenMOCA Conformant](/conformant/)
+
+## For Organisations
+
+<p class="section-strapline">Knowledge you can check, in any app.</p>
+
+Your policies, guides, courses and publications, with where they came from,
+which version they are, who signed them and on what terms, so anyone who reads
+them can check.
+
+[More for Organisations](/organisations/) · [Talk to us](/contact/)
 
 ## Status
 

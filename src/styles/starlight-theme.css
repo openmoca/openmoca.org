@@ -122,3 +122,12 @@ pre.mermaid svg marker :is(path, circle) {
 }
 /* Links stay teal in a tip, where the accent is ink like the text. */
 .starlight-aside--tip .starlight-aside__content a { color: var(--moca-link); }
+
+/* A strapline directly beneath a section heading on the home page, as on each audience page (PageTitle.astro). */
+.sl-markdown-content .section-strapline {
+  margin-top: 0.25rem;
+  font-size: var(--sl-text-xl);
+  line-height: var(--sl-line-height-headings);
+  font-weight: 500;
+  color: var(--moca-text-muted);
+}

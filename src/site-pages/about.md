@@ -1,13 +1,14 @@
 ---
 title: About OpenMOCA
-description: "OpenMOCA in one line, 30 seconds and two minutes; who maintains it, how it is governed, talks, and how to take part. An open standard under Apache-2.0."
+description: "Knowledge that travels with its context. OpenMOCA in one line, 30 seconds and two minutes; who maintains it, how it is governed, talks, and how to take part. An open standard under Apache-2.0."
 template: splash
 editUrl: false
 ---
 
-**OpenMOCA keeps the creator with their work, in any app, with or without
-AI.** It is an open standard: anyone can read it, implement it and build on
-it.
+**Knowledge that travels with its context.** OpenMOCA is the open standard
+for portable, attributable and trustworthy knowledge. It keeps the creator
+with their work, in any app, with or without AI. Anyone can read it,
+implement it and build on it.
 
 ## OpenMOCA in one line
 
@@ -19,7 +20,7 @@ in any app, with or without AI.
 Apps now answer, summarise and chat using people's work, and the true creator
 is getting lost. OpenMOCA is an open standard that keeps them with the work:
 their name, the people who helped, the sources, and what they've ruled out.
-Any app can read it, with or without AI. Audiences can see who made
+Any app can read it, with or without AI. The audience can see who made
 something, open the original, and choose apps that respect the creator. It
 works for any kind of digital work, and it's free for anyone to use.
 
@@ -32,7 +33,7 @@ The content may still be there, but important things go missing. The
 creator's name. The people who contributed. The original sources. And the
 creator's wishes about how the work may be used.
 
-Audiences have a problem too. They get an answer, a summary or a clip, but it
+The audience has a problem too. They get an answer, a summary or a clip, but it
 can be hard to see who made it, check the original or know what the creator
 asked.
 

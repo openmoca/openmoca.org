@@ -1,11 +1,12 @@
 ---
-title: Know who made it, and back them
-description: "For audiences, the people who listen, read, watch and learn: see who made a work, go to the source and the creator's own site, respect what the creator asked, and choose apps that do the same."
+title: For the Audience
+strapline: Know who made it, and back them.
+description: "For the Audience, the people who listen, read, watch and learn: see who made a work, go to the source and the creator's own site, respect what the creator asked, and choose apps that do the same."
 template: splash
 editUrl: false
 head:
   - tag: title
-    content: "For audiences: know who made it, and back them | OpenMOCA"
+    content: "For the Audience: know who made it, and back them | OpenMOCA"
 ---
 
 **For the people who listen, read, watch and learn.** A podcast, a book, a

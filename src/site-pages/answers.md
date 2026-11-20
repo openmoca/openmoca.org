@@ -14,7 +14,7 @@ Questions developers ask, about RAG, vector stores, OKF and MCP, are in the
 ## What is OpenMOCA?
 
 OpenMOCA is an open standard that keeps the creator with their work (their
-credits, sources and terms) in any app, with or without AI. Audiences can see
+credits, sources and terms) in any app, with or without AI. The audience can see
 who made something, open the original, and choose apps that respect the
 creator.
 
@@ -33,10 +33,11 @@ shared way to carry that.
 ## Who is OpenMOCA for?
 
 Creators who want their credits, sources and terms to travel with their work;
-audiences who want to know who made something and go to the source;
+the audience, who want to know who made something and go to the source;
 developers who make apps and tools that read it; and organisations whose
-knowledge needs to be checked ([developers](/developers/),
-[organisations](/organisations/)).
+knowledge needs to be checked ([Creators](/creators/),
+[Audience](/audience/), [Developers](/developers/),
+[Organisations](/organisations/)).
 
 ## What kinds of work can be in a MOCA package?
 

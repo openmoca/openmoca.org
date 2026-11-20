@@ -18,6 +18,8 @@ function plain(body: string) {
     .replace(/<\/?CardGrid[^>]*>\n?/g, '')
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${t.match(/title="([^"]*)"/)?.[1] ?? ''}](${t.match(/href="([^"]*)"/)?.[1] ?? ''}): ${t.match(/description="([^"]*)"/)?.[1] ?? ''}`)
     .replace(/<(PackageLayers|WorkTravels)\s*\/>\n?/g, '')
+    .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
+    .replace(/<p class="section-strapline">([^<]*)<\/p>/g, '**$1**')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }

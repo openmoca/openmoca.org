@@ -42,7 +42,7 @@ with the OpenMOCA Commitment.
   references that only point to the original
   ([protected sources](/docs/guides/protected-sources/)).
 
-### For audiences and apps
+### For the audience and apps
 
 - **Answers that say who decided.** When an app asks a Reader to apply terms,
   each answer records which level decided each term: the platform default,

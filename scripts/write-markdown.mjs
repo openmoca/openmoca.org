@@ -29,6 +29,8 @@ function plain(body) {
     .replace(/<\/?CardGrid[^>]*>\n?/g, '')
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${attr(t, 'title')}](${attr(t, 'href')}): ${attr(t, 'description')}`)
     .replace(/<Card\b[^>]*>([\s\S]*?)<\/Card>/g, (t, inner) => `**${attr(t, 'title')}.** ${inner.replace(/\s+/g, ' ').trim()}`)
+    .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
+    .replace(/<p class="section-strapline">([^<]*)<\/p>/g, '**$1**')
     .replace(/<WorkTravels\s*\/>/g, [
       'How a creator\'s work travels:',
       '',
@@ -52,8 +54,9 @@ function frontmatter(text) {
     return v.startsWith('"') ? JSON.parse(v) : v;
   };
   // The home page keeps its summary in the hero's tagline.
-  const tagline = m[1].match(/^ {2}tagline: (.*)$/m)?.[1]?.trim();
-  return { data: { title: field('title'), description: field('description'), tagline }, body: text.slice(m[0].length) };
+  const raw = m[1].match(/^ {2}tagline: (.*)$/m)?.[1]?.trim();
+  const tagline = raw?.startsWith('"') ? JSON.parse(raw) : raw;
+  return { data: { title: field('title'), strapline: field('strapline'), description: field('description'), tagline }, body: text.slice(m[0].length) };
 }
 
 let written = 0;
@@ -63,6 +66,8 @@ for (const file of walk(docs).filter((f) => /\.mdx?$/.test(f))) {
   const { data, body } = frontmatter(readFileSync(file, 'utf8'));
   const url = `${SITE}/${route ? `${route}/` : ''}`;
   const head = [`# ${data.title ?? 'OpenMOCA'}`, ''];
+  // An audience page's strapline sits directly beneath its title, as on the page.
+  if (data.strapline) head.push(`**${data.strapline}**`, '');
   if (data.tagline || data.description) head.push(`> ${data.tagline ?? data.description}`, '');
   head.push(`Source: ${url}`, '');
   const out = join(dist, route, 'index.md');

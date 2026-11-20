@@ -1,0 +1,20 @@
+---
+// Starlight's page title, with the page's strapline (frontmatter `strapline`) directly beneath it, when it has one.
+// The strapline is a paragraph, not a heading: the title stays the page's one H1.
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+
+const { strapline } = Astro.locals.starlightRoute.entry.data as { strapline?: string };
+---
+
+<Default />
+{strapline && <p class="strapline">{strapline}</p>}
+
+<style>
+	.strapline {
+		margin-top: 0.5rem;
+		font-size: var(--sl-text-2xl);
+		line-height: var(--sl-line-height-headings);
+		font-weight: 500;
+		color: var(--moca-text-muted);
+	}
+</style>

@@ -1,23 +1,55 @@
 {
   "$comment": "The site's two zones. The main site (these pages) has the top navigation and full-width pages; every other page is the docs, with the sidebar. moved: pages that moved, as permanent redirects (worker/index.js) and as redirect pages in the build (astro.config.mjs).",
   "main": [
-    "", "creators", "audiences", "developers", "organisations", "answers", "conformant", "commitment", "about",
-    "try", "try/open-a-package", "try/ai-assistant", "contact", "privacy", "404"
+    "",
+    "creators",
+    "audience",
+    "developers",
+    "organisations",
+    "answers",
+    "conformant",
+    "commitment",
+    "about",
+    "try",
+    "try/open-a-package",
+    "contact",
+    "privacy",
+    "404"
   ],
   "nav": [
-    { "label": "Creators", "href": "/creators/" },
-    { "label": "Audiences", "href": "/audiences/" },
-    { "label": "Developers", "href": "/developers/" },
-    { "label": "Organisations", "href": "/organisations/" },
-    { "label": "Answers", "href": "/answers/" },
-    { "label": "About", "href": "/about/" }
+    {
+      "label": "Creators",
+      "href": "/creators/"
+    },
+    {
+      "label": "Audience",
+      "href": "/audience/"
+    },
+    {
+      "label": "Developers",
+      "href": "/developers/"
+    },
+    {
+      "label": "Organisations",
+      "href": "/organisations/"
+    },
+    {
+      "label": "Answers",
+      "href": "/answers/"
+    },
+    {
+      "label": "About",
+      "href": "/about/"
+    }
   ],
   "moved": {
-    "/people/": "/audiences/",
+    "/people/": "/audience/",
+    "/audiences/": "/audience/",
     "/marks/": "/conformant/",
     "/how/": "/docs/how-openmoca-works/",
     "/start/open-a-package/": "/try/open-a-package/",
-    "/start/ai-assistant/": "/try/ai-assistant/",
+    "/start/ai-assistant/": "/docs/guides/ai-assistant/",
+    "/try/ai-assistant/": "/docs/guides/ai-assistant/",
     "/talks/": "/about/#talks"
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: Try it
-description: "Try OpenMOCA in your browser: search real packages and open each result at its source, with no install. Or open a .moca file in your own AI assistant, with one download."
+description: "Try OpenMOCA in your browser: search real packages and open each result at its source, with no install and no account."
 template: splash
 editUrl: false
 head:
@@ -8,11 +8,14 @@ head:
     content: "Try OpenMOCA: search real packages in your browser | OpenMOCA"
 ---
 
-import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { LinkButton } from '@astrojs/starlight/components';
+
+Search real packages in your browser, and open every result at the passage or
+the moment it came from.
+
+<LinkButton href="https://try.openmoca.org" icon="external">Open Try OpenMOCA</LinkButton>
 
 ![The Try OpenMOCA demo. A search for "how do I publish an agent to Teams" in a video series has found part 14 at 1:50. The video's transcript is open beside the results, with the passage that answers the question highlighted.](../../../assets/demo-citation-at-the-moment.webp)
-
-## In your browser
 
 [Try OpenMOCA](https://try.openmoca.org) runs the .NET Reader over eight real
 packages, each converted from a published source and signed. No install, and
@@ -48,13 +51,4 @@ What you can do there:
 The site is built and run by PI & Mash on the open Readers and tools; its own
 code is not part of OpenMOCA.
 
-[Open Try OpenMOCA](https://try.openmoca.org)
-
-## In your own AI assistant
-
-<CardGrid>
-  <LinkCard title="Got a .moca file?" description="Open it in Claude Desktop, Claude Code, VS Code or Cursor with one download, and get answers that cite their source." href="/try/open-a-package/" />
-  <LinkCard title="Use MOCA with your AI assistant" description="Add the openmoca agent skill to Claude, Copilot or Codex, and ask it to make, sign, search and cite packages." href="/try/ai-assistant/" />
-</CardGrid>
-
-Building something of your own? Start with the [developers' page](/developers/).
+[Use it with your AI assistant](/docs/guides/ai-assistant/).

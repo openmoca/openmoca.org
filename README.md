@@ -24,7 +24,7 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
   [`.github/workflows/build.yml`](.github/workflows/build.yml): release tags,
   or commits, never a branch.
 - The site's own pages are in `src/site-pages/`. The site has two zones, set in
-  [`zones.json`](zones.json): the main site (home, creators, audiences,
+  [`zones.json`](zones.json): the main site (home, creators, audience,
   developers, organisations, answers, the Commitment and Conformant, about, try
   it), full width with a top navigation bar (`src/components/Header.astro`),
   and the docs, with the sidebar. Both share the theme, the head and one
