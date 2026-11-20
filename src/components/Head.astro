@@ -20,6 +20,7 @@ if (!is404) route.head.push({ tag: 'link', attrs: { rel: 'alternate', type: 'tex
 route.head.push({ tag: 'meta', attrs: { name: 'is-agentic-site-type', content: 'content' }, content: '' });
 
 const TOPICS = [
+  "Creators' terms for AI use", 'Credits and attribution for creative work', 'Content provenance',
   'Retrieval-augmented generation (RAG)', 'AI grounding', 'Citations and provenance for AI answers', 'AI agents',
   'Model Context Protocol (MCP)', 'Ontology-guided retrieval', 'Sovereign and offline AI', 'Knowledge packaging',
 ];
@@ -57,7 +58,7 @@ const website = {
   '@id': `${SITE}/#website`,
   name: 'OpenMOCA',
   url: `${SITE}/`,
-  description: 'Portable grounding for AI: an open standard for packaging the knowledge AI answers from, with its structure and original sources.',
+  description: "An open standard that keeps a creator's credits, sources and terms with their work, wherever it goes, so any app can read them and people can check where answers came from. For builders: portable grounding for AI.",
   inLanguage: 'en',
   publisher: { '@id': `${SITE}/#openmoca` },
 };
@@ -66,6 +67,8 @@ const SECTIONS: Record<string, string> = {
   start: 'Get started', docs: 'Documentation', spec: 'Specification', readers: 'Readers', tools: 'Tools',
   examples: 'Examples', project: 'Project',
 };
+// The pages for creators and people are about the work and its terms, not AI infrastructure.
+const WHY_PAGES = new Set(['creators', 'people', 'answers', 'marks', 'commitment', 'about']);
 const SECTION_PAGES = new Set(['start', 'docs', 'spec', 'tools', 'examples']);
 const LANGUAGES: Record<string, string> = {
   'readers/typescript': 'TypeScript', 'readers/dotnet': 'C#', 'readers/python': 'Python',
@@ -128,10 +131,12 @@ if (isHome) {
       inLanguage: 'en',
       isPartOf: { '@id': `${SITE}/#website` },
       publisher: { '@id': `${SITE}/#openmoca` },
-      about: ['retrieval-augmented generation', 'AI grounding', 'knowledge packaging'],
+      about: WHY_PAGES.has(id)
+        ? ["creators' terms for AI use", 'credits and attribution', 'content provenance']
+        : ['retrieval-augmented generation', 'AI grounding', 'knowledge packaging'],
     });
   }
-  if (id === 'docs/faq' && entry.body) graph.push({ '@type': 'FAQPage', mainEntity: faq(entry.body) });
+  if ((id === 'docs/faq' || id === 'answers') && entry.body) graph.push({ '@type': 'FAQPage', mainEntity: faq(entry.body) });
   graph.push(website, project, publisher);
 }
 
@@ -139,4 +144,12 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 ---
 
 <Default />
+<!-- A code block that scrolls sideways can take keyboard focus, so it can be scrolled without a mouse (WCAG 2.1.1). -->
+<script is:inline>
+  addEventListener('DOMContentLoaded', () => {
+    for (const pre of document.querySelectorAll('.expressive-code pre')) {
+      if (pre.scrollWidth > pre.clientWidth && !pre.hasAttribute('tabindex')) pre.tabIndex = 0;
+    }
+  });
+</script>
 <script type="application/ld+json" set:html={jsonLd} />

@@ -29,6 +29,14 @@ function plain(body) {
     .replace(/<\/?CardGrid[^>]*>\n?/g, '')
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${attr(t, 'title')}](${attr(t, 'href')}): ${attr(t, 'description')}`)
     .replace(/<Card\b[^>]*>([\s\S]*?)<\/Card>/g, (t, inner) => `**${attr(t, 'title')}.** ${inner.replace(/\s+/g, ' ').trim()}`)
+    .replace(/<WorkTravels\s*\/>/g, [
+      'How a creator\'s work travels:',
+      '',
+      '1. **The creator** makes the work: a podcast, a book, a course, a video, research, a guide.',
+      '2. **The package** carries the work, its credits, its sources and the creator\'s terms, with a seal that shows any change and a signature that shows who signed it.',
+      '3. **Any app** reads the package with an open Reader, and applies the creator\'s terms when it asks.',
+      '4. **People** get answers that show where they came from, and open the original at the passage or the moment.',
+    ].join('\n'))
     .replace(/<McpDownload\s*\/>/g, '[Download moca-mcp](https://github.com/openmoca/moca-mcp-dotnet/releases/latest)')
     .replace(/<a class="moca-download-chip" href="([^"]+)"[^>]*>([^<]*)<\/a>/g, '[$2]($1)')
     .replace(/\n{3,}/g, '\n\n')

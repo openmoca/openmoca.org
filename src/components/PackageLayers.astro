@@ -85,7 +85,10 @@
   }
   .package-layers .layers .layer dt {
     font-weight: 600;
-    color: var(--layer);
+    /* The name in the text colour, for contrast; the layer's colour is the bar beside it. */
+    color: var(--moca-text);
+    border-left: 4px solid var(--layer);
+    padding-left: 0.5rem;
     font-size: var(--moca-text-lg);
     margin: 0;
   }

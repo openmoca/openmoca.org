@@ -1,6 +1,7 @@
 {
   "$comment": "Every page the site shows, and where it comes from. Pins (which commit of each repository) are in .github/workflows/build.yml (MOCA_*_REF).",
   "groups": [
+    "Why OpenMOCA",
     "Start",
     "Learn",
     "Guides",
@@ -584,7 +585,7 @@
       "repo": "moca-spec",
       "path": "COMMITMENT.md",
       "route": "commitment",
-      "group": "Project",
+      "group": "Why OpenMOCA",
       "label": "The OpenMOCA Commitment",
       "description": "The OpenMOCA Commitment: a company's signed, public promise that a named app and version honours creators' terms and people's own choices. What it means for people, and what a company commits to.",
       "seoTitle": "The OpenMOCA Commitment"

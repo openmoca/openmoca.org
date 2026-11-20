@@ -8,15 +8,19 @@ import sitemap from '@astrojs/sitemap';
 
 // One map for every page: sources.json. The sidebar follows its groups and order.
 const sources = JSON.parse(readFileSync(new URL('./sources.json', import.meta.url), 'utf8'));
-const sitePages = { Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec', 'spec/app-types', 'spec/node-types'], Tools: ['tools'], Project: ['about', 'releases', 'marks', 'talks', 'contact', 'privacy'] };
+const sitePages = { 'Why OpenMOCA': ['creators', 'people', 'answers', 'marks'], Learn: ['how'], Start: ['start', 'start/ai-assistant', 'start/open-a-package'], Specification: ['spec', 'spec/app-types', 'spec/node-types'], Tools: ['tools'], Project: ['about', 'releases', 'talks', 'contact', 'privacy'] };
 const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. Project: who we are, where it is going, how it
 // is run and how to take part, what changed and how to upgrade, then contact and privacy.
 const ORDER = {
+  // For creators, then people, then the answers, then the two marks and the Commitment's full text.
+  'Why OpenMOCA': ['creators', 'people', 'answers', 'marks', 'commitment'],
+  // How it works first, for builders and organisations: today's technical overview.
+  Learn: ['how', 'docs'],
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
   Project: [
-    'about', 'releases', 'marks', 'commitment', 'talks', 'project/roadmap', 'project/governance', 'project/contributing',
+    'about', 'releases', 'talks', 'project/roadmap', 'project/governance', 'project/contributing',
     'project/code-of-conduct', 'project/security', 'project/changelog', 'project/migrations', 'project/releasing',
     'contact', 'privacy',
   ],
@@ -45,7 +49,7 @@ export default defineConfig({
     mermaid({ autoTheme: true, mermaidConfig: { fontFamily: 'Inter, system-ui, sans-serif' } }),
     starlight({
       title: 'OpenMOCA',
-      description: 'Portable grounding for AI: an open standard for packaging knowledge with its structure and sources, and Readers that read it the same way everywhere.',
+      description: "Your work. Your terms. Wherever it goes. OpenMOCA is an open standard that keeps a creator's credits, sources and terms with their work, so any app can read them and people can check where answers came from.",
       logo: {
         light: './src/assets/openmoca-logo-horizontal-ink.svg',
         dark: './src/assets/openmoca-logo-horizontal-cream.svg',

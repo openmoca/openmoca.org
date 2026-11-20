@@ -11,7 +11,7 @@ Two public listings on openmoca.org help people see what a piece of software
 has shown, and what an app's makers have promised. They answer two different
 questions, for two different people.
 
-| | OpenMOCA Conformant | The OpenMOCA Commitment |
+| Question | OpenMOCA Conformant | The OpenMOCA Commitment |
 | --- | --- | --- |
 | **For** | Software: a Reader, a Producer (a tool that makes packages), a linter | Apps people use |
 | **Answers** | Does this software read, make or check packages exactly as the specification says? | Will this app honour what the creator asked, and what I asked? |
