@@ -12,11 +12,9 @@ import ConformantList from '../../../components/ConformantList.astro';
 
 **For software.** Anyone can build software that reads or makes MOCA packages
 (the files OpenMOCA keeps a work in, with its credits, sources and wishes),
-without asking. OpenMOCA Conformant is a public listing on openmoca.org of the
-software that passes the public OpenMOCA tests, so people choosing software
-can see what it has shown. It is part of the [OpenMOCA Directory](/directory/).
-For apps people use, there is a different listing:
-[the OpenMOCA Commitment](/directory/commitment/).
+without asking. OpenMOCA Conformant is a public listing of the software that
+passes the public OpenMOCA tests, so people choosing software can see what it
+has shown. It is part of the [OpenMOCA Directory](/directory/).
 
 ## What it means
 
@@ -26,21 +24,16 @@ what it does: **reads** packages, **makes** them, or **checks** them, and other
 kinds as tests are written for them. The claim names the kind of software and
 the version of the standard
 ([the exact wording](https://github.com/openmoca/moca-spec/blob/main/TRADEMARKS.md)).
-
 Each listing names the software, its version, the specification version and
-the suite it passed, and has one of three standings:
+the tests it passed.
+
+## The three standings
 
 | Standing | Means |
 | --- | --- |
-| **Official** | The project's own software, such as its libraries and tools |
+| **Official** | The project's own software, such as its Readers and tools |
 | **Verified** | The project has run the tests again on that version itself |
 | **Self-tested** | The maker ran the public tests and published a signed result |
-
-**How it is earned.** Run the tests yourself; they are
-[public](/spec/conformance/). There is no fee and no application. Publish the
-signed result and ask for it to be listed. A result covers one version: if a
-later version of the software fails the tests, the claim is updated or
-removed. A listing that fails when the tests are run again is removed.
 
 ## Software that is listed
 
@@ -53,34 +46,16 @@ result, and the tool that makes it, come after 0.7.0.
 to reuse under CC0), and its
 [schema](https://openmoca.org/directory/conformant.schema.json).
 
-Tests for software that makes or checks OpenMOCA come later; such software is
-listed once its tests exist. This directory will grow: to list your own
-software, run the tests and publish the signed result, then write to
-[hello@openmoca.org](mailto:hello@openmoca.org).
+## How to get listed
 
-## Conformant and the Commitment, side by side
+Run the tests yourself; they are [public](/spec/conformance/). There is no fee
+and no application form. Publish the signed result, then ask for it to be
+listed at [hello@openmoca.org](mailto:hello@openmoca.org). A result covers one
+version: if a later version of the software fails the tests, the claim is
+updated or removed. A listing that fails when the tests are run again is
+removed.
 
-| Question | OpenMOCA Conformant | The OpenMOCA Commitment |
-| --- | --- | --- |
-| **For** | Software that reads, makes or checks packages | Apps people use |
-| **Answers** | Does this software handle packages exactly as the standard says? | Will this app respect how the creator wants their work shared, shown and used, and my own choices? |
-| **Rests on** | Public tests anyone can run | The company's own signed promise |
-| **Who checks** | The maker runs the tests (Self-tested); the project runs them again (Verified) | Nobody tests it. OpenMOCA lists the promise, and anyone can hold the company to it |
-| **Covers** | One version of the software, one version of the standard | One named app and version |
+## Tests for software that makes or checks packages come later
 
-### Why two marks?
-
-Software can read a package correctly and still do something the creator
-ruled out with what it read. An app can promise to honour the creator's wishes
-while using software someone else built to read packages. So the two marks say
-different things:
-
-- **OpenMOCA Conformant** is a test result for software.
-- **The OpenMOCA Commitment** is a company's public promise about an app.
-
-Neither is a certification or an endorsement, and neither is a registered
-trade mark. Neither means content cannot be copied or misused, that a
-package's statements are true, or that whoever signed a package owns the work.
-
-How the OpenMOCA name may be used with both is in the
-[trade mark policy](https://github.com/openmoca/moca-spec/blob/main/TRADEMARKS.md).
+Today's tests are for software that reads OpenMOCA. Software that makes or
+checks packages is listed once tests for it exist.

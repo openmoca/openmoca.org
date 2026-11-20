@@ -113,8 +113,8 @@ or points to the original, beside them.
 
 ## How can I try OpenMOCA?
 
-Go to [Try OpenMOCA](https://try.openmoca.org). You can search real works in
-your browser, with no install and no account.
+Go to [the OpenMOCA demo (try.openmoca.org)](https://try.openmoca.org). You can search real
+works in your browser, with no install and no account.
 
 ## Does OpenMOCA need AI?
 

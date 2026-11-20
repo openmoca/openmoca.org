@@ -1,9 +1,9 @@
 ---
-// The footer, one per zone (zones.json). The docs keep Starlight's own above it (edit link, previous and next).
-// - The main site: the site's links; then the version, the licence and who maintains it; then the trade mark notice.
-// - The docs: one line (the version, About, Contact, Privacy, GitHub, the licence, who maintains it); then the notice.
-// The version comes from the release switch (release.json). One "maintained by" line, linked to the maintainer's site:
-// the standard stays vendor-independent. ™ until the UK application is registered, never ®.
+// One footer for every page, main site and docs: the version (from the release switch, release.json), About,
+// Contact, Privacy, Governance, GitHub, the licence (linked to the Licence page) and who maintains the project; then the
+// trade mark notice. The docs keep Starlight's own footer above it (edit link, previous and next); the main site's
+// pages are not a sequence, so they have none. One "maintained by" line, linked to the maintainer's site: the standard
+// stays vendor-independent. ™ until the UK application is registered, never ®.
 import Default from '@astrojs/starlight/components/Footer.astro';
 import release from '../../release.json';
 import { isMain as inMain } from '../zones';
@@ -12,56 +12,26 @@ const isMain = inMain(Astro.locals.starlightRoute.id);
 const version = release.released ? release.version : release.previous;
 ---
 
-{
-  // Starlight's own footer (edit link, previous and next) belongs to the docs; the main site's pages are not a
-  // sequence.
-  !isMain && <Default />
-}
-{
-  isMain ? (
-    <>
-      <nav class="openmoca-footer-links" aria-label="Footer">
-        <ul>
-          <li><a href="/directory/commitment/">The OpenMOCA Commitment</a></li>
-          <li><a href="/directory/conformant/">OpenMOCA Conformant</a></li>
-          <li><a href="/about/">About</a></li>
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/privacy/">Privacy</a></li>
-          <li><a href="/project/licence/">Licence</a></li>
-          <li><a href="/project/governance/">Governance</a></li>
-          <li><a href="https://github.com/openmoca">GitHub</a></li>
-        </ul>
-      </nav>
-      <p class="openmoca-footer">
-        Documents OpenMOCA {version} · Apache-2.0 · Maintained by <a href="https://piandmash.com">PI &amp; Mash</a>
-        <br />
-        OpenMOCA™ is a trade mark of PI &amp; Mash Solutions Ltd. The Apache License covers the code and text,
-        not the name.
-      </p>
-    </>
-  ) : (
-    <p class="openmoca-footer docs">
-      Documents OpenMOCA {version} · <a href="/about/">About</a> · <a href="/contact/">Contact</a> ·{' '}
-      <a href="/privacy/">Privacy</a> · <a href="https://github.com/openmoca">GitHub</a> · Apache-2.0 · Maintained
-      by <a href="https://piandmash.com">PI &amp; Mash</a>
-      <br />
-      OpenMOCA™ is a trade mark of PI &amp; Mash Solutions Ltd. The Apache License covers the code and text,
-      not the name.
-    </p>
-  )
-}
+{!isMain && <Default />}
+<p class="openmoca-footer">
+  Documents OpenMOCA {version} · <a href="/about/">About</a> · <a href="/contact/">Contact</a> ·{' '}
+  <a href="/privacy/">Privacy</a> · <a href="/project/governance/">Governance</a> ·{' '}
+  <a href="https://github.com/openmoca">GitHub</a> · <a href="/project/licence/">Apache-2.0</a> · Maintained
+  by <a href="https://piandmash.com">PI &amp; Mash</a>
+  <br />
+  OpenMOCA™ is a trade mark of PI &amp; Mash Solutions Ltd. The Apache License covers the code and text,
+  not the name.
+</p>
 
 <style>
 	.openmoca-footer {
 		margin-top: 1.5rem;
 		line-height: 1.7;
+		border-top: 1px solid var(--sl-color-hairline);
+		padding-top: 1rem;
 		font-size: var(--sl-text-xs);
 		color: var(--sl-color-gray-3);
 	}
-	.openmoca-footer a, .openmoca-footer-links a { color: var(--moca-link); }
-	.openmoca-footer.docs { border-top: 1px solid var(--sl-color-hairline); padding-top: 1rem; }
-	.openmoca-footer-links { margin-top: 1.5rem; border-top: 1px solid var(--sl-color-hairline); padding-top: 1rem; }
-	.openmoca-footer-links ul { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; list-style: none; padding: 0; margin: 0; font-size: var(--sl-text-sm); }
-	.openmoca-footer-links li { margin: 0; }
+	.openmoca-footer a { color: var(--moca-link); }
 	.openmoca-footer a:hover { color: var(--moca-link-hover); }
 </style>

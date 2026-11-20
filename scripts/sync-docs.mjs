@@ -377,7 +377,7 @@ if (commitmentSource) {
     '',
     '## Apps that have made the Commitment',
     '',
-    'PI & Mash maintains OpenMOCA, and is listed here under the same rules as anyone else. This directory will grow.',
+    'PI & Mash maintains OpenMOCA, and is listed here under the same rules as anyone else.',
     '',
     '<CommitmentList />',
     '',

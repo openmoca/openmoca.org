@@ -23,8 +23,15 @@ const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. A page not listed keeps its place after the
 // listed ones. Project: where it is going, how it is run and how to take part, what changed and how to upgrade.
 const ORDER = {
-  // How OpenMOCA works first, then the documentation index and the rest of Learn as sources.json lists them.
-  Learn: ['docs/how-openmoca-works', 'docs'],
+  // How OpenMOCA works first, then Why MOCA, then the rest of Learn as sources.json lists them. The documentation
+  // index (/docs/) is the docs' home, reached from the header's Docs, not an item here.
+  Learn: ['docs/how-openmoca-works', 'docs/why-moca'],
+  // The overview, the documents in the order the overview's table lists them, then the lists of app and node types.
+  Specification: [
+    'spec', 'spec/package', 'spec/reader-contract', 'spec/reader-interface', 'spec/attestations', 'spec/encrypted-package',
+    'spec/sidecar-index', 'spec/ag-ui-citations', 'spec/profiles', 'spec/profiles/ontology', 'spec/conformance',
+    'spec/versioning', 'spec/app-types', 'spec/node-types',
+  ],
   // Get started and the three Readers' guides first, then the guides.
   Guides: ['start', 'start/typescript', 'start/dotnet', 'start/python', 'docs/guides/open-a-package', 'docs/guides/ai-assistant'],
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
@@ -49,11 +56,7 @@ const sidebar = sources.groups
       // The site's own pages, once they exist (src/site-pages/, copied in by the sync).
       ...(sitePages[group] ?? []).filter((slug) => ['.md', '.mdx'].some((ext) => existsSync(new URL(`./src/content/docs/${slug}${ext}`, import.meta.url)) || existsSync(new URL(`./src/content/docs/${slug}/index${ext}`, import.meta.url)))),
       ...sources.pages.filter((p) => p.group === group).map((p) => p.route),
-    ]).map((slug) => ({ slug }))
-      // The Directory (the OpenMOCA Commitment and OpenMOCA Conformant) is on the main site; Learn links to it once.
-      .flatMap((item) => (item.slug === 'docs/how-openmoca-works'
-        ? [item, { label: 'The Directory: Commitment and Conformant', link: '/directory/' }]
-        : [item])),
+    ]).filter((slug) => slug !== 'docs').map((slug) => ({ slug })),
   }))
   .filter((g) => g.items.length > 0);
 
@@ -103,6 +106,7 @@ export default defineConfig({
         Footer: './src/components/Footer.astro',
         Header: './src/components/Header.astro',
         PageTitle: './src/components/PageTitle.astro',
+        Sidebar: './src/components/Sidebar.astro',
         SocialIcons: './src/components/SocialIcons.astro',
       },
       sidebar,

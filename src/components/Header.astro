@@ -1,12 +1,14 @@
 ---
-// The site's header, for both zones (zones.json).
+// One header for every page, main site and docs (zones.json), so the two cannot drift apart: the logo, the main
+// links (Creators, Audience, Developers, Organisations, Directory, FAQs), Try it and Docs, and the theme switch. The
+// current section is marked (aria-current); in the docs, Docs is. The docs add the search box.
 //
-// - The main site (home, creators, audience, developers, organisations, answers, about...): the logo, a top
-//   navigation bar and the theme switch. On a narrow screen the links fold into a menu button: it says whether the
-//   menu is open (aria-expanded), Escape closes it and returns focus to the button, and Tab moves through the links.
-// - The docs: Starlight's own header (logo, search, links, theme), with a link back to the main site
-//   (SocialIcons.astro).
-import Default from '@astrojs/starlight/components/Header.astro';
+// Narrow screens get one menu button. On the main site, the header's own button opens the main links: it says whether
+// the menu is open (aria-expanded), Escape closes it and returns focus to the button, Tab moves through the links. In
+// the docs, Starlight's own menu button (with its focus handling and Escape) opens one menu: the main links first
+// (Sidebar.astro), then the docs' sidebar. Between the two widths (the docs' sidebar shown, the main links folded),
+// the docs use the header's button for the main links.
+import Search from '@astrojs/starlight/components/Search.astro';
 import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
 import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 import zones from '../../zones.json';
@@ -15,44 +17,44 @@ import { isMain as inMain, pageId } from '../zones';
 const id = pageId(Astro.locals.starlightRoute.id);
 const isMain = inMain(id);
 const here = `/${id}${id ? '/' : ''}`;
-const current = (href: string) => (here === href || (href !== '/' && here.startsWith(href)) ? 'page' : undefined);
+// The page itself is "page"; a page inside the section is "true".
+const current = (href: string) => (here === href ? 'page' : href !== '/' && here.startsWith(href) ? 'true' : undefined);
 ---
 
-{
-  isMain ? (
-    <div class="main-header">
-      <div class="brand">
-        <SiteTitle />
-      </div>
-      <nav class="main-nav" aria-label="Main">
-        <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav-links">
-          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M4 7h16M4 12h16M4 17h16" />
-          </svg>
-          <span>Menu</span>
-        </button>
-        <ul id="main-nav-links" class="links">
-          {zones.nav.map((item) => (
-            <li>
-              <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
-            </li>
-          ))}
-          <li class="pill-item">
-            <a class="pill" href="https://try.openmoca.org">Try it</a>
-          </li>
-          <li class="pill-item">
-            <a class="pill solid" href="/docs/">Docs <span aria-hidden="true">→</span></a>
-          </li>
-        </ul>
-      </nav>
-      <div class="theme">
-        <ThemeSelect />
-      </div>
+<div class:list={['site-header', isMain ? 'zone-main' : 'zone-docs']}>
+  <div class="brand">
+    <SiteTitle />
+  </div>
+  <nav class="main-nav" aria-label="Site">
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav-links">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+      <span>Menu</span>
+    </button>
+    <ul id="main-nav-links" class="links">
+      {zones.nav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
+        </li>
+      ))}
+      <li class="pill-item">
+        <a class="pill" href="https://try.openmoca.org">Try it</a>
+      </li>
+      <li class="pill-item">
+        <a class="pill solid" href="/docs/" aria-current={isMain ? undefined : here === '/docs/' ? 'page' : 'true'}>Docs</a>
+      </li>
+    </ul>
+  </nav>
+  {!isMain && (
+    <div class="search">
+      <Search />
     </div>
-  ) : (
-    <Default />
-  )
-}
+  )}
+  <div class="theme">
+    <ThemeSelect />
+  </div>
+</div>
 
 <script>
   // The menu button, on narrow screens. Without JavaScript the links stay visible (see the CSS: .js-menu).
@@ -83,14 +85,15 @@ const current = (href: string) => (here === href || (href !== '/' && here.starts
 </script>
 
 <style>
-  .main-header {
+  .site-header {
     display: flex;
     align-items: center;
     gap: 1rem;
     height: 100%;
-    max-width: var(--moca-content-max, 1200px);
-    margin: 0 auto;
   }
+  /* The main site is centred like its pages; the docs run the full width, like their sidebar and content. */
+  .zone-main { max-width: var(--moca-content-max, 1200px); margin: 0 auto; }
+  .search { flex: 0 1 14rem; min-width: 0; }
   .brand { flex: 0 0 auto; min-width: 0; }
   .main-nav { flex: 1 1 auto; display: flex; justify-content: flex-end; }
   .theme { flex: 0 0 auto; }
@@ -113,7 +116,7 @@ const current = (href: string) => (here === href || (href !== '/' && here.starts
     white-space: nowrap;
   }
   .links a:hover { background: var(--sl-color-gray-6); }
-  .links a[aria-current='page'] { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 2px; }
+  .links a[aria-current] { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 2px; }
   .links .pill {
     border: 1px solid var(--sl-color-text-accent);
     color: var(--sl-color-text-accent);
@@ -164,5 +167,11 @@ const current = (href: string) => (here === href || (href !== '/' && here.starts
   }
   @media (max-width: 30rem) {
     .menu-button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  }
+  /* In the docs on a phone, Starlight's menu button opens one menu: the main links, then the docs' sidebar
+     (Sidebar.astro), with the theme switch at its foot. So the header keeps only the logo and the search. */
+  @media (max-width: 49.99rem) {
+    .zone-docs .main-nav, .zone-docs .theme { display: none; }
+    .zone-docs .search { flex: 0 0 auto; margin-inline-start: auto; }
   }
 </style>

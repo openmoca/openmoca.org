@@ -8,28 +8,57 @@
   "publisher": {
     "name": "The OpenMOCA project",
     "url": "https://openmoca.org",
-    "maintainer": { "name": "PI & Mash Solutions Ltd", "url": "https://piandmash.com" }
+    "maintainer": {
+      "name": "PI & Mash Solutions Ltd",
+      "url": "https://piandmash.com"
+    }
   },
   "specVersion": "0.7",
   "license": "CC0-1.0",
   "entries": [
     {
-      "id": "try-openmoca",
-      "app": { "name": "Try OpenMOCA", "url": "https://try.openmoca.org", "kind": "web app (the OpenMOCA demo)" },
-      "company": { "name": "PI & Mash Solutions Ltd", "url": "https://piandmash.com" },
+      "id": "openmoca-demo",
+      "app": {
+        "name": "The OpenMOCA demo (try.openmoca.org)",
+        "url": "https://try.openmoca.org",
+        "kind": "web app"
+      },
+      "company": {
+        "name": "PI & Mash Solutions Ltd",
+        "url": "https://piandmash.com"
+      },
       "version": "0.7.0",
       "date": "2026-11-20T00:00:00Z",
       "modelsAndDestinations": [
-        { "use": "search", "model": "bge-small-en-v1.5", "destination": "host" },
-        { "use": "search", "model": "nomic-embed-text-v1.5", "destination": "host" },
-        { "use": "answers, with an invitation or approved access", "provider": "Anthropic", "destination": "provider" },
-        { "use": "answers, with your own API key", "provider": "the provider you choose", "destination": "provider" }
+        {
+          "use": "search",
+          "model": "bge-small-en-v1.5",
+          "destination": "host"
+        },
+        {
+          "use": "search",
+          "model": "nomic-embed-text-v1.5",
+          "destination": "host"
+        },
+        {
+          "use": "answers, with an invitation or approved access",
+          "provider": "Anthropic",
+          "destination": "provider"
+        },
+        {
+          "use": "answers, with your own API key",
+          "provider": "the provider you choose",
+          "destination": "provider"
+        }
       ],
       "setupsCovered": [
         "Every set-up: search, answers through the demo's own access, and answers with your own API key."
       ],
       "contact": "mailto:hello@openmoca.org",
-      "statement": { "signed": false, "toFollow": true },
+      "statement": {
+        "signed": false,
+        "toFollow": true
+      },
       "commitmentVersion": "0.7"
     }
   ]

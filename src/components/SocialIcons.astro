@@ -1,35 +1,7 @@
 ---
-// The docs' header links: back to the main site, Try it, then Starlight's GitHub icon. The same component sits in the
-// phone menu, so the links are there too. (The main site has its own header: Header.astro.)
+// Starlight's social links (the GitHub icon), at the foot of the docs' phone menu. The main links are in the shared
+// header (Header.astro) and, on a phone, at the top of that menu (Sidebar.astro).
 import Default from '@astrojs/starlight/components/SocialIcons.astro';
 ---
 
-<a class="openmoca-main" href="/"><span aria-hidden="true">←</span> Main site</a>
-<a class="openmoca-try" href="https://try.openmoca.org">Try it</a>
 <Default />
-
-<style>
-	.openmoca-main {
-		font-size: var(--sl-text-sm);
-		font-weight: 500;
-		color: var(--sl-color-white);
-		text-decoration: none;
-		white-space: nowrap;
-	}
-	.openmoca-main:hover { text-decoration: underline; }
-	.openmoca-try {
-		font-size: var(--sl-text-sm);
-		font-weight: 600;
-		color: var(--sl-color-text-accent);
-		text-decoration: none;
-		white-space: nowrap;
-		padding: 0.25em 0.75em;
-		border: 1px solid var(--sl-color-text-accent);
-		border-radius: 999px;
-		margin-inline-end: 0.5rem;
-	}
-	.openmoca-try:hover {
-		color: var(--sl-color-black);
-		background: var(--sl-color-text-accent);
-	}
-</style>

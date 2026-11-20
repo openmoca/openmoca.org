@@ -20,8 +20,8 @@ offline. See [why MOCA](/docs/why-moca/) for the problem it solves.
 - **Three Readers**, in TypeScript, .NET and Python, that reach the same
   conclusions about every package.
 - **Tools** to convert, check, sign and index packages, and an MCP server.
-- **This site** and its examples, and [Try OpenMOCA](https://try.openmoca.org),
-  a live demo.
+- **This site** and its examples, and
+  [the OpenMOCA demo (try.openmoca.org)](https://try.openmoca.org).
 
 Everything is open source under Apache-2.0 and developed in the open on
 [GitHub](https://github.com/openmoca).

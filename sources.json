@@ -157,7 +157,7 @@
       "path": "docs/faq.md",
       "route": "docs/faq",
       "group": "Learn",
-      "label": "FAQ",
+      "label": "Technical FAQ",
       "description": "Short answers about OpenMOCA: what MOCA stands for, whether it is a vector database, how it relates to RAG, hallucinations, OKF and MCP, and sovereign AI.",
       "seoTitle": "OpenMOCA FAQ: RAG, vector stores, OKF, MCP"
     },
@@ -222,6 +222,7 @@
       "repo": "moca-spec",
       "path": "docs/guides/protected-sources.md",
       "route": "docs/guides/protected-sources",
+      "label": "Protected sources",
       "group": "Guides",
       "description": "Package protected sources sealed, in an encrypted package for the people you choose, or as reference nodes that only point to the original. When to use each.",
       "seoTitle": "Protected sources: sealed packages and reference nodes"
@@ -278,6 +279,7 @@
       "repo": "moca-spec",
       "path": "spec/moca-package-spec.md",
       "route": "spec/package",
+      "label": "Package specification",
       "group": "Specification",
       "description": "The MOCA Package Specification: manifest, OKF content, evidence, locales, trust fields, structure, members, relations, digest, profiles and capabilities."
     },
@@ -285,6 +287,7 @@
       "repo": "moca-spec",
       "path": "spec/moca-reader-contract.md",
       "route": "spec/reader-contract",
+      "label": "Reader contract",
       "group": "Specification",
       "description": "The MOCA Reader Contract: what every conforming Reader must do, from reading and verifying to citation records, retrieval policy, search and structure."
     },
@@ -292,6 +295,7 @@
       "repo": "moca-spec",
       "path": "spec/moca-reader-interface.md",
       "route": "spec/reader-interface",
+      "label": "Reader interface",
       "group": "Specification",
       "description": "The MOCA Reader Interface: the operations every Reader offers, named for each language, including search, structure, embedders and retrieval hooks."
     },
@@ -299,6 +303,7 @@
       "repo": "moca-spec",
       "path": "spec/moca-attestations.md",
       "route": "spec/attestations",
+      "label": "Attestations",
       "group": "Specification",
       "description": "MOCA Attestations: package and review attestations, DSSE with Ed25519 keys and Sigstore, trust roots, and verification outcomes."
     },
@@ -306,6 +311,7 @@
       "repo": "moca-spec",
       "path": "spec/moca-encrypted-package.md",
       "route": "spec/encrypted-package",
+      "label": "Encrypted packages",
       "group": "Specification",
       "description": "MOCA encrypted packages: a signed package in an age v1 envelope, the readable outline and its check, key providers, limits, and what encryption does not do."
     },
@@ -313,6 +319,7 @@
       "repo": "moca-spec",
       "path": "spec/moca-sidecar-index-spec.md",
       "route": "spec/sidecar-index",
+      "label": "Sidecar index",
       "group": "Specification",
       "description": "The MOCA Sidecar Index Specification: portable lexical and vector indexes for a package, bound to its digest, with exact offsets for citation."
     },
@@ -321,7 +328,7 @@
       "path": "spec/moca-ag-ui-citations.md",
       "route": "spec/ag-ui-citations",
       "group": "Specification",
-      "label": "MOCA citations over AG-UI",
+      "label": "Citations over AG-UI",
       "description": "MOCA citations over AG-UI: one custom event that carries the citation records an agent's answer cites to any AG-UI user interface. 0.7.0.",
       "seoTitle": "Citations over AG-UI: showing sources in agent UIs"
     },
@@ -329,6 +336,7 @@
       "repo": "moca-spec",
       "path": "profiles/README.md",
       "route": "spec/profiles",
+      "label": "Profiles",
       "group": "Specification",
       "description": "MOCA profiles: named, versioned extensions to the package format, how they work, and the registry of known profiles."
     },
@@ -336,6 +344,7 @@
       "repo": "moca-spec",
       "path": "profiles/ontology/moca-ontology-profile.md",
       "route": "spec/profiles/ontology",
+      "label": "Ontology profile",
       "group": "Specification",
       "description": "The MOCA Ontology profile: extra vocabulary files, such as OWL and SHACL, that a package carries and Readers pass through."
     },
@@ -343,6 +352,7 @@
       "repo": "moca-spec",
       "path": "conformance/README.md",
       "route": "spec/conformance",
+      "label": "Conformance",
       "group": "Specification",
       "description": "The MOCA conformance corpus: test cases with pinned results that every Reader, in any language, must pass to read packages the same way.",
       "seoTitle": "Conformance corpus for MOCA Readers"
@@ -351,6 +361,7 @@
       "repo": "moca-spec",
       "path": "docs/versioning-and-release.md",
       "route": "spec/versioning",
+      "label": "Versioning and release",
       "group": "Specification",
       "description": "How OpenMOCA versions the specification, the Readers and the tools, what each version number promises, and the path to 1.0."
     },

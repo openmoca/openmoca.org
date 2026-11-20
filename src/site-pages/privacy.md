@@ -26,9 +26,9 @@ keep the conversation only as long as it is useful. Questions, issues and
 discussions on GitHub are public and are covered by
 [GitHub's privacy statement](https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement).
 
-## Try OpenMOCA
+## The OpenMOCA demo
 
-[try.openmoca.org](https://try.openmoca.org) is a separate site with its own
+[The OpenMOCA demo (try.openmoca.org)](https://try.openmoca.org) is a separate site with its own
 sign-in, and its own [privacy notice](https://try.openmoca.org/privacy).
 
 ## Who is responsible
