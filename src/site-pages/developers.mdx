@@ -1,0 +1,119 @@
+---
+title: Build once. Read everywhere.
+strapline: For Developers
+description: "For Developers: build once, read everywhere. Portable grounding for AI: one open format with credits, sources and the creator's wishes inside, open Readers in TypeScript, .NET and Python, an MCP server, and public conformance tests."
+template: splash
+editUrl: false
+head:
+  - tag: title
+    content: "For Developers: Build once. Read everywhere. | OpenMOCA"
+  - tag: meta
+    attrs:
+      property: og:title
+      content: "For Developers: Build once. Read everywhere."
+  - tag: meta
+    attrs:
+      name: twitter:title
+      content: "For Developers: Build once. Read everywhere."
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import PackageLayers from '../../components/PackageLayers.astro';
+
+<div class="lead">
+
+**You build the apps people use** to listen, read, learn and ask: players,
+readers, search, learning platforms and AI assistants.
+
+Every source arrives in a different shape. Credits, sources, versions and the
+creator's wishes come separately, if at all, and once your app summarises or
+answers, it's hard to show where anything came from, or which version it came
+from.
+
+OpenMOCA gives you one open format for any kind of work, with the credits,
+sources and wishes already inside, and open tools to read it.
+
+</div>
+
+## Answers with their sources, built in
+
+Open a work with one of the open Readers (TypeScript, .NET or Python) and
+search it. Every result comes back with who made it and the exact passage or
+moment it came from, ready to show as a citation. No AI is needed; add your
+own model if you want one, or use it from any MCP-capable AI assistant.
+
+The creator's wishes come ready to use. Before you send anything to a model,
+ask the Reader to apply them for that destination: it leaves out what isn't
+allowed, and every result says which level decided.
+
+And because the format and its tests are public, you can check your app reads
+it the same way as everyone else's. Run the conformance tests yourself, and
+earn the [OpenMOCA Conformant](/directory/conformant/) mark.
+
+## What you get
+
+- **An open specification**: the package format, the Reader contract and
+  interface, attestations, encrypted packages and sidecar indexes, under
+  Apache-2.0 ([the specification](/spec/)).
+- **Readers**, @@release.readers@@, in-process, that open, verify, search
+  and cite a package and reach the same conclusions about every one
+  ([get started](/start/)).
+- **Tools** to convert, check, sign and index packages
+  ([tools](/tools/)).
+- **An MCP server**, so any AI assistant that speaks MCP can open, search and
+  cite a work: [moca-mcp](https://github.com/openmoca/moca-mcp-dotnet), one
+  download with nothing else to install ([the MCP server](/tools/mcp/)).
+- **Public conformance tests**: @@release.suite@@, each a package, options
+  and the conclusions every Reader must reach
+  ([conformance](/spec/conformance/)).
+- **The Directory as data**: the apps that have made the OpenMOCA Commitment
+  and the software listed as OpenMOCA Conformant, as JSON files with JSON
+  Schemas, free to reuse under CC0
+  ([commitment.json](https://openmoca.org/directory/commitment.json),
+  [conformant.json](https://openmoca.org/directory/conformant.json)).
+
+## A package, in three layers
+
+A MOCA package wraps an
+[Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
+bundle, a folder of Markdown with YAML frontmatter, in a signed manifest. Build
+with what each layer gives you: content to search and cite, structure to
+narrow and order results, evidence to check every quote against the original,
+and the trust that runs through all three.
+
+<PackageLayers />
+
+## Start in three steps
+
+1. **Install a Reader**: `npm install @openmoca/moca-core`,
+   `dotnet add package OpenMoca.Reader` or `pip install moca-reader`
+   ([get started](/start/)).
+2. **Open, verify and search a package**, and cite what you find with the
+   citation record each result comes back as
+   ([consuming packages](/docs/guides/consuming/)). Before you hand content to
+   a model, make a terms request
+   ([showing terms honestly](/docs/guides/showing-terms/)).
+3. **Run the conformance corpus** against your Reader, or make a package of
+   your own and check it ([quickstart](/docs/quickstart/)).
+
+To try a package without writing code, [open a package yourself](/docs/guides/open-a-package/)
+in Claude, VS Code or Cursor, or [use it with your AI assistant](/docs/guides/ai-assistant/)
+through the openmoca agent skill.
+
+## Beside what you already use
+
+Creators may already tell AI crawlers what they may do, on their own websites:
+with the TDM Reservation Protocol, the IETF AI preferences vocabulary or RSL.
+Those statements stay on the website. A package keeps the same terms with the
+work itself, so they are still there when it is copied. Producers may publish
+the same terms in both places, and read them in only to make terms stricter
+([the creator's terms](/docs/guides/creators-terms/#beside-what-you-already-use)).
+
+## Read the docs
+
+<CardGrid>
+  <LinkCard title="How OpenMOCA works" description="The package, the Reader and your app; search and its trust gate; how it fits a RAG stack." href="/docs/how-openmoca-works/" />
+  <LinkCard title="Get started" description="Install a Reader in TypeScript, .NET or Python, open a signed example and cite it, in about ten minutes." href="/start/" />
+  <LinkCard title="The MCP server" description="Search and cite packages from Claude, VS Code, Cursor or any MCP client, with one download." href="/tools/mcp/" />
+  <LinkCard title="The specification" description="The package format, the Reader contract and interface, attestations and the conformance corpus." href="/spec/" />
+</CardGrid>

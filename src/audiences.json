@@ -1,0 +1,26 @@
+[
+  {
+    "name": "For Creators",
+    "href": "/creators/",
+    "title": "Your work. Your terms. Wherever it goes.",
+    "line": "Keep your name, your sources and your wishes with your work, in any app that reads OpenMOCA."
+  },
+  {
+    "name": "For the Audience",
+    "href": "/audience/",
+    "title": "Know who made it, and back them.",
+    "line": "See who made what you read, watch and hear, and go to the original."
+  },
+  {
+    "name": "For Developers",
+    "href": "/developers/",
+    "title": "Build once. Read everywhere.",
+    "line": "A free, open standard, with libraries, tools and public tests."
+  },
+  {
+    "name": "For Organisations",
+    "href": "/organisations/",
+    "title": "Knowledge you can check, in any app.",
+    "line": "Your guides, policies and courses, with where they came from and who signed them."
+  }
+]

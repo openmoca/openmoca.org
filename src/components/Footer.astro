@@ -1,24 +1,45 @@
 ---
-// Starlight's footer, with the version these pages document, how to get in touch, and who maintains the project.
-// One "maintained by" line, linked to the maintainer's site: the standard stays vendor-independent.
-// The trade mark notice says who holds the name; ™ until the UK application is registered, never ®.
+// One footer for every page, main site and docs, in three lines: the version (from the release switch, release.json),
+// About, Contact, Privacy, Governance, GitHub and the licence (linked to the Licence page); the trade mark notice; who
+// maintains the project, linked to the maintainer's site (the standard stays vendor-independent). ™ until the UK
+// application is registered, never ®. The docs keep Starlight's previous and next links above it; the main site's
+// pages are not a sequence, so they have none. No page has an "Edit page" link.
 import Default from '@astrojs/starlight/components/Footer.astro';
-import generated from '../generated.json';
+import release from '../../release.json';
+import { isMain as inMain } from '../zones';
+
+const isMain = inMain(Astro.locals.starlightRoute.id);
+const version = release.released ? release.version : release.previous;
 ---
 
-<Default />
-<p class="openmoca-footer">
-	Documents OpenMOCA {generated.specVersion} · <a href="/about/">About</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy</a> · <a href="https://github.com/openmoca">GitHub</a> · Apache-2.0 · Maintained by <a href="https://piandmash.com">PI &amp; Mash</a>
-	<br />
-	OpenMOCA™ is a trade mark of PI &amp; Mash Solutions Ltd. The Apache License covers the code and text,
-	not the name.
-</p>
+{!isMain && <Default />}
+<div class="openmoca-footer">
+  <p class="links">
+    <span>Documents OpenMOCA {version}</span> · <a href="/about/">About</a> · <a href="/contact/">Contact</a> ·{' '}
+    <a href="/privacy/">Privacy</a> · <a href="/project/governance/">Governance</a> ·{' '}
+    <a href="https://github.com/openmoca">GitHub</a> · <a href="/project/licence/">Apache-2.0</a>
+  </p>
+  <p class="mark"><span>OpenMOCA™ is a trade mark of PI &amp; Mash Solutions Ltd.</span>{' '}<span>The Apache License covers the code and text, not the name.</span></p>
+  <p>Maintained by <a href="https://piandmash.com">PI &amp; Mash</a></p>
+</div>
 
 <style>
 	.openmoca-footer {
 		margin-top: 1.5rem;
+		border-top: 1px solid var(--sl-color-hairline);
+		padding-top: 1rem;
 		font-size: var(--sl-text-xs);
+		line-height: 1.7;
 		color: var(--sl-color-gray-3);
+	}
+	.openmoca-footer p { margin: 0; }
+	.openmoca-footer p + p { margin-top: 0.35rem; }
+	/* When the first line wraps, it wraps between links, never inside one. */
+	.openmoca-footer .links a, .openmoca-footer .links span { white-space: nowrap; }
+	/* Where the trade mark line is too long for the column (the docs' narrower one), it breaks between its two
+	   sentences. On a phone it wraps as normal text. */
+	@media (min-width: 30rem) {
+		.openmoca-footer .mark span { display: inline-block; }
 	}
 	.openmoca-footer a { color: var(--moca-link); }
 	.openmoca-footer a:hover { color: var(--moca-link-hover); }

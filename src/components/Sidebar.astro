@@ -1,0 +1,32 @@
+---
+// The docs' sidebar, with the main links above it on a phone: there, Starlight's menu button opens this one menu,
+// the main links first, then the docs. On wider screens the main links are in the header, so they are hidden here.
+import Default from '@astrojs/starlight/components/Sidebar.astro';
+import zones from '../../zones.json';
+---
+
+<nav class="sidebar-main-links md:sl-hidden" aria-label="Site">
+  <ul>
+    {zones.nav.map((item) => (
+      <li><a href={item.href}>{item.label}</a></li>
+    ))}
+    <li><a href="https://try.openmoca.org">Try it</a></li>
+    <li><a href="/docs/" aria-current="true">Docs</a></li>
+  </ul>
+</nav>
+<Default />
+
+<style>
+  .sidebar-main-links { border-bottom: 1px solid var(--sl-color-hairline-shade); margin-bottom: 1rem; padding-bottom: 0.75rem; }
+  .sidebar-main-links ul { list-style: none; margin: 0; padding: 0; }
+  .sidebar-main-links li { margin: 0; }
+  .sidebar-main-links a {
+    display: block;
+    padding: 0.5rem 0;
+    color: var(--sl-color-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--sl-text-base);
+  }
+  .sidebar-main-links a[aria-current] { color: var(--sl-color-text-accent); }
+</style>

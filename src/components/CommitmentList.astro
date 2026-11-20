@@ -1,0 +1,86 @@
+---
+// The apps that have made the OpenMOCA Commitment, from src/directory/commitment.json (published at
+// /directory/commitment.json). The full list is plain HTML, so it shows without JavaScript and search engines see
+// it. A search box, shown only when JavaScript runs, filters by app name, company or kind as you type, and says how
+// many apps match in a polite live region.
+import data from '../directory/commitment.json';
+
+// status: "made" (signed and listed) or "pending" (statement published, signature to follow). The search box is
+// offered on the list of apps that have made the Commitment, when it has entries.
+interface Props { status: 'made' | 'pending'; search?: boolean }
+const { status, search = false } = Astro.props;
+const entries = data.entries.filter((e) => e.status === status);
+
+const date = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<div class="commitment-list not-content">
+  {entries.length === 0 && <p class="empty">{status === 'made' ? 'No app has made the Commitment yet.' : 'None at the moment.'}</p>}
+  {search && entries.length > 0 && <div class="search" hidden>
+    <label for="commitment-search">Search the list by app, company or kind</label>
+    <input id="commitment-search" type="search" autocomplete="off" />
+    <p class="count" role="status" aria-live="polite"></p>
+  </div>}
+  {entries.length > 0 && <ul class="entries">
+    {entries.map((e) => (
+      <li data-search={`${e.app.name} ${e.company.name} ${e.app.kind}`.toLowerCase()}>
+        <h3><a href={`/directory/commitment/${e.id}/`}>{e.app.name}</a></h3>
+        <p>
+          {e.company.name} · {e.app.kind} · version {e.version} · listed {date(e.date)}
+        </p>
+      </li>
+    ))}
+  </ul>}
+  {search && entries.length > 0 && <p class="none" hidden>No app in the list matches that search.</p>}
+</div>
+
+<script>
+  for (const list of document.querySelectorAll<HTMLElement>('.commitment-list')) {
+    const search = list.querySelector<HTMLElement>('.search');
+    const input = list.querySelector<HTMLInputElement>('input');
+    const count = list.querySelector<HTMLElement>('.count');
+    const none = list.querySelector<HTMLElement>('.none');
+    const items = [...list.querySelectorAll<HTMLElement>('.entries li')];
+    if (!search || !input || !count || !none) continue;
+    search.hidden = false;
+    input.addEventListener('input', () => {
+      const words = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      for (const item of items) {
+        const match = words.every((w) => (item.dataset.search ?? '').includes(w));
+        item.hidden = !match;
+        if (match) shown++;
+      }
+      none.hidden = shown > 0;
+      count.textContent = words.length ? `${shown} of ${items.length} ${items.length === 1 ? 'app' : 'apps'} match.` : '';
+    });
+  }
+</script>
+
+<style>
+  .commitment-list { margin-top: 1rem; }
+  .empty { margin: 0; font-style: italic; color: var(--moca-text-muted); }
+  .search label { display: block; font-weight: 600; margin-bottom: 0.35rem; }
+  .search input {
+    width: 100%;
+    max-width: 28rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--moca-line);
+    border-radius: var(--moca-radius-sm);
+    background: var(--moca-surface);
+    color: var(--moca-text);
+    font: inherit;
+  }
+  .search .count { margin: 0.5rem 0 0; font-size: var(--sl-text-sm); color: var(--moca-text-muted); min-height: 1.4em; }
+  .entries { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.75rem; }
+  .entries li {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--moca-line);
+    border-radius: var(--moca-radius-md);
+    background: var(--moca-surface);
+  }
+  .entries li[hidden] { display: none; }
+  .entries h3 { margin: 0 0 0.25rem; font-size: var(--sl-text-lg); }
+  .entries p { margin: 0; font-size: var(--sl-text-sm); color: var(--moca-text); }
+</style>

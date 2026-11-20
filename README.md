@@ -23,9 +23,25 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
 - The pins are the `MOCA_*_REF` values at the top of
   [`.github/workflows/build.yml`](.github/workflows/build.yml): release tags,
   or commits, never a branch.
-- The site's own pages (the landing page) are in `src/site-pages/`.
+- The site's own pages are in `src/site-pages/`. The site has two zones, set in
+  [`zones.json`](zones.json): the main site (home, creators, audience,
+  developers, organisations, FAQs, the Commitment and Conformant, about, ways
+  to try), full width with a top navigation bar (`src/components/Header.astro`),
+  and the docs, with the sidebar. Both share the theme, the head and one
+  footer. Pages that moved are in `zones.json` too: the Worker answers them
+  with a permanent redirect, and the build writes a redirect page for each.
+- The Directory's two lists, the OpenMOCA Commitment and OpenMOCA Conformant,
+  are data: `src/directory/commitment.json` and `conformant.json`, each with a
+  JSON Schema beside it. The sync checks them (an invalid entry stops the
+  build), publishes them at `/directory/<name>.json`, and the pages are built
+  from them.
+- The release state is one setting, `released` in [`release.json`](release.json):
+  the sync writes it into the site's own pages. [RELEASE-DAY.md](RELEASE-DAY.md)
+  lists everything that changes on release day.
 - [Astro](https://astro.build) and [Starlight](https://starlight.astro.build)
-  build static files into `dist/`. The build fails on a broken internal link,
+  build static files into `dist/`. Then
+  [`scripts/external-links.mjs`](scripts/external-links.mjs) makes every link
+  to another site open in a new tab, and say so. The build fails on a broken internal link,
   on any link to or name of a private repository, and on anything loaded from
   another host.
 
@@ -69,6 +85,10 @@ npm run deploy   # builds from the pinned commits, then uploads dist/
 
 Until the repositories are public, deploys run from a maintainer's machine; a
 GitHub Actions deploy job follows at release.
+
+## How it is made
+
+Built with the help of AI assistants; every change is reviewed and accepted by the maintainer.
 
 ## Licence
 

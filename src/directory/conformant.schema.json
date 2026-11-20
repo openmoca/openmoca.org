@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openmoca.org/directory/conformant.schema.json",
+  "title": "OpenMOCA Conformant: the list of software that passes the OpenMOCA tests",
+  "description": "The data behind https://openmoca.org/directory/conformant/. Booleans for yes or no; a field that is not set is absent; dates are RFC 3339 date-times with an offset.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "title", "description", "version", "released", "updated", "publisher", "specVersion", "license", "entries"],
+  "properties": {
+    "$schema": { "const": "https://openmoca.org/directory/conformant.schema.json" },
+    "title": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$", "description": "This list's own version, raised on every change." },
+    "released": { "$ref": "#/$defs/dateTime" },
+    "updated": { "$ref": "#/$defs/dateTime" },
+    "publisher": { "$ref": "#/$defs/publisher" },
+    "specVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "license": { "const": "CC0-1.0", "description": "The licence of this data: anyone may reuse it." },
+    "entries": { "type": "array", "items": { "$ref": "#/$defs/entry" } }
+  },
+  "$defs": {
+    "dateTime": { "type": "string", "format": "date-time", "pattern": "(Z|[+-][0-9]{2}:[0-9]{2})$" },
+    "url": { "type": "string", "format": "uri", "pattern": "^https:" },
+    "publisher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url", "maintainer"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "url": { "$ref": "#/$defs/url" },
+        "maintainer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "url"],
+          "properties": { "name": { "type": "string", "minLength": 1 }, "url": { "$ref": "#/$defs/url" } }
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "kind", "standing", "language", "version", "specVersion", "suite", "testRun", "signedRecord", "date", "repository"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "package": { "type": "string", "minLength": 1, "description": "The name it is installed by, such as an npm, NuGet or PyPI package." },
+        "kind": { "enum": ["reader", "producer", "linter"] },
+        "standing": { "enum": ["official", "verified", "self-tested"] },
+        "language": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "specVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+        "suite": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "version", "cases", "passed"],
+          "properties": {
+            "name": { "type": "string", "minLength": 1 },
+            "version": { "type": "string", "minLength": 1 },
+            "cases": { "type": "integer", "minimum": 1 },
+            "passed": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "testRun": { "$ref": "#/$defs/url" },
+        "signedRecord": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "url": { "$ref": "#/$defs/url" },
+            "toFollow": { "const": true }
+          },
+          "minProperties": 1
+        },
+        "date": { "$ref": "#/$defs/dateTime" },
+        "repository": { "$ref": "#/$defs/url" }
+      }
+    }
+  }
+}

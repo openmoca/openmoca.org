@@ -122,3 +122,63 @@ pre.mermaid svg marker :is(path, circle) {
 }
 /* Links stay teal in a tip, where the accent is ink like the text. */
 .starlight-aside--tip .starlight-aside__content a { color: var(--moca-link); }
+
+/* A strapline directly beneath a section heading on the home page, as on each audience page (PageTitle.astro). */
+.sl-markdown-content .section-strapline {
+  margin-top: 0.25rem;
+  font-size: var(--sl-text-xl);
+  line-height: var(--sl-line-height-headings);
+  font-weight: 500;
+  color: var(--moca-text-muted);
+}
+
+/* The home page's hero: less space above and below than Starlight's default
+   (clamp(2.5rem, 1rem + 10vmin, 10rem)). Only the home page has a hero. */
+:root[data-has-hero] .hero {
+  padding-block: clamp(2rem, 1rem + 5vmin, 6rem);
+}
+
+/* The lead: a main-site page's opening, before its first heading, wrapped in <div class="lead">. The full width of
+   the page's other sections, on a soft panel (the theme's raised surface and a hairline border, no icon or accent
+   bar, so it reads as an introduction, not a note), a little larger, in full-strength text colour. */
+.sl-markdown-content .lead {
+  background: var(--moca-surface-raised);
+  border: 1px solid var(--moca-line);
+  border-radius: var(--moca-radius-md);
+  padding: 1.25rem 1.5rem;
+}
+.sl-markdown-content .lead > :first-child {
+  margin-top: 0;
+}
+.sl-markdown-content .lead p {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--sl-color-white);
+}
+@media (min-width: 72rem) {
+  .sl-markdown-content .lead p {
+    font-size: 1.375rem;
+  }
+}
+
+/* External links (scripts/external-links.mjs): a small "opens in a new tab" icon, and the same words for screen
+   readers, visually hidden. */
+.ext-icon {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-inline-start: 0.2em;
+  vertical-align: baseline;
+}
+.ext-sr {
+  /* Kept in place (not absolutely positioned), so inside a table that scrolls sideways it cannot widen the page. */
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

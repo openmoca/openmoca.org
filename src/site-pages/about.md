@@ -1,13 +1,14 @@
 ---
 title: About OpenMOCA
 description: What OpenMOCA is, who maintains it, how it is governed, and how to take part. An open standard for portable grounding for AI, under Apache-2.0.
+template: splash
 editUrl: false
 ---
 
 **OpenMOCA is an open standard for portable grounding for AI.** MOCA stands for
 Modular Ontology, Content & Attestation. A MOCA package carries the knowledge an
 AI system answers from, how it is organised, and the original sources it came
-from, sealed by one digest and optionally signed. Open Readers in TypeScript,
+from, with one digest that checks it for changes, and optionally signed. Open Readers in TypeScript,
 .NET and Python read, verify, search and cite it the same way, on a server or
 offline. See [why MOCA](/docs/why-moca/) for the problem it solves.
 
@@ -19,8 +20,8 @@ offline. See [why MOCA](/docs/why-moca/) for the problem it solves.
 - **Three Readers**, in TypeScript, .NET and Python, that reach the same
   conclusions about every package.
 - **Tools** to convert, check, sign and index packages, and an MCP server.
-- **This site** and its examples, and [Try OpenMOCA](https://try.openmoca.org),
-  a live demo.
+- **This site** and its examples, and
+  [the OpenMOCA demo (try.openmoca.org)](https://try.openmoca.org).
 
 Everything is open source under Apache-2.0 and developed in the open on
 [GitHub](https://github.com/openmoca).
@@ -29,8 +30,8 @@ Everything is open source under Apache-2.0 and developed in the open on
 
 OpenMOCA is maintained by
 **[PI & Mash Solutions Ltd](https://piandmash.com)**, a company registered in England and
-Wales (number 17429224). PI & Mash holds the OpenMOCA trade mark on behalf of
-the project. The standard does not depend on any product: anyone can implement a
+Wales (number 17429224). On behalf of the project, PI & Mash has applied to
+register the name OpenMOCA as a trade mark (UK application UK00004468246). The standard does not depend on any product: anyone can implement a
 Reader, and any Reader that passes the conformance corpus reads packages the
 same way.
 

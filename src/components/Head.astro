@@ -3,6 +3,7 @@
 // page is: the site and the project on the home page, an article for each docs page, software for each Reader and
 // tool, and the questions and answers on the FAQ. Everything is built here at build time; nothing loads from elsewhere.
 import Default from '@astrojs/starlight/components/Head.astro';
+import sources from '../../sources.json';
 
 const SITE = 'https://openmoca.org';
 const route = Astro.locals.starlightRoute;
@@ -20,6 +21,7 @@ if (!is404) route.head.push({ tag: 'link', attrs: { rel: 'alternate', type: 'tex
 route.head.push({ tag: 'meta', attrs: { name: 'is-agentic-site-type', content: 'content' }, content: '' });
 
 const TOPICS = [
+  "Creators' terms for AI use", 'Credits and attribution for creative work', 'Content provenance',
   'Retrieval-augmented generation (RAG)', 'AI grounding', 'Citations and provenance for AI answers', 'AI agents',
   'Model Context Protocol (MCP)', 'Ontology-guided retrieval', 'Sovereign and offline AI', 'Knowledge packaging',
 ];
@@ -57,7 +59,7 @@ const website = {
   '@id': `${SITE}/#website`,
   name: 'OpenMOCA',
   url: `${SITE}/`,
-  description: 'Portable grounding for AI: an open standard for packaging the knowledge AI answers from, with its structure and original sources.',
+  description: 'Knowledge that travels with its context. The open standard for portable, attributable and trustworthy knowledge.',
   inLanguage: 'en',
   publisher: { '@id': `${SITE}/#openmoca` },
 };
@@ -66,6 +68,8 @@ const SECTIONS: Record<string, string> = {
   start: 'Get started', docs: 'Documentation', spec: 'Specification', readers: 'Readers', tools: 'Tools',
   examples: 'Examples', project: 'Project',
 };
+// The pages for creators and people are about the work and its terms, not AI infrastructure.
+const WHY_PAGES = new Set(['creators', 'audience', 'developers', 'organisations', 'faq', 'directory', 'directory/commitment', 'directory/conformant', 'about']);
 const SECTION_PAGES = new Set(['start', 'docs', 'spec', 'tools', 'examples']);
 const LANGUAGES: Record<string, string> = {
   'readers/typescript': 'TypeScript', 'readers/dotnet': 'C#', 'readers/python': 'Python',
@@ -107,7 +111,9 @@ if (isHome) {
       { '@type': 'ListItem', position: section ? 3 : 2, name: data.title, item: url },
     ],
   });
-  const repo = typeof data.editUrl === 'string' ? data.editUrl.match(/^https:\/\/github\.com\/[^/]+\/[^/]+/)?.[0] : undefined;
+  // A synced page's repository, from sources.json (pages carry no edit link).
+  const source = sources.pages.find((p) => p.route === id);
+  const repo = source ? `https://github.com/openmoca/${source.repo}` : undefined;
   if (id.startsWith('readers/') || id.startsWith('tools/')) {
     graph.push({
       '@type': 'SoftwareSourceCode',
@@ -128,10 +134,12 @@ if (isHome) {
       inLanguage: 'en',
       isPartOf: { '@id': `${SITE}/#website` },
       publisher: { '@id': `${SITE}/#openmoca` },
-      about: ['retrieval-augmented generation', 'AI grounding', 'knowledge packaging'],
+      about: WHY_PAGES.has(id)
+        ? ["creators' terms for AI use", 'credits and attribution', 'content provenance']
+        : ['retrieval-augmented generation', 'AI grounding', 'knowledge packaging'],
     });
   }
-  if (id === 'docs/faq' && entry.body) graph.push({ '@type': 'FAQPage', mainEntity: faq(entry.body) });
+  if ((id === 'docs/faq' || id === 'faq') && entry.body) graph.push({ '@type': 'FAQPage', mainEntity: faq(entry.body) });
   graph.push(website, project, publisher);
 }
 
@@ -139,4 +147,15 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 ---
 
 <Default />
+<!-- A code block or diagram that scrolls sideways can take keyboard focus, so it can be scrolled without a mouse
+     (WCAG 2.1.1). Diagrams are drawn after load, so they are checked again once the page has loaded. -->
+<script is:inline>
+  const focusScrollers = () => {
+    for (const pre of document.querySelectorAll('.expressive-code pre, .mermaid')) {
+      if (pre.scrollWidth > pre.clientWidth && !pre.hasAttribute('tabindex')) pre.tabIndex = 0;
+    }
+  };
+  addEventListener('DOMContentLoaded', focusScrollers);
+  addEventListener('load', () => setTimeout(focusScrollers, 500));
+</script>
 <script type="application/ld+json" set:html={jsonLd} />

@@ -12,7 +12,7 @@ Portable grounding for AI. Why knowledge for AI is often locked in one
 pipeline and hard to check, and how OpenMOCA packages the knowledge, not the
 pipeline: what a package is, what a Reader gives you, where search runs, and
 the citation record behind every answer. Two live demos:
-[Try OpenMOCA](https://try.openmoca.org) in the browser, and your own
+[the OpenMOCA demo (try.openmoca.org)](https://try.openmoca.org) in the browser, and your own
 assistant over MCP in Claude Desktop. Then where it works today, and how to
 make your own package.
 
