@@ -1,6 +1,6 @@
 ---
-title: For the Audience
-strapline: Know who made it, and back them.
+title: Know who made it, and back them.
+strapline: Supporting the Creators You Love
 description: "For the Audience, the people who listen, read, watch and learn: see who made a work, go to the source and the creator's own site, respect what the creator asked, and choose apps that do the same."
 template: splash
 editUrl: false
@@ -9,11 +9,10 @@ head:
     content: "For the Audience: know who made it, and back them | OpenMOCA"
 ---
 
-**For the people who listen, read, watch and learn.** A podcast, a book, a
-course or a video is somebody's work. When it turns up in an app, in a
-player, a reader, a search or an AI answer, the person who made it should
-still be there with it. OpenMOCA keeps them there, so you can see who they
-are and back them.
+**You listen, read, watch and learn.** A podcast, a book, a course or a video
+is somebody's work. When it turns up in an app, in a player, a reader, a
+search or an AI answer, the person who made it should still be there with it.
+OpenMOCA keeps them there, so you can see who they are and back them.
 
 ## See who made it
 
