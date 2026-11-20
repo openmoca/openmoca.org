@@ -233,7 +233,8 @@ for (const page of sources.pages) {
     ...(page.label ? [`sidebar:`, `  label: ${yaml(page.label)}`] : []),
     // A page of the main site (zones.json) is full width, with no sidebar.
     ...(page.template ? [`template: ${page.template}`] : []),
-    `editUrl: ${yaml(`https://github.com/${ORG}/${page.repo}/edit/main/${page.path}`)}`,
+    // No "Edit page" link on any page (owner, 2026-11-20).
+    'editUrl: false',
     '---',
     '',
   ].join('\n');

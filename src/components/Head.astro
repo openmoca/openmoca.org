@@ -3,6 +3,7 @@
 // page is: the site and the project on the home page, an article for each docs page, software for each Reader and
 // tool, and the questions and answers on the FAQ. Everything is built here at build time; nothing loads from elsewhere.
 import Default from '@astrojs/starlight/components/Head.astro';
+import sources from '../../sources.json';
 
 const SITE = 'https://openmoca.org';
 const route = Astro.locals.starlightRoute;
@@ -110,7 +111,9 @@ if (isHome) {
       { '@type': 'ListItem', position: section ? 3 : 2, name: data.title, item: url },
     ],
   });
-  const repo = typeof data.editUrl === 'string' ? data.editUrl.match(/^https:\/\/github\.com\/[^/]+\/[^/]+/)?.[0] : undefined;
+  // A synced page's repository, from sources.json (pages carry no edit link).
+  const source = sources.pages.find((p) => p.route === id);
+  const repo = source ? `https://github.com/openmoca/${source.repo}` : undefined;
   if (id.startsWith('readers/') || id.startsWith('tools/')) {
     graph.push({
       '@type': 'SoftwareSourceCode',
