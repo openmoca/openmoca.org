@@ -138,10 +138,17 @@ pre.mermaid svg marker :is(path, circle) {
   padding-block: clamp(2rem, 1rem + 5vmin, 6rem);
 }
 
-/* The lead: a main-site page's opening, before its first heading, wrapped in <div class="lead">. A little larger,
-   a slightly narrower measure, and full-strength text colour. */
+/* The lead: a main-site page's opening, before its first heading, wrapped in <div class="lead">. The full width of
+   the page's other sections, on a soft panel (the theme's raised surface and a hairline border, no icon or accent
+   bar, so it reads as an introduction, not a note), a little larger, in full-strength text colour. */
 .sl-markdown-content .lead {
-  max-width: 62ch;
+  background: var(--moca-surface-raised);
+  border: 1px solid var(--moca-line);
+  border-radius: var(--moca-radius-md);
+  padding: 1.25rem 1.5rem;
+}
+.sl-markdown-content .lead > :first-child {
+  margin-top: 0;
 }
 .sl-markdown-content .lead p {
   font-size: 1.25rem;
