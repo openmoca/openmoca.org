@@ -1,45 +1,47 @@
 ---
 title: About OpenMOCA
-description: "What OpenMOCA is, in one line, 30 seconds and two minutes; who maintains it, how it is governed, and how to take part. An open standard under Apache-2.0."
+description: "OpenMOCA in one line, 30 seconds and two minutes; who maintains it, how it is governed, talks, and how to take part. An open standard under Apache-2.0."
+template: splash
 editUrl: false
 ---
 
-**OpenMOCA keeps a creator's credits, sources and terms with their work,
-wherever it goes.** It is an open standard: anyone can read it, implement it
-and build on it.
+**OpenMOCA keeps the creator with their work, in any app, with or without
+AI.** It is an open standard: anyone can read it, implement it and build on
+it.
 
 ## OpenMOCA in one line
 
-OpenMOCA keeps a creator's credits, sources and terms with their work,
-wherever it goes, so people can check where answers come from and
-applications can honour the creator's wishes.
+OpenMOCA keeps the creator with their work (their credits, sources and terms)
+in any app, with or without AI.
 
 ## In 30 seconds
 
-When your podcast, book or course is copied into an AI app, your name, your
-sources and your wishes usually get left behind. OpenMOCA is an open standard
-that packs them in with the work. Any app can read the package; people can see
-where an answer came from and open the original; and apps can promise,
-publicly, to honour what the creator asked and what the person asked. It works
-for any kind of digital work, and it's free for anyone to use.
+Apps now answer, summarise and chat using people's work, and the true creator
+is getting lost. OpenMOCA is an open standard that keeps them with the work:
+their name, the people who helped, the sources, and what they've ruled out.
+Any app can read it, with or without AI. Audiences can see who made
+something, open the original, and choose apps that respect the creator. It
+works for any kind of digital work, and it's free for anyone to use.
 
 ## In two minutes
 
-Think about what happens when someone puts a podcast, a book, a course or a
-piece of research into an AI application.
+Apps now answer, summarise and chat using people's work: a podcast, a book, a
+course, a piece of research. And the true creator is getting lost.
 
-The content may still be there, but important things can get lost. The
+The content may still be there, but important things go missing. The
 creator's name. The people who contributed. The original sources. And the
 creator's wishes about how the work may be used.
 
-People have a problem too. They get an answer, but it can be difficult to see
-exactly where it came from, check the original or understand the terms
-attached to the work.
+Audiences have a problem too. They get an answer, a summary or a clip, but it
+can be hard to see who made it, check the original or know what the creator
+asked.
 
 OpenMOCA is an open standard designed to address this.
 
 It puts digital work into portable packages that carry the content alongside
-its credits, sources, evidence and the creator's declared terms.
+its credits, sources, evidence and the creator's declared terms. Any app can
+read them, with or without AI: a player, a reader, a search, a course, an
+assistant.
 
 Those terms let the creator rule things out: sending the work to third-party
 AI providers, machine translation, or export. Training is never allowed by
@@ -81,7 +83,7 @@ one digest and optionally signed. A signature shows who said so, and no more.
   a live demo.
 
 Everything is open source under Apache-2.0 and developed in the open on
-[GitHub](https://github.com/openmoca). For builders, [how OpenMOCA works](/how/)
+[GitHub](https://github.com/openmoca). For developers, [how OpenMOCA works](/docs/how-openmoca-works/)
 is the place to start.
 
 ## Who maintains it
@@ -104,6 +106,22 @@ format has settled and is used beyond its maintainer. See
 ## Status
 
 @@release.status@@ See the [release notes](/releases/).
+
+## Talks
+
+### Introduction to OpenMOCA, autumn 2026
+
+Portable grounding for AI. Why knowledge for AI is often locked in one
+pipeline and hard to check, and how OpenMOCA packages the knowledge, not the
+pipeline: what a package is, what a Reader gives you, where search runs, and
+the citation record behind every answer. Two live demos:
+[Try OpenMOCA](https://try.openmoca.org) in the browser, and your own
+assistant over MCP in Claude Desktop. Then where it works today, and how to
+make your own package.
+
+[Open the slides](/talks/introduction-to-openmoca/). Use the arrow keys, or
+tap the right or left of a slide. Press **S** for the speaker notes, **O** for
+every slide at once, and **F** for full screen.
 
 ## Take part
 

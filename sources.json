@@ -1,8 +1,6 @@
 {
   "$comment": "Every page the site shows, and where it comes from. Pins (which commit of each repository) are in .github/workflows/build.yml (MOCA_*_REF).",
   "groups": [
-    "Why OpenMOCA",
-    "Start",
     "Learn",
     "Guides",
     "Specification",
@@ -44,8 +42,8 @@
       "repo": "moca-reader-typescript",
       "path": "docs/getting-started.md",
       "route": "start/typescript",
-      "group": "Start",
-      "label": "TypeScript",
+      "group": "Guides",
+      "label": "Start in TypeScript",
       "description": "Install the TypeScript MOCA Reader, open a signed knowledge package, search it with citations, and run the conformance corpus, in about ten minutes.",
       "seoTitle": "Get started with the TypeScript MOCA Reader"
     },
@@ -53,8 +51,8 @@
       "repo": "moca-reader-dotnet",
       "path": "docs/getting-started.md",
       "route": "start/dotnet",
-      "group": "Start",
-      "label": ".NET",
+      "group": "Guides",
+      "label": "Start in .NET",
       "description": "Install the .NET MOCA Reader, OpenMoca.Reader, open a signed knowledge package, search it with citations, and run the conformance corpus.",
       "seoTitle": "Get started with the .NET MOCA Reader"
     },
@@ -62,8 +60,8 @@
       "repo": "moca-reader-python",
       "path": "docs/getting-started.md",
       "route": "start/python",
-      "group": "Start",
-      "label": "Python",
+      "group": "Guides",
+      "label": "Start in Python",
       "description": "Install the Python MOCA Reader, moca-reader, open a signed knowledge package, search it with citations, and run the conformance corpus.",
       "seoTitle": "Get started with the Python MOCA Reader"
     },
@@ -585,8 +583,9 @@
       "repo": "moca-spec",
       "path": "COMMITMENT.md",
       "route": "commitment",
-      "group": "Why OpenMOCA",
-      "label": "The OpenMOCA Commitment",
+      "group": "Main",
+      "template": "splash",
+      "intro": "**For apps people use.** The OpenMOCA Commitment is a company's signed, public promise that a named app and version honours creators' terms and people's own choices. OpenMOCA lists the promise; it does not test it. Software that passes the OpenMOCA test suite is listed separately, as [OpenMOCA Conformant](/conformant/).\n\n**Listings are coming soon.** They follow the 0.7.0 release. Until then, no app can show the Commitment mark.\n\nThe full text follows: what it means for audiences, and what a company commits to.",
       "description": "The OpenMOCA Commitment: a company's signed, public promise that a named app and version honours creators' terms and people's own choices. What it means for people, and what a company commits to.",
       "seoTitle": "The OpenMOCA Commitment"
     },

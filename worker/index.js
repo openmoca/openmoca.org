@@ -8,9 +8,14 @@
 //
 // Everything else is the static site, unchanged.
 
+import zones from '../zones.json';
+
+// Pages that moved: the older moves here, and the 0.7.0 site's from zones.json (the build makes redirect pages from
+// the same list, so the moves work on any static host too).
 const MOVED = {
   '/project/contact/': '/contact/',
   '/tools/mcp-dotnet/': '/tools/mcp/',
+  ...zones.moved,
 };
 
 // MOCA's identifiers are https://w3id.org/moca/<path>, which w3id redirects to https://openmoca.org/<path>. Schemas

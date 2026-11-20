@@ -42,7 +42,7 @@ with the OpenMOCA Commitment.
   references that only point to the original
   ([protected sources](/docs/guides/protected-sources/)).
 
-### For people and apps
+### For audiences and apps
 
 - **Answers that say who decided.** When an app asks a Reader to apply terms,
   each answer records which level decided each term: the platform default,
@@ -54,10 +54,10 @@ with the OpenMOCA Commitment.
 - **OpenMOCA Conformant and the OpenMOCA Commitment.** Two public listings:
   software that passes the test suite for what it is, and apps whose makers
   sign a public promise to honour creators' terms and people's own choices.
-  The listings come after 0.7.0 ([the marks](/marks/),
+  The listings come after 0.7.0 ([OpenMOCA Conformant](/conformant/),
   [the OpenMOCA Commitment](/commitment/)).
 
-### For builders
+### For developers
 
 - **Distribution tiers.** A publisher states, and signs, whether a package is
   meant to travel open, only encrypted or only through a service

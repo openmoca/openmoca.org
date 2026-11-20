@@ -1,6 +1,7 @@
 ---
 title: Privacy
 description: What openmoca.org collects about you (nothing it keeps), what Cloudflare processes to serve the site, and how to contact us about your data.
+template: splash
 editUrl: false
 ---
 

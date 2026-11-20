@@ -1,0 +1,66 @@
+---
+title: For developers
+description: "Portable grounding for AI: an open specification, open Readers, a public conformance suite and tools. Read, verify, search and cite a MOCA package in any app. Start in three steps."
+template: splash
+editUrl: false
+head:
+  - tag: title
+    content: "For developers: portable grounding for AI | OpenMOCA"
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import PackageLayers from '../../components/PackageLayers.astro';
+
+**Portable grounding for AI.** A MOCA package carries a work with its
+structure, its original sources, its credits and the creator's terms, sealed
+by one digest and optionally signed. A Reader opens it, verifies it, searches
+it and cites every result the same way, in any language, on a server or
+offline. Build a player, a reader, a search, a course or an AI assistant on
+it.
+
+## What you get
+
+- **An open specification**: the package format, the Reader contract and
+  interface, attestations, encrypted packages and sidecar indexes, under
+  Apache-2.0 ([the specification](/spec/)).
+- **@@release.readers@@**, in-process libraries that reach the same
+  conclusions about every package ([Readers](/readers/typescript/)).
+- **@@release.suite@@**: a package, options and the conclusions every Reader
+  must reach, for each case ([conformance](/spec/conformance/)).
+- **Tools** to convert, check, sign and index packages, and an MCP server
+  for any AI assistant ([tools](/tools/)).
+
+No permission needed: anyone can implement the standard. Software that passes
+the suite for what it is may say it is [OpenMOCA Conformant](/conformant/).
+
+## A package, in three layers
+
+Build with what each layer gives you: content to search and cite, structure
+to narrow and order results, evidence to check every quote against the
+original, and the trust that runs through all three. A MOCA package wraps an
+[Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
+bundle, a folder of Markdown with YAML frontmatter.
+
+<PackageLayers />
+
+## Start in three steps
+
+1. **Install a Reader**: `npm install @openmoca/moca-core`,
+   `dotnet add package OpenMoca.Reader` or `pip install moca-reader`
+   ([get started](/start/)).
+2. **Open, verify and search a package**, and cite what you find with the
+   citation record each result comes back as
+   ([consuming packages](/docs/guides/consuming/)). Before you hand content to
+   a model, ask the search to apply the creator's terms
+   ([showing terms honestly](/docs/guides/showing-terms/)).
+3. **Run the conformance corpus** against your Reader, or make a package of
+   your own and check it ([quickstart](/docs/quickstart/)).
+
+## Read the docs
+
+<CardGrid>
+  <LinkCard title="How OpenMOCA works" description="The package, the Reader and your app; search and its trust gate; how it fits a RAG stack." href="/docs/how-openmoca-works/" />
+  <LinkCard title="Get started" description="Install a Reader in TypeScript, .NET or Python, open a signed example and cite it, in about ten minutes." href="/start/" />
+  <LinkCard title="The specification" description="The package format, the Reader contract and interface, attestations and the corpus." href="/spec/" />
+  <LinkCard title="All the documentation" description="Guides for authoring, signing, structure, search, encryption and the creator's terms." href="/docs/" />
+</CardGrid>

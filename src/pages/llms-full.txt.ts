@@ -3,9 +3,10 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import sources from '../../sources.json';
-import { SITE, SUMMARY } from './llms.txt';
+import { MAIN_PAGES, SITE, SUMMARY } from './llms.txt';
 
-const GROUPS = ['Start', 'Learn', 'Guides'];
+// The main site's pages first (zones.json), then the Learn and Guides groups of the docs (Get started is in Guides).
+const GROUPS = ['Learn', 'Guides'];
 
 function plain(body: string) {
   return body
@@ -14,6 +15,9 @@ function plain(body: string) {
     .replace(/<\/Tabs>\n?/g, '')
     .replace(/<TabItem label="([^"]+)">/g, '**$1:**')
     .replace(/<\/TabItem>\n?/g, '')
+    .replace(/<\/?CardGrid[^>]*>\n?/g, '')
+    .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${t.match(/title="([^"]*)"/)?.[1] ?? ''}](${t.match(/href="([^"]*)"/)?.[1] ?? ''}): ${t.match(/description="([^"]*)"/)?.[1] ?? ''}`)
+    .replace(/<(PackageLayers|WorkTravels)\s*\/>\n?/g, '')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
@@ -22,6 +26,10 @@ export const GET: APIRoute = async () => {
   const docs = await getCollection('docs');
   const byId = new Map(docs.map((d) => [d.id.replace(/\/index$/, ''), d]));
   const parts = [`# OpenMOCA\n\n> ${SUMMARY}`];
+  for (const id of MAIN_PAGES) {
+    const d = byId.get(id) ?? (id === '' ? byId.get('index') : undefined);
+    if (d) parts.push(`# ${d.data.title}\n\nSource: ${SITE}/${id}${id ? '/' : ''}\n\n${plain(d.body ?? '')}`);
+  }
   for (const p of sources.pages.filter((p) => GROUPS.includes(p.group) && byId.has(p.route))) {
     const d = byId.get(p.route)!;
     parts.push(`# ${d.data.title}\n\nSource: ${SITE}/${p.route}/\n\n${plain(d.body ?? '')}`);

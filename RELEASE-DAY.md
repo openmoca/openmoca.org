@@ -23,8 +23,10 @@ Before switching, confirm `corpusCases` against the released corpus
 
 The pages that use the tokens:
 
-- `src/site-pages/index.mdx`: the status and the "built in the open" section
-- `src/site-pages/about.md`: the status and the pitch
+- `src/site-pages/index.mdx`: the status, and "For developers and organisations"
+- `src/site-pages/about.md`: the status and the two-minute pitch
+- `src/site-pages/developers.mdx`: what you get
+- `src/site-pages/answers.md`: "Is OpenMOCA free and open?"
 - `src/site-pages/releases.md`: the status line
 - `src/site-pages/spec/index.mdx`: the conformance corpus
 
@@ -52,8 +54,9 @@ files exist:
 
 ## Leave as they are
 
-- `src/site-pages/marks.md`: "Listings are coming soon". It stays until the
-  listings exist.
+- `src/site-pages/conformant.md`, the Commitment page's intro (`sources.json`)
+  and `src/site-pages/audiences.md`: "Listings are coming soon" or "come after
+  the 0.7.0 release". They stay until the listings exist.
 - The talk slides (`public/talks/`) already say "Updated for OpenMOCA 0.7.0".
 - Guides that say their output "was run with the 0.6.0 tools" record when the
   output was captured; they change in moca-spec when the output is re-run.

@@ -23,8 +23,13 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
 - The pins are the `MOCA_*_REF` values at the top of
   [`.github/workflows/build.yml`](.github/workflows/build.yml): release tags,
   or commits, never a branch.
-- The site's own pages (the landing page, the pages for creators and people,
-  the release notes) are in `src/site-pages/`.
+- The site's own pages are in `src/site-pages/`. The site has two zones, set in
+  [`zones.json`](zones.json): the main site (home, creators, audiences,
+  developers, organisations, answers, the Commitment and Conformant, about, try
+  it), full width with a top navigation bar (`src/components/Header.astro`),
+  and the docs, with the sidebar. Both share the theme, the head and one
+  footer. Pages that moved are in `zones.json` too: the Worker answers them
+  with a permanent redirect, and the build writes a redirect page for each.
 - The release state is one setting, `released` in [`release.json`](release.json):
   the sync writes it into the site's own pages. [RELEASE-DAY.md](RELEASE-DAY.md)
   lists everything that changes on release day.

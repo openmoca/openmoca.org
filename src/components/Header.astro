@@ -1,0 +1,167 @@
+---
+// The site's header, for both zones (zones.json).
+//
+// - The main site (home, creators, audiences, developers, organisations, answers, about...): the logo, a top
+//   navigation bar and the theme switch. On a narrow screen the links fold into a menu button: it says whether the
+//   menu is open (aria-expanded), Escape closes it and returns focus to the button, and Tab moves through the links.
+// - The docs: Starlight's own header (logo, search, links, theme), with a link back to the main site
+//   (SocialIcons.astro).
+import Default from '@astrojs/starlight/components/Header.astro';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import zones from '../../zones.json';
+
+const id = Astro.locals.starlightRoute.id.replace(/\/index$/, '').replace(/^index$/, '');
+const isMain = zones.main.includes(id);
+const here = `/${id}${id ? '/' : ''}`;
+const current = (href: string) => (here === href || (href !== '/' && here.startsWith(href)) ? 'page' : undefined);
+---
+
+{
+  isMain ? (
+    <div class="main-header">
+      <div class="brand">
+        <SiteTitle />
+      </div>
+      <nav class="main-nav" aria-label="Main">
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav-links">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <span>Menu</span>
+        </button>
+        <ul id="main-nav-links" class="links">
+          {zones.nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
+            </li>
+          ))}
+          <li class="pill-item">
+            <a class="pill" href="/try/" aria-current={current('/try/')}>Try it</a>
+          </li>
+          <li class="pill-item">
+            <a class="pill solid" href="/docs/">Docs <span aria-hidden="true">→</span></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="theme">
+        <ThemeSelect />
+      </div>
+    </div>
+  ) : (
+    <Default />
+  )
+}
+
+<script>
+  // The menu button, on narrow screens. Without JavaScript the links stay visible (see the CSS: .js-menu).
+  for (const nav of document.querySelectorAll<HTMLElement>('.main-nav')) {
+    const button = nav.querySelector<HTMLButtonElement>('.menu-button');
+    const links = nav.querySelector<HTMLElement>('.links');
+    if (!button || !links) continue;
+    nav.classList.add('js-menu');
+    const setOpen = (open: boolean) => {
+      button.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('open', open);
+    };
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    nav.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        button.focus();
+      }
+    });
+    // Closes when focus or a click leaves the menu.
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target as Node)) setOpen(false);
+    });
+    nav.addEventListener('focusout', (e) => {
+      if (e.relatedTarget && !nav.contains(e.relatedTarget as Node)) setOpen(false);
+    });
+  }
+</script>
+
+<style>
+  .main-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    max-width: var(--moca-content-max, 1200px);
+    margin: 0 auto;
+  }
+  .brand { flex: 0 0 auto; min-width: 0; }
+  .main-nav { flex: 1 1 auto; display: flex; justify-content: flex-end; }
+  .theme { flex: 0 0 auto; }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .links a {
+    display: inline-block;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--moca-radius-sm, 6px);
+    color: var(--sl-color-white);
+    text-decoration: none;
+    font-size: var(--sl-text-sm);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .links a:hover { background: var(--sl-color-gray-6); }
+  .links a[aria-current='page'] { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 2px; }
+  .links .pill {
+    border: 1px solid var(--sl-color-text-accent);
+    color: var(--sl-color-text-accent);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    font-weight: 600;
+  }
+  .links .pill-item:first-of-type { margin-inline-start: 0.5rem; }
+  .links .pill.solid { background: var(--sl-color-text-accent); color: var(--sl-color-black); }
+  .links .pill:hover { background: var(--sl-color-text-accent); color: var(--sl-color-black); }
+  .links .pill.solid:hover { background: var(--sl-color-text); color: var(--sl-color-black); }
+  .menu-button { display: none; }
+
+  @media (max-width: 64rem) {
+    .js-menu .menu-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: var(--moca-radius-sm, 6px);
+      background: transparent;
+      color: var(--sl-color-white);
+      font: inherit;
+      font-size: var(--sl-text-sm);
+      cursor: pointer;
+    }
+    .js-menu .links {
+      display: none;
+      position: absolute;
+      top: var(--sl-nav-height);
+      inset-inline: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem var(--sl-nav-pad-x) 1rem;
+      background: var(--sl-color-bg-nav);
+      border-bottom: 1px solid var(--sl-color-hairline-shade);
+      box-shadow: var(--sl-shadow-md);
+      z-index: 10;
+    }
+    .js-menu.open .links { display: flex; }
+    .js-menu .links a { display: block; padding: 0.75rem 0.5rem; font-size: var(--sl-text-base); }
+    .js-menu .links .pill-item { margin: 0.4rem 0 0; }
+    .js-menu .links .pill { text-align: center; }
+    /* Without JavaScript the links wrap rather than hide. */
+    .main-nav:not(.js-menu) .links { flex-wrap: wrap; justify-content: flex-end; }
+  }
+  @media (max-width: 30rem) {
+    .menu-button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  }
+</style>

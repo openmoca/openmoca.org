@@ -1,6 +1,6 @@
 ---
 title: How OpenMOCA works
-description: "For builders and organisations: OpenMOCA is portable grounding for AI. Package knowledge with its structure and sources, read it with open Readers, and cite every answer."
+description: "For developers and organisations: OpenMOCA is portable grounding for AI. Package knowledge with its structure and sources, read it with open Readers, and cite every answer."
 editUrl: false
 head:
   - tag: title
@@ -8,10 +8,10 @@ head:
 ---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
-import PackageLayers from '../../components/PackageLayers.astro';
+import PackageLayers from '../../../components/PackageLayers.astro';
 
-**For builders and organisations.** The [home page](/) says why OpenMOCA
-matters to creators and to people. This page says how it works: portable
+**For developers and organisations.** The [main site](/) says why OpenMOCA
+matters to creators and audiences. This page says how it works: portable
 grounding for AI, packages, Readers and the tests they all pass. For the
 creator's terms, credits and machine-made marks, see
 [the creator's terms](/docs/guides/creators-terms/) and
@@ -34,8 +34,8 @@ search and cite a package the same way, on a server or offline, and every
 answer can cite a source you can check.
 
 <CardGrid>
-  <LinkCard title="Use MOCA with your AI assistant" description="Add the openmoca agent skill to Claude, Copilot or Codex, and ask it to make, sign, search and cite packages." href="/start/ai-assistant/" />
-  <LinkCard title="Got a .moca file?" description="Open it in Claude Desktop, Claude Code, VS Code or Cursor with one download, and get answers that cite their source." href="/start/open-a-package/" />
+  <LinkCard title="Use MOCA with your AI assistant" description="Add the openmoca agent skill to Claude, Copilot or Codex, and ask it to make, sign, search and cite packages." href="/try/ai-assistant/" />
+  <LinkCard title="Got a .moca file?" description="Open it in Claude Desktop, Claude Code, VS Code or Cursor with one download, and get answers that cite their source." href="/try/open-a-package/" />
   <LinkCard title="RAG with citations you can check" description="What a package adds to retrieval-augmented generation: current, in-scope content, every passage traced to its source." href="/docs/moca-and-rag/" />
   <LinkCard title="Trust and provenance" description="Signed packages, signed reviews, quotes checked against the originals, and proof of what an answer used." href="/docs/trust-and-provenance/" />
   <LinkCard title="Grounding for AI agents" description="One package for any agent: an MCP server, Agent Framework, LangChain and LlamaIndex, with the same trust rules." href="/docs/ai-agents/" />
@@ -104,38 +104,8 @@ everywhere.
 ## Try it in your browser
 
 [Try OpenMOCA](https://try.openmoca.org) runs the .NET Reader over eight real
-packages, each converted from a published source and signed. No install, and
-no account to search.
-
-- **Learn Copilot Studio 2026** — a video series: 17 videos in order, every answer cited to the moment. _MadeForCloud on YouTube, CC BY 3.0._
-- **First Steps to Using Claude AI** — a recorded talk, its chapters cited to the moment. _Eliot Prince on YouTube, CC BY 3.0._
-- **Kubernetes documentation** — vendor documentation at scale: all 1,653 pages. _The Kubernetes Authors, CC BY 4.0._
-- **Airplane Flying Handbook** — a manual with a topic ontology: what each topic builds on. _FAA, public domain._
-- **Data Protection Act 2018** — legislation, section by section. _legislation.gov.uk, Open Government Licence._
-- **HSE health and safety guidance** — regulated procedures, cited to the PDF page. _Health and Safety Executive, Open Government Licence._
-- **GitLab handbook** — onboarding: a company's policies and people practices. _GitLab, Creative Commons with attribution._
-- **Acme Support Knowledge Base** — trust: 34 pages in English and French; internal procedures kept out of public answers, expired and future policies left out, stale and disputed pages flagged. _The OpenMOCA specification's example, Apache-2.0._
-
-What you can do there:
-
-- **Search, with no account.** Lexical (keyword), semantic or hybrid, through the
-  Reader's one search call. Two local embedding models, bge-small and Nomic,
-  each with its own sidecar index of the same passages; your search is embedded
-  on the server and never sent to an AI provider. Hybrid results show where
-  each one ranked in the lexical and semantic lists.
-- **Open every result at its source.** The passage opens beside the results,
-  marked in place; a video opens at the moment.
-- **Use the structure.** Search within a chapter, a folder or a topic, narrow
-  to what the results fall under, or widen back out. In the Flying Handbook,
-  each topic shows what it builds on (`requires`).
-- **Check, don't trust.** Inspect a package: its digest, its signer, the
-  Reader's findings and its search indexes.
-- **Ask it questions.** Signed in, with your own key (Anthropic, OpenAI or
-  Google Gemini) or a demo key by invitation. Every answer cites the package,
-  and a citation opens the source.
-
-The site is built and run by PI & Mash on the open Readers and tools; its own
-code is not part of OpenMOCA.
+packages, each converted from a published source and signed: what is in it,
+and what you can do there, is on [Try it](/try/).
 
 ## Three pillars
 

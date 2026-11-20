@@ -68,7 +68,7 @@ const SECTIONS: Record<string, string> = {
   examples: 'Examples', project: 'Project',
 };
 // The pages for creators and people are about the work and its terms, not AI infrastructure.
-const WHY_PAGES = new Set(['creators', 'people', 'answers', 'marks', 'commitment', 'about']);
+const WHY_PAGES = new Set(['creators', 'audiences', 'organisations', 'answers', 'conformant', 'commitment', 'about', 'try']);
 const SECTION_PAGES = new Set(['start', 'docs', 'spec', 'tools', 'examples']);
 const LANGUAGES: Record<string, string> = {
   'readers/typescript': 'TypeScript', 'readers/dotnet': 'C#', 'readers/python': 'Python',
@@ -144,12 +144,15 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
 ---
 
 <Default />
-<!-- A code block that scrolls sideways can take keyboard focus, so it can be scrolled without a mouse (WCAG 2.1.1). -->
+<!-- A code block or diagram that scrolls sideways can take keyboard focus, so it can be scrolled without a mouse
+     (WCAG 2.1.1). Diagrams are drawn after load, so they are checked again once the page has loaded. -->
 <script is:inline>
-  addEventListener('DOMContentLoaded', () => {
-    for (const pre of document.querySelectorAll('.expressive-code pre')) {
+  const focusScrollers = () => {
+    for (const pre of document.querySelectorAll('.expressive-code pre, .mermaid')) {
       if (pre.scrollWidth > pre.clientWidth && !pre.hasAttribute('tabindex')) pre.tabIndex = 0;
     }
-  });
+  };
+  addEventListener('DOMContentLoaded', focusScrollers);
+  addEventListener('load', () => setTimeout(focusScrollers, 500));
 </script>
 <script type="application/ld+json" set:html={jsonLd} />

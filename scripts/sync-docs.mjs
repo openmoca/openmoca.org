@@ -189,7 +189,7 @@ function tryItSection({ online, files = [], trustRoot, model, ask }) {
       ...(model ? [`The index lets it search by meaning as well as by words; \`models add\` installs the [standard model](/spec/sidecar-index/#51-embedders-the-moca-tools-support-informative) it was built with, once.`, ''] : []),
       'One download with nothing to install, for Windows, macOS or Linux: [get moca-mcp](/tools/mcp/#install).',
       '',
-      `Connect it to Claude Desktop, Claude Code, VS Code or Cursor, with full paths, as in [Got a .moca file?](/start/open-a-package/#connect-it)${ask ? `. Then ask: "${ask}"` : '.'}`,
+      `Connect it to Claude Desktop, Claude Code, VS Code or Cursor, with full paths, as in [Got a .moca file?](/try/open-a-package/#connect-it)${ask ? `. Then ask: "${ask}"` : '.'}`,
       '',
     );
   }
@@ -219,6 +219,8 @@ for (const page of sources.pages) {
     ...(page.description ? [`description: ${yaml(page.description)}`] : []),
     ...(page.seoTitle ? [`head:`, `  - tag: title`, `    content: ${yaml(`${page.seoTitle} | OpenMOCA`)}`] : []),
     ...(page.label ? [`sidebar:`, `  label: ${yaml(page.label)}`] : []),
+    // A page of the main site (zones.json) is full width, with no sidebar.
+    ...(page.template ? [`template: ${page.template}`] : []),
     `editUrl: ${yaml(`https://github.com/${ORG}/${page.repo}/edit/main/${page.path}`)}`,
     '---',
     '',
