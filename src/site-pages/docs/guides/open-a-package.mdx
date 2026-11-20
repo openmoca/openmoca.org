@@ -1,15 +1,16 @@
 ---
 title: Got a .moca file? Ask your AI assistant about it
 description: Open a MOCA knowledge package in Claude Desktop, Claude Code, VS Code or Cursor with one download, check who published it, and get answers that cite their source.
-template: splash
 editUrl: false
+sidebar:
+  label: Open a package yourself
 head:
   - tag: title
     content: Open a .moca package in Claude Desktop, Claude Code or VS Code | OpenMOCA
 ---
 
 import { Aside, LinkButton, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
-import McpDownload from '../../../components/McpDownload.astro';
+import McpDownload from '../../../../components/McpDownload.astro';
 
 Someone has sent you a `.moca` file: a knowledge package, such as a product's
 documentation, a policy set or a support knowledge base. You want to ask your

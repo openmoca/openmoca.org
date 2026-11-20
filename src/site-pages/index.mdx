@@ -1,6 +1,6 @@
 ---
 title: Knowledge that travels with its context.
-description: The open standard for portable, attributable and trustworthy knowledge. OpenMOCA keeps the creator with their work (their credits, sources and terms) in any app, with or without AI.
+description: The open standard for portable, attributable and trustworthy knowledge. OpenMOCA keeps the people who made a work, its sources and its creator's wishes with it, in any app.
 template: splash
 editUrl: false
 head:
@@ -13,196 +13,59 @@ hero:
     dark: ../../assets/openmoca-logo-stacked-cream.svg
     alt: OpenMOCA
   actions:
-    - text: For Creators
-      link: /creators/
-      icon: right-arrow
-    - text: For the Audience
-      link: /audience/
-      variant: secondary
-    - text: For Developers
-      link: /developers/
-      variant: secondary
-    - text: For Organisations
-      link: /organisations/
-      variant: secondary
     - text: Try it
       link: /try/
-      variant: minimal
+      icon: right-arrow
+    - text: How it works ↓
+      link: "#how-it-works"
+      variant: secondary
 ---
 
-import WorkTravels from '../../components/WorkTravels.astro';
+import { LinkButton } from '@astrojs/starlight/components';
+import AudienceCards from '../../components/AudienceCards.astro';
 
-Apps now answer, summarise and chat using people's work, and the true creator
-is getting lost. OpenMOCA keeps them with the work: their credits, their
-sources and their terms, in any app, with or without AI.
+## Work travels. The people behind it get left behind.
 
-## For Creators
+Every day, podcasts, books, courses and guides are copied, quoted, summarised
+and searched — by websites, by apps, and more and more by AI. Somewhere along
+the way, the important things fall off: who made it, where it came from, and
+how they want it used.
 
-<p class="section-strapline">Your work. Your terms. Wherever it goes.</p>
+Links used to send you to the maker. Now apps answer for them. You get the
+answer, but not the person behind it. Creators lose the credit; you lose the
+chance to check.
 
-When your work is copied into an app, important things often stay behind:
-your name, the people who helped you make it, its sources, and what you
-asked. OpenMOCA packs them in with the work.
+## OpenMOCA keeps them together.
 
-- **Your credits, sources and terms stay with the work**, in every copy.
-- **It is portable**, not tied to one platform, one AI provider or one app.
-- **Any app can read it**, with open Readers anyone can use: a player, a
-  reader, a library, a course, or an AI assistant.
+OpenMOCA is a free, open way to package any digital work so its context goes
+wherever it goes: the people who made it, the sources it came from, and the
+wishes of its creator. Any app can read it — a podcast player, an e-reader, a
+learning app, or an AI assistant.
 
-Your terms travel as part of the package. Any app can read them, and apps
-that make the [OpenMOCA Commitment](/commitment/) promise publicly to honour
-them.
+## How it works
 
-[More for Creators](/creators/)
+1. **Package it.** The creator wraps their work with its credits, sources and
+   wishes, and seals it.
+2. **Use it anywhere.** Any app that reads OpenMOCA can open it, search it,
+   quote from it with a link back to the original, and use it with or without
+   AI, following the creator's wishes.
+3. **Check it.** Anyone can see who made it, open the original, and see what
+   the creator asked. Apps can [promise publicly](/commitment/) to honour it.
 
-## For the Audience
+## Don't take our word for it.
 
-<p class="section-strapline">Know who made it, and back them.</p>
+Ask a question about a real video series, get an answer, and jump to the exact
+moment it came from.
 
-The people who listen, read, watch and learn. Whatever app you use, the
-creator stays with the work:
+<LinkButton href="/try/" icon="right-arrow">Try it</LinkButton>
 
-- **See who made it**: the creator, the people who helped, and where it was
-  first published.
-- **Go to the source**: open the original at the passage or the moment, and
-  the creator's own site.
-- **Respect their wishes**: what the creator ruled out travels with the work.
-- **Choose apps that do the same.** An app that makes the OpenMOCA Commitment
-  has promised, publicly and in writing, to honour the creator's wishes and
-  yours.
+## Who it's for
 
-[More for the Audience](/audience/)
+<AudienceCards />
 
-## With or without AI
+## Open and honest
 
-OpenMOCA works with no AI at all. Any app can read a package: a podcast
-player, an e-book reader, a search, a course. AI is why it matters now: apps
-answer, summarise and chat using people's work, and the true creator is
-getting lost. OpenMOCA keeps the creator with the work, in any app.
+Free for anyone to use and build on. A label, not a lock: it carries the
+creator's wishes, and honest apps honour them.
 
-<WorkTravels />
-
-## One example: a podcast episode
-
-*An example to show the idea, not a real show.* "Harbour Lights", episode 12,
-packaged by its maker. The package carries:
-
-- **Credits.** Published by Example Podcast Ltd. Hosted and written by Ada
-  Example. Sam Guest, a guest on this episode, is credited for this episode.
-- **Sources.** The episode's audio, described and linked, and its captions,
-  carried in the package.
-- **The creator's terms.** The creator rules out other companies' AI, machine
-  translation, and copying the transcript out of the app. Training is never
-  allowed by default.
-- **Copyright and a note.** "© 2024-2026 Example Podcast Ltd", and the
-  creator's own words: "Listen and ask as much as you like. Please don't copy
-  the transcripts elsewhere."
-- **What a machine made.** The transcript was made by a speech model, and a
-  person checked it.
-- **A citation that opens at the moment.** Ask about the harbour lantern, and
-  the answer opens the episode at 1:15, where the host says "Every night at
-  dusk I light the harbour lantern."
-
-The same works for any digital work: a book's chapters, a course's lessons, a
-paper's sections, a guide's pages.
-
-## Any kind of digital work
-
-OpenMOCA is not tied to one industry. A MOCA package can hold:
-
-- podcasts and their episodes
-- books and their chapters
-- courses and their lessons
-- video, from one talk to a series
-- research
-- guides and documentation
-
-It is not tied to one publisher, AI model or app either.
-
-## Beside what you already use
-
-You may already tell AI crawlers what they may do, on your own website: with
-the TDM Reservation Protocol, the IETF AI preferences vocabulary or RSL. Those
-statements stay on your site. OpenMOCA keeps your terms **with the work
-itself**, so they are still there when the work is copied. The two fit
-together: the same terms can be stated in both places
-([the creator's terms](/docs/guides/creators-terms/#beside-what-you-already-use)).
-
-## Labels, not locks
-
-OpenMOCA keeps your terms attached to your work, and helps apps respect them.
-It is not a lock. An app that ignores the terms can still break them, and
-nothing can take back a copy once it is made.
-
-What OpenMOCA does is make the terms visible, so people can check them and
-choose apps that respect them. Apps that make the
-[OpenMOCA Commitment](/commitment/) promise, publicly, to honour what creators ask
-and what people ask, and anyone can hold them to it.
-
-[Trust and provenance](/docs/trust-and-provenance/)
-
-## Short answers
-
-### What is OpenMOCA?
-
-OpenMOCA is an open standard that keeps the creator with their work (their
-credits, sources and terms) in any app, with or without AI.
-
-### What is a MOCA package?
-
-A MOCA package holds a piece of digital work with its credits, its sources
-and the creator's terms, sealed so that any change shows. It can be signed, to
-show who stands behind it. It travels as one `.moca` file.
-
-### How do a creator's terms travel?
-
-Inside the package. They are part of what is signed, so every copy carries
-them, and any app that reads the package can read them.
-
-### What is the OpenMOCA Commitment?
-
-A company's signed, public promise that a named app and version honours
-creators' terms and people's own choices. OpenMOCA lists it; it does not test
-it.
-
-[More answers](/answers/)
-
-## See it work
-
-![The Try OpenMOCA demo. A search for "how do I publish an agent to Teams" in a video series has found part 14 at 1:50. The video's transcript is open beside the results, with the passage that answers the question highlighted.](../../assets/demo-citation-at-the-moment.webp)
-
-Open a real package in your browser, search it, and open any result at the
-passage or the moment it came from. No install, and no account to search.
-Shown above: _Learn Copilot Studio 2026_, a video series by MadeForCloud on
-YouTube, CC BY 3.0, in [Try OpenMOCA](https://try.openmoca.org).
-
-[Try it](/try/)
-
-## For Developers
-
-<p class="section-strapline">Build once. Read everywhere.</p>
-
-OpenMOCA is an open standard, published under Apache-2.0. Anyone can build an
-app, a Reader or a tool, with no permission needed. There are
-@@release.readers@@, and @@release.suite@@ anyone can run. Package a work
-once, and every app that reads OpenMOCA reads it the same way.
-
-[More for Developers](/developers/) · [The documentation](/docs/) ·
-[OpenMOCA Conformant](/conformant/)
-
-## For Organisations
-
-<p class="section-strapline">Knowledge you can check, in any app.</p>
-
-Your policies, guides, courses and publications, with where they came from,
-which version they are, who signed them and on what terms, so anyone who reads
-them can check.
-
-[More for Organisations](/organisations/) · [Talk to us](/contact/)
-
-## Status
-
-@@release.status@@ What's new in 0.7.0, from the creator's terms and credits
-to encrypted and composite packages, is in the
-[release notes](/releases/). See the [roadmap](/project/roadmap/) for what
-comes next.
+@@release.status@@ [Release notes](/releases/).

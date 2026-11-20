@@ -40,23 +40,23 @@ asked.
 OpenMOCA is an open standard designed to address this.
 
 It puts digital work into portable packages that carry the content alongside
-its credits, sources, evidence and the creator's declared terms. Any app can
+its credits, sources, evidence and the creator's declared wishes. Any app can
 read them, with or without AI: a player, a reader, a search, a course, an
 assistant.
 
-Those terms let the creator rule things out: sending the work to third-party
+Those wishes let the creator rule things out: sending the work to third-party
 AI providers, machine translation, or export. Training is never allowed by
 default. They also carry audience ratings and rights.
 
 The package is sealed and can be signed, so compatible software can check it
-is unchanged and see who signed it. Citations can take people back to the
+is unchanged and see who signed it. Links can take people back to the
 exact passage or moment in the original source.
 
 Any developer can build software that reads or creates these packages.
 OpenMOCA already has @@release.readers@@, backed by @@release.suite@@.
 
-And we are being clear about the limits: terms are labels, not locks. The
-standard cannot force an application to obey them. That's why we also have
+And we are being clear about the limits: it is a label, not a lock. The
+standard cannot force an application to obey the creator's wishes. That's why we also have
 the OpenMOCA Commitment: a company's signed, public promise that a named
 application and version will honour creators' rules and people's own choices.
 
@@ -68,33 +68,32 @@ terms wherever it goes.
 
 ## What the project is
 
-The [Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
-(OKF) shapes knowledge for AI; MOCA is for the people who make and own it.
-MOCA stands for Modular Ontology, Content & Attestation. A MOCA package wraps
-an OKF bundle in a manifest that says who made the work, who owns it and on
-what terms it may be used, with the original sources it came from, sealed by
-one digest and optionally signed. A signature shows who said so, and no more.
+OpenMOCA builds on the
+[Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format),
+which shapes knowledge for AI. OpenMOCA is for the people who make and own
+that knowledge. A package says who made the work, who owns it and what they
+wish, with the sources it came from, sealed so that any change shows. A
+signature shows who said so, and no more.
 
-- **The specification**: the package format, the Reader contract and
-  interface, attestations and sidecar indexes, with a conformance corpus every
-  Reader must pass.
-- **Open Readers** that reach the same conclusions about every package.
-- **Tools** to convert, check, sign and index packages, and an MCP server.
-- **This site** and its examples, and [Try OpenMOCA](https://try.openmoca.org),
-  a live demo.
+- **The specification**: the rules for a package, and for the software that
+  reads one, with public tests anyone can run ([the specification](/spec/)).
+- **Free libraries** that read packages the same way, whatever the app.
+- **Tools** to make, check and sign packages, and a server that connects them
+  to AI assistants.
+- **This site**, and [Try OpenMOCA](https://try.openmoca.org), a live demo.
 
-Everything is open source under Apache-2.0 and developed in the open on
-[GitHub](https://github.com/openmoca). For developers, [how OpenMOCA works](/docs/how-openmoca-works/)
-is the place to start.
+Everything is open source under Apache-2.0 and made in the open on
+[GitHub](https://github.com/openmoca). For developers,
+[how OpenMOCA works](/docs/how-openmoca-works/) is the place to start.
 
 ## Who maintains it
 
 OpenMOCA is maintained by
 **[PI & Mash Solutions Ltd](https://piandmash.com)**, a company registered in England and
 Wales (number 17429224). PI & Mash holds the OpenMOCA trade mark on behalf of
-the project. The standard does not depend on any product: anyone can implement a
-Reader, and any Reader that passes the conformance corpus reads packages the
-same way.
+the project. The standard does not depend on any product: anyone can build
+software that reads packages, and any software that passes the public tests
+reads them the same way.
 
 ## How it is governed
 
@@ -112,13 +111,11 @@ format has settled and is used beyond its maintainer. See
 
 ### Introduction to OpenMOCA, autumn 2026
 
-Portable grounding for AI. Why knowledge for AI is often locked in one
-pipeline and hard to check, and how OpenMOCA packages the knowledge, not the
-pipeline: what a package is, what a Reader gives you, where search runs, and
-the citation record behind every answer. Two live demos:
-[Try OpenMOCA](https://try.openmoca.org) in the browser, and your own
-assistant over MCP in Claude Desktop. Then where it works today, and how to
-make your own package.
+Why knowledge for AI is often stuck in one system and hard to check, and how
+OpenMOCA keeps it portable and checkable. Two live demos:
+[Try OpenMOCA](https://try.openmoca.org) in the browser, and an AI assistant
+on your own computer. Then where it works today, and how to make your own
+package.
 
 [Open the slides](/talks/introduction-to-openmoca/). Use the arrow keys, or
 tap the right or left of a slide. Press **S** for the speaker notes, **O** for

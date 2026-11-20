@@ -1,6 +1,6 @@
 ---
 title: OpenMOCA Conformant
-description: "OpenMOCA Conformant: a public listing of software that passes the OpenMOCA test suite for what it is, a Reader, a Producer or a linter, with its standing: Official, Verified or Self-tested."
+description: "OpenMOCA Conformant: a public listing of software that passes the public OpenMOCA tests, for reading, making or checking packages, with its standing: Official, Verified or Self-tested."
 template: splash
 editUrl: false
 head:
@@ -10,8 +10,8 @@ head:
 
 **For software.** Anyone can build software that reads or makes MOCA packages,
 without asking. OpenMOCA Conformant is a public listing on openmoca.org of the
-software that passes the OpenMOCA test suite, so people choosing a Reader, a
-packaging tool or a linter can see what it has shown. For apps people use,
+software that passes the public OpenMOCA tests, so people choosing software
+can see what it has shown. For apps people use,
 there is a different listing: [the OpenMOCA Commitment](/commitment/).
 
 **Listings are coming soon.** They follow the 0.7.0 release. Until then, no
@@ -19,43 +19,44 @@ software is listed.
 
 ## What it means
 
-The standard is only useful if every Reader reads a package the same way.
-Software may say it is OpenMOCA Conformant when it passes the OpenMOCA test
-suite for what it is: a **Reader**, a **Producer**, a **linter**, or another
-kind once a suite exists for it. The claim names the kind and the
-specification version, for example "OpenMOCA 0.7 Conformant Reader".
+The standard is only useful if all software reads a package the same way.
+Software may say it is OpenMOCA Conformant when it passes the public tests for
+what it does: **reads** packages, **makes** them, or **checks** them, and other
+kinds as tests are written for them. The claim names the kind of software and
+the version of the standard
+([the exact wording](https://github.com/openmoca/moca-spec/blob/main/TRADEMARKS.md)).
 
 Each listing names the software, its version, the specification version and
 the suite it passed, and has one of three standings:
 
 | Standing | Means |
 | --- | --- |
-| **Official** | The project's own software, such as its Readers and tools |
-| **Verified** | The project has re-run the suite against that version itself |
-| **Self-tested** | The maker ran the public suite and published a signed result |
+| **Official** | The project's own software, such as its libraries and tools |
+| **Verified** | The project has run the tests again on that version itself |
+| **Self-tested** | The maker ran the public tests and published a signed result |
 
-**How it is earned.** Run the suite yourself; the
-[conformance corpus](/spec/conformance/) is public. There is no fee and no
-application. Publish the signed result and ask for it to be listed. A result
-covers one version: if a later release of the software fails the suite, the
-claim is updated or removed. An entry that fails when re-run is removed.
+**How it is earned.** Run the tests yourself; they are
+[public](/spec/conformance/). There is no fee and no application. Publish the
+signed result and ask for it to be listed. A result covers one version: if a
+later version of the software fails the tests, the claim is updated or
+removed. A listing that fails when the tests are run again is removed.
 
 ## Conformant and the Commitment, side by side
 
 | Question | OpenMOCA Conformant | The OpenMOCA Commitment |
 | --- | --- | --- |
-| **For** | Software: a Reader, a Producer (a tool that makes packages), a linter | Apps people use |
-| **Answers** | Does this software read, make or check packages exactly as the specification says? | Will this app honour what the creator asked, and what I asked? |
-| **Rests on** | A test suite anyone can run | The company's own signed promise |
-| **Who checks** | The maker runs the suite (Self-tested); the project re-runs it (Verified) | Nobody tests it. OpenMOCA lists the promise, and anyone can hold the company to it |
-| **Covers** | One version of the software, one version of the specification | One named product and version |
+| **For** | Software that reads, makes or checks packages | Apps people use |
+| **Answers** | Does this software handle packages exactly as the standard says? | Will this app honour what the creator asked, and what I asked? |
+| **Rests on** | Public tests anyone can run | The company's own signed promise |
+| **Who checks** | The maker runs the tests (Self-tested); the project runs them again (Verified) | Nobody tests it. OpenMOCA lists the promise, and anyone can hold the company to it |
+| **Covers** | One version of the software, one version of the standard | One named app and version |
 
 ### Why two marks?
 
 Software can read a package correctly and still do something the creator
-ruled out with what it read. An app can promise to honour creators' terms
-while using a Reader someone else built. So the two marks say different
-things:
+ruled out with what it read. An app can promise to honour the creator's wishes
+while using software someone else built to read packages. So the two marks say
+different things:
 
 - **OpenMOCA Conformant** is a test result for software.
 - **The OpenMOCA Commitment** is a company's public promise about an app.

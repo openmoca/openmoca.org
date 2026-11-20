@@ -14,8 +14,8 @@ wherever they say `@@release.<name>@@`:
 | Token | Before release | After release |
 | --- | --- | --- |
 | `@@release.status@@` | "OpenMOCA 0.6.0 is the current release. 0.7.0 is in review, and these pages describe it ahead of its release." | "OpenMOCA 0.7.0 is the current release." |
-| `@@release.suite@@` | "a public conformance suite" | "411 public conformance tests" (`corpusCases`) |
-| `@@release.readers@@` | "open Readers in several languages" | "Readers in TypeScript, .NET and Python" |
+| `@@release.suite@@` | "a public test suite" | "411 public tests" (`corpusCases`) |
+| `@@release.readers@@` | "free libraries in several programming languages" | "free libraries in TypeScript, .NET and Python" |
 | `@@release.version@@`, `@@release.current@@` | 0.7.0, 0.6.0 | 0.7.0, 0.7.0 |
 
 Before switching, confirm `corpusCases` against the released corpus
@@ -23,7 +23,7 @@ Before switching, confirm `corpusCases` against the released corpus
 
 The pages that use the tokens:
 
-- `src/site-pages/index.mdx`: the status, and "For developers and organisations"
+- `src/site-pages/index.mdx`: the status, under "Open and honest"
 - `src/site-pages/about.md`: the status and the two-minute pitch
 - `src/site-pages/developers.mdx`: what you get
 - `src/site-pages/answers.md`: "Is OpenMOCA free and open?"
@@ -54,9 +54,9 @@ files exist:
 
 ## Leave as they are
 
-- `src/site-pages/conformant.md`, the Commitment page's intro (`sources.json`)
-  and `src/site-pages/audiences.md`: "Listings are coming soon" or "come after
-  the 0.7.0 release". They stay until the listings exist.
+- `src/site-pages/conformant.md`, `src/site-pages/commitment.md` and
+  `src/site-pages/audience.md`: "Listings are coming soon" or "come after the
+  0.7.0 release". They stay until the listings exist.
 - The talk slides (`public/talks/`) already say "Updated for OpenMOCA 0.7.0".
 - Guides that say their output "was run with the 0.6.0 tools" record when the
   output was captured; they change in moca-spec when the output is re-run.

@@ -189,7 +189,7 @@ function tryItSection({ online, files = [], trustRoot, model, ask }) {
       ...(model ? [`The index lets it search by meaning as well as by words; \`models add\` installs the [standard model](/spec/sidecar-index/#51-embedders-the-moca-tools-support-informative) it was built with, once.`, ''] : []),
       'One download with nothing to install, for Windows, macOS or Linux: [get moca-mcp](/tools/mcp/#install).',
       '',
-      `Connect it to Claude Desktop, Claude Code, VS Code or Cursor, with full paths, as in [Got a .moca file?](/try/open-a-package/#connect-it)${ask ? `. Then ask: "${ask}"` : '.'}`,
+      `Connect it to Claude Desktop, Claude Code, VS Code or Cursor, with full paths, as in [Got a .moca file?](/docs/guides/open-a-package/#connect-it)${ask ? `. Then ask: "${ask}"` : '.'}`,
       '',
     );
   }
@@ -258,8 +258,9 @@ const RELEASE = {
   status: release.released
     ? `**OpenMOCA ${release.version}** is the current release.`
     : `**OpenMOCA ${release.previous}** is the current release. **${release.version}** is in review, and these pages describe it ahead of its release.`,
-  suite: release.released ? `${release.corpusCases} public conformance tests` : 'a public conformance suite',
-  readers: release.released ? 'Readers in TypeScript, .NET and Python' : 'open Readers in several languages',
+  // Plain words: these appear on the main site, where "Reader" and "conformance corpus" are not used.
+  suite: release.released ? `${release.corpusCases} public tests` : 'a public test suite',
+  readers: release.released ? 'free libraries in TypeScript, .NET and Python' : 'free libraries in several programming languages',
 };
 const sitePageFiles = (dir) => readdirSync(dir).flatMap((n) => (statSync(join(dir, n)).isDirectory()
   ? sitePageFiles(join(dir, n)).map((f) => join(n, f)) : [n]));

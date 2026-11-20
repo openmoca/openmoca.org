@@ -14,7 +14,7 @@ const zones = JSON.parse(readFileSync(new URL('./zones.json', import.meta.url), 
 // The site's own pages in the docs' sidebar, by group. The main site's pages are never in the sidebar.
 const sitePages = {
   Learn: ['docs/how-openmoca-works'],
-  Guides: ['start', 'docs/guides/ai-assistant'],
+  Guides: ['start', 'docs/guides/open-a-package', 'docs/guides/ai-assistant'],
   Specification: ['spec', 'spec/app-types', 'spec/node-types'],
   Tools: ['tools'],
   Project: ['releases'],
@@ -26,11 +26,11 @@ const ORDER = {
   // How OpenMOCA works first, then the documentation index and the rest of Learn as sources.json lists them.
   Learn: ['docs/how-openmoca-works', 'docs'],
   // Get started and the three Readers' guides first, then the guides.
-  Guides: ['start', 'start/typescript', 'start/dotnet', 'start/python', 'docs/guides/ai-assistant'],
+  Guides: ['start', 'start/typescript', 'start/dotnet', 'start/python', 'docs/guides/open-a-package', 'docs/guides/ai-assistant'],
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
   Project: [
-    'releases', 'project/roadmap', 'project/governance', 'project/contributing', 'project/code-of-conduct',
+    'releases', 'project/commitment', 'project/roadmap', 'project/governance', 'project/contributing', 'project/code-of-conduct',
     'project/security', 'project/changelog', 'project/migrations', 'project/releasing',
   ],
 };

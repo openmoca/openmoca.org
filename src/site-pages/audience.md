@@ -35,7 +35,7 @@ what it says.
   their work, and where to follow them.
 
 When an app answers a question from the work, the answer can show which work
-it came from, and take you there. You can check it for yourself: a citation
+it came from, and take you there. You can check it for yourself: the link
 shows where an answer came from, not that the source is right.
 
 ## Respect their wishes

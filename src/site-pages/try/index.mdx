@@ -11,44 +11,50 @@ head:
 import { LinkButton } from '@astrojs/starlight/components';
 
 Search real packages in your browser, and open every result at the passage or
-the moment it came from.
+the moment it came from. No install, and no account to search.
 
 <LinkButton href="https://try.openmoca.org" icon="external">Open Try OpenMOCA</LinkButton>
 
 ![The Try OpenMOCA demo. A search for "how do I publish an agent to Teams" in a video series has found part 14 at 1:50. The video's transcript is open beside the results, with the passage that answers the question highlighted.](../../../assets/demo-citation-at-the-moment.webp)
 
-[Try OpenMOCA](https://try.openmoca.org) runs the .NET Reader over eight real
-packages, each converted from a published source and signed. No install, and
-no account to search.
+## What is in it
 
-- **Learn Copilot Studio 2026** — a video series: 17 videos in order, every answer cited to the moment. _MadeForCloud on YouTube, CC BY 3.0._
-- **First Steps to Using Claude AI** — a recorded talk, its chapters cited to the moment. _Eliot Prince on YouTube, CC BY 3.0._
-- **Kubernetes documentation** — vendor documentation at scale: all 1,653 pages. _The Kubernetes Authors, CC BY 4.0._
-- **Airplane Flying Handbook** — a manual with a topic ontology: what each topic builds on. _FAA, public domain._
-- **Data Protection Act 2018** — legislation, section by section. _legislation.gov.uk, Open Government Licence._
-- **HSE health and safety guidance** — regulated procedures, cited to the PDF page. _Health and Safety Executive, Open Government Licence._
-- **GitLab handbook** — onboarding: a company's policies and people practices. _GitLab, Creative Commons with attribution._
-- **Acme Support Knowledge Base** — trust: 34 pages in English and French; internal procedures kept out of public answers, expired and future policies left out, stale and disputed pages flagged. _The OpenMOCA specification's example, Apache-2.0._
+Eight real works, each packaged from where it was published, and signed:
 
-What you can do there:
+- **Learn Copilot Studio 2026**: a video series of 17 videos, in order. Every
+  result opens the video at the moment. _MadeForCloud on YouTube, CC BY 3.0._
+- **First Steps to Using Claude AI**: a recorded talk, opened at each chapter.
+  _Eliot Prince on YouTube, CC BY 3.0._
+- **Kubernetes documentation**: a software company's documentation, all 1,653
+  pages. _The Kubernetes Authors, CC BY 4.0._
+- **Airplane Flying Handbook**: a manual, with what each topic builds on.
+  _FAA, public domain._
+- **Data Protection Act 2018**: a law, section by section.
+  _legislation.gov.uk, Open Government Licence._
+- **HSE health and safety guidance**: safety rules, opened at the page of the
+  PDF. _Health and Safety Executive, Open Government Licence._
+- **GitLab handbook**: a company's policies and ways of working. _GitLab,
+  Creative Commons with attribution._
+- **Acme Support Knowledge Base**: an example help centre, in English and
+  French. Internal pages stay out of public answers, and out-of-date policies
+  are left out. _The OpenMOCA specification's example, Apache-2.0._
 
-- **Search, with no account.** Lexical (keyword), semantic or hybrid, through the
-  Reader's one search call. Two local embedding models, bge-small and Nomic,
-  each with its own sidecar index of the same passages; your search is embedded
-  on the server and never sent to an AI provider. Hybrid results show where
-  each one ranked in the lexical and semantic lists.
-- **Open every result at its source.** The passage opens beside the results,
-  marked in place; a video opens at the moment.
-- **Use the structure.** Search within a chapter, a folder or a topic, narrow
-  to what the results fall under, or widen back out. In the Flying Handbook,
-  each topic shows what it builds on (`requires`).
-- **Check, don't trust.** Inspect a package: its digest, its signer, the
-  Reader's findings and its search indexes.
-- **Ask it questions.** Signed in, with your own key (Anthropic, OpenAI or
-  Google Gemini) or a demo key by invitation. Every answer cites the package,
-  and a citation opens the source.
+## What you can do there
 
-The site is built and run by PI & Mash on the open Readers and tools; its own
-code is not part of OpenMOCA.
+- **Search, with no account.** Search by words, by meaning, or both. Your
+  search stays on the demo's own computers; it is never sent to an AI company.
+- **Open every result at its source.** The passage opens beside the results;
+  a video opens at the moment.
+- **Search within a part**, such as one chapter or one topic, and widen back
+  out.
+- **Check, don't trust.** See who signed each package, and that it has not
+  been changed.
+- **Ask it questions.** Sign in with your own AI key, or a demo key by
+  invitation. Every answer names its sources, and each one opens the original.
+
+The demo is built and run by PI & Mash on the open software; its own code is
+not part of OpenMOCA.
+
+[Open a package yourself](/docs/guides/open-a-package/).
 
 [Use it with your AI assistant](/docs/guides/ai-assistant/).

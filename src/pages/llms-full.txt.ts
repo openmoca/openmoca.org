@@ -3,6 +3,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import sources from '../../sources.json';
+import audiences from '../audiences.json';
 import { MAIN_PAGES, SITE, SUMMARY } from './llms.txt';
 
 // The main site's pages first (zones.json), then the Learn and Guides groups of the docs (Get started is in Guides).
@@ -17,8 +18,9 @@ function plain(body: string) {
     .replace(/<\/TabItem>\n?/g, '')
     .replace(/<\/?CardGrid[^>]*>\n?/g, '')
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${t.match(/title="([^"]*)"/)?.[1] ?? ''}](${t.match(/href="([^"]*)"/)?.[1] ?? ''}): ${t.match(/description="([^"]*)"/)?.[1] ?? ''}`)
-    .replace(/<(PackageLayers|WorkTravels)\s*\/>\n?/g, '')
+    .replace(/<(PackageLayers|WorkTravels)\b[^>]*\/>\n?/g, '')
     .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
+    .replace(/<AudienceCards\s*\/>/g, audiences.map((c) => `- **[${c.name}](${c.href})**: ${c.title} ${c.strapline}. ${c.line}`).join('\n'))
     .replace(/<p class="section-strapline">([^<]*)<\/p>/g, '**$1**')
     .replace(/\n{3,}/g, '\n\n')
     .trim();

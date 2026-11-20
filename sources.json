@@ -582,12 +582,11 @@
     {
       "repo": "moca-spec",
       "path": "COMMITMENT.md",
-      "route": "commitment",
-      "group": "Main",
-      "template": "splash",
-      "intro": "**For apps people use.** The OpenMOCA Commitment is a company's signed, public promise that a named app and version honours creators' terms and people's own choices. OpenMOCA lists the promise; it does not test it. Software that passes the OpenMOCA test suite is listed separately, as [OpenMOCA Conformant](/conformant/).\n\n**Listings are coming soon.** They follow the 0.7.0 release. Until then, no app can show the Commitment mark.\n\nThe full text follows: what it means for audiences, and what a company commits to.",
-      "description": "The OpenMOCA Commitment: a company's signed, public promise that a named app and version honours creators' terms and people's own choices. What it means for people, and what a company commits to.",
-      "seoTitle": "The OpenMOCA Commitment"
+      "route": "project/commitment",
+      "group": "Project",
+      "label": "The OpenMOCA Commitment: full text",
+      "description": "The full text of the OpenMOCA Commitment: what it means for people, and the precise list of what a company commits to for creators' terms and people's own rules.",
+      "seoTitle": "The OpenMOCA Commitment: full text"
     },
     {
       "repo": "moca-spec",

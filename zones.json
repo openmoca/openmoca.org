@@ -11,7 +11,6 @@
     "commitment",
     "about",
     "try",
-    "try/open-a-package",
     "contact",
     "privacy",
     "404"
@@ -47,9 +46,10 @@
     "/audiences/": "/audience/",
     "/marks/": "/conformant/",
     "/how/": "/docs/how-openmoca-works/",
-    "/start/open-a-package/": "/try/open-a-package/",
+    "/start/open-a-package/": "/docs/guides/open-a-package/",
     "/start/ai-assistant/": "/docs/guides/ai-assistant/",
     "/try/ai-assistant/": "/docs/guides/ai-assistant/",
-    "/talks/": "/about/#talks"
+    "/talks/": "/about/#talks",
+    "/try/open-a-package/": "/docs/guides/open-a-package/"
   }
 }

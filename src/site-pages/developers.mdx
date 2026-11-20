@@ -1,7 +1,7 @@
 ---
 title: Build once. Read everywhere.
 strapline: Portable Grounding for AI
-description: "For Developers: build once, read everywhere. Portable grounding for AI: an open specification, open Readers, a public conformance suite and tools. Start in three steps."
+description: "For Developers: build once, read everywhere. Portable grounding for AI: an open specification, free libraries, public tests and tools. Start in three steps."
 template: splash
 editUrl: false
 head:
@@ -13,54 +13,58 @@ import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 import PackageLayers from '../../components/PackageLayers.astro';
 
 **You build the apps people use:** a player, a reader, a search, a course or
-an AI assistant. A MOCA package carries a work with its structure, its
-original sources, its credits and the creator's terms, sealed by one digest
-and optionally signed. A Reader opens it, verifies it, searches it and cites
-every result the same way, in any language, on a server or offline.
+an AI assistant. A MOCA package carries a work with its sources, its credits
+and its creator's wishes, sealed so that any change shows. Your app opens it,
+checks it, searches it and links every quote back to the original. Every app
+does it the same way, online or offline.
 
 ## What you get
 
-- **An open specification**: the package format, the Reader contract and
-  interface, attestations, encrypted packages and sidecar indexes, under
-  Apache-2.0 ([the specification](/spec/)).
-- **@@release.readers@@**, in-process libraries that reach the same
-  conclusions about every package ([Readers](/readers/typescript/)).
-- **@@release.suite@@**: a package, options and the conclusions every Reader
-  must reach, for each case ([conformance](/spec/conformance/)).
-- **Tools** to convert, check, sign and index packages, and an MCP server
-  for any AI assistant ([tools](/tools/)).
+- **An open specification**, free to use under Apache-2.0
+  ([the specification](/spec/)).
+- **Libraries:** @@release.readers@@, that open, check, search and quote
+  packages. They all give the same results ([get started](/start/)).
+- **Public tests:** @@release.suite@@, so anyone can show their software reads
+  packages the right way ([the tests](/spec/conformance/)).
+- **Tools** to make, check and sign packages, and a server that connects
+  packages to AI assistants ([tools](/tools/)).
 
-No permission needed: anyone can implement the standard. Software that passes
-the suite for what it is may say it is [OpenMOCA Conformant](/conformant/).
+No permission needed: anyone can build on the standard. Software that passes
+the public tests can say it is [OpenMOCA Conformant](/conformant/).
 
 ## A package, in three layers
 
-Build with what each layer gives you: content to search and cite, structure
-to narrow and order results, evidence to check every quote against the
-original, and the trust that runs through all three. A MOCA package wraps an
-[Open Knowledge Format](https://github.com/GoogleCloudPlatform/open-knowledge-format)
-bundle, a folder of Markdown with YAML frontmatter.
+What your app can build on: the work itself to search and quote, how it is
+organised to narrow and order results, the original sources to check every
+quote against, and the seal and signatures that cover all three.
 
-<PackageLayers />
+<PackageLayers plain />
 
 ## Start in three steps
 
-1. **Install a Reader**: `npm install @openmoca/moca-core`,
-   `dotnet add package OpenMoca.Reader` or `pip install moca-reader`
+1. **Install a library** for your language: TypeScript, .NET or Python
    ([get started](/start/)).
-2. **Open, verify and search a package**, and cite what you find with the
-   citation record each result comes back as
-   ([consuming packages](/docs/guides/consuming/)). Before you hand content to
-   a model, ask the search to apply the creator's terms
-   ([showing terms honestly](/docs/guides/showing-terms/)).
-3. **Run the conformance corpus** against your Reader, or make a package of
-   your own and check it ([quickstart](/docs/quickstart/)).
+2. **Open a package, search it and quote from it**, with a link back to the
+   original. Before you send anything to AI, check what the creator allows
+   ([showing the creator's wishes honestly](/docs/guides/showing-terms/)).
+3. **Run the public tests**, or make a package of your own
+   ([quickstart](/docs/quickstart/)).
+
+## Beside what you already use
+
+Creators may already tell AI crawlers what they may do, on their own websites:
+with the TDM Reservation Protocol, the IETF AI preferences vocabulary or RSL.
+Those statements stay on the website. A MOCA package keeps the same wishes
+with the work itself, so they are still there when it is copied. The two fit
+together: the same wishes can be stated in both places, and a package only
+ever makes them stricter
+([the creator's terms](/docs/guides/creators-terms/#beside-what-you-already-use)).
 
 ## Read the docs
 
 <CardGrid>
-  <LinkCard title="How OpenMOCA works" description="The package, the Reader and your app; search and its trust gate; how it fits a RAG stack." href="/docs/how-openmoca-works/" />
-  <LinkCard title="Get started" description="Install a Reader in TypeScript, .NET or Python, open a signed example and cite it, in about ten minutes." href="/start/" />
-  <LinkCard title="The specification" description="The package format, the Reader contract and interface, attestations and the corpus." href="/spec/" />
-  <LinkCard title="All the documentation" description="Guides for authoring, signing, structure, search, encryption and the creator's terms." href="/docs/" />
+  <LinkCard title="How OpenMOCA works" description="The package, the libraries and your app; search; how it fits the AI tools you use." href="/docs/how-openmoca-works/" />
+  <LinkCard title="Get started" description="Install a library in TypeScript, .NET or Python, open a signed example and quote from it, in about ten minutes." href="/start/" />
+  <LinkCard title="The specification" description="The package format, the rules every library follows, and the public tests." href="/spec/" />
+  <LinkCard title="All the documentation" description="Guides to making, signing, organising, searching and encrypting packages, and to the creator's wishes." href="/docs/" />
 </CardGrid>
