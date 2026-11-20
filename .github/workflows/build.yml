@@ -18,7 +18,7 @@ permissions:
 # The other MOCA repositories, at fixed refs: release tags, or commits; never a branch
 # (moca-spec CONTRIBUTING.md).
 env:
-  MOCA_SPEC_REF: 8ec870fb4f0b8f8e6047552c8596bc0ec9229736  # draft/0.7.0-site-docs while in review; release-0.7.0 once merged; v0.7.0 once tagged
+  MOCA_SPEC_REF: 1f20830bacba74fd59ec33b0b8c31a07dc659c70  # draft/0.7.0-site-docs while in review; release-0.7.0 once merged; v0.7.0 once tagged
   MOCA_READER_TYPESCRIPT_REF: 9875d6be5e3c8c2c98f5ed1111a63dba3a10788b  # release-0.7.0; v0.7.0 once tagged
   MOCA_READER_PYTHON_REF: 50dba6f37d2635d1c139a0f997910a2cbeddcc59  # release-0.7.0; v0.7.0 once tagged
   MOCA_READER_DOTNET_REF: 66493a2f10776f98396044e3b264ea6a0ac38954  # release-0.7.0; v0.7.0 once tagged

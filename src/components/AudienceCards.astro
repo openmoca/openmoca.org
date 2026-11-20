@@ -1,6 +1,6 @@
 ---
-// The four audiences on the home page: each card names who it is for, gives that page's title (its promise) and
-// strapline, and one plain line, and the whole card links to the page. Text, not pictures; one link per card.
+// The four audiences on the home page: each card gives the page's promise (its title), then who it is for, and one
+// plain line, and the whole card links to the page. Text, not pictures; one link per card.
 // The cards' words are in src/audiences.json, so the Markdown copy of the home page says the same.
 import CARDS from '../audiences.json';
 ---
@@ -9,8 +9,8 @@ import CARDS from '../audiences.json';
   {CARDS.map((c) => (
     <li>
       <a href={c.href}>
-        <h3>{c.name}</h3>
-        <p class="title">{c.title}</p>
+        <h3>{c.title}</h3>
+        <p class="name">{c.name}</p>
         <p class="strapline">{c.strapline}</p>
         <p class="line">{c.line}</p>
       </a>
@@ -39,8 +39,8 @@ import CARDS from '../audiences.json';
     text-decoration: none;
   }
   .audience-cards a:hover { border-color: var(--moca-link); }
-  .audience-cards h3 { margin: 0 0 0.5rem; font-size: var(--sl-text-sm); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--moca-link); }
-  .audience-cards .title { margin: 0; font-size: var(--sl-text-xl); font-weight: 600; line-height: 1.25; color: var(--moca-text); }
+  .audience-cards h3 { margin: 0; font-size: var(--sl-text-xl); font-weight: 600; line-height: 1.25; color: var(--moca-text); }
+  .audience-cards .name { margin: 0.25rem 0 0.75rem; font-size: var(--sl-text-sm); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--moca-link); }
   .audience-cards .strapline { margin: 0.25rem 0 0.75rem; font-size: var(--sl-text-base); color: var(--moca-text-muted); }
   .audience-cards .line { margin: 0; font-size: var(--sl-text-sm); color: var(--moca-text); }
   @media (max-width: 50rem) { .audience-cards { grid-template-columns: 1fr; } }
