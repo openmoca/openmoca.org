@@ -5,86 +5,250 @@
   "description": "The data behind https://openmoca.org/directory/commitment/. Booleans for yes or no; a field that is not set is absent; dates are RFC 3339 date-times with an offset.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["$schema", "title", "description", "version", "released", "updated", "publisher", "specVersion", "license", "entries"],
+  "required": [
+    "$schema",
+    "title",
+    "description",
+    "version",
+    "released",
+    "updated",
+    "publisher",
+    "specVersion",
+    "license",
+    "entries"
+  ],
   "properties": {
-    "$schema": { "const": "https://openmoca.org/directory/commitment.schema.json" },
-    "title": { "type": "string", "minLength": 1 },
-    "description": { "type": "string", "minLength": 1 },
-    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$", "description": "This list's own version, raised on every change." },
-    "released": { "$ref": "#/$defs/dateTime" },
-    "updated": { "$ref": "#/$defs/dateTime" },
-    "publisher": { "$ref": "#/$defs/publisher" },
-    "specVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$", "description": "The OpenMOCA specification version the list applies to, as major.minor." },
-    "license": { "const": "CC0-1.0", "description": "The licence of this data: anyone may reuse it." },
-    "entries": { "type": "array", "items": { "$ref": "#/$defs/entry" } }
+    "$schema": {
+      "const": "https://openmoca.org/directory/commitment.schema.json"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "This list's own version, raised on every change."
+    },
+    "released": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "updated": {
+      "$ref": "#/$defs/dateTime"
+    },
+    "publisher": {
+      "$ref": "#/$defs/publisher"
+    },
+    "specVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "description": "The OpenMOCA specification version the list applies to, as major.minor."
+    },
+    "license": {
+      "const": "CC0-1.0",
+      "description": "The licence of this data: anyone may reuse it."
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
   },
   "$defs": {
-    "dateTime": { "type": "string", "format": "date-time", "pattern": "(Z|[+-][0-9]{2}:[0-9]{2})$" },
-    "url": { "type": "string", "format": "uri", "pattern": "^(https|mailto):" },
+    "dateTime": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "(Z|[+-][0-9]{2}:[0-9]{2})$"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(https|mailto):"
+    },
     "party": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "url"],
-      "properties": { "name": { "type": "string", "minLength": 1 }, "url": { "$ref": "#/$defs/url" } }
+      "required": [
+        "name",
+        "url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        }
+      }
     },
     "publisher": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "url", "maintainer"],
+      "required": [
+        "name",
+        "url",
+        "maintainer"
+      ],
       "properties": {
-        "name": { "type": "string", "minLength": 1 },
-        "url": { "$ref": "#/$defs/url" },
-        "maintainer": { "$ref": "#/$defs/party" }
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        },
+        "maintainer": {
+          "$ref": "#/$defs/party"
+        }
       }
     },
     "entry": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "app", "company", "version", "date", "modelsAndDestinations", "setupsCovered", "contact", "statement", "commitmentVersion"],
+      "required": [
+        "id",
+        "status",
+        "app",
+        "company",
+        "version",
+        "date",
+        "modelsAndDestinations",
+        "setupsCovered",
+        "contact",
+        "statement",
+        "commitmentVersion"
+      ],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Stable; also the entry's page address." },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+          "description": "Stable; also the entry's page address."
+        },
+        "status": {
+          "enum": [
+            "made",
+            "pending"
+          ],
+          "description": "made: the company's statement is signed and listed. pending: the statement is published and its signature is to follow; the app may not show the Commitment mark."
+        },
         "app": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["name", "url", "kind"],
+          "required": [
+            "name",
+            "url",
+            "kind"
+          ],
           "properties": {
-            "name": { "type": "string", "minLength": 1 },
-            "url": { "$ref": "#/$defs/url" },
-            "kind": { "type": "string", "minLength": 1, "description": "What kind of app, in plain words: a web app, a podcast app, an e-reader." }
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "url": {
+              "$ref": "#/$defs/url"
+            },
+            "kind": {
+              "type": "string",
+              "minLength": 1,
+              "description": "What kind of app, in plain words: a web app, a podcast app, an e-reader."
+            }
           }
         },
-        "company": { "$ref": "#/$defs/party" },
-        "version": { "type": "string", "minLength": 1, "description": "The app version the statement covers." },
-        "date": { "$ref": "#/$defs/dateTime" },
+        "company": {
+          "$ref": "#/$defs/party"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The app version the statement covers."
+        },
+        "date": {
+          "$ref": "#/$defs/dateTime"
+        },
         "modelsAndDestinations": {
           "type": "array",
           "minItems": 1,
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["use", "destination"],
+            "required": [
+              "use",
+              "destination"
+            ],
             "properties": {
-              "use": { "type": "string", "minLength": 1, "description": "What the model is used for, such as search or answers." },
-              "model": { "type": "string", "minLength": 1 },
-              "provider": { "type": "string", "minLength": 1 },
-              "destination": { "enum": ["device", "host", "provider"], "description": "Where content goes, as Reader contract §15.4 names it." }
+              "use": {
+                "type": "string",
+                "minLength": 1,
+                "description": "What the model is used for, such as search or answers."
+              },
+              "model": {
+                "type": "string",
+                "minLength": 1
+              },
+              "provider": {
+                "type": "string",
+                "minLength": 1
+              },
+              "destination": {
+                "enum": [
+                  "device",
+                  "host",
+                  "provider"
+                ],
+                "description": "Where content goes, as Reader contract §15.4 names it."
+              }
             }
           }
         },
-        "setupsCovered": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
-        "setupsNotCovered": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
-        "contact": { "$ref": "#/$defs/url" },
+        "setupsCovered": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "setupsNotCovered": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "contact": {
+          "$ref": "#/$defs/url"
+        },
         "statement": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["signed"],
+          "required": [
+            "signed"
+          ],
           "properties": {
-            "url": { "$ref": "#/$defs/url" },
-            "signed": { "type": "boolean" },
-            "toFollow": { "const": true, "description": "Present when the signed statement is still to be published." }
+            "url": {
+              "$ref": "#/$defs/url"
+            },
+            "signed": {
+              "type": "boolean"
+            },
+            "toFollow": {
+              "const": true,
+              "description": "Present when the signed statement is still to be published."
+            }
           }
         },
-        "commitmentVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$", "description": "The version of the Commitment promised (the specification's major.minor)." }
+        "commitmentVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+$",
+          "description": "The version of the Commitment promised (the specification's major.minor)."
+        }
       }
     }
   }

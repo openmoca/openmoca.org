@@ -13,14 +13,15 @@ Technical questions are in the [technical FAQ](/docs/faq/).
 ## What is OpenMOCA?
 
 OpenMOCA is an open standard that keeps the creator with their work (their
-credits, sources and wishes) in any app, with or without AI. The audience can
+credits, sources and wishes) in any app that reads OpenMOCA, with or without
+AI. The audience can
 see who made something, open the original, and choose apps that respect the
 creator.
 
 ## What is a MOCA package?
 
 A MOCA package is the file OpenMOCA keeps a work in: one piece of digital work
-with its credits, its sources and the creator's wishes. It is sealed, so any change shows. It can be signed, to
+with its credits, its sources and the creator's wishes. Any change to it can be detected. It can be signed, to
 show who stands behind it. It travels as one `.moca` file.
 
 ## Why does OpenMOCA exist?
@@ -44,7 +45,7 @@ and documentation. OpenMOCA is not tied to one industry.
 
 ## How do a creator's wishes travel with their work?
 
-They are sealed in with the work, so every copy carries them. Any app can show them exactly as the creator wrote them, show who signed
+They are carried with the work, so every copy carries them. Any app can show them exactly as the creator wrote them, show who signed
 them, and follow them ([the creator's terms](/docs/guides/creators-terms/)).
 
 ## What can creators say about AI use?

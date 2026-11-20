@@ -23,8 +23,8 @@ choices too. The company behind the app signs that promise for a named app
 and version. OpenMOCA lists it; it does not test it. Anyone can hold the
 company to it.
 
-**How to get listed.** Publish a signed statement for your app and version,
-and ask for it to be listed.
+**How to get listed.** Publish a statement for your app and version, signed
+by your company, and ask for it to be listed.
 
 [The OpenMOCA Commitment, and the apps that have made it](/directory/commitment/)
 
@@ -32,12 +32,15 @@ and ask for it to be listed.
 
 **OpenMOCA Conformant.** Mainly for developers and organisations.
 
-Software that passes the public OpenMOCA tests for what it does (reading,
-making or checking OpenMOCA) can say it is OpenMOCA Conformant. The tests are
-public, so anyone can run them.
+Software that passes the public OpenMOCA tests for what it does can say it is
+OpenMOCA Conformant. The tests are public, so anyone can run them. In 0.7.0
+the tests cover Readers, software that reads OpenMOCA; tests for software
+that makes or checks packages follow.
 
-**How to get listed.** Run the tests, publish the signed result, and ask for
-it to be listed. There is no fee and no application form.
+**How to get listed.** Run the tests and publish the run, then ask for it to
+be listed. There is no fee and no application form. For 0.7.0, a listing rests
+on a public test run; signed records are required once the signing tool
+ships.
 
 [OpenMOCA Conformant, and the software that is listed](/directory/conformant/)
 
@@ -62,7 +65,8 @@ different things:
 - **The OpenMOCA Commitment** is a company's public promise about an app.
 
 Neither is a certification or an endorsement, and neither is a registered
-trade mark. Neither means content cannot be copied or misused, that a
+trade mark; the name OpenMOCA itself has a pending UK trade mark application
+(UK00004468246). Neither means content cannot be copied or misused, that a
 package's statements are true, or that whoever signed a package owns the work.
 
 How the OpenMOCA name may be used with both is in the

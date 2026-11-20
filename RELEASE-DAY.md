@@ -18,10 +18,12 @@ place the release state touches.
 - [ ] **The demo.** Before publishing, check try.openmoca.org shows 0.7.0, the
   welcome panel and the tour (session E). Every "Try it" button on the home
   page and the top bar goes straight there.
-- [ ] **The Commitment list** (`src/directory/commitment.json`): confirm the demo
-  honours the rules (session E) and PI & Mash's statement is published; until
-  then the entry says "signed record to follow". It covers every set-up at
-  version 0.7.0. If it is not ready, remove the entry.
+- [ ] **The Commitment list** (`src/directory/commitment.json`): the demo is
+  listed as `"status": "pending"` (statement published, signature to follow),
+  under its own heading and without the Commitment mark. When PI & Mash's
+  statement is signed and published, and the demo honours the rules
+  (session E), set `"status": "made"`, add the statement's `url`, set
+  `"signed": true`, remove `"toFollow"`, and raise the list's `version`.
 - [ ] **The Conformant list** (`src/directory/conformant.json`): confirm green on
   the day, each at 0.7.0 against the 0.7.0 tests, and remove any that is not:
   - [ ] the TypeScript Reader (`@openmoca/moca-core`)

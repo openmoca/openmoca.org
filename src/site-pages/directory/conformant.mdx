@@ -33,7 +33,7 @@ the tests it passed.
 | --- | --- |
 | **Official** | The project's own software, such as its Readers and tools |
 | **Verified** | The project has run the tests again on that version itself |
-| **Self-tested** | The maker ran the public tests and published a signed result |
+| **Self-tested** | The maker ran the public tests and published the run (a signed result, once the signing tool ships) |
 
 ## Software that is listed
 
@@ -49,13 +49,15 @@ to reuse under CC0), and its
 ## How to get listed
 
 Run the tests yourself; they are [public](/spec/conformance/). There is no fee
-and no application form. Publish the signed result, then ask for it to be
-listed at [hello@openmoca.org](mailto:hello@openmoca.org). A result covers one
+and no application form. Publish the test run, then ask for it to be listed at
+[hello@openmoca.org](mailto:hello@openmoca.org). For 0.7.0, a listing rests on
+a public test run; signed records are required once the signing tool ships. A result covers one
 version: if a later version of the software fails the tests, the claim is
 updated or removed. A listing that fails when the tests are run again is
 removed.
 
 ## Tests for software that makes or checks packages come later
 
-Today's tests are for software that reads OpenMOCA. Software that makes or
-checks packages is listed once tests for it exist.
+In 0.7.0 the public tests cover Readers, software that reads OpenMOCA. Tests
+for software that makes or checks packages follow; such software is listed
+once they exist.

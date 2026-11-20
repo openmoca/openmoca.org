@@ -33,7 +33,7 @@ function plain(body) {
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${attr(t, 'title')}](${attr(t, 'href')}): ${attr(t, 'description')}`)
     .replace(/<Card\b[^>]*>([\s\S]*?)<\/Card>/g, (t, inner) => `**${attr(t, 'title')}.** ${inner.replace(/\s+/g, ' ').trim()}`)
     .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
-    .replace(/<CommitmentList\s*\/>/g, commitment.entries.map((e) => `- [${e.app.name}](https://openmoca.org/directory/commitment/${e.id}/), by ${e.company.name}: ${e.app.kind}, version ${e.version}.`).join('\n'))
+    .replace(/<CommitmentList status="(\w+)"[^>]*\/>/g, (_, status) => commitment.entries.filter((e) => e.status === status).map((e) => `- [${e.app.name}](https://openmoca.org/directory/commitment/${e.id}/), by ${e.company.name}: ${e.app.kind}, version ${e.version}.`).join('\n') || (status === 'made' ? 'No app has made the Commitment yet.' : 'None at the moment.'))
     .replace(/<ConformantList\s*\/>/g, conformant.entries.map((e) => `- [${e.name}](${e.repository})${e.package ? ` (\`${e.package}\`)` : ''}: ${e.kind}, ${e.standing}, version ${e.version}, OpenMOCA ${e.specVersion}, ${e.suite.passed} of ${e.suite.cases} tests passed ([test run](${e.testRun})).`).join('\n'))
     .replace(/<AudienceCards\s*\/>/g, audiences.map((c) => `- **[${c.name}](${c.href})**: ${c.title} ${c.strapline}. ${c.line}`).join('\n'))
     .replace(/<div class="lead">\n\n([\s\S]*?)\n\n<\/div>/g, '$1')
@@ -43,7 +43,7 @@ function plain(body) {
       'How a creator\'s work travels:',
       '',
       '1. **The creator** makes the work: a podcast, a book, a course, a video, research, a guide.',
-      '2. **Your work, kept together**: the work, its credits, its sources and the creator\'s terms, with a seal that shows any change and a signature that shows who signed it.',
+      '2. **Your work, kept together**: the work, its credits, its sources and the creator\'s terms, with a check for changes and a signature that shows who signed it.',
       '3. **Any app** opens the work, shows who made it, and follows the creator\'s wishes.',
       '4. **People** get answers that show where they came from, and open the original at the passage or the moment.',
     ].join('\n'))

@@ -22,7 +22,7 @@ function plain(body: string) {
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${t.match(/title="([^"]*)"/)?.[1] ?? ''}](${t.match(/href="([^"]*)"/)?.[1] ?? ''}): ${t.match(/description="([^"]*)"/)?.[1] ?? ''}`)
     .replace(/<(PackageLayers|WorkTravels)\b[^>]*\/>\n?/g, '')
     .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
-    .replace(/<CommitmentList\s*\/>/g, commitment.entries.map((e) => `- [${e.app.name}](https://openmoca.org/directory/commitment/${e.id}/), by ${e.company.name}: ${e.app.kind}, version ${e.version}.`).join('\n'))
+    .replace(/<CommitmentList status="(\w+)"[^>]*\/>/g, (_, status) => commitment.entries.filter((e) => e.status === status).map((e) => `- [${e.app.name}](https://openmoca.org/directory/commitment/${e.id}/), by ${e.company.name}: ${e.app.kind}, version ${e.version}.`).join('\n') || (status === 'made' ? 'No app has made the Commitment yet.' : 'None at the moment.'))
     .replace(/<ConformantList\s*\/>/g, conformant.entries.map((e) => `- [${e.name}](${e.repository})${e.package ? ` (\`${e.package}\`)` : ''}: ${e.kind}, ${e.standing}, version ${e.version}, OpenMOCA ${e.specVersion}, ${e.suite.passed} of ${e.suite.cases} tests passed ([test run](${e.testRun})).`).join('\n'))
     .replace(/<AudienceCards\s*\/>/g, audiences.map((c) => `- **[${c.name}](${c.href})**: ${c.title} ${c.strapline}. ${c.line}`).join('\n'))
     .replace(/<div class="lead">\n\n([\s\S]*?)\n\n<\/div>/g, '$1')

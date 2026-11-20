@@ -643,7 +643,7 @@
       "route": "project/governance",
       "group": "Project",
       "label": "Governance",
-      "description": "How OpenMOCA is run: the maintainer, decisions, the path to a standard, and who holds the OpenMOCA trade mark."
+      "description": "How OpenMOCA is run: the maintainer, decisions, the path to a standard, and the pending trade mark application for the name OpenMOCA."
     },
     {
       "repo": "moca-spec",

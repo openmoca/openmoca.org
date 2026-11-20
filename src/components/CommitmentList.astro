@@ -5,17 +5,24 @@
 // many apps match in a polite live region.
 import data from '../directory/commitment.json';
 
+// status: "made" (signed and listed) or "pending" (statement published, signature to follow). The search box is
+// offered on the list of apps that have made the Commitment, when it has entries.
+interface Props { status: 'made' | 'pending'; search?: boolean }
+const { status, search = false } = Astro.props;
+const entries = data.entries.filter((e) => e.status === status);
+
 const date = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 
 <div class="commitment-list not-content">
-  <div class="search" hidden>
+  {entries.length === 0 && <p class="empty">{status === 'made' ? 'No app has made the Commitment yet.' : 'None at the moment.'}</p>}
+  {search && entries.length > 0 && <div class="search" hidden>
     <label for="commitment-search">Search the list by app, company or kind</label>
     <input id="commitment-search" type="search" autocomplete="off" />
     <p class="count" role="status" aria-live="polite"></p>
-  </div>
-  <ul class="entries">
-    {data.entries.map((e) => (
+  </div>}
+  {entries.length > 0 && <ul class="entries">
+    {entries.map((e) => (
       <li data-search={`${e.app.name} ${e.company.name} ${e.app.kind}`.toLowerCase()}>
         <h3><a href={`/directory/commitment/${e.id}/`}>{e.app.name}</a></h3>
         <p>
@@ -23,8 +30,8 @@ const date = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'nume
         </p>
       </li>
     ))}
-  </ul>
-  <p class="none" hidden>No app in the list matches that search.</p>
+  </ul>}
+  {search && entries.length > 0 && <p class="none" hidden>No app in the list matches that search.</p>}
 </div>
 
 <script>
@@ -52,6 +59,7 @@ const date = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'nume
 
 <style>
   .commitment-list { margin-top: 1rem; }
+  .empty { margin: 0; font-style: italic; color: var(--moca-text-muted); }
   .search label { display: block; font-weight: 600; margin-bottom: 0.35rem; }
   .search input {
     width: 100%;
