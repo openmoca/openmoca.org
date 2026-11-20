@@ -1,5 +1,5 @@
 ---
-// The footer, one per zone (zones.json), above Starlight's own (edit link, previous and next in the docs).
+// The footer, one per zone (zones.json). The docs keep Starlight's own above it (edit link, previous and next).
 // - The main site: the site's links; then the version, the licence and who maintains it; then the trade mark notice.
 // - The docs: one line (the version, About, Contact, Privacy, GitHub, the licence, who maintains it); then the notice.
 // The version comes from the release switch (release.json). One "maintained by" line, linked to the maintainer's site:
@@ -12,7 +12,11 @@ const isMain = inMain(Astro.locals.starlightRoute.id);
 const version = release.released ? release.version : release.previous;
 ---
 
-<Default />
+{
+  // Starlight's own footer (edit link, previous and next) belongs to the docs; the main site's pages are not a
+  // sequence.
+  !isMain && <Default />
+}
 {
   isMain ? (
     <>

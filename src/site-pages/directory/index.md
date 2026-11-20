@@ -40,9 +40,3 @@ public, so anyone can run them.
 it to be listed. There is no fee and no application form.
 
 [OpenMOCA Conformant, and the software that is listed](/directory/conformant/)
-
-## This directory will grow
-
-It starts with the project's own software and the project's own demo. Every
-listing, ours included, follows the same rules. To ask about a listing, write
-to [hello@openmoca.org](mailto:hello@openmoca.org).
