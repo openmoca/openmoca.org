@@ -23,7 +23,11 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
 - The pins are the `MOCA_*_REF` values at the top of
   [`.github/workflows/build.yml`](.github/workflows/build.yml): release tags,
   or commits, never a branch.
-- The site's own pages (the landing page) are in `src/site-pages/`.
+- The site's own pages (the landing page, the pages for creators and people,
+  the release notes) are in `src/site-pages/`.
+- The release state is one setting, `released` in [`release.json`](release.json):
+  the sync writes it into the site's own pages. [RELEASE-DAY.md](RELEASE-DAY.md)
+  lists everything that changes on release day.
 - [Astro](https://astro.build) and [Starlight](https://starlight.astro.build)
   build static files into `dist/`. The build fails on a broken internal link,
   on any link to or name of a private repository, and on anything loaded from
@@ -69,6 +73,10 @@ npm run deploy   # builds from the pinned commits, then uploads dist/
 
 Until the repositories are public, deploys run from a maintainer's machine; a
 GitHub Actions deploy job follows at release.
+
+## How it is made
+
+Built with the help of AI assistants; every change is reviewed and accepted by the maintainer.
 
 ## Licence
 
