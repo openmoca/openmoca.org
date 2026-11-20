@@ -1,24 +1,22 @@
 ---
 title: About OpenMOCA
-description: "Knowledge that travels with its context. What OpenMOCA is, who maintains it, how it is governed, its status and talks, the pitch in one line, 30 seconds and two minutes, and how to take part. Apache-2.0."
+description: What OpenMOCA is, who maintains it, how it is governed, and how to take part. An open standard for portable grounding for AI, under Apache-2.0.
 template: splash
 editUrl: false
 ---
 
-<div class="lead">
-
-**Knowledge that travels with its context.** OpenMOCA is the open standard
-for portable, attributable and trustworthy knowledge. It keeps the creator
-with their work, in any app, with or without AI. Anyone can read it,
-implement it and build on it.
-
-</div>
+**OpenMOCA is an open standard for portable grounding for AI.** MOCA stands for
+Modular Ontology, Content & Attestation. A MOCA package carries the knowledge an
+AI system answers from, how it is organised, and the original sources it came
+from, sealed by one digest and optionally signed. Open Readers in TypeScript,
+.NET and Python read, verify, search and cite it the same way, on a server or
+offline. See [why MOCA](/docs/why-moca/) for the problem it solves.
 
 ## What the project is
 
 - **The specification**: the package format, the Reader contract and interface,
-  attestations, encrypted packages and sidecar indexes, with a conformance
-  corpus every Reader must pass.
+  attestations and sidecar indexes, with a conformance corpus every Reader
+  must pass.
 - **Three Readers**, in TypeScript, .NET and Python, that reach the same
   conclusions about every package.
 - **Tools** to convert, check, sign and index packages, and an MCP server.
@@ -44,81 +42,6 @@ decision records. The project plans to add co-maintainers and a lightweight
 proposal process as it grows, and to work towards a 1.0 standard once the
 format has settled and is used beyond its maintainer. See
 [governance](/project/governance/) and the [roadmap](/project/roadmap/).
-
-## Status
-
-@@release.status@@ See the [release notes](/releases/).
-
-## Talks
-
-### Introduction to OpenMOCA, autumn 2026
-
-Why knowledge for AI is often stuck in one system and hard to check, and how
-OpenMOCA keeps it portable and checkable. Two live demos:
-[Try OpenMOCA](https://try.openmoca.org) in the browser, and an AI assistant
-on your own computer. Then where it works today, and how to start with your
-own work.
-
-[Open the slides](/talks/introduction-to-openmoca/). Use the arrow keys, or
-tap the right or left of a slide. Press **S** for the speaker notes, **O** for
-every slide at once, and **F** for full screen.
-
-## The pitch
-
-### In one line
-
-OpenMOCA keeps the creator with their work (their credits, sources and terms)
-in any app, with or without AI.
-
-### In 30 seconds
-
-Apps now answer, summarise and chat using people's work, and the true creator
-is getting lost. OpenMOCA is an open standard that keeps them with the work:
-their name, the people who helped, the sources, and what they've ruled out.
-Any app can read it, with or without AI. The audience can see who made
-something, open the original, and choose apps that respect the creator. It
-works for any kind of digital work, and it's free for anyone to use.
-
-### In two minutes
-
-Apps now answer, summarise and chat using people's work: a podcast, a book, a
-course, a piece of research. And the true creator is getting lost.
-
-The content may still be there, but important things go missing. The
-creator's name. The people who contributed. The original sources. And the
-creator's wishes about how the work may be used.
-
-The audience has a problem too. They get an answer, a summary or a clip, but it
-can be hard to see who made it, check the original or know how the creator
-wants it shared, shown and used.
-
-OpenMOCA is an open standard designed to address this.
-
-It keeps digital work together with its credits, sources, evidence and the
-creator's declared wishes, wherever it goes. Any app can read it, with or without AI: a player, a reader, a search, a course, an
-assistant.
-
-Those wishes let the creator rule things out: sending the work to third-party
-AI providers, machine translation, or export. Training is never allowed by
-default. They also carry audience ratings and rights.
-
-Each work is sealed and can be signed, so compatible software can check it
-is unchanged and see who signed it. Links can take people back to the
-exact passage or moment in the original source.
-
-Any developer can build software that reads or creates it.
-OpenMOCA already has @@release.readers@@, backed by @@release.suite@@.
-
-And we are being clear about the limits: it is a label, not a lock. The
-standard cannot force an application to obey the creator's wishes. That's why we also have
-the OpenMOCA Commitment: a company's signed, public promise that a named
-application and version will honour creators' rules and people's own choices.
-
-OpenMOCA is open for anyone to implement. We want it to work everywhere, not
-just in one product or platform.
-
-Our belief is simple: your work should keep its identity, its sources and its
-terms wherever it goes.
 
 ## Take part
 

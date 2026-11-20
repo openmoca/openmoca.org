@@ -6,9 +6,10 @@
     "audience",
     "developers",
     "organisations",
+    "directory",
+    "directory/commitment",
+    "directory/conformant",
     "faq",
-    "conformant",
-    "commitment",
     "about",
     "try",
     "contact",
@@ -33,24 +34,26 @@
       "href": "/organisations/"
     },
     {
-      "label": "FAQs",
-      "href": "/faq/"
+      "label": "Directory",
+      "href": "/directory/"
     },
     {
-      "label": "About",
-      "href": "/about/"
+      "label": "FAQs",
+      "href": "/faq/"
     }
   ],
   "moved": {
     "/people/": "/audience/",
     "/audiences/": "/audience/",
-    "/marks/": "/conformant/",
+    "/marks/": "/directory/conformant/",
     "/how/": "/docs/how-openmoca-works/",
     "/start/open-a-package/": "/docs/guides/open-a-package/",
     "/start/ai-assistant/": "/docs/guides/ai-assistant/",
     "/try/ai-assistant/": "/docs/guides/ai-assistant/",
-    "/talks/": "/about/#talks",
     "/try/open-a-package/": "/docs/guides/open-a-package/",
-    "/answers/": "/faq/"
+    "/answers/": "/faq/",
+    "/commitment/": "/directory/commitment/",
+    "/conformant/": "/directory/conformant/",
+    "/project/commitment/": "/directory/commitment/"
   }
 }

@@ -237,6 +237,8 @@ for (const page of sources.pages) {
   let text = unlinkHidden(rewriteLinks(body, page));
   // The outro is added after links are rewritten: its link to the repository's own file must stay on GitHub.
   if (page.outro) text = `${text.trimEnd()}\n\n${page.outro}\n`;
+  // A longer outro, the site's own Markdown (such as a listing under the Commitment), from a file in this repository.
+  if (page.outroFile) text = `${text.trimEnd()}\n\n${readFileSync(join(site, page.outroFile), 'utf8').trim()}\n`;
   const tabbed = TABS.test(text);
   if (tabbed) text = toTabs(text, page);
   // An example's "Try it" section is generated (below), so it reads the same on every example page; it needs MDX.

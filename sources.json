@@ -582,11 +582,13 @@
     {
       "repo": "moca-spec",
       "path": "COMMITMENT.md",
-      "route": "project/commitment",
-      "group": "Project",
-      "label": "The OpenMOCA Commitment: full text",
-      "description": "The full text of the OpenMOCA Commitment: what it means for people, and the precise list of what a company commits to for creators' terms and people's own rules.",
-      "seoTitle": "The OpenMOCA Commitment: full text"
+      "route": "directory/commitment",
+      "group": "Main",
+      "template": "splash",
+      "intro": "**For apps people use.** Part of the [OpenMOCA Directory](/directory/). An app that makes the OpenMOCA Commitment promises to respect how creators want their work shared, shown and used, and people's own choices. This page says what that means for you, what a company commits to, and which apps have made it.",
+      "outroFile": "src/site-fragments/commitment-listing.md",
+      "description": "The OpenMOCA Commitment: what it means for you, what a company commits to, the apps that have made it, and how to make it.",
+      "seoTitle": "The OpenMOCA Commitment"
     },
     {
       "repo": "moca-spec",

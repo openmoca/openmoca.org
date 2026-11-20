@@ -12,10 +12,9 @@ head:
 (the files OpenMOCA keeps a work in, with its credits, sources and wishes),
 without asking. OpenMOCA Conformant is a public listing on openmoca.org of the
 software that passes the public OpenMOCA tests, so people choosing software
-can see what it has shown. For apps people use,
-there is a different listing: [the OpenMOCA Commitment](/commitment/).
-
-**Listings are coming soon.** Until then, no software is listed.
+can see what it has shown. It is part of the [OpenMOCA Directory](/directory/).
+For apps people use, there is a different listing:
+[the OpenMOCA Commitment](/directory/commitment/).
 
 ## What it means
 
@@ -40,6 +39,22 @@ the suite it passed, and has one of three standings:
 signed result and ask for it to be listed. A result covers one version: if a
 later version of the software fails the tests, the claim is updated or
 removed. A listing that fails when the tests are run again is removed.
+
+## Software that is listed
+
+Each entry links to its public test run on GitHub. The signed record of each
+result, and the tool that makes it, come after 0.7.0.
+
+| Software | What it does | Version | Standard | Tests passed | Standing |
+| --- | --- | --- | --- | --- | --- |
+| [TypeScript Reader](https://github.com/openmoca/moca-reader-typescript) (`@openmoca/moca-core`) | Reads OpenMOCA | 0.7.0 | OpenMOCA 0.7 | Reader tests, @@release.suite@@: [test run](https://github.com/openmoca/moca-reader-typescript/actions/workflows/test.yml) (signed record to follow) | Official |
+| [.NET Reader](https://github.com/openmoca/moca-reader-dotnet) (`OpenMoca.Reader`) | Reads OpenMOCA | 0.7.0 | OpenMOCA 0.7 | Reader tests, @@release.suite@@: [test run](https://github.com/openmoca/moca-reader-dotnet/actions/workflows/test.yml) (signed record to follow) | Official |
+| [Python Reader](https://github.com/openmoca/moca-reader-python) (`moca-reader`) | Reads OpenMOCA | 0.7.0 | OpenMOCA 0.7 | Reader tests, @@release.suite@@: [test run](https://github.com/openmoca/moca-reader-python/actions/workflows/test.yml) (signed record to follow) | Official |
+
+Tests for software that makes or checks OpenMOCA come later; such software is
+listed once its tests exist. This directory will grow: to list your own
+software, run the tests and publish the signed result, then write to
+[hello@openmoca.org](mailto:hello@openmoca.org).
 
 ## Conformant and the Commitment, side by side
 

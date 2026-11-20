@@ -18,6 +18,16 @@ place the release state touches.
 - [ ] **The demo.** Before publishing, check try.openmoca.org shows 0.7.0, the
   welcome panel and the tour (session E). Every "Try it" button on the home
   page and the top bar goes straight there.
+- [ ] **The Commitment listing.** Confirm the demo honours the rules (session E)
+  and PI & Mash's statement is published. If not, leave the entry off
+  (`src/site-fragments/commitment-listing.md`). Confirm with PI & Mash the
+  set-ups covered and the contact for challenges.
+- [ ] **The Conformant listing** (`src/site-pages/directory/conformant.md`):
+  confirm green on the day, each at 0.7.0 against the 0.7.0 tests, and leave
+  off any that is not:
+  - [ ] the TypeScript Reader (`@openmoca/moca-core`)
+  - [ ] the .NET Reader (`OpenMoca.Reader`)
+  - [ ] the Python Reader (`moca-reader`)
 - [ ] **The pins.** Every `MOCA_*_REF` in
   [`.github/workflows/build.yml`](.github/workflows/build.yml) becomes its
   `v0.7.0` tag (below).
@@ -41,10 +51,10 @@ in-review wording, if the release slips:
 The pages that use the tokens:
 
 - `src/site-pages/index.mdx`: the status, under "Open and honest"
-- `src/site-pages/about.md`: the status and the two-minute pitch
 - `src/site-pages/developers.mdx`: what you get
 - `src/site-pages/answers.md`: "Is OpenMOCA free and open?"
 - `src/site-pages/releases.md`: the status line
+- `src/site-pages/directory/conformant.md`: the test count in each listing
 - `src/site-pages/spec/index.mdx`: the conformance corpus
 
 ## The pins
@@ -71,10 +81,7 @@ files exist:
 
 ## Leave as they are
 
-- `src/site-pages/conformant.md`, `src/site-pages/commitment.md`,
-  `src/site-pages/audience.md`, `src/site-pages/releases.md` and
-  `src/site-pages/spec/index.mdx`: "Listings are coming soon". They stay until
-  the listings exist.
+- The Directory lists only what is confirmed: nothing says "coming soon".
 - The talk slides (`public/talks/`) already say "Updated for OpenMOCA 0.7.0".
 - Guides that say their output "was run with the 0.6.0 tools" (the
   walkthrough, authoring, signing and review, structure, search and indexes)

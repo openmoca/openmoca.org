@@ -6,7 +6,7 @@ import sources from '../../sources.json';
 import zones from '../../zones.json';
 
 // The main site's pages (zones.json), first: what OpenMOCA is for creators, the audience, developers and organisations.
-export const MAIN_PAGES = ['', 'creators', 'audience', 'developers', 'organisations', 'faq', 'conformant', 'commitment', 'about', 'try']
+export const MAIN_PAGES = ['', 'creators', 'audience', 'developers', 'organisations', 'directory', 'directory/commitment', 'directory/conformant', 'faq', 'about', 'try']
   .filter((id) => zones.main.includes(id));
 
 export const SITE = 'https://openmoca.org';
@@ -69,7 +69,7 @@ export const GET: APIRoute = async () => {
   }
   // Talks: the site's own Talks page and each talk's slides, which are static pages outside the docs.
   lines.push('## Talks', '',
-    `- [Talks](${SITE}/about/#talks): Talks about OpenMOCA, with their slides and speaker notes.`,
+    `- [Talks](${SITE}/talks/): Talks about OpenMOCA, with their slides and speaker notes.`,
     `- [Introduction to OpenMOCA (slides)](${SITE}/talks/introduction-to-openmoca/): Slides and speaker notes: why knowledge for AI is often locked in one pipeline and hard to check, and how OpenMOCA packages it with its structure, sources and signatures, for RAG with citations you can check, over MCP or in your app.`,
     '');
   return new Response(lines.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

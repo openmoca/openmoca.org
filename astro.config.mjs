@@ -17,7 +17,7 @@ const sitePages = {
   Guides: ['start', 'docs/guides/open-a-package', 'docs/guides/ai-assistant'],
   Specification: ['spec', 'spec/app-types', 'spec/node-types'],
   Tools: ['tools'],
-  Project: ['project/about', 'releases'],
+  Project: ['project/about', 'talks', 'releases'],
 };
 const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. A page not listed keeps its place after the
@@ -30,7 +30,7 @@ const ORDER = {
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
   Project: [
-    'project/about', 'releases', 'project/commitment', 'project/roadmap', 'project/governance', 'project/licence', 'project/contributing', 'project/code-of-conduct',
+    'project/about', 'talks', 'releases', 'project/roadmap', 'project/governance', 'project/licence', 'project/contributing', 'project/code-of-conduct',
     'project/security', 'project/changelog', 'project/migrations', 'project/releasing',
   ],
 };
@@ -47,7 +47,11 @@ const sidebar = sources.groups
       // The site's own pages, once they exist (src/site-pages/, copied in by the sync).
       ...(sitePages[group] ?? []).filter((slug) => ['.md', '.mdx'].some((ext) => existsSync(new URL(`./src/content/docs/${slug}${ext}`, import.meta.url)) || existsSync(new URL(`./src/content/docs/${slug}/index${ext}`, import.meta.url)))),
       ...sources.pages.filter((p) => p.group === group).map((p) => p.route),
-    ]).map((slug) => ({ slug })),
+    ]).map((slug) => ({ slug }))
+      // The Directory (the OpenMOCA Commitment and OpenMOCA Conformant) is on the main site; Learn links to it once.
+      .flatMap((item) => (item.slug === 'docs/how-openmoca-works'
+        ? [item, { label: 'The Directory: Commitment and Conformant', link: '/directory/' }]
+        : [item])),
   }))
   .filter((g) => g.items.length > 0);
 

@@ -85,13 +85,13 @@ A company's signed, public promise that a named app, in a named version,
 respects how creators want their work shared, shown and used, and people's
 own choices. OpenMOCA lists it; it does not
 test it. Anyone can hold the company to it
-([the OpenMOCA Commitment](/commitment/)).
+([the OpenMOCA Commitment](/directory/commitment/)).
 
 ## What is OpenMOCA Conformant?
 
 A listing for software, such as a library that reads OpenMOCA, that passes
 the public OpenMOCA tests. It is a test result, not a promise about an app
-([OpenMOCA Conformant](/conformant/)).
+([OpenMOCA Conformant](/directory/conformant/)).
 
 ## How can I check where an AI answer came from?
 
