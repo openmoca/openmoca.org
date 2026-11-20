@@ -22,6 +22,8 @@ import { execFileSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, posix, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import Ajv from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
 
 const site = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const siblings = dirname(site);
@@ -196,6 +198,7 @@ function tryItSection({ online, files = [], trustRoot, model, ask }) {
   return out.join('\n');
 }
 
+let commitmentSource = null; // COMMITMENT.md, links rewritten, for the Directory's pages
 for (const page of sources.pages) {
   const files = repoFiles(page.repo);
   if (!files.kind(page.path)) {
@@ -248,6 +251,11 @@ for (const page of sources.pages) {
   text = text.replace(/^<!-- mcp-name: .*-->\n+/m, '');
   // MDX reads <https://…> as a tag: make autolinks plain links, outside fenced code.
   if (mdx) text = text.split(/(^```[\s\S]*?^```$)/m).map((part, i) => (i % 2 ? part : part.replace(/<(https?:\/\/[^>\s]+)>/g, '[$1]($1)'))).join('');
+  // A page the site builds from this source itself (the Commitment: the Directory's pages, below).
+  if (page.render === 'commitment') {
+    commitmentSource = text;
+    continue;
+  }
   const file = join(out, page.route, mdx ? 'index.mdx' : 'index.md');
   mkdirSync(dirname(file), { recursive: true });
   // A page's optional intro is Markdown the site puts above the body, for what the source file cannot carry: the
@@ -307,6 +315,123 @@ for (const rel of sitePageFiles(join(site, 'src', 'site-pages'))) {
     ].join('\n'));
   mkdirSync(join(out, 'project'), { recursive: true });
   writeFileSync(join(out, 'project', 'about.md'), docsCopy);
+}
+
+// The Directory's lists (src/directory/*.json): the one source for its pages and for other apps. Each is checked
+// against its JSON Schema (an invalid entry stops the build), and both are published, with their schemas, at
+// /directory/<name>.json.
+const DIRECTORY = ['commitment', 'conformant'];
+const ajv = new Ajv({ allErrors: true, strict: true });
+addFormats(ajv);
+const lists = {};
+mkdirSync(join(site, 'public', 'directory'), { recursive: true });
+for (const name of DIRECTORY) {
+  const schemaFile = join(site, 'src', 'directory', `${name}.schema.json`);
+  const dataFile = join(site, 'src', 'directory', `${name}.json`);
+  const validate = ajv.compile(JSON.parse(readFileSync(schemaFile, 'utf8')));
+  const data = JSON.parse(readFileSync(dataFile, 'utf8'));
+  if (!validate(data)) for (const e of validate.errors) problems.push(`src/directory/${name}.json${e.instancePath}: ${e.message}`);
+  const ids = data.entries.map((e) => e.id);
+  for (const id of ids.filter((id, i) => ids.indexOf(id) !== i)) problems.push(`src/directory/${name}.json: id ${id} appears twice`);
+  lists[name] = data;
+  cpSync(schemaFile, join(site, 'public', 'directory', `${name}.schema.json`));
+  cpSync(dataFile, join(site, 'public', 'directory', `${name}.json`));
+}
+// A conformance result names the release's corpus: its count must be the one release.json states.
+for (const e of lists.conformant.entries) {
+  if (e.suite.cases !== release.corpusCases) problems.push(`src/directory/conformant.json: ${e.id} names ${e.suite.cases} cases; release.json says ${release.corpusCases}`);
+}
+
+// The Commitment's pages, from COMMITMENT.md and commitment.json: /directory/commitment/ (what it means for you, the
+// list with its search, what a company commits to, how to make it) and one page per entry, with the entry and the
+// company's commitments in full.
+if (commitmentSource) {
+  const sections = {};
+  for (const part of commitmentSource.split(/^(?=## )/m)) {
+    const m = part.match(/^## (.+)\n/);
+    if (m) sections[m[1].trim()] = part.slice(m[0].length).trim();
+  }
+  const forYou = sections['For people: what the Commitment means for you'];
+  const forCompanies = sections['For companies: what you commit to'];
+  if (!forYou || !forCompanies) problems.push('COMMITMENT.md: expected its "For people" and "For companies" sections');
+  const how = readFileSync(join(site, 'src', 'site-fragments', 'commitment-how.md'), 'utf8').trim();
+  const page = sources.pages.find((p) => p.render === 'commitment');
+  writeFileSync(join(out, 'directory', 'commitment.mdx'), [
+    '---',
+    `title: ${yaml('The OpenMOCA Commitment')}`,
+    `description: ${yaml(page.description)}`,
+    'template: splash',
+    'editUrl: false',
+    'head:',
+    '  - tag: title',
+    `    content: ${yaml(`${page.seoTitle} | OpenMOCA`)}`,
+    '---',
+    '',
+    "import CommitmentList from '../../../components/CommitmentList.astro';",
+    '',
+    page.intro.trim(),
+    '',
+    '## What it means for you',
+    '',
+    forYou,
+    '',
+    '## Apps that have made the Commitment',
+    '',
+    'PI & Mash maintains OpenMOCA, and is listed here under the same rules as anyone else. This directory will grow.',
+    '',
+    '<CommitmentList />',
+    '',
+    '[This list as data](https://openmoca.org/directory/commitment.json) (JSON, free to reuse under CC0), and its',
+    '[schema](https://openmoca.org/directory/commitment.schema.json).',
+    '',
+    '## For companies: what you commit to',
+    '',
+    forCompanies,
+    '',
+    how,
+    '',
+  ].join('\n'));
+  const when = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const WHERE = { device: "on the person's own device", host: "on the app's own servers", provider: "with another company's AI provider" };
+  for (const e of lists.commitment.entries) {
+    const models = e.modelsAndDestinations.map((m) => `  - ${m.use}: ${[m.model, m.provider].filter(Boolean).join(', ')}, ${WHERE[m.destination]}`);
+    const statement = e.statement.url
+      ? `[${e.company.name}'s signed statement](${e.statement.url})${e.statement.signed ? '' : ' (not yet signed)'}`
+      : 'signed record to follow';
+    const file = join(out, 'directory', 'commitment', `${e.id}.md`);
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, [
+      '---',
+      `title: ${yaml(e.app.name)}`,
+      `description: ${yaml(`${e.app.name}, by ${e.company.name}, has made the OpenMOCA Commitment for version ${e.version}: the AI models it uses, where your work goes, the set-ups covered, and how to challenge it.`)}`,
+      'template: splash',
+      'editUrl: false',
+      '---',
+      '',
+      `${e.app.name}, by ${e.company.name}, has made the [OpenMOCA Commitment](/directory/commitment/).`,
+      '',
+      '## The entry',
+      '',
+      `- **The app:** [${e.app.name}](${e.app.url}), ${e.app.kind}.`,
+      `- **The company:** [${e.company.name}](${e.company.url}).`,
+      `- **Version covered:** ${e.version}.`,
+      `- **Listed:** ${when(e.date)}.`,
+      '- **AI models, and where your work goes:**',
+      ...models,
+      `- **Set-ups covered:** ${e.setupsCovered.join(' ')}`,
+      ...(e.setupsNotCovered ? [`- **Not covered:** ${e.setupsNotCovered.join(' ')}`] : []),
+      `- **Contact for challenges:** [${e.contact.replace(/^mailto:/, '')}](${e.contact}).`,
+      `- **Statement:** ${statement}.`,
+      `- **Commitment version:** OpenMOCA ${e.commitmentVersion}.`,
+      '',
+      '## What it commits to',
+      '',
+      forCompanies,
+      '',
+      'This entry, as data, is in [the list](https://openmoca.org/directory/commitment.json).',
+      '',
+    ].join('\n'));
+  }
 }
 
 // The specification version the pages document, for the footer.

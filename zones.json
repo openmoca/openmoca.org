@@ -1,5 +1,5 @@
 {
-  "$comment": "The site's two zones. The main site (these pages) has the top navigation and full-width pages; every other page is the docs, with the sidebar. moved: pages that moved, as permanent redirects (worker/index.js) and as redirect pages in the build (astro.config.mjs).",
+  "$comment": "The site's two zones. The main site (these pages, and every page under mainPrefixes) has the top navigation and full-width pages; every other page is the docs, with the sidebar. moved: pages that moved, as permanent redirects (worker/index.js) and as redirect pages in the build (astro.config.mjs).",
   "main": [
     "",
     "creators",
@@ -7,11 +7,8 @@
     "developers",
     "organisations",
     "directory",
-    "directory/commitment",
-    "directory/conformant",
     "faq",
     "about",
-    "try",
     "contact",
     "privacy",
     "404"
@@ -54,6 +51,10 @@
     "/answers/": "/faq/",
     "/commitment/": "/directory/commitment/",
     "/conformant/": "/directory/conformant/",
-    "/project/commitment/": "/directory/commitment/"
-  }
+    "/project/commitment/": "/directory/commitment/",
+    "/try/": "https://try.openmoca.org"
+  },
+  "mainPrefixes": [
+    "directory/"
+  ]
 }

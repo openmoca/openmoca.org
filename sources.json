@@ -584,9 +584,8 @@
       "path": "COMMITMENT.md",
       "route": "directory/commitment",
       "group": "Main",
-      "template": "splash",
+      "render": "commitment",
       "intro": "**For apps people use.** Part of the [OpenMOCA Directory](/directory/). An app that makes the OpenMOCA Commitment promises to respect how creators want their work shared, shown and used, and people's own choices. This page says what that means for you, what a company commits to, and which apps have made it.",
-      "outroFile": "src/site-fragments/commitment-listing.md",
       "description": "The OpenMOCA Commitment: what it means for you, what a company commits to, the apps that have made it, and how to make it.",
       "seoTitle": "The OpenMOCA Commitment"
     },

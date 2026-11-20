@@ -6,7 +6,7 @@ import sources from '../../sources.json';
 import zones from '../../zones.json';
 
 // The main site's pages (zones.json), first: what OpenMOCA is for creators, the audience, developers and organisations.
-export const MAIN_PAGES = ['', 'creators', 'audience', 'developers', 'organisations', 'directory', 'directory/commitment', 'directory/conformant', 'faq', 'about', 'try']
+export const MAIN_PAGES = ['', 'creators', 'audience', 'developers', 'organisations', 'directory', 'directory/commitment', 'directory/conformant', 'faq', 'about']
   .filter((id) => zones.main.includes(id));
 
 export const SITE = 'https://openmoca.org';
@@ -49,6 +49,11 @@ export const GET: APIRoute = async () => {
     'Open source under Apache-2.0. A live demo is at https://try.openmoca.org. The full text of the core pages is at https://openmoca.org/llms-full.txt, and any page is available as Markdown at its address plus `index.md`, or with `Accept: text/markdown`.',
     '',
     ...WHEN_TO_USE,
+    '## The Directory as data',
+    '',
+    `- [The OpenMOCA Commitment: apps that have made it](${SITE}/directory/commitment.json): JSON, CC0-1.0, with its schema at ${SITE}/directory/commitment.schema.json.`,
+    `- [OpenMOCA Conformant: software that passes the OpenMOCA tests](${SITE}/directory/conformant.json): JSON, CC0-1.0, with its schema at ${SITE}/directory/conformant.schema.json.`,
+    '',
     '## OpenMOCA for Creators, the Audience, Developers and Organisations',
     '',
     ...MAIN_PAGES.filter((id) => byId.has(id) || byId.has('index') && id === '').map((id) => {

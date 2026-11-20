@@ -113,9 +113,8 @@ or points to the original, beside them.
 
 ## How can I try OpenMOCA?
 
-Search real works in your browser, with no install and no account, at
-[Try OpenMOCA](https://try.openmoca.org). Other ways, such as opening a work
-in your own AI assistant, are on [Ways to try](/try/).
+Go to [Try OpenMOCA](https://try.openmoca.org). You can search real works in
+your browser, with no install and no account.
 
 ## Does OpenMOCA need AI?
 

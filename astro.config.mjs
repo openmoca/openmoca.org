@@ -17,7 +17,7 @@ const sitePages = {
   Guides: ['start', 'docs/guides/open-a-package', 'docs/guides/ai-assistant'],
   Specification: ['spec', 'spec/app-types', 'spec/node-types'],
   Tools: ['tools'],
-  Project: ['project/about', 'talks', 'releases'],
+  Project: ['project/about', 'privacy', 'talks', 'releases'],
 };
 const collapsed = new Set(['Project']);
 // Groups in a set order, mixing the site's own pages with synced ones. A page not listed keeps its place after the
@@ -29,9 +29,11 @@ const ORDER = {
   Guides: ['start', 'start/typescript', 'start/dotnet', 'start/python', 'docs/guides/open-a-package', 'docs/guides/ai-assistant'],
   // The overview, then the MCP server most people need, then the tools that make a package in the order they are used.
   Tools: ['tools', 'tools/mcp', 'tools/convert', 'tools/moca-lint', 'tools/moca-sign', 'tools/moca-index', 'tools/moca-embed'],
+  // What the footers share first, in the footers' order (About, Privacy, Licence, Governance), then the rest.
   Project: [
-    'project/about', 'talks', 'releases', 'project/roadmap', 'project/governance', 'project/licence', 'project/contributing', 'project/code-of-conduct',
-    'project/security', 'project/changelog', 'project/migrations', 'project/releasing',
+    'project/about', 'privacy', 'project/licence', 'project/governance',
+    'talks', 'releases', 'project/roadmap', 'project/changelog', 'project/migrations', 'project/contributing',
+    'project/code-of-conduct', 'project/security', 'project/releasing',
   ],
 };
 const rank = (group, slug) => {

@@ -1,13 +1,20 @@
 ---
 // Starlight's page title, with the page's strapline (frontmatter `strapline`) directly beneath it, when it has one.
-// The strapline is a paragraph, not a heading: the title stays the page's one H1.
+// The strapline is a paragraph, not a heading: the title stays the page's one H1. On the Directory's pages, its
+// inner navigation follows (DirectoryNav.astro).
 import Default from '@astrojs/starlight/components/PageTitle.astro';
+import DirectoryNav from './DirectoryNav.astro';
+import { pageId } from '../zones';
 
 const { strapline } = Astro.locals.starlightRoute.entry.data as { strapline?: string };
+// The Directory's pages carry its inner navigation under their title.
+const id = pageId(Astro.locals.starlightRoute.id);
+const inDirectory = id === 'directory' || id.startsWith('directory/');
 ---
 
 <Default />
 {strapline && <p class="strapline">{strapline}</p>}
+{inDirectory && <DirectoryNav id={id} />}
 
 <style>
 	.strapline {

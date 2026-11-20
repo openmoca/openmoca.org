@@ -8,6 +8,8 @@ head:
     content: "OpenMOCA Conformant: software that passes the test suite | OpenMOCA"
 ---
 
+import ConformantList from '../../../components/ConformantList.astro';
+
 **For software.** Anyone can build software that reads or makes MOCA packages
 (the files OpenMOCA keeps a work in, with its credits, sources and wishes),
 without asking. OpenMOCA Conformant is a public listing on openmoca.org of the
@@ -45,11 +47,11 @@ removed. A listing that fails when the tests are run again is removed.
 Each entry links to its public test run on GitHub. The signed record of each
 result, and the tool that makes it, come after 0.7.0.
 
-| Software | What it does | Version | Standard | Tests passed | Standing |
-| --- | --- | --- | --- | --- | --- |
-| [TypeScript Reader](https://github.com/openmoca/moca-reader-typescript) (`@openmoca/moca-core`) | Reads OpenMOCA | 0.7.0 | OpenMOCA 0.7 | Reader tests, @@release.suite@@: [test run](https://github.com/openmoca/moca-reader-typescript/actions/workflows/test.yml) (signed record to follow) | Official |
-| [.NET Reader](https://github.com/openmoca/moca-reader-dotnet) (`OpenMoca.Reader`) | Reads OpenMOCA | 0.7.0 | OpenMOCA 0.7 | Reader tests, @@release.suite@@: [test run](https://github.com/openmoca/moca-reader-dotnet/actions/workflows/test.yml) (signed record to follow) | Official |
-| [Python Reader](https://github.com/openmoca/moca-reader-python) (`moca-reader`) | Reads OpenMOCA | 0.7.0 | OpenMOCA 0.7 | Reader tests, @@release.suite@@: [test run](https://github.com/openmoca/moca-reader-python/actions/workflows/test.yml) (signed record to follow) | Official |
+<ConformantList />
+
+[This list as data](https://openmoca.org/directory/conformant.json) (JSON, free
+to reuse under CC0), and its
+[schema](https://openmoca.org/directory/conformant.schema.json).
 
 Tests for software that makes or checks OpenMOCA come later; such software is
 listed once its tests exist. This directory will grow: to list your own

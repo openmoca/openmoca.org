@@ -6,10 +6,9 @@
 // the standard stays vendor-independent. ™ until the UK application is registered, never ®.
 import Default from '@astrojs/starlight/components/Footer.astro';
 import release from '../../release.json';
-import zones from '../../zones.json';
+import { isMain as inMain } from '../zones';
 
-const id = Astro.locals.starlightRoute.id.replace(/\/index$/, '').replace(/^index$/, '');
-const isMain = zones.main.includes(id);
+const isMain = inMain(Astro.locals.starlightRoute.id);
 const version = release.released ? release.version : release.previous;
 ---
 

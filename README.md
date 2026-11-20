@@ -30,6 +30,11 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
   and the docs, with the sidebar. Both share the theme, the head and one
   footer. Pages that moved are in `zones.json` too: the Worker answers them
   with a permanent redirect, and the build writes a redirect page for each.
+- The Directory's two lists, the OpenMOCA Commitment and OpenMOCA Conformant,
+  are data: `src/directory/commitment.json` and `conformant.json`, each with a
+  JSON Schema beside it. The sync checks them (an invalid entry stops the
+  build), publishes them at `/directory/<name>.json`, and the pages are built
+  from them.
 - The release state is one setting, `released` in [`release.json`](release.json):
   the sync writes it into the site's own pages. [RELEASE-DAY.md](RELEASE-DAY.md)
   lists everything that changes on release day.

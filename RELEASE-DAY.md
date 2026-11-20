@@ -18,16 +18,18 @@ place the release state touches.
 - [ ] **The demo.** Before publishing, check try.openmoca.org shows 0.7.0, the
   welcome panel and the tour (session E). Every "Try it" button on the home
   page and the top bar goes straight there.
-- [ ] **The Commitment listing.** Confirm the demo honours the rules (session E)
-  and PI & Mash's statement is published. If not, leave the entry off
-  (`src/site-fragments/commitment-listing.md`). Confirm with PI & Mash the
-  set-ups covered and the contact for challenges.
-- [ ] **The Conformant listing** (`src/site-pages/directory/conformant.md`):
-  confirm green on the day, each at 0.7.0 against the 0.7.0 tests, and leave
-  off any that is not:
+- [ ] **The Commitment list** (`src/directory/commitment.json`): confirm the demo
+  honours the rules (session E) and PI & Mash's statement is published; until
+  then the entry says "signed record to follow". It covers every set-up at
+  version 0.7.0. If it is not ready, remove the entry.
+- [ ] **The Conformant list** (`src/directory/conformant.json`): confirm green on
+  the day, each at 0.7.0 against the 0.7.0 tests, and remove any that is not:
   - [ ] the TypeScript Reader (`@openmoca/moca-core`)
   - [ ] the .NET Reader (`OpenMoca.Reader`)
   - [ ] the Python Reader (`moca-reader`)
+- [ ] **The lists' dates.** Set `released`, `updated` and each entry's `date` in
+  both files to the release day, with an offset. Raise a list's `version` on
+  every later change. The build checks both files against their schemas.
 - [ ] **The pins.** Every `MOCA_*_REF` in
   [`.github/workflows/build.yml`](.github/workflows/build.yml) becomes its
   `v0.7.0` tag (below).
@@ -54,7 +56,6 @@ The pages that use the tokens:
 - `src/site-pages/developers.mdx`: what you get
 - `src/site-pages/answers.md`: "Is OpenMOCA free and open?"
 - `src/site-pages/releases.md`: the status line
-- `src/site-pages/directory/conformant.md`: the test count in each listing
 - `src/site-pages/spec/index.mdx`: the conformance corpus
 
 ## The pins

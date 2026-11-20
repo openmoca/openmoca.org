@@ -1,0 +1,49 @@
+---
+// The software listed as OpenMOCA Conformant, from src/directory/conformant.json (published at
+// /directory/conformant.json). A plain table, built at build time: no JavaScript. On a narrow screen it scrolls in
+// its own labelled region.
+import data from '../directory/conformant.json';
+
+const KIND: Record<string, string> = { reader: 'Reads OpenMOCA', producer: 'Makes OpenMOCA', linter: 'Checks OpenMOCA' };
+const STANDING: Record<string, string> = { official: 'Official', verified: 'Verified', 'self-tested': 'Self-tested' };
+---
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Software listed as OpenMOCA Conformant">
+<table class="conformant-list">
+  <thead>
+    <tr>
+      <th scope="col">Software</th>
+      <th scope="col">What it does</th>
+      <th scope="col">Version</th>
+      <th scope="col">Standard</th>
+      <th scope="col">Tests passed</th>
+      <th scope="col">Standing</th>
+    </tr>
+  </thead>
+  <tbody>
+    {data.entries.map((e) => (
+      <tr>
+        <th scope="row">
+          <a href={e.repository}>{e.name}</a>
+          {e.package && <><br /><code>{e.package}</code></>}
+        </th>
+        <td>{KIND[e.kind]}</td>
+        <td>{e.version}</td>
+        <td>OpenMOCA {e.specVersion}</td>
+        <td>
+          {e.suite.passed} of {e.suite.cases}: <a href={e.testRun}>test run</a>
+          {e.signedRecord.url ? <> · <a href={e.signedRecord.url}>signed record</a></> : ' (signed record to follow)'}
+        </td>
+        <td>{STANDING[e.standing]}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+</div>
+
+<style>
+  /* On a narrow screen the table scrolls within its own box, which takes keyboard focus; the page does not. */
+  .table-scroll { overflow-x: auto; margin-top: 1rem; }
+  .table-scroll:focus-visible { outline: 2px solid var(--moca-focus); outline-offset: 2px; }
+  .conformant-list { min-width: 40rem; }
+</style>

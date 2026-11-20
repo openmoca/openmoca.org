@@ -8,6 +8,8 @@ import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'n
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import audiences from '../src/audiences.json' with { type: 'json' };
+import commitment from '../src/directory/commitment.json' with { type: 'json' };
+import conformant from '../src/directory/conformant.json' with { type: 'json' };
 
 const site = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const docs = join(site, 'src', 'content', 'docs');
@@ -31,6 +33,8 @@ function plain(body) {
     .replace(/<LinkCard\b[^>]*\/>/g, (t) => `- [${attr(t, 'title')}](${attr(t, 'href')}): ${attr(t, 'description')}`)
     .replace(/<Card\b[^>]*>([\s\S]*?)<\/Card>/g, (t, inner) => `**${attr(t, 'title')}.** ${inner.replace(/\s+/g, ' ').trim()}`)
     .replace(/<LinkButton\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/LinkButton>/g, (_, href, text) => `[${text.trim()}](${href})`)
+    .replace(/<CommitmentList\s*\/>/g, commitment.entries.map((e) => `- [${e.app.name}](https://openmoca.org/directory/commitment/${e.id}/), by ${e.company.name}: ${e.app.kind}, version ${e.version}.`).join('\n'))
+    .replace(/<ConformantList\s*\/>/g, conformant.entries.map((e) => `- [${e.name}](${e.repository})${e.package ? ` (\`${e.package}\`)` : ''}: ${e.kind}, ${e.standing}, version ${e.version}, OpenMOCA ${e.specVersion}, ${e.suite.passed} of ${e.suite.cases} tests passed ([test run](${e.testRun})).`).join('\n'))
     .replace(/<AudienceCards\s*\/>/g, audiences.map((c) => `- **[${c.name}](${c.href})**: ${c.title} ${c.strapline}. ${c.line}`).join('\n'))
     .replace(/<div class="lead">\n\n([\s\S]*?)\n\n<\/div>/g, '$1')
     .replace(/<p class="section-strapline">([^<]*)<\/p>/g, '**$1**')
