@@ -19,3 +19,6 @@ public/directory/
 
 # Slide renders from scripts/render-talk.sh
 .talk-render/
+
+# Written by scripts/csp-hashes.mjs at the end of a build: never committed.
+worker/generated/

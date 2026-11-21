@@ -5,10 +5,13 @@
 // 2. `Vary: Accept` on both versions, so a cache never hands HTML to an agent that asked for Markdown, or the reverse.
 // 3. Permanent redirects for pages that moved.
 // 4. Identifiers to their documents: a profile URI (w3id.org/moca/... redirects here) opens the profile's page.
+// 5. Security headers on every response, and on each page a content security policy that names its inline scripts by
+//    hash (worker/generated/csp.json, written by scripts/csp-hashes.mjs at the end of the build).
 //
 // Everything else is the static site, unchanged.
 
 import zones from '../zones.json';
+import csp from './generated/csp.json';
 
 // Pages that moved: the older moves here, and the 0.7.0 site's from zones.json (the build makes redirect pages from
 // the same list, so the moves work on any static host too).
@@ -63,36 +66,78 @@ function varyOnAccept(response, extra = {}) {
   return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
 }
 
+// On every response. The site is only served over HTTPS; browsers ignore HSTS on plain HTTP (a local preview).
+const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=31536000',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()',
+};
+
+// The page's policy: everything from this site, and inline only what the build hashed. Styles may be inline (Starlight,
+// the diagrams and the talk set them); search runs WebAssembly ('wasm-unsafe-eval'); fonts and small images may be
+// data: URIs. Only this site may frame a page: the talk's speaker view shows its own slides.
+export function contentSecurityPolicy(route, status) {
+  const page = csp.pages[status === 404 ? '/404.html' : route] ?? [];
+  const hashes = [...csp.scripts, ...page].map((h) => `'${h}'`).join(' ');
+  return [
+    "default-src 'self'",
+    `script-src 'self' 'wasm-unsafe-eval' ${hashes}`,
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data:",
+    "font-src 'self' data:",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'self'",
+  ].join('; ');
+}
+
+function secured(response, url) {
+  const headers = new Headers(response.headers);
+  for (const [k, v] of Object.entries(SECURITY_HEADERS)) headers.set(k, v);
+  if ((headers.get('Content-Type') ?? '').startsWith('text/html')) {
+    const route = url.pathname.replace(/\/index\.html$/, '/');
+    headers.set('Content-Security-Policy', contentSecurityPolicy(route, response.status));
+  }
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
+
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
-
-    const identifier = IDENTIFIERS[url.pathname] ?? IDENTIFIERS[url.pathname.replace(/\/$/, '')] ?? IDENTIFIERS[`${url.pathname}/`];
-    if (identifier) return Response.redirect(new URL(identifier, url).href, 303);
-
-    const moved = MOVED[url.pathname] ?? MOVED[`${url.pathname}/`];
-    if (moved) return Response.redirect(new URL(moved + url.search, url).href, 301);
-
-    const isPage = !/\.[a-z0-9]+$/i.test(url.pathname);
-    if (isPage && (request.method === 'GET' || request.method === 'HEAD') && wantsMarkdown(request)) {
-      const path = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
-      const md = await env.ASSETS.fetch(new Request(new URL(`${path}index.md`, url), { method: request.method }));
-      if (md.ok) return varyOnAccept(md, { 'Content-Type': 'text/markdown; charset=utf-8' });
-      return new Response(request.method === 'HEAD' ? null : NOT_FOUND_MD, {
-        status: 404,
-        headers: { 'Content-Type': 'text/markdown; charset=utf-8', Vary: 'Accept' },
-      });
-    }
-
-    const response = await env.ASSETS.fetch(request);
-    // JSON Schemas, as their media type, readable from any origin so validators can fetch them.
-    if (url.pathname.endsWith('.schema.json') && response.ok) {
-      const headers = new Headers(response.headers);
-      headers.set('Content-Type', 'application/schema+json');
-      headers.set('Access-Control-Allow-Origin', '*');
-      return new Response(response.body, { status: response.status, headers });
-    }
-    const type = response.headers.get('Content-Type') ?? '';
-    return isPage || type.startsWith('text/html') ? varyOnAccept(response) : response;
+    return secured(await respond(request, env), new URL(request.url));
   },
 };
+
+// The response before the security headers: identifiers, moved pages, Markdown for agents, then the static site.
+async function respond(request, env) {
+  const url = new URL(request.url);
+
+  const identifier = IDENTIFIERS[url.pathname] ?? IDENTIFIERS[url.pathname.replace(/\/$/, '')] ?? IDENTIFIERS[`${url.pathname}/`];
+  if (identifier) return Response.redirect(new URL(identifier, url).href, 303);
+
+  const moved = MOVED[url.pathname] ?? MOVED[`${url.pathname}/`];
+  if (moved) return Response.redirect(new URL(moved + url.search, url).href, 301);
+
+  const isPage = !/\.[a-z0-9]+$/i.test(url.pathname);
+  if (isPage && (request.method === 'GET' || request.method === 'HEAD') && wantsMarkdown(request)) {
+    const path = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
+    const md = await env.ASSETS.fetch(new Request(new URL(`${path}index.md`, url), { method: request.method }));
+    if (md.ok) return varyOnAccept(md, { 'Content-Type': 'text/markdown; charset=utf-8' });
+    return new Response(request.method === 'HEAD' ? null : NOT_FOUND_MD, {
+      status: 404,
+      headers: { 'Content-Type': 'text/markdown; charset=utf-8', Vary: 'Accept' },
+    });
+  }
+
+  const response = await env.ASSETS.fetch(request);
+  // JSON Schemas, as their media type, readable from any origin so validators can fetch them.
+  if (url.pathname.endsWith('.schema.json') && response.ok) {
+    const headers = new Headers(response.headers);
+    headers.set('Content-Type', 'application/schema+json');
+    headers.set('Access-Control-Allow-Origin', '*');
+    return new Response(response.body, { status: response.status, headers });
+  }
+  const type = response.headers.get('Content-Type') ?? '';
+  return isPage || type.startsWith('text/html') ? varyOnAccept(response) : response;
+}

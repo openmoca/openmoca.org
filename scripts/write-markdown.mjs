@@ -22,8 +22,25 @@ function walk(dir) {
 
 const attr = (tag, name) => tag.match(new RegExp(`${name}="([^"]*)"`))?.[1] ?? '';
 
+// The sync escapes what MDX would read as code in another repository's pages (scripts/sync-docs.mjs, asContent).
+// Agents get the Markdown as written: the escapes are undone outside fenced code.
+function unescaped(markdown) {
+  let fence = null;
+  return markdown.split('\n').map((line) => {
+    const f = line.match(/^\s*(`{3,}|~{3,})/);
+    if (f) {
+      if (!fence) fence = f[1];
+      else if (line.trim().startsWith(fence)) fence = null;
+      return line;
+    }
+    if (fence) return line;
+    return line.replace(/^([ \t]*)&#(101|105);(xport|mport)\b/, (_, indent, code, rest) => `${indent}${String.fromCharCode(code)}${rest}`)
+      .split(/(`+[^`]*`+)/).map((part, i) => (i % 2 ? part : part.replace(/&lt;/g, '<').replace(/\\([{}])/g, '$1'))).join('');
+  }).join('\n');
+}
+
 function plain(body) {
-  return body
+  return unescaped(body)
     .replace(/^import .*$/gm, '')
     .replace(/<Tabs[^>]*>\n?/g, '')
     .replace(/<\/Tabs>\n?/g, '')

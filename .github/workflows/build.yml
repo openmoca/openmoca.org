@@ -7,6 +7,13 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  # The deploy job (deploy.yml) builds with this workflow, and deploys what it uploads.
+  workflow_call:
+    inputs:
+      upload:
+        description: Upload the built site for the deploy job
+        type: boolean
+        default: false
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -15,8 +22,8 @@ concurrency:
 permissions:
   contents: read
 
-# The other MOCA repositories, at fixed refs: release tags, or commits; never a branch
-# (moca-spec CONTRIBUTING.md).
+# The other MOCA repositories, at fixed refs: full commit SHAs, with the tag in a comment; never a tag or a branch
+# (moca-spec CONTRIBUTING.md). scripts/sync-docs.mjs refuses anything else.
 env:
   MOCA_SPEC_REF: 1f20830bacba74fd59ec33b0b8c31a07dc659c70  # draft/0.7.0-site-docs while in review; release-0.7.0 once merged; v0.7.0 once tagged
   MOCA_READER_TYPESCRIPT_REF: 9875d6be5e3c8c2c98f5ed1111a63dba3a10788b  # release-0.7.0; v0.7.0 once tagged
@@ -25,7 +32,7 @@ env:
   MOCA_TOOLS_REF: 42cd784d9369f085367cab4f884f51a646652a32  # release-0.7.0; v0.7.0 once tagged
   MOCA_MCP_DOTNET_REF: 6288dc1bfc0a049753cff4a06300dcdac01ccc78  # release-0.7.0; v0.7.0 once tagged
   MOCA_CONVERT_REF: 156156d98ac4edcd718344f06ef53ab622008dd4  # release-0.7.0; v0.7.0 once tagged
-  MOCA_EXAMPLES_REF: v0.6.0
+  MOCA_EXAMPLES_REF: 832a1786cbcff4fae748a7cebe23b62ef99bd89c  # v0.6.0
 
 jobs:
   deps:
@@ -116,3 +123,25 @@ jobs:
           # The private names the site must never show, kept out of this public repository.
           MOCA_PRIVATE_NAMES: ${{ secrets.MOCA_PRIVATE_NAMES }}
         working-directory: openmoca.org
+      - run: npm test
+        working-directory: openmoca.org
+      # The built site, served through the Worker as Cloudflare serves it: every kind of page has the security headers,
+      # and its policy allows each of its inline scripts by hash.
+      - name: Check the headers on every kind of page
+        working-directory: openmoca.org
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npx wrangler dev --port 8787 > wrangler.log 2>&1 &
+          for _ in $(seq 1 60); do curl -sf -o /dev/null http://localhost:8787/ && break; sleep 1; done
+          npm run check:site || { tail -20 wrangler.log; exit 1; }
+      - if: ${{ inputs.upload }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: site
+          path: |
+            openmoca.org/dist/
+            openmoca.org/worker/generated/
+          include-hidden-files: true
+          retention-days: 1
+          if-no-files-found: error

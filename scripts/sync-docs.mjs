@@ -7,7 +7,7 @@
 //   node scripts/sync-docs.mjs            read the sibling checkouts as they are
 //   node scripts/sync-docs.mjs --pinned   read each sibling at its pin (git archive)
 //
-// Pins come from .github/workflows/build.yml (MOCA_*_REF). In CI the siblings
+// Pins come from .github/workflows/build.yml (MOCA_*_REF), each a full commit SHA. In CI the siblings
 // are checked out at those pins, so the default mode reads pinned content there.
 //
 // For each page it takes the first "# " heading as the title, and rewrites
@@ -24,6 +24,7 @@ import { dirname, join, posix, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import Ajv from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import { asContent, safeUrl } from './as-content.mjs';
 
 const site = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const siblings = dirname(site);
@@ -38,6 +39,8 @@ const pins = {};
 for (const [, name, ref] of readFileSync(join(site, '.github', 'workflows', 'build.yml'), 'utf8')
   .matchAll(/^\s+MOCA_(\w+)_REF:\s*(\S+)/gm)) {
   pins[`moca-${name.toLowerCase().replace(/_/g, '-')}`] = ref;
+  // A tag or a branch can move; a full commit SHA can't.
+  if (!/^[0-9a-f]{40}$/.test(ref)) throw new Error(`MOCA_${name}_REF in build.yml is ${ref}: pin a full commit SHA`);
 }
 const refOf = (repo) => {
   if (!pins[repo]) throw new Error(`No pin for ${repo}: add MOCA_${repo.slice(5).toUpperCase().replace(/-/g, '_')}_REF to build.yml`);
@@ -96,7 +99,11 @@ function rewrite(target, page) {
     const route = routeFor(gh[1], (gh[2] ?? '').replace(/\/$/, ''));
     return route ? route + hash : target;
   }
-  if (/^[a-z][\w+.-]*:/i.test(path)) return target; // external
+  if (/^[a-z][\w+.-]*:/i.test(path)) {
+    // A link to another site goes to the web or to an email address, nothing else.
+    if (!safeUrl(path)) problems.push(`${page.repo}/${page.path}: a link to ${path.split(':')[0]}: is not a web or site link`);
+    return target; // external
+  }
   const repoPath = posix.normalize(posix.join(posix.dirname(page.path), decodeURI(path))).replace(/\/$/, '');
   if (repoPath.startsWith('..')) {
     problems.push(`${page.repo}/${page.path}: ${target} leaves the repository`);
@@ -158,6 +165,8 @@ function toTabs(text, page) {
     }
     const items = [];
     for (let i = 1; i < parts.length; i += 2) {
+      // A label is plain words: it goes into the tab's attribute.
+      if (!/^[\w .+#/()-]+$/.test(parts[i].trim())) problems.push(`${page.repo}/${page.path}: tab label "${parts[i].trim()}" is not plain words`);
       items.push(`<TabItem label="${parts[i].trim()}">\n\n${parts[i + 1].trim()}\n\n</TabItem>`);
     }
     // Tabs choosing an MCP server share their choice with each other, not with the language tabs.
@@ -189,6 +198,8 @@ function tryItSection({ online, files = [], trustRoot, model, ask }) {
       '```',
       '',
       ...(model ? [`The index lets it search by meaning as well as by words; \`models add\` installs the [standard model](/spec/sidecar-index/#51-embedders-the-moca-tools-support-informative) it was built with, once.`, ''] : []),
+      // The example trust root checks the examples' signatures and nothing else.
+      ...(trustRoot ? ['`example-trust-root.json` is for these examples only: never use it to check any other package.', ''] : []),
       'One download with nothing to install, for Windows, macOS or Linux: [get moca-mcp](/tools/mcp/#install).',
       '',
       `Connect it to Claude Desktop, Claude Code, VS Code or Cursor, with full paths, as in [Got a .moca file?](/docs/guides/open-a-package/#connect-it)${ask ? `. Then ask: "${ask}"` : '.'}`,
@@ -238,7 +249,7 @@ for (const page of sources.pages) {
     '---',
     '',
   ].join('\n');
-  let text = unlinkHidden(rewriteLinks(body, page));
+  let text = asContent(unlinkHidden(rewriteLinks(body, page)), page, problems);
   // The outro is added after links are rewritten: its link to the repository's own file must stay on GitHub.
   if (page.outro) text = `${text.trimEnd()}\n\n${page.outro}\n`;
   // A longer outro, the site's own Markdown (such as a listing under the Commitment), from a file in this repository.
