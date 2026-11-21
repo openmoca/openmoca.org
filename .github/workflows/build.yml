@@ -25,13 +25,13 @@ permissions:
 # The other MOCA repositories, at fixed refs: full commit SHAs, with the tag in a comment; never a tag or a branch
 # (moca-spec CONTRIBUTING.md). scripts/sync-docs.mjs refuses anything else.
 env:
-  MOCA_SPEC_REF: 1f20830bacba74fd59ec33b0b8c31a07dc659c70  # draft/0.7.0-site-docs while in review; release-0.7.0 once merged; v0.7.0 once tagged
-  MOCA_READER_TYPESCRIPT_REF: 9875d6be5e3c8c2c98f5ed1111a63dba3a10788b  # release-0.7.0; v0.7.0 once tagged
-  MOCA_READER_PYTHON_REF: 50dba6f37d2635d1c139a0f997910a2cbeddcc59  # release-0.7.0; v0.7.0 once tagged
-  MOCA_READER_DOTNET_REF: 66493a2f10776f98396044e3b264ea6a0ac38954  # release-0.7.0; v0.7.0 once tagged
-  MOCA_TOOLS_REF: 42cd784d9369f085367cab4f884f51a646652a32  # release-0.7.0; v0.7.0 once tagged
-  MOCA_MCP_DOTNET_REF: 6288dc1bfc0a049753cff4a06300dcdac01ccc78  # release-0.7.0; v0.7.0 once tagged
-  MOCA_CONVERT_REF: 156156d98ac4edcd718344f06ef53ab622008dd4  # release-0.7.0; v0.7.0 once tagged
+  MOCA_SPEC_REF: f84219f485088e6044b87ee08f31dbc23b239e63  # release-0.7.0 (0.7.0 release candidate); v0.7.0 once tagged
+  MOCA_READER_TYPESCRIPT_REF: d1f153f6a8836b11ded95d0192022b2a7ff2fb3e  # release-0.7.0 (0.7.0 release candidate); v0.7.0 once tagged
+  MOCA_READER_PYTHON_REF: 5d9cdfd97b322928a83e2bc1d0a3868f6edff4e6  # release-0.7.0 (0.7.0 release candidate); v0.7.0 once tagged
+  MOCA_READER_DOTNET_REF: 0535be1343f88d08d63aa7f1e0aa50a4e82f1ef7  # release-0.7.0 (0.7.0 release candidate); v0.7.0 once tagged
+  MOCA_TOOLS_REF: 9bc73ba62797b93535271fdf5cebfd7aef3465af  # release-0.7.0 (0.7.0 release candidate); v0.7.0 once tagged
+  MOCA_MCP_DOTNET_REF: 9fcf4057174e67a0f3ba8d44e8b28a980db6f858  # release-0.7.0 (0.7.0 release candidate); v0.7.0 once tagged
+  MOCA_CONVERT_REF: 86a6f0aa98bd8829e1c37bca8fc2adf3e52c6f34  # release-0.7.0 (0.7.0 release candidate); v0.7.0 once tagged
   MOCA_EXAMPLES_REF: 832a1786cbcff4fae748a7cebe23b62ef99bd89c  # v0.6.0
 
 jobs:
