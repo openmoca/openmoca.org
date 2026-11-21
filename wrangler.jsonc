@@ -1,10 +1,15 @@
 // openmoca.org on Cloudflare: static assets on Workers, with a small Worker in front (worker/index.js) that serves
-// each page's Markdown to agents that ask for it and redirects moved pages. `npm run build` writes dist/;
-// `npx wrangler deploy` uploads it.
+// each page's Markdown to agents that ask for it, redirects moved pages, and sets the security headers.
+// `npm run build` writes dist/; `npx wrangler deploy` uploads it.
+//
+// The site is served only at openmoca.org (its custom domain, set in Cloudflare): no workers.dev address and no
+// preview URLs, so there is no second copy of the site at another hostname.
 {
   "name": "openmoca-org",
   "compatibility_date": "2026-10-30",
   "main": "worker/index.js",
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
