@@ -9,8 +9,9 @@ place the release state touches.
 ## Confirm on the day
 
 - [ ] **The test count.** `corpusCases` in [`release.json`](release.json) is
-  411. Check it against the released corpus (`conformance/cases.json` at
-  `v0.7.0`).
+  450, the cases in `conformance/cases.json` in moca-spec at `release-0.7.0`
+  (`e3d56d4`), and each Reader's 0.7.0 test run passes all 450. Check it
+  against the released corpus (`conformance/cases.json` at `v0.7.0`).
 - [ ] **The three libraries.** The pages say there are free libraries (Readers)
   in TypeScript, .NET and Python. Check that all three pass every 0.7.0 case:
   the .NET and Python Readers were still being brought to 0.7.0 when this was
@@ -33,8 +34,11 @@ place the release state touches.
   both files to the release day, with an offset. Raise a list's `version` on
   every later change. The build checks both files against their schemas.
 - [ ] **The pins.** Every `MOCA_*_REF` in
-  [`.github/workflows/build.yml`](.github/workflows/build.yml) becomes its
-  `v0.7.0` tag (below).
+  [`.github/workflows/build.yml`](.github/workflows/build.yml) becomes the
+  commit its `v0.7.0` tag points to (below).
+- [ ] **The site check.** Build, serve it (`npm run preview`) and run
+  `npm run check:site`; after the deploy, run
+  `node scripts/check-site.mjs https://openmoca.org`.
 
 If either count is not right on the day, change `corpusCases`, or the
 `readers` line in `scripts/sync-docs.mjs`, before merging.
@@ -48,7 +52,7 @@ in-review wording, if the release slips:
 | Token | `"released": true` (now) | `"released": false` |
 | --- | --- | --- |
 | `@@release.status@@` | "OpenMOCA 0.7.0 is the current release." | "OpenMOCA 0.6.0 is the current release. 0.7.0 is in review, and these pages describe it ahead of its release." |
-| `@@release.suite@@` | "411 public tests" (`corpusCases`) | "a public test suite" |
+| `@@release.suite@@` | "450 public tests" (`corpusCases`) | "a public test suite" |
 | `@@release.readers@@` | "free libraries in TypeScript, .NET and Python" | "free libraries in several programming languages" |
 | `@@release.version@@`, `@@release.current@@` | 0.7.0, 0.7.0 | 0.7.0, 0.6.0 |
 
@@ -63,9 +67,12 @@ The pages that use the tokens:
 ## The pins
 
 In [`.github/workflows/build.yml`](.github/workflows/build.yml), every
-`MOCA_*_REF` becomes its `v0.7.0` tag. `MOCA_SPEC_REF` points at the
-`draft/0.7.0-site-docs` commit while that pull request is in review.
-`MOCA_EXAMPLES_REF` stays at `v0.6.0` unless moca-examples releases 0.7.0.
+`MOCA_*_REF` becomes the full commit SHA its `v0.7.0` tag points to, with the
+tag in a comment: a tag can move, a commit can't, and the sync refuses
+anything else. `MOCA_SPEC_REF` points at the `draft/0.7.0-site-docs` commit
+while that pull request is in review. `MOCA_EXAMPLES_REF` stays at the commit
+of `v0.6.0` unless moca-examples releases 0.7.0. To find a tag's commit:
+`git rev-parse 'v0.7.0^{commit}'`.
 
 ## True from the moment v0.7.0 is tagged
 

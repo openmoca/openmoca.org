@@ -28,8 +28,8 @@
       "suite": {
         "name": "The OpenMOCA Reader conformance corpus",
         "version": "0.7.0",
-        "cases": 411,
-        "passed": 411
+        "cases": 450,
+        "passed": 450
       },
       "testRun": "https://github.com/openmoca/moca-reader-typescript/actions/workflows/test.yml",
       "signedRecord": {
@@ -50,8 +50,8 @@
       "suite": {
         "name": "The OpenMOCA Reader conformance corpus",
         "version": "0.7.0",
-        "cases": 411,
-        "passed": 411
+        "cases": 450,
+        "passed": 450
       },
       "testRun": "https://github.com/openmoca/moca-reader-dotnet/actions/workflows/test.yml",
       "signedRecord": {
@@ -72,8 +72,8 @@
       "suite": {
         "name": "The OpenMOCA Reader conformance corpus",
         "version": "0.7.0",
-        "cases": 411,
-        "passed": 411
+        "cases": 450,
+        "passed": 450
       },
       "testRun": "https://github.com/openmoca/moca-reader-python/actions/workflows/test.yml",
       "signedRecord": {
