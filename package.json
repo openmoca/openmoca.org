@@ -10,10 +10,11 @@
   "scripts": {
     "sync": "node scripts/sync-docs.mjs",
     "dev": "npm run sync && astro dev",
-    "build": "npm run sync -- --pinned && astro build && node scripts/external-links.mjs && node scripts/write-markdown.mjs && node scripts/check-public-links.mjs",
-    "build:local": "npm run sync && astro build && node scripts/external-links.mjs && node scripts/check-public-links.mjs",
-    "preview": "astro preview",
+    "build": "npm run sync -- --pinned && astro build && node scripts/external-links.mjs && node scripts/write-markdown.mjs && node scripts/check-public-links.mjs && node scripts/csp-hashes.mjs",
+    "build:local": "npm run sync && astro build && node scripts/external-links.mjs && node scripts/check-public-links.mjs && node scripts/csp-hashes.mjs",
+    "preview": "wrangler dev --port 8787",
     "test": "node --test 'scripts/*.test.mjs'",
+    "check:site": "node scripts/check-site.mjs",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {

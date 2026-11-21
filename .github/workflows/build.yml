@@ -118,3 +118,13 @@ jobs:
         working-directory: openmoca.org
       - run: npm test
         working-directory: openmoca.org
+      # The built site, served through the Worker as Cloudflare serves it: every kind of page has the security headers,
+      # and its policy allows each of its inline scripts by hash.
+      - name: Check the headers on every kind of page
+        working-directory: openmoca.org
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+        run: |
+          npx wrangler dev --port 8787 > wrangler.log 2>&1 &
+          for _ in $(seq 1 60); do curl -sf -o /dev/null http://localhost:8787/ && break; sleep 1; done
+          npm run check:site || { tail -20 wrangler.log; exit 1; }

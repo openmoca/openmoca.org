@@ -21,8 +21,12 @@ they describe ([ADR-0001](docs/adr/0001-astro-starlight-built-from-pinned-repos.
   `hidden`, and the sync removes links to them (a citation such as
   "(ADR-0008)" goes; other links become plain text).
 - The pins are the `MOCA_*_REF` values at the top of
-  [`.github/workflows/build.yml`](.github/workflows/build.yml): release tags,
-  or commits, never a branch.
+  [`.github/workflows/build.yml`](.github/workflows/build.yml): full commit
+  SHAs, with the release tag in a comment. The sync refuses a tag or a branch.
+- Pages from other repositories are content, never code
+  ([`scripts/as-content.mjs`](scripts/as-content.mjs)): their HTML is cut down
+  to a short list of tags and attributes, links go only to the web, email or
+  this site, and anything MDX would run is escaped.
 - The site's own pages are in `src/site-pages/`. The site has two zones, set in
   [`zones.json`](zones.json): the main site (home, creators, audience,
   developers, organisations, FAQs, the Commitment and Conformant, about, ways
@@ -60,8 +64,14 @@ npm install
 npm run dev           # the siblings as they are, live at http://localhost:4321
 npm run build:local   # a production build from the siblings as they are
 npm run build         # a production build from the pinned commits, as CI does
-npm run preview       # serve dist/
+npm run preview       # serve dist/ through the Worker, at http://localhost:8787
+npm test              # the sync's rules for pages from other repositories
+npm run check:site    # against the preview: headers and policy on every kind of page
 ```
+
+`npm run check:site` also opens each kind of page in a browser, and reports
+any policy violation or script error, when Playwright is installed:
+`npm i --no-save playwright && npx playwright install chromium`.
 
 A build ends by checking that the site names no private project. The names are
 not kept here: set `MOCA_PRIVATE_NAMES` (comma-separated) or keep them in a
@@ -73,8 +83,12 @@ repository's docs and see them on the site. CI builds from the pins.
 
 ## Deploy
 
-The site runs on Cloudflare as static assets on Workers, with no Worker code
-([ADR-0002](docs/adr/0002-cloudflare-workers-static-assets.md)).
+The site runs on Cloudflare as static assets on Workers
+([ADR-0002](docs/adr/0002-cloudflare-workers-static-assets.md)), with a small
+Worker in front ([`worker/index.js`](worker/index.js)): Markdown for agents,
+redirects, and the security headers. Each page's content security policy names
+its inline scripts by hash; the build writes the hashes
+(`scripts/csp-hashes.mjs`), so no page needs `'unsafe-inline'` for scripts.
 `wrangler.jsonc` says what to serve: `dist/`, the site's own 404 page, and
 URLs with a trailing slash. With the other repositories checked out at their
 pins and `wrangler login` done:
