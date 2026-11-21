@@ -18,6 +18,7 @@ import csp from './generated/csp.json';
 const MOVED = {
   '/project/contact/': '/contact/',
   '/tools/mcp-dotnet/': '/tools/mcp/',
+  '/coming-in-0-7/': '/releases/',
   ...zones.moved,
 };
 
