@@ -13,6 +13,7 @@
     "build": "npm run sync -- --pinned && astro build && node scripts/external-links.mjs && node scripts/write-markdown.mjs && node scripts/check-public-links.mjs",
     "build:local": "npm run sync && astro build && node scripts/external-links.mjs && node scripts/check-public-links.mjs",
     "preview": "astro preview",
+    "test": "node --test 'scripts/*.test.mjs'",
     "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
