@@ -97,8 +97,9 @@ pins and `wrangler login` done:
 npm run deploy   # builds from the pinned commits, then uploads dist/
 ```
 
-Until the repositories are public, deploys run from a maintainer's machine; a
-GitHub Actions deploy job follows at release.
+Deploys run from a maintainer's machine today. A GitHub Actions deploy job is
+ready in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), off
+until the maintainer adds its token and turns it on (the file says how).
 
 ## How it is made
 

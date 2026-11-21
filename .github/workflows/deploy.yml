@@ -1,0 +1,66 @@
+name: Deploy
+
+# Deploys openmoca.org to Cloudflare from CI, in place of a maintainer's machine. Ready, but OFF: it runs only when
+# started by hand, and then does nothing until the repository variable OPENMOCA_DEPLOY is "on".
+#
+# To turn it on (the maintainer):
+#
+# 1. In Cloudflare, create an API token (My Profile > API Tokens > Create Custom Token) with only:
+#      Account > Workers Scripts > Edit
+#      Account > Account Settings > Read
+#    Account Resources: Include > the OpenMOCA account only. No zone, DNS, KV, R2 or user permissions. Give it an
+#    expiry date. If wrangler.jsonc ever declares routes or a custom domain, add Zone > Workers Routes > Edit for
+#    openmoca.org only.
+# 2. In GitHub (Settings > Environments), create the environment "production", with yourself as a required
+#    reviewer and only the main branch allowed to deploy. Add to that environment:
+#      secret   CLOUDFLARE_API_TOKEN   the token from step 1
+#      variable CLOUDFLARE_ACCOUNT_ID  the account's ID (Workers overview, right-hand side)
+# 3. Add the repository variable OPENMOCA_DEPLOY = on, and run this workflow from main (Actions > Deploy > Run).
+# 4. When a run from CI has replaced a laptop deploy, `wrangler logout` on the laptop, and delete any older token.
+#    To deploy on every merge to main, add `push: branches: [main]` under `on:`.
+#
+# The build runs in build.yml, with no Cloudflare token; this job only uploads what that build made.
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: ${{ vars.OPENMOCA_DEPLOY == 'on' && github.ref == 'refs/heads/main' }}
+    uses: ./.github/workflows/build.yml
+    with:
+      upload: true
+    secrets: inherit
+
+  deploy:
+    name: Deploy to Cloudflare
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://openmoca.org
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: site
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+      # Wrangler only, as package-lock.json pins it, with no install scripts in the job that holds the token.
+      - run: npm ci --ignore-scripts
+      - run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          WRANGLER_SEND_METRICS: 'false'
+      # The live site, as on release day: headers and policy on every kind of page.
+      - run: node scripts/check-site.mjs https://openmoca.org
