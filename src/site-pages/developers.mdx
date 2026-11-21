@@ -91,8 +91,12 @@ and the trust that runs through all three.
 2. **Open, verify and search a package**, and cite what you find with the
    citation record each result comes back as
    ([consuming packages](/docs/guides/consuming/)). Before you hand content to
-   a model, make a terms request
-   ([showing terms honestly](/docs/guides/showing-terms/)).
+   a model, make a terms request, and pass it with everything you hand on:
+   search, ingest for embedding, structure and the catalogue. A closed package
+   is named to the model only by its catalogue entry; a hidden one
+   (`ai.allowed.mention: false`) not at all
+   ([showing terms honestly](/docs/guides/showing-terms/#everything-you-hand-a-model),
+   [the terms gate](/spec/reader-contract/#154-the-terms-gate)).
 3. **Run the conformance corpus** against your Reader, or make a package of
    your own and check it ([quickstart](/docs/quickstart/)).
 

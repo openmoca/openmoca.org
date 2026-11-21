@@ -56,6 +56,23 @@ can rule out AI in the app itself, or on the person's own device. Training AI
 on the work is never allowed by default. In this version, creators can only
 make the defaults stricter.
 
+Their wishes cover everything an app hands to an AI, not only the passages it
+quotes: topic names and descriptions, text prepared for search, and what the
+AI is told about the work.
+
+## Can a creator stop an AI being told their work exists?
+
+Yes, for an AI they have ruled out. By default, an app may tell that AI the
+work's title and who published it, so it can explain to you why it can't
+answer from it. A creator whose title is private can say no to that too. An
+app that follows their wishes then tells that AI nothing about the work, not
+even that it exists. Its own screens still tell you why something was left
+out. If the app speaks to you only through an AI, it says only that something
+was left out.
+
+This does not stop an AI that already knows the work from somewhere else. It
+is a label, not a lock.
+
 ## Can creators set different wishes for different parts of a work?
 
 Yes. Wishes can be set for the whole work and for parts of it. When the work,
