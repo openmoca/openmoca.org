@@ -2,9 +2,9 @@
   "$schema": "https://openmoca.org/directory/conformant.schema.json",
   "title": "OpenMOCA Conformant: software that passes the OpenMOCA tests",
   "description": "Software that passes the public OpenMOCA tests for what it does: reading, making or checking OpenMOCA. Each entry names the version, the specification version and the tests it passed, and its standing: official (the project's own software), verified (re-run by the project) or self-tested (run by its maker, with a signed result).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "released": "2026-11-20T00:00:00Z",
-  "updated": "2026-11-20T00:00:00Z",
+  "updated": "2026-11-21T00:00:00Z",
   "publisher": {
     "name": "The OpenMOCA project",
     "url": "https://openmoca.org",
@@ -28,8 +28,8 @@
       "suite": {
         "name": "The OpenMOCA Reader conformance corpus",
         "version": "0.7.0",
-        "cases": 450,
-        "passed": 450
+        "cases": 486,
+        "passed": 486
       },
       "testRun": "https://github.com/openmoca/moca-reader-typescript/actions/workflows/test.yml",
       "signedRecord": {
@@ -50,8 +50,8 @@
       "suite": {
         "name": "The OpenMOCA Reader conformance corpus",
         "version": "0.7.0",
-        "cases": 450,
-        "passed": 450
+        "cases": 486,
+        "passed": 486
       },
       "testRun": "https://github.com/openmoca/moca-reader-dotnet/actions/workflows/test.yml",
       "signedRecord": {
@@ -72,8 +72,8 @@
       "suite": {
         "name": "The OpenMOCA Reader conformance corpus",
         "version": "0.7.0",
-        "cases": 450,
-        "passed": 450
+        "cases": 486,
+        "passed": 486
       },
       "testRun": "https://github.com/openmoca/moca-reader-python/actions/workflows/test.yml",
       "signedRecord": {
