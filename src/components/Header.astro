@@ -1,0 +1,177 @@
+---
+// One header for every page, main site and docs (zones.json), so the two cannot drift apart: the logo, the main
+// links (Creators, Audience, Developers, Organisations, Directory, FAQs), Try it and Docs, and the theme switch. The
+// current section is marked (aria-current); in the docs, Docs is. The docs add the search box.
+//
+// Narrow screens get one menu button. On the main site, the header's own button opens the main links: it says whether
+// the menu is open (aria-expanded), Escape closes it and returns focus to the button, Tab moves through the links. In
+// the docs, Starlight's own menu button (with its focus handling and Escape) opens one menu: the main links first
+// (Sidebar.astro), then the docs' sidebar. Between the two widths (the docs' sidebar shown, the main links folded),
+// the docs use the header's button for the main links.
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import zones from '../../zones.json';
+import { isMain as inMain, pageId } from '../zones';
+
+const id = pageId(Astro.locals.starlightRoute.id);
+const isMain = inMain(id);
+const here = `/${id}${id ? '/' : ''}`;
+// The page itself is "page"; a page inside the section is "true".
+const current = (href: string) => (here === href ? 'page' : href !== '/' && here.startsWith(href) ? 'true' : undefined);
+---
+
+<div class:list={['site-header', isMain ? 'zone-main' : 'zone-docs']}>
+  <div class="brand">
+    <SiteTitle />
+  </div>
+  <nav class="main-nav" aria-label="Site">
+    <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-nav-links">
+      <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+      <span>Menu</span>
+    </button>
+    <ul id="main-nav-links" class="links">
+      {zones.nav.map((item) => (
+        <li>
+          <a href={item.href} aria-current={current(item.href)}>{item.label}</a>
+        </li>
+      ))}
+      <li class="pill-item">
+        <a class="pill" href="https://try.openmoca.org">Try it</a>
+      </li>
+      <li class="pill-item">
+        <a class="pill solid" href="/docs/" aria-current={isMain ? undefined : here === '/docs/' ? 'page' : 'true'}>Docs</a>
+      </li>
+    </ul>
+  </nav>
+  {!isMain && (
+    <div class="search">
+      <Search />
+    </div>
+  )}
+  <div class="theme">
+    <ThemeSelect />
+  </div>
+</div>
+
+<script>
+  // The menu button, on narrow screens. Without JavaScript the links stay visible (see the CSS: .js-menu).
+  for (const nav of document.querySelectorAll<HTMLElement>('.main-nav')) {
+    const button = nav.querySelector<HTMLButtonElement>('.menu-button');
+    const links = nav.querySelector<HTMLElement>('.links');
+    if (!button || !links) continue;
+    nav.classList.add('js-menu');
+    const setOpen = (open: boolean) => {
+      button.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('open', open);
+    };
+    button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
+    nav.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        button.focus();
+      }
+    });
+    // Closes when focus or a click leaves the menu.
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target as Node)) setOpen(false);
+    });
+    nav.addEventListener('focusout', (e) => {
+      if (e.relatedTarget && !nav.contains(e.relatedTarget as Node)) setOpen(false);
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+  }
+  /* The main site is centred like its pages; the docs run the full width, like their sidebar and content. */
+  .zone-main { max-width: var(--moca-content-max, 1200px); margin: 0 auto; }
+  .search { flex: 0 1 14rem; min-width: 0; }
+  .brand { flex: 0 0 auto; min-width: 0; }
+  .main-nav { flex: 1 1 auto; display: flex; justify-content: flex-end; }
+  .theme { flex: 0 0 auto; }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .links a {
+    display: inline-block;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--moca-radius-sm, 6px);
+    color: var(--sl-color-white);
+    text-decoration: none;
+    font-size: var(--sl-text-sm);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .links a:hover { background: var(--sl-color-gray-6); }
+  .links a[aria-current] { text-decoration: underline; text-underline-offset: 0.3em; text-decoration-thickness: 2px; }
+  .links .pill {
+    border: 1px solid var(--sl-color-text-accent);
+    color: var(--sl-color-text-accent);
+    border-radius: 999px;
+    padding: 0.3rem 0.85rem;
+    font-weight: 600;
+  }
+  .links .pill-item:first-of-type { margin-inline-start: 0.5rem; }
+  .links .pill.solid { background: var(--sl-color-text-accent); color: var(--sl-color-black); }
+  .links .pill:hover { background: var(--sl-color-text-accent); color: var(--sl-color-black); }
+  .links .pill.solid:hover { background: var(--sl-color-text); color: var(--sl-color-black); }
+  .menu-button { display: none; }
+
+  @media (max-width: 64rem) {
+    .js-menu .menu-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: var(--moca-radius-sm, 6px);
+      background: transparent;
+      color: var(--sl-color-white);
+      font: inherit;
+      font-size: var(--sl-text-sm);
+      cursor: pointer;
+    }
+    .js-menu .links {
+      display: none;
+      position: absolute;
+      top: var(--sl-nav-height);
+      inset-inline: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.5rem var(--sl-nav-pad-x) 1rem;
+      background: var(--sl-color-bg-nav);
+      border-bottom: 1px solid var(--sl-color-hairline-shade);
+      box-shadow: var(--sl-shadow-md);
+      z-index: 10;
+    }
+    .js-menu.open .links { display: flex; }
+    .js-menu .links a { display: block; padding: 0.75rem 0.5rem; font-size: var(--sl-text-base); }
+    .js-menu .links .pill-item { margin: 0.4rem 0 0; }
+    .js-menu .links .pill { text-align: center; }
+    /* Without JavaScript the links wrap rather than hide. */
+    .main-nav:not(.js-menu) .links { flex-wrap: wrap; justify-content: flex-end; }
+  }
+  @media (max-width: 30rem) {
+    .menu-button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  }
+  /* In the docs on a phone, Starlight's menu button opens one menu: the main links, then the docs' sidebar
+     (Sidebar.astro), with the theme switch at its foot. So the header keeps only the logo and the search. */
+  @media (max-width: 49.99rem) {
+    .zone-docs .main-nav, .zone-docs .theme { display: none; }
+    .zone-docs .search { flex: 0 0 auto; margin-inline-start: auto; }
+  }
+</style>

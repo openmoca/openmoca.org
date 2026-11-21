@@ -22,6 +22,8 @@ import { execFileSync } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, join, posix, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import Ajv from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
 
 const site = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const siblings = dirname(site);
@@ -189,13 +191,14 @@ function tryItSection({ online, files = [], trustRoot, model, ask }) {
       ...(model ? [`The index lets it search by meaning as well as by words; \`models add\` installs the [standard model](/spec/sidecar-index/#51-embedders-the-moca-tools-support-informative) it was built with, once.`, ''] : []),
       'One download with nothing to install, for Windows, macOS or Linux: [get moca-mcp](/tools/mcp/#install).',
       '',
-      `Connect it to Claude Desktop, Claude Code, VS Code or Cursor, with full paths, as in [Got a .moca file?](/start/open-a-package/#connect-it)${ask ? `. Then ask: "${ask}"` : '.'}`,
+      `Connect it to Claude Desktop, Claude Code, VS Code or Cursor, with full paths, as in [Got a .moca file?](/docs/guides/open-a-package/#connect-it)${ask ? `. Then ask: "${ask}"` : '.'}`,
       '',
     );
   }
   return out.join('\n');
 }
 
+let commitmentSource = null; // COMMITMENT.md, links rewritten, for the Directory's pages
 for (const page of sources.pages) {
   const files = repoFiles(page.repo);
   if (!files.kind(page.path)) {
@@ -203,6 +206,15 @@ for (const page of sources.pages) {
     continue;
   }
   let body = files.read(page.path).replace(/\r\n/g, '\n');
+  // A plain-text file (format "text"), such as LICENSE: each block of lines becomes a paragraph, with Markdown's
+  // special characters escaped, and any `append` files after it under their own heading. The title comes from
+  // sources.json, and the page ends with its `outro`.
+  if (page.format === 'text') {
+    const toMarkdown = (text) => text.split(/\n\s*\n/).map((block) => block.split('\n').map((l) => l.trim()).join(' ').trim())
+      .filter(Boolean).map((p) => p.replace(/([\\`*_[\]<>#|])/g, '\\$1')).join('\n\n');
+    const appended = (page.append ?? []).map((a) => `## ${a.heading}\n\n${toMarkdown(files.read(a.path).replace(/\r\n/g, '\n'))}`);
+    body = [`# ${page.title}`, toMarkdown(body), ...appended].join('\n\n');
+  }
   const h1 = body.match(/^# (.+)$/m);
   if (!h1) {
     problems.push(`${page.repo}/${page.path}: no "# " heading to use as the title`);
@@ -219,11 +231,18 @@ for (const page of sources.pages) {
     ...(page.description ? [`description: ${yaml(page.description)}`] : []),
     ...(page.seoTitle ? [`head:`, `  - tag: title`, `    content: ${yaml(`${page.seoTitle} | OpenMOCA`)}`] : []),
     ...(page.label ? [`sidebar:`, `  label: ${yaml(page.label)}`] : []),
-    `editUrl: ${yaml(`https://github.com/${ORG}/${page.repo}/edit/main/${page.path}`)}`,
+    // A page of the main site (zones.json) is full width, with no sidebar.
+    ...(page.template ? [`template: ${page.template}`] : []),
+    // No "Edit page" link on any page (owner, 2026-11-20).
+    'editUrl: false',
     '---',
     '',
   ].join('\n');
   let text = unlinkHidden(rewriteLinks(body, page));
+  // The outro is added after links are rewritten: its link to the repository's own file must stay on GitHub.
+  if (page.outro) text = `${text.trimEnd()}\n\n${page.outro}\n`;
+  // A longer outro, the site's own Markdown (such as a listing under the Commitment), from a file in this repository.
+  if (page.outroFile) text = `${text.trimEnd()}\n\n${readFileSync(join(site, page.outroFile), 'utf8').trim()}\n`;
   const tabbed = TABS.test(text);
   if (tabbed) text = toTabs(text, page);
   // An example's "Try it" section is generated (below), so it reads the same on every example page; it needs MDX.
@@ -233,6 +252,11 @@ for (const page of sources.pages) {
   text = text.replace(/^<!-- mcp-name: .*-->\n+/m, '');
   // MDX reads <https://…> as a tag: make autolinks plain links, outside fenced code.
   if (mdx) text = text.split(/(^```[\s\S]*?^```$)/m).map((part, i) => (i % 2 ? part : part.replace(/<(https?:\/\/[^>\s]+)>/g, '[$1]($1)'))).join('');
+  // A page the site builds from this source itself (the Commitment: the Directory's pages, below).
+  if (page.render === 'commitment') {
+    commitmentSource = text;
+    continue;
+  }
   const file = join(out, page.route, mdx ? 'index.mdx' : 'index.md');
   mkdirSync(dirname(file), { recursive: true });
   // A page's optional intro is Markdown the site puts above the body, for what the source file cannot carry: the
@@ -256,8 +280,9 @@ const RELEASE = {
   status: release.released
     ? `**OpenMOCA ${release.version}** is the current release.`
     : `**OpenMOCA ${release.previous}** is the current release. **${release.version}** is in review, and these pages describe it ahead of its release.`,
-  suite: release.released ? `${release.corpusCases} public conformance tests` : 'a public conformance suite',
-  readers: release.released ? 'Readers in TypeScript, .NET and Python' : 'open Readers in several languages',
+  // Plain words: these appear on the main site, where "Reader" and "conformance corpus" are not used.
+  suite: release.released ? `${release.corpusCases} public tests` : 'a public test suite',
+  readers: release.released ? 'free libraries in TypeScript, .NET and Python' : 'free libraries in several programming languages',
 };
 const sitePageFiles = (dir) => readdirSync(dir).flatMap((n) => (statSync(join(dir, n)).isDirectory()
   ? sitePageFiles(join(dir, n)).map((f) => join(n, f)) : [n]));
@@ -269,6 +294,154 @@ for (const rel of sitePageFiles(join(site, 'src', 'site-pages'))) {
     return RELEASE[name] ?? token;
   });
   if (done !== text) writeFileSync(file, done);
+}
+
+// About is on the main site (/about/) and in the docs' Project group (/project/about/), from one source. The docs copy
+// has the docs layout, says /about/ is the canonical page, and stays out of search and the sitemap
+// (astro.config.mjs), so search engines and people see one page.
+{
+  const about = readFileSync(join(out, 'about.md'), 'utf8');
+  const docsCopy = about
+    .replace(/^template: splash\n/m, '')
+    .replace(/^editUrl: false$/m, [
+      'editUrl: false',
+      'pagefind: false',
+      'sidebar:',
+      '  label: About',
+      'head:',
+      '  - tag: link',
+      '    attrs:',
+      '      rel: canonical',
+      '      href: https://openmoca.org/about/',
+    ].join('\n'));
+  mkdirSync(join(out, 'project'), { recursive: true });
+  writeFileSync(join(out, 'project', 'about.md'), docsCopy);
+}
+
+// The Directory's lists (src/directory/*.json): the one source for its pages and for other apps. Each is checked
+// against its JSON Schema (an invalid entry stops the build), and both are published, with their schemas, at
+// /directory/<name>.json.
+const DIRECTORY = ['commitment', 'conformant'];
+const ajv = new Ajv({ allErrors: true, strict: true });
+addFormats(ajv);
+const lists = {};
+mkdirSync(join(site, 'public', 'directory'), { recursive: true });
+for (const name of DIRECTORY) {
+  const schemaFile = join(site, 'src', 'directory', `${name}.schema.json`);
+  const dataFile = join(site, 'src', 'directory', `${name}.json`);
+  const validate = ajv.compile(JSON.parse(readFileSync(schemaFile, 'utf8')));
+  const data = JSON.parse(readFileSync(dataFile, 'utf8'));
+  if (!validate(data)) for (const e of validate.errors) problems.push(`src/directory/${name}.json${e.instancePath}: ${e.message}`);
+  const ids = data.entries.map((e) => e.id);
+  for (const id of ids.filter((id, i) => ids.indexOf(id) !== i)) problems.push(`src/directory/${name}.json: id ${id} appears twice`);
+  lists[name] = data;
+  cpSync(schemaFile, join(site, 'public', 'directory', `${name}.schema.json`));
+  cpSync(dataFile, join(site, 'public', 'directory', `${name}.json`));
+}
+// A conformance result names the release's corpus: its count must be the one release.json states.
+for (const e of lists.conformant.entries) {
+  if (e.suite.cases !== release.corpusCases) problems.push(`src/directory/conformant.json: ${e.id} names ${e.suite.cases} cases; release.json says ${release.corpusCases}`);
+}
+
+// The Commitment's pages, from COMMITMENT.md and commitment.json: /directory/commitment/ (what it means for you, the
+// list with its search, what a company commits to, how to make it) and one page per entry, with the entry and the
+// company's commitments in full.
+if (commitmentSource) {
+  const sections = {};
+  for (const part of commitmentSource.split(/^(?=## )/m)) {
+    const m = part.match(/^## (.+)\n/);
+    if (m) sections[m[1].trim()] = part.slice(m[0].length).trim();
+  }
+  const forYou = sections['For people: what the Commitment means for you'];
+  const forCompanies = sections['For companies: what you commit to'];
+  if (!forYou || !forCompanies) problems.push('COMMITMENT.md: expected its "For people" and "For companies" sections');
+  const how = readFileSync(join(site, 'src', 'site-fragments', 'commitment-how.md'), 'utf8').trim();
+  const page = sources.pages.find((p) => p.render === 'commitment');
+  writeFileSync(join(out, 'directory', 'commitment.mdx'), [
+    '---',
+    `title: ${yaml('The OpenMOCA Commitment')}`,
+    `description: ${yaml(page.description)}`,
+    'template: splash',
+    'editUrl: false',
+    'head:',
+    '  - tag: title',
+    `    content: ${yaml(`${page.seoTitle} | OpenMOCA`)}`,
+    '---',
+    '',
+    "import CommitmentList from '../../../components/CommitmentList.astro';",
+    '',
+    page.intro.trim(),
+    '',
+    '## What it means for you',
+    '',
+    forYou,
+    '',
+    '## Apps that have made the Commitment',
+    '',
+    '<CommitmentList status="made" search />',
+    '',
+    '## Pending: statement published, signature to follow',
+    '',
+    'These apps have published their statement; their signed statement is to follow. Until it is signed and listed',
+    'above, they may not show the Commitment mark. PI & Mash maintains OpenMOCA, and is listed under the same rules',
+    'as anyone else.',
+    '',
+    '<CommitmentList status="pending" />',
+    '',
+    '[This list as data](https://openmoca.org/directory/commitment.json) (JSON, free to reuse under CC0), and its',
+    '[schema](https://openmoca.org/directory/commitment.schema.json).',
+    '',
+    '## For companies: what you commit to',
+    '',
+    forCompanies,
+    '',
+    how,
+    '',
+  ].join('\n'));
+  const when = (d) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const WHERE = { device: "on the person's own device", host: "on the app's own servers", provider: "with another company's AI provider" };
+  for (const e of lists.commitment.entries) {
+    const models = e.modelsAndDestinations.map((m) => `  - ${m.use}: ${[m.model, m.provider].filter(Boolean).join(', ')}, ${WHERE[m.destination]}`);
+    const statement = e.statement.url
+      ? `[${e.company.name}'s signed statement](${e.statement.url})${e.statement.signed ? '' : ' (not yet signed)'}`
+      : 'signed record to follow';
+    const file = join(out, 'directory', 'commitment', `${e.id}.md`);
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, [
+      '---',
+      `title: ${yaml(e.app.name)}`,
+      `description: ${yaml(`${e.app.name}, by ${e.company.name}, ${e.status === 'made' ? 'has made' : 'is pending for'} the OpenMOCA Commitment for version ${e.version}: the AI models it uses, where your work goes, the set-ups covered, and how to challenge it.`)}`,
+      'template: splash',
+      'editUrl: false',
+      '---',
+      '',
+      e.status === 'made'
+        ? `${e.app.name}, by ${e.company.name}, has made the [OpenMOCA Commitment](/directory/commitment/).`
+        : `**Pending: statement published, signature to follow.** ${e.company.name} has published its statement for ${e.app.name}; the signed statement is to follow. Until it is signed and listed, the app may not show the [OpenMOCA Commitment](/directory/commitment/) mark.`,
+      '',
+      '## The entry',
+      '',
+      `- **The app:** [${e.app.name}](${e.app.url}), ${e.app.kind}.`,
+      `- **The company:** [${e.company.name}](${e.company.url}).`,
+      `- **Version covered:** ${e.version}.`,
+      `- **Listed:** ${when(e.date)}.`,
+      '- **AI models, and where your work goes:**',
+      ...models,
+      `- **Set-ups covered:** ${e.setupsCovered.join(' ')}`,
+      ...(e.setupsNotCovered ? [`- **Not covered:** ${e.setupsNotCovered.join(' ')}`] : []),
+      `- **Contact for challenges:** [${e.contact.replace(/^mailto:/, '')}](${e.contact}).`,
+      `- **Status:** ${e.status === 'made' ? 'made: signed and listed' : 'pending: statement published, signature to follow'}.`,
+      `- **Statement:** ${statement}.`,
+      `- **Commitment version:** OpenMOCA ${e.commitmentVersion}.`,
+      '',
+      '## What it commits to',
+      '',
+      forCompanies,
+      '',
+      'This entry, as data, is in [the list](https://openmoca.org/directory/commitment.json).',
+      '',
+    ].join('\n'));
+  }
 }
 
 // The specification version the pages document, for the footer.

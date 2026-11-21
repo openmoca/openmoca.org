@@ -1,0 +1,52 @@
+---
+// The Directory's inner navigation, under the page title on /directory/ and every page below it: Overview, the
+// OpenMOCA Commitment, OpenMOCA Conformant. The current section is marked (aria-current). Plain links, so it works
+// by keyboard and without JavaScript; at phone width the links wrap onto two lines.
+interface Props { id: string }
+const { id } = Astro.props;
+const ITEMS = [
+  { label: 'Overview', href: '/directory/', current: id === 'directory' },
+  { label: 'The OpenMOCA Commitment', href: '/directory/commitment/', current: id.startsWith('directory/commitment') },
+  { label: 'OpenMOCA Conformant', href: '/directory/conformant/', current: id.startsWith('directory/conformant') },
+];
+---
+
+<nav class="directory-nav not-content" aria-label="Directory">
+  <ul>
+    {ITEMS.map((item) => (
+      <li>
+        <a href={item.href} aria-current={item.current ? 'page' : undefined}>{item.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .directory-nav { margin-top: 1rem; }
+  .directory-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .directory-nav li { margin: 0; }
+  .directory-nav a {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--moca-line);
+    border-radius: 999px;
+    color: var(--moca-text);
+    text-decoration: none;
+    font-size: var(--sl-text-sm);
+    font-weight: 500;
+  }
+  .directory-nav a:hover { border-color: var(--moca-link); }
+  .directory-nav a[aria-current='page'] {
+    background: var(--moca-surface-raised);
+    border-color: var(--moca-link);
+    color: var(--moca-text);
+    font-weight: 600;
+  }
+</style>

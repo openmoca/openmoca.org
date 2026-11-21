@@ -1,0 +1,60 @@
+{
+  "$comment": "The site's two zones. The main site (these pages, and every page under mainPrefixes) has the top navigation and full-width pages; every other page is the docs, with the sidebar. moved: pages that moved, as permanent redirects (worker/index.js) and as redirect pages in the build (astro.config.mjs).",
+  "main": [
+    "",
+    "creators",
+    "audience",
+    "developers",
+    "organisations",
+    "directory",
+    "faq",
+    "about",
+    "contact",
+    "privacy",
+    "404"
+  ],
+  "nav": [
+    {
+      "label": "Creators",
+      "href": "/creators/"
+    },
+    {
+      "label": "Audience",
+      "href": "/audience/"
+    },
+    {
+      "label": "Developers",
+      "href": "/developers/"
+    },
+    {
+      "label": "Organisations",
+      "href": "/organisations/"
+    },
+    {
+      "label": "Directory",
+      "href": "/directory/"
+    },
+    {
+      "label": "FAQs",
+      "href": "/faq/"
+    }
+  ],
+  "moved": {
+    "/people/": "/audience/",
+    "/audiences/": "/audience/",
+    "/marks/": "/directory/conformant/",
+    "/how/": "/docs/how-openmoca-works/",
+    "/start/open-a-package/": "/docs/guides/open-a-package/",
+    "/start/ai-assistant/": "/docs/guides/ai-assistant/",
+    "/try/ai-assistant/": "/docs/guides/ai-assistant/",
+    "/try/open-a-package/": "/docs/guides/open-a-package/",
+    "/answers/": "/faq/",
+    "/commitment/": "/directory/commitment/",
+    "/conformant/": "/directory/conformant/",
+    "/project/commitment/": "/directory/commitment/",
+    "/try/": "https://try.openmoca.org"
+  },
+  "mainPrefixes": [
+    "directory/"
+  ]
+}

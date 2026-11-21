@@ -3,6 +3,24 @@
 // The mark is drawn inline in the theme's colours, so it follows light and dark mode, and every word stays text
 // that people, search engines and AI answers can read. Top to bottom, the rows match the mark: the pin, then the
 // three layers. On a narrow screen the mark sits above the list.
+//
+// `plain`: the main site's wording, for people who have never heard of OpenMOCA (no "digest" or "node"). The docs
+// keep the technical wording.
+interface Props { plain?: boolean }
+const { plain = false } = Astro.props;
+const TECHNICAL = {
+  trust: 'One digest covers every file of the package, so any change shows. Signatures and reviews sit beside it: a signature shows who signed the package, and a signed review shows who checked which node.',
+  structure: 'Concepts and how they relate: hierarchy, parts, order, what requires what. W3C SKOS and DCMI terms, plus any vocabulary you add, such as an OWL ontology, carried as it is.',
+  content: 'The knowledge, one Markdown node per topic, with validity windows, audiences and translations.',
+  evidence: 'The original sources, carried in the package where they can be, and selectors that point into them, so a quote can be checked against the original.',
+};
+const PLAIN = {
+  trust: 'Any change to the package can be detected. A signature shows who signed it, and a signed review shows who checked each part.',
+  structure: 'How the work is organised: its topics and parts, the order of its steps, and what builds on what.',
+  content: 'The work itself, one part per topic, with when it applies, who it is for, and its translations.',
+  evidence: 'The original sources, carried with the work where they can be, so a quote can be checked against the original.',
+};
+const text = plain ? PLAIN : TECHNICAL;
 ---
 
 <figure class="package-layers not-content">
@@ -40,22 +58,19 @@
   <dl class="layers">
     <div class="layer trust">
       <dt>Trust <span>through all three</span></dt>
-      <dd>One digest covers every file of the package, so any change shows. Signatures and reviews sit beside it: a
-        signature shows who signed the package, and a signed review shows who checked which node.</dd>
+      <dd>{text.trust}</dd>
     </div>
     <div class="layer structure">
       <dt>Structure <span>optional</span></dt>
-      <dd>Concepts and how they relate: hierarchy, parts, order, what requires what. W3C SKOS and DCMI terms, plus any
-        vocabulary you add, such as an OWL ontology, carried as it is.</dd>
+      <dd>{text.structure}</dd>
     </div>
     <div class="layer content">
       <dt>Content</dt>
-      <dd>The knowledge, one Markdown node per topic, with validity windows, audiences and translations.</dd>
+      <dd>{text.content}</dd>
     </div>
     <div class="layer evidence">
       <dt>Evidence</dt>
-      <dd>The original sources, carried in the package where they can be, and selectors that point into them, so a
-        quote can be checked against the original.</dd>
+      <dd>{text.evidence}</dd>
     </div>
   </dl>
 </figure>
@@ -85,7 +100,10 @@
   }
   .package-layers .layers .layer dt {
     font-weight: 600;
-    color: var(--layer);
+    /* The name in the text colour, for contrast; the layer's colour is the bar beside it. */
+    color: var(--moca-text);
+    border-left: 4px solid var(--layer);
+    padding-left: 0.5rem;
     font-size: var(--moca-text-lg);
     margin: 0;
   }
