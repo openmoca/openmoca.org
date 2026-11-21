@@ -1,0 +1,7 @@
+{
+  "$comment": "The release state of the site, in one place. scripts/sync-docs.mjs writes it into the site's own pages wherever they say @@release.<name>@@. On release day, set released to true; RELEASE-DAY.md lists everything else that changes.",
+  "version": "0.7.0",
+  "previous": "0.6.0",
+  "released": false,
+  "corpusCases": 411
+}

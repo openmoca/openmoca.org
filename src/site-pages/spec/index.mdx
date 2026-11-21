@@ -1,6 +1,6 @@
 ---
 title: The MOCA specification
-description: "The MOCA specification at 0.7.0: the package format, Reader contract and interface, attestations, encrypted packages, sidecar indexes, AG-UI citations, schemas and the corpus."
+description: "The MOCA specification at 0.7.0: the package format with credits and the creator's terms, the Reader contract and interface, attestations, encrypted packages, sidecar indexes, AG-UI citations, schemas and the corpus."
 editUrl: false
 ---
 
@@ -14,8 +14,8 @@ are versioned together: these pages describe **0.7.0**, before 1.0
 
 | Document | What it defines | Status |
 | --- | --- | --- |
-| [Package specification](/spec/package/) | The package: manifest, OKF content, evidence, locales, trust fields, structure, members, relations, the digest, profiles and capabilities | 0.7.0 |
-| [Reader contract](/spec/reader-contract/) | What every Reader must conclude: reading, verifying, citation records, the retrieval policy, search, structure and diagnostics | 0.7.0 |
+| [Package specification](/spec/package/) | The package: manifest, credits, dates, the creator's terms, OKF content, evidence, machine-made marks, locales, trust fields, structure, members, relations, the digest, profiles and capabilities | 0.7.0 |
+| [Reader contract](/spec/reader-contract/) | What every Reader must conclude: reading, verifying, citation records, the retrieval policy, search, structure, diagnostics and the creator's terms | 0.7.0 |
 | [Reader interface](/spec/reader-interface/) | The operations and objects every Reader offers, named for each language | 0.7.0 |
 | [Attestations](/spec/attestations/) | Package, review and issued-copy attestations, signing modes, trust roots and verification outcomes | 0.7.0 |
 | [Encrypted packages](/spec/encrypted-package/) | A signed package in an age envelope: the readable outline and its check, key providers, limits, and what encryption does not do | 0.7.0 |
@@ -44,6 +44,7 @@ Each schema is published at its `$id`, so validators can fetch it:
 | --- | --- |
 | [`manifest.schema.json`](/schemas/v1/manifest.schema.json) | `moca.json` |
 | [`node.schema.json`](/schemas/v1/node.schema.json) | A page's frontmatter |
+| [`terms.schema.json`](/schemas/v1/terms.schema.json) | The creator's terms, `terms` in `moca.json` |
 | [`structure.schema.json`](/schemas/v1/structure.schema.json) | `structure.json`, the view of `structure.ttl` |
 | [`citation-record.schema.json`](/schemas/v1/citation-record.schema.json) | A citation record |
 | [`search-hit.schema.json`](/schemas/v1/search-hit.schema.json) | A backend's search hit |
@@ -56,7 +57,11 @@ Each schema is published at its `$id`, so validators can fetch it:
 
 ## Conformance
 
-The [conformance corpus](/spec/conformance/) is 352 cases, each with a package,
-options and the conclusions every Reader must reach. All three Readers, in
-TypeScript, .NET and Python, pass all of them. Each release attaches the corpus
-as `moca-conformance-<version>.tar.gz`, so an implementation can pin it.
+The [conformance corpus](/spec/conformance/) is @@release.suite@@: each case
+is a package, options and the conclusions every Reader must reach. Each
+release attaches the corpus as `moca-conformance-<version>.tar.gz`, so an
+implementation can pin it.
+
+Software that passes the suite for what it is, for a named version, may say
+it is **OpenMOCA Conformant**. Listings come after 0.7.0
+([OpenMOCA Conformant and the OpenMOCA Commitment](/marks/)).

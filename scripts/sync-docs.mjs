@@ -52,6 +52,7 @@ function repoFiles(repo) {
     readers[repo] = {
       read: (p) => readFileSync(join(dir, p), 'utf8'),
       kind: (p) => (existsSync(join(dir, p)) ? (statSync(join(dir, p)).isDirectory() ? 'tree' : 'blob') : null),
+      list: (d) => readdirSync(join(dir, d)),
     };
   } else {
     const ref = refOf(repo);
@@ -61,6 +62,8 @@ function repoFiles(repo) {
     readers[repo] = {
       read: (p) => execFileSync('git', ['-C', dir, 'show', `${ref}:${p}`], { encoding: 'utf8', maxBuffer: 64 << 20 }),
       kind: (p) => (p === '' || trees.has(p) ? 'tree' : files.has(p) ? 'blob' : null),
+      // The names directly inside a directory at the pin, not in the working tree, which may be on another branch.
+      list: (d) => [...files].filter((f) => posix.dirname(f) === d).map((f) => posix.basename(f)),
     };
   }
   return readers[repo];
@@ -166,17 +169,17 @@ function toTabs(text, page) {
 // it), a sentence linking to it; then how to try the released .moca files in an AI assistant with the MCP server,
 // the download first and npm second.
 //   tryIt: { online?: Markdown sentence, files?: [names], trustRoot?: bool, model?: standard model a file needs, ask? }
-const RELEASE = 'https://github.com/openmoca/moca-spec/releases/latest/download/';
+const DOWNLOADS = 'https://github.com/openmoca/moca-spec/releases/latest/download/';
 function tryItSection({ online, files = [], trustRoot, model, ask }) {
   const out = ['', '## Try it', ''];
   if (online) out.push(online, '');
   if (files.length) {
-    const links = files.map((f) => `[\`${f}\`](${RELEASE}${f})`);
+    const links = files.map((f) => `[\`${f}\`](${DOWNLOADS}${f})`);
     const list = links.length === 1 ? links[0] : `${links.slice(0, -1).join(', ')} and ${links.at(-1)}`;
     const one = files.filter((f) => f.endsWith('.moca')).length === 1; // an index beside a package is not another package
     const args = ['--library', '.', ...(trustRoot ? ['--trust-root', 'example-trust-root.json'] : [])].join(' ');
     out.push(
-      `To try ${one ? 'it' : 'them'} with your AI assistant, use our [MCP server](/tools/mcp/). Download ${list}${trustRoot ? `, and the [trust root](${RELEASE}example-trust-root.json) that verifies ${one ? 'its signature' : 'their signatures'},` : ''} into one folder, and serve the folder:`,
+      `To try ${one ? 'it' : 'them'} with your AI assistant, use our [MCP server](/tools/mcp/). Download ${list}${trustRoot ? `, and the [trust root](${DOWNLOADS}example-trust-root.json) that verifies ${one ? 'its signature' : 'their signatures'},` : ''} into one folder, and serve the folder:`,
       '',
       '```sh',
       ...(model ? [`moca-mcp models add ${model}`] : []),
@@ -241,8 +244,32 @@ for (const page of sources.pages) {
   writeFileSync(file, front + imports + intro + text.trimEnd() + '\n' + (page.tryIt ? tryItSection(page.tryIt) : ''));
 }
 
-// The site's own pages (landing page, language chooser) are copied in as they are.
+// The site's own pages (landing page, language chooser) are copied in, with the release state written in.
 cpSync(join(site, 'src', 'site-pages'), out, { recursive: true });
+
+// The release state, from release.json: one setting, so release day is a one-line change (RELEASE-DAY.md). Until the
+// release is out, the pages name the previous one as current and give no counts the release has not confirmed.
+const release = JSON.parse(readFileSync(join(site, 'release.json'), 'utf8'));
+const RELEASE = {
+  version: release.version,
+  current: release.released ? release.version : release.previous,
+  status: release.released
+    ? `**OpenMOCA ${release.version}** is the current release.`
+    : `**OpenMOCA ${release.previous}** is the current release. **${release.version}** is in review, and these pages describe it ahead of its release.`,
+  suite: release.released ? `${release.corpusCases} public conformance tests` : 'a public conformance suite',
+  readers: release.released ? 'Readers in TypeScript, .NET and Python' : 'open Readers in several languages',
+};
+const sitePageFiles = (dir) => readdirSync(dir).flatMap((n) => (statSync(join(dir, n)).isDirectory()
+  ? sitePageFiles(join(dir, n)).map((f) => join(n, f)) : [n]));
+for (const rel of sitePageFiles(join(site, 'src', 'site-pages'))) {
+  const file = join(out, rel);
+  const text = readFileSync(file, 'utf8');
+  const done = text.replace(/@@release\.(\w+)@@/g, (token, name) => {
+    if (!(name in RELEASE)) problems.push(`src/site-pages/${rel}: unknown ${token}`);
+    return RELEASE[name] ?? token;
+  });
+  if (done !== text) writeFileSync(file, done);
+}
 
 // The specification version the pages document, for the footer.
 const specVersion = JSON.parse(repoFiles('moca-spec').read('package.json')).version;
@@ -251,7 +278,7 @@ writeFileSync(join(site, 'src', 'generated.json'), `${JSON.stringify({ specVersi
 // moca-spec's JSON Schemas, byte for byte, at the paths their $id names under https://w3id.org/moca/, which redirects
 // to this site: /schemas/v1/ and /profiles/ontology/v1/. Served as application/schema+json (worker/index.js).
 for (const [from, to] of [
-  ...readdirSync(join(siblings, 'moca-spec', 'schemas', 'v1')).filter((n) => n.endsWith('.schema.json')).map((n) => [`schemas/v1/${n}`, `schemas/v1/${n}`]),
+  ...repoFiles('moca-spec').list('schemas/v1').filter((n) => n.endsWith('.schema.json')).map((n) => [`schemas/v1/${n}`, `schemas/v1/${n}`]),
   ['profiles/ontology/profile.schema.json', 'profiles/ontology/v1/profile.schema.json'],
 ]) {
   const file = join(site, 'public', to);
