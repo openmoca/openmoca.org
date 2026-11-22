@@ -9,10 +9,9 @@ place the release state touches.
 ## Confirm on the day
 
 - [ ] **The test count.** `corpusCases` in [`release.json`](release.json) is
-  488, the cases in `conformance/cases.json` in moca-spec at `release-0.7.0`
-  (`2025e88`, with ADR-0041), and each Reader's 0.7.0 test run passes all
-  488. Check it
-  against the released corpus (`conformance/cases.json` at `v0.7.0`).
+  488, the cases in `conformance/cases.json` in moca-spec at `v0.7.0`
+  (`9adec0e`, with ADR-0041), and each Reader's 0.7.0 run passes all 488
+  (run against that corpus on 2026-11-22).
 - [ ] **The three libraries.** The pages say there are free libraries (Readers)
   in TypeScript, .NET and Python. Check that all three pass every 0.7.0 case:
   the .NET and Python Readers were still being brought to 0.7.0 when this was
@@ -32,10 +31,9 @@ place the release state touches.
   - [ ] the .NET Reader (`OpenMoca.Reader`)
   - [ ] the Python Reader (`moca-reader`)
 
-  Each entry's `suite` says 488 of 488 (list version 1.1.1, 2026-11-22): the
-  TypeScript Reader at `0f5256c` in moca-spec's CI at `2025e88`, and the .NET
-  and Python Readers in their own CI, each run against `2025e88`. Confirm
-  again against `v0.7.0`.
+  Each entry's `suite` says 488 of 488 (list version 1.1.1): each Reader at
+  its `v0.7.0` tag, run on 2026-11-22 against moca-spec `v0.7.0` (`9adec0e`)
+  with `node scripts/run-conformance.mjs`.
 - [ ] **The lists' dates.** Set `released`, `updated` and each entry's `date` in
   both files to the release day, with an offset. Raise a list's `version` on
   every later change. The build checks both files against their schemas.

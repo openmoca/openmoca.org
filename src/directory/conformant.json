@@ -3,7 +3,7 @@
   "title": "OpenMOCA Conformant: software that passes the OpenMOCA tests",
   "description": "Software that passes the public OpenMOCA tests for what it does: reading, making or checking OpenMOCA. Each entry names the version, the specification version and the tests it passed, and its standing: official (the project's own software), verified (re-run by the project) or self-tested (run by its maker, with a signed result).",
   "version": "1.1.1",
-  "released": "2026-11-20T00:00:00Z",
+  "released": "2026-11-22T00:00:00Z",
   "updated": "2026-11-22T00:00:00Z",
   "publisher": {
     "name": "The OpenMOCA project",
@@ -35,7 +35,7 @@
       "signedRecord": {
         "toFollow": true
       },
-      "date": "2026-11-20T00:00:00Z",
+      "date": "2026-11-22T00:00:00Z",
       "repository": "https://github.com/openmoca/moca-reader-typescript"
     },
     {
@@ -57,7 +57,7 @@
       "signedRecord": {
         "toFollow": true
       },
-      "date": "2026-11-20T00:00:00Z",
+      "date": "2026-11-22T00:00:00Z",
       "repository": "https://github.com/openmoca/moca-reader-dotnet"
     },
     {
@@ -79,7 +79,7 @@
       "signedRecord": {
         "toFollow": true
       },
-      "date": "2026-11-20T00:00:00Z",
+      "date": "2026-11-22T00:00:00Z",
       "repository": "https://github.com/openmoca/moca-reader-python"
     }
   ]
