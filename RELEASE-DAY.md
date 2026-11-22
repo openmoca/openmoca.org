@@ -9,9 +9,9 @@ place the release state touches.
 ## Confirm on the day
 
 - [ ] **The test count.** `corpusCases` in [`release.json`](release.json) is
-  486, the cases in `conformance/cases.json` in moca-spec at `release-0.7.0`
-  (`bdb68a3`, with ADR-0041), and each Reader's 0.7.0 test run passes all
-  486. Check it
+  488, the cases in `conformance/cases.json` in moca-spec at `release-0.7.0`
+  (`2025e88`, with ADR-0041), and each Reader's 0.7.0 test run passes all
+  488. Check it
   against the released corpus (`conformance/cases.json` at `v0.7.0`).
 - [ ] **The three libraries.** The pages say there are free libraries (Readers)
   in TypeScript, .NET and Python. Check that all three pass every 0.7.0 case:
@@ -32,10 +32,10 @@ place the release state touches.
   - [ ] the .NET Reader (`OpenMoca.Reader`)
   - [ ] the Python Reader (`moca-reader`)
 
-  Each entry's `suite` says 486 of 486 (list version 1.1.0, 2026-11-21): the
-  TypeScript Reader at `81188bc` in moca-spec's CI at `bdb68a3`, the .NET
-  Reader at `786ff2f` in its own CI, and the Python Reader at `7f8d583`, run
-  against `bdb68a3`. Confirm again against `v0.7.0`.
+  Each entry's `suite` says 488 of 488 (list version 1.1.1, 2026-11-22): the
+  TypeScript Reader at `0f5256c` in moca-spec's CI at `2025e88`, and the .NET
+  and Python Readers in their own CI, each run against `2025e88`. Confirm
+  again against `v0.7.0`.
 - [ ] **The lists' dates.** Set `released`, `updated` and each entry's `date` in
   both files to the release day, with an offset. Raise a list's `version` on
   every later change. The build checks both files against their schemas.
@@ -58,7 +58,7 @@ in-review wording, if the release slips:
 | Token | `"released": true` (now) | `"released": false` |
 | --- | --- | --- |
 | `@@release.status@@` | "OpenMOCA 0.7.0 is the current release." | "OpenMOCA 0.6.0 is the current release. 0.7.0 is in review, and these pages describe it ahead of its release." |
-| `@@release.suite@@` | "486 public tests" (`corpusCases`) | "a public test suite" |
+| `@@release.suite@@` | "488 public tests" (`corpusCases`) | "a public test suite" |
 | `@@release.readers@@` | "free libraries in TypeScript, .NET and Python" | "free libraries in several programming languages" |
 | `@@release.version@@`, `@@release.current@@` | 0.7.0, 0.7.0 | 0.7.0, 0.6.0 |
 
