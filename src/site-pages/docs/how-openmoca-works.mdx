@@ -89,6 +89,16 @@ the package version and digest it came from, a versioned reference to cite,
 who signed and reviewed it, and its evidence, marked `matched` when the quote
 was found in the original.
 
+When an app hands content to a model, it sends a terms request (where the
+model runs, and on what conditions) and the Reader applies the creator's
+terms to everything the model receives: records, structure labels and
+definitions, text sent for embedding at ingest, and the catalogue entry that
+names a package. A package whose terms rule out that model is **closed**: the
+model may be told only its title, publisher, whether it is signed and why it
+is closed. If the creator set `ai.allowed.mention` to `false`, the package is
+**hidden** and the model is told nothing about it
+([the terms gate](/spec/reader-contract/#154-the-terms-gate)).
+
 Readers are in-process libraries, one per language, and every one passes the
 same [conformance corpus](/spec/conformance/), so a package reads the same way
 everywhere.

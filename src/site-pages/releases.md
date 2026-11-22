@@ -23,9 +23,16 @@ with the OpenMOCA Commitment.
 - **The creator's terms.** A package can rule out AI on the device, in the
   app's own service or with third-party providers, and machine translation and
   export. Training is never allowed by default. Terms can differ for parts of
-  a work, and a part can only be stricter. Terms are labels, not locks
-  ([the creator's terms](/docs/guides/creators-terms/),
+  a work, and a part can only be stricter. Terms cover everything an app
+  hands to a model, not only the passages it quotes. Terms are labels, not
+  locks ([the creator's terms](/docs/guides/creators-terms/),
   [package specification §4.14](/spec/package/#414-terms)).
+- **Hiding a closed work from a model.** By default, a model the creator ruled
+  out may still be told a work's title and publisher, so it can say why it
+  cannot answer from it. `ai.allowed.mention: false` tells apps not to mention
+  the work to that model at all. It cannot stop a model that already knows
+  the work, and it never changes what an app shows people
+  ([the creator's terms](/docs/guides/creators-terms/#ai-use-ai)).
 - **Credits.** The publisher and the contributors, with their roles; a part
   can credit its own, such as an episode's guest
   ([credits and dates](/docs/guides/credits-and-dates/),
@@ -48,6 +55,10 @@ with the OpenMOCA Commitment.
   each answer records which level decided each term: the platform default,
   the package, the part, a composing package or the app
   ([Reader contract §15](/spec/reader-contract/#15-creators-terms)).
+- **One rule for everything a model receives.** The terms gate covers
+  records, structure labels and definitions, text sent for embedding, and
+  what a model is told about each package
+  ([Reader contract §15.4](/spec/reader-contract/#154-the-terms-gate)).
 - **Showing terms honestly.** Apps keep apart what the creator declared, who
   signed it, what the app enforces and what the app says about itself
   ([showing terms honestly](/docs/guides/showing-terms/)).
@@ -80,6 +91,17 @@ with the OpenMOCA Commitment.
 - **Refined time ranges.** A time range can name the words spoken in it; a
   Reader checks them against the captions and returns the exact moment
   ([Reader contract §7](/spec/reader-contract/#7-citation-records)).
+- **Terms on everything handed to a model.** A package is **closed** for a
+  terms request when its package-level terms fail the `ai` gate for the
+  destination; a closed package with `ai.allowed.mention: false` is
+  **hidden**. `Library.catalogue` names a closed package with exactly `id`,
+  `version`, `title`, the publisher's name, `signed` and `closedBy`, and a
+  hidden one not at all (`catalogue-entry.schema.json`). `Library.structureFor`
+  builds structure only from packages open for the request, and ingest takes a
+  terms request, so closed text is never embedded or stored. `U004` gains
+  `excluded` and `hidden` counts
+  ([Reader contract §15.4](/spec/reader-contract/#154-the-terms-gate),
+  [Reader interface](/spec/reader-interface/)).
 - **Filters before the limit.** A search returns the best records among all
   that pass its filters, however far down the unfiltered ranking they are
   ([Reader contract §9.2](/spec/reader-contract/#92-the-pipeline-and-the-gate)).
@@ -92,6 +114,9 @@ with the OpenMOCA Commitment.
 
 - `publisher` is an object with a `name`, not a string. The string form fails
   the schema ([migrations](/project/migrations/)).
+- Content a store embedded before 0.7.0 may include text a creator closed to
+  the embedder's destination. Ingest again with a terms request, or remove
+  the closed packages' records ([migrations](/project/migrations/)).
 - `.mocae` replaces `.moca.enc`, and `.mocai` replaces `.moca.idx.zip`. Files
   with the old names still read, because Readers go by content.
 

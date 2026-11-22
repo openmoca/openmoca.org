@@ -201,8 +201,20 @@ trust root path, or ask the sender for theirs.
 
 Every answer the server gives is a **citation record**: the text, the page it
 came from and its version, and whether quoted evidence was found in the
-original source. Out-of-date and superseded pages are left out unless you ask
-for them. See [trust and provenance](/docs/trust-and-provenance/).
+original source. Out-of-date and superseded pages are left out unless the
+server is started with `--include-excluded`; the assistant cannot ask for
+them. See [trust and provenance](/docs/trust-and-provenance/).
+
+The server also applies each creator's terms to everything it gives the
+assistant. By default it treats the assistant as a third party's model;
+start it with `--destination host` or `--destination device` if yours runs
+in your own service or on your own device. A package whose terms rule that
+model out is **closed**: the assistant is told only its title, publisher,
+whether it is signed and why it is closed, so it can tell you why it cannot
+answer from it. If the creator asked that such a model not be told the work
+exists, the package is **hidden**, and the assistant is told nothing about
+it. See [the MCP server](/tools/mcp/) and
+[the creator's terms](/docs/guides/creators-terms/).
 
 `--audience public` keeps internal pages out of every answer. The assistant
 cannot widen it.
