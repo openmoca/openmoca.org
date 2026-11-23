@@ -20,8 +20,9 @@ if (names.length === 0) {
 }
 const escape = (n) => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const PRIVATE = new RegExp(`\\b(${names.map(escape).join('|')})\\b`, 'i');
-// The one allowed mention: the maintainer's public website, in the footer and on the contact page.
-const ALLOWED = /https?:\/\/(?:www\.)?piandmash\.com\/?(?=["'\s<)]|$)/gi;
+// The allowed mentions: the maintainer's public website, in the footer and on the contact page, and the one email
+// address its signed Commitment statement gives for challenges.
+const ALLOWED = /https?:\/\/(?:www\.)?piandmash\.com\/?(?=["'\s<)]|$)|\bhello@piandmash\.com(?![\w.-])/gi;
 // Attributes that make the browser fetch something.
 const FETCHED = /<(?:script|img|iframe|source|video|audio)\b[^>]*\bsrc="(https?:)?\/\/|<link\b(?=[^>]*\brel="(?:stylesheet|preload|modulepreload|icon|preconnect)")[^>]*\bhref="(https?:)?\/\//gi;
 
