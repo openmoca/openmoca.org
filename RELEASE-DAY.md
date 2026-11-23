@@ -2,9 +2,10 @@
 
 This version of the site is written as released (owner, 2026-11-20):
 `release.json` has `"released": true`, so every page says 0.7.0 is the current
-release. It only goes live when `release-0.7.0` merges to `main`, so nothing
-is published early. This file lists what to confirm on the day, and every
-place the release state touches.
+release. Merging `release-0.7.0` to `main` does not publish it: the site goes
+live only when the maintainer runs `npm run deploy` after the merge, so
+nothing is published early. This file lists what to confirm on the day, and
+every place the release state touches.
 
 ## Confirm on the day
 
@@ -16,7 +17,7 @@ place the release state touches.
   in TypeScript, .NET and Python. Check that all three pass every 0.7.0 case:
   the .NET and Python Readers were still being brought to 0.7.0 when this was
   written.
-- [ ] **The demo.** Before publishing, check try.openmoca.org shows 0.7.0, the
+- [ ] **The demo.** Before deploying, check try.openmoca.org shows 0.7.0, the
   welcome panel and the tour (session E). Every "Try it" button on the home
   page and the top bar goes straight there.
 - [ ] **The Commitment list** (`src/directory/commitment.json`): the demo is
