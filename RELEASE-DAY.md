@@ -77,8 +77,8 @@ tag in a comment: a tag can move, a commit can't, and the sync refuses
 anything else. `MOCA_MCP_DOTNET_REF` points at the head of moca-mcp-dotnet's
 `draft/0.7.0-terms-gate-coverage` (pull request #13) while it is in review,
 so the MCP page says what the server hands an assistant and withholds; move it
-to the `release-0.7.0` merge, then to `v0.7.0`. `MOCA_EXAMPLES_REF` stays at the commit
-of `v0.6.0` unless moca-examples releases 0.7.0. To find a tag's commit:
+to the `release-0.7.0` merge, then to `v0.7.0`. `MOCA_EXAMPLES_REF` is the commit
+of moca-examples `v0.7.0`. To find a tag's commit:
 `git rev-parse 'v0.7.0^{commit}'`.
 
 ## True from the moment v0.7.0 is tagged
