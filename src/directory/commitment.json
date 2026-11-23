@@ -2,9 +2,9 @@
   "$schema": "https://openmoca.org/directory/commitment.schema.json",
   "title": "The OpenMOCA Commitment: apps that have made it",
   "description": "Apps whose makers have signed a public promise to respect how creators want their work shared, shown and used, and people's own choices, as the OpenMOCA specification sets out. OpenMOCA lists each promise; it does not test it.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "released": "2026-11-22T00:00:00Z",
-  "updated": "2026-11-22T00:00:00Z",
+  "updated": "2026-11-23T00:00:00Z",
   "publisher": {
     "name": "The OpenMOCA project",
     "url": "https://openmoca.org",
@@ -18,7 +18,7 @@
   "entries": [
     {
       "id": "openmoca-demo",
-      "status": "pending",
+      "status": "made",
       "app": {
         "name": "The OpenMOCA demo (try.openmoca.org)",
         "url": "https://try.openmoca.org",
@@ -29,7 +29,7 @@
         "url": "https://piandmash.com"
       },
       "version": "0.7.0",
-      "date": "2026-11-22T00:00:00Z",
+      "date": "2026-11-23T00:00:00Z",
       "modelsAndDestinations": [
         {
           "use": "search",
@@ -42,7 +42,8 @@
           "destination": "host"
         },
         {
-          "use": "answers, with an invitation or approved access",
+          "use": "answers, with an invitation",
+          "model": "Claude Haiku 5.5",
           "provider": "Anthropic",
           "destination": "provider"
         },
@@ -53,12 +54,12 @@
         }
       ],
       "setupsCovered": [
-        "Every set-up: search, answers through the demo's own access, and answers with your own API key."
+        "Every set-up of the public site at try.openmoca.org: reading, searching, and chat with PI & Mash Solutions Ltd's key or with your own."
       ],
-      "contact": "mailto:hello@openmoca.org",
+      "contact": "mailto:hello@piandmash.com",
       "statement": {
-        "signed": false,
-        "toFollow": true
+        "signed": true,
+        "url": "https://try.openmoca.org/commitment/openmoca-demo-0.7.0.moca"
       },
       "commitmentVersion": "0.7"
     }
