@@ -4,7 +4,8 @@
 //    (dist/<route>/index.md, written by scripts/write-markdown.mjs) instead of its HTML.
 // 2. `Vary: Accept` on both versions, so a cache never hands HTML to an agent that asked for Markdown, or the reverse.
 // 3. Permanent redirects for pages that moved.
-// 4. Identifiers to their documents: a profile URI (w3id.org/moca/... redirects here) opens the profile's page.
+// 4. Identifiers to their documents: a profile URI (w3id.org/moca/... redirects here) opens the profile's page, and
+//    the moca: vocabulary at /ns its page or, for a client that asks for text/turtle, /ns.ttl.
 // 5. Security headers on every response, and on each page a content security policy that names its inline scripts by
 //    hash (worker/generated/csp.json, written by scripts/csp-hashes.mjs at the end of the build).
 //
@@ -117,6 +118,17 @@ async function respond(request, env) {
   const identifier = IDENTIFIERS[url.pathname] ?? IDENTIFIERS[url.pathname.replace(/\/$/, '')] ?? IDENTIFIERS[`${url.pathname}/`];
   if (identifier) return Response.redirect(new URL(identifier, url).href, 303);
 
+  // The moca: vocabulary (https://w3id.org/moca/ns redirects to /ns): Turtle for a client that asks for it, else the
+  // page. 303 See Other: the URI names the vocabulary; each is a document about it.
+  if (url.pathname === '/ns' || url.pathname === '/ns/') {
+    const accept = request.headers.get('Accept') ?? '';
+    const turtle = quality(accept, 'text/turtle');
+    // Readable from any origin, as the Turtle and w3id's own redirect are, so a browser can follow the term's IRI.
+    const cors = { 'Access-Control-Allow-Origin': '*' };
+    if (turtle > 0 && turtle >= quality(accept, 'text/html')) return varyOnAccept(Response.redirect(new URL('/ns.ttl', url).href, 303), cors);
+    if (url.pathname === '/ns' && !wantsMarkdown(request)) return varyOnAccept(Response.redirect(new URL('/ns/', url).href, 303), cors);
+  }
+
   const moved = MOVED[url.pathname] ?? MOVED[`${url.pathname}/`];
   if (moved) return Response.redirect(new URL(moved + url.search, url).href, 301);
 
@@ -136,6 +148,13 @@ async function respond(request, env) {
   if (url.pathname.endsWith('.schema.json') && response.ok) {
     const headers = new Headers(response.headers);
     headers.set('Content-Type', 'application/schema+json');
+    headers.set('Access-Control-Allow-Origin', '*');
+    return new Response(response.body, { status: response.status, headers });
+  }
+  // The moca: vocabulary as Turtle, readable from any origin.
+  if (url.pathname === '/ns.ttl' && response.ok) {
+    const headers = new Headers(response.headers);
+    headers.set('Content-Type', 'text/turtle; charset=utf-8');
     headers.set('Access-Control-Allow-Origin', '*');
     return new Response(response.body, { status: response.status, headers });
   }
