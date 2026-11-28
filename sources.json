@@ -204,6 +204,15 @@
     },
     {
       "repo": "moca-spec",
+      "path": "docs/guides/languages.md",
+      "route": "docs/guides/languages",
+      "group": "Guides",
+      "label": "More than one language",
+      "description": "Reach people in more than one language: translations beside the original, language editions in one composite, how a Reader picks a language, captions, and what to tag.",
+      "seoTitle": "Content in more than one language: translations and editions"
+    },
+    {
+      "repo": "moca-spec",
       "path": "docs/guides/signing-and-review.md",
       "route": "docs/guides/signing-and-review",
       "group": "Guides",
