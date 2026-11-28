@@ -123,8 +123,10 @@ async function respond(request, env) {
   if (url.pathname === '/ns' || url.pathname === '/ns/') {
     const accept = request.headers.get('Accept') ?? '';
     const turtle = quality(accept, 'text/turtle');
-    if (turtle > 0 && turtle >= quality(accept, 'text/html')) return varyOnAccept(Response.redirect(new URL('/ns.ttl', url).href, 303));
-    if (url.pathname === '/ns' && !wantsMarkdown(request)) return varyOnAccept(Response.redirect(new URL('/ns/', url).href, 303));
+    // Readable from any origin, as the Turtle and w3id's own redirect are, so a browser can follow the term's IRI.
+    const cors = { 'Access-Control-Allow-Origin': '*' };
+    if (turtle > 0 && turtle >= quality(accept, 'text/html')) return varyOnAccept(Response.redirect(new URL('/ns.ttl', url).href, 303), cors);
+    if (url.pathname === '/ns' && !wantsMarkdown(request)) return varyOnAccept(Response.redirect(new URL('/ns/', url).href, 303), cors);
   }
 
   const moved = MOVED[url.pathname] ?? MOVED[`${url.pathname}/`];
