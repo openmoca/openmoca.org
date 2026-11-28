@@ -350,6 +350,14 @@
     },
     {
       "repo": "moca-spec",
+      "path": "vocabulary/README.md",
+      "route": "ns",
+      "label": "The moca: vocabulary",
+      "group": "Specification",
+      "description": "The moca: vocabulary (https://w3id.org/moca/ns#): the RDF terms of the MOCA specification that no existing vocabulary has, such as moca:defaultEdition."
+    },
+    {
+      "repo": "moca-spec",
       "path": "conformance/README.md",
       "route": "spec/conformance",
       "label": "Conformance",
@@ -632,7 +640,12 @@
       "title": "Licence",
       "label": "Licence",
       "format": "text",
-      "append": [{ "path": "NOTICE", "heading": "Notice" }],
+      "append": [
+        {
+          "path": "NOTICE",
+          "heading": "Notice"
+        }
+      ],
       "outro": "## The licence that applies\n\nThis page is a copy for easy reading. The licence that applies is the LICENSE file in the OpenMOCA repository on GitHub. If the two ever differ, the GitHub file is the final and only licence.\n\n[The LICENSE file on GitHub](https://github.com/openmoca/moca-spec/blob/main/LICENSE)\n\nEach OpenMOCA repository carries its own LICENSE file.",
       "description": "The licence for OpenMOCA: the Apache License, Version 2.0, as in the moca-spec repository's LICENSE and NOTICE files.",
       "seoTitle": "OpenMOCA licence: Apache License 2.0"

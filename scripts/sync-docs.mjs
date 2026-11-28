@@ -470,6 +470,12 @@ for (const [from, to] of [
   writeFileSync(file, repoFiles('moca-spec').read(from));
 }
 
+// The moca: vocabulary as Turtle, at /ns.ttl: https://w3id.org/moca/ns redirects to /ns, which sends a client that
+// asks for text/turtle here (worker/index.js). Absent before moca-spec 0.8.0.
+if (repoFiles('moca-spec').kind('vocabulary/ns.ttl') === 'blob') {
+  writeFileSync(join(site, 'public', 'ns.ttl'), repoFiles('moca-spec').read('vocabulary/ns.ttl'));
+}
+
 // moca-spec's agent skills, served under /.well-known/agent-skills/ (src/pages/.well-known/agent-skills/).
 const SKILLS = ['openmoca'];
 rmSync(join(site, 'src', 'generated', 'agent-skills'), { recursive: true, force: true });

@@ -9,6 +9,7 @@ src/generated.json
 src/generated/
 public/schemas/
 public/profiles/
+public/ns.ttl
 public/directory/
 
 .DS_Store
